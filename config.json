@@ -1,7 +1,10 @@
 {
     "title":"IAn2018cs",
     "subTitle":"A developer, wishing for world peace",
+    "homeUrl":"https://blog.ian2018.club",
     "avatarUrl":"https://avatars.githubusercontent.com/u/18318073",
+    "faviconUrl":"https://ian2018.cn/favicon.png",
+    "singlePage":["about"],
     "GMEEK_VERSION":"last",
     "startSite":"08/31/2016",
     "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️"
