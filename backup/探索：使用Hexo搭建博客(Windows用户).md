@@ -15,7 +15,7 @@
 * 安装hexo
     
     这里就需要Git的安装目录了，在这个目录下找到一个叫Git Bash.vbs的文件，打开如下
-    Gmeek-html<img src="https://blog-image.ian2018.cn/images/d5ed40ad4ec71dbe8c9e9539d5518fe7e9894dec.png">
+    `Gmeek-html<img src="https://blog-image.ian2018.cn/images/d5ed40ad4ec71dbe8c9e9539d5518fe7e9894dec.png">`
     然后输入 ` npm install hexo-cli -g ` 按回车执行，完成
 
 ## 开始搭建
@@ -24,11 +24,11 @@
 
 进入github首页，在上面的标题栏上点一个加号形状的按钮，弹出三个选项，选第一个New repository
 
-Gmeek-html<img src="https://blog-image.ian2018.cn/images/eafc43bc751ea1c766c9a518850b01c8ba2cb28f.png">
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/eafc43bc751ea1c766c9a518850b01c8ba2cb28f.png">`
 
 然后出现下面这个界面
 
-Gmeek-html<img src="https://blog-image.ian2018.cn/images/17006c7e3889b430f65fcea2b120cabdd6ffe391.png">
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/17006c7e3889b430f65fcea2b120cabdd6ffe391.png">`
 
 仓库名格式必须是 ` xxx.github.io` ，这就是将来你访问你博客的域名，其中的xxx是自己github的用户名。
 
@@ -66,7 +66,7 @@ deploy:
 
 其实Hexo提供了好多高逼格的主题，自己可以在[这里](https://hexo.io/themes/)挑选一个喜欢的
 
-Gmeek-html<img src="https://blog-image.ian2018.cn/images/8dc97995ae5b360270d47344ebd0fa8ceee64cc4.png">
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/8dc97995ae5b360270d47344ebd0fa8ceee64cc4.png">`
 
 下载完后解压，把文件夹名字改成你下载主题的名字 ( 全是小写字母 ) 例：again，然后复制到刚创建的文件夹 `xxx.github.io/themes` 目录下
 
@@ -106,7 +106,7 @@ hexo s
 
 等待一会，出现以下内容
 
-Gmeek-html<img src="https://blog-image.ian2018.cn/images/852d85027f5c41ecac54c9cd6af3eaa5409e04a0.png">
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/852d85027f5c41ecac54c9cd6af3eaa5409e04a0.png">`
 
 就可以在浏览器中输入 `https://localhost:4000` 访问了 ( 其中 localhost 可以替换成本机 IP )。
 
@@ -122,21 +122,21 @@ hexo g && hexo d
 
 等待一会，就会出现一堆东西
 
-Gmeek-html<img src="https://blog-image.ian2018.cn/images/84f42884bf535d2367885fde4a7d8c505d671bcf.png">
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/84f42884bf535d2367885fde4a7d8c505d671bcf.png">`
 
 然后会让你输入 github 的 用户名 和 密码
 
-Gmeek-html<img src="https://blog-image.ian2018.cn/images/a11c8b467ad8f69ced2184b004ddda36f1c6e95e.png">
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/a11c8b467ad8f69ced2184b004ddda36f1c6e95e.png">`
 
 最后等待完成就可以了
 
-Gmeek-html<img src="https://blog-image.ian2018.cn/images/242b121663fd705b49c133c06b67ca1e4c947dc2.png">
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/242b121663fd705b49c133c06b67ca1e4c947dc2.png">`
 
 ### 去欣赏一下自己搭建的博客
 
 打开浏览器，输入 `xxx.github.io` ,就可以访问到自己的博客啦
 
-Gmeek-html<img src="https://blog-image.ian2018.cn/images/7642ec1030f823568406524b5674a9686164f607.png">
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/7642ec1030f823568406524b5674a9686164f607.png">`
 
 ## 结言
 
