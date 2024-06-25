@@ -4,8 +4,12 @@
     "homeUrl":"https://blog.ian2018.club",
     "avatarUrl":"https://avatars.githubusercontent.com/u/18318073",
     "faviconUrl":"https://ian2018.cn/favicon.png",
+    "email":"ian2018cs@gmail.com",
     "singlePage":["about"],
     "GMEEK_VERSION":"last",
     "startSite":"08/31/2016",
-    "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️"
+    "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
+    "i18n":"CN",
+    "UTC":8,
+    "showPostSource":0
 }
