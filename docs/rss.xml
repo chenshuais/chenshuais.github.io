@@ -1,5 +1,24 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:19:14 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Stable Diffusion InstantID ControlNet 参数</title><link>https://blog.ian2018.club/post/Stable%20Diffusion%20InstantID%20ControlNet%20-can-shu.html</link><description>&gt; sd-webui 版本： v1.7.0-408-g94d4b3c8
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:20:52 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Fooocus 局部重绘换装</title><link>https://blog.ian2018.club/post/Fooocus%20-ju-bu-zhong-hui-huan-zhuang.html</link><description>## 一、导入图片
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/5021f64db62f0363ed806ff3b27f1d701410c91d.png'&gt;`
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/4d0c62fc4fdb014da7f592a905a02f78009e9165.png'&gt;`
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/555e5cc7207ea74462445a84f9f84eeed3298c82.png'&gt;`
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/aa4c671bf80b1c7af271f5ffb21bab99674a72ad.png'&gt;`
+
+## 二、设置重绘区域
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/0baac8434f6003e82877334b6c4bbe998bffc768.png'&gt;`
+
+## 三、设置提示词
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/0ef7990112bab033968186ee28463867b576b143.png'&gt;`
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/f000ad08e2479c3fd7952f890e3c8fa9be9eb1dc.png'&gt;`
+
+&lt;!-- ##{'timestamp':1709549831}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Fooocus%20-ju-bu-zhong-hui-huan-zhuang.html</guid><pubDate>Wed, 26 Jun 2024 16:20:23 +0000</pubDate></item><item><title>Stable Diffusion InstantID ControlNet 参数</title><link>https://blog.ian2018.club/post/Stable%20Diffusion%20InstantID%20ControlNet%20-can-shu.html</link><description>&gt; sd-webui 版本： v1.7.0-408-g94d4b3c8
 &gt;
 &gt; controlnet 版本：v1.1.439
 
