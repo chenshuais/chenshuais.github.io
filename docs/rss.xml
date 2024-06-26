@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:42:49 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>图片审核云平台 API 方案对比</title><link>https://blog.ian2018.club/post/tu-pian-shen-he-yun-ping-tai-%20API%20-fang-an-dui-bi.html</link><description># 1 Google Cloud - Cloud Vision API - SafeSearch
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:44:24 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>图片审核云平台 API 方案对比</title><link>https://blog.ian2018.club/post/tu-pian-shen-he-yun-ping-tai-%20API%20-fang-an-dui-bi.html</link><description># 1 Google Cloud - Cloud Vision API - SafeSearch
 
 https://cloud.google.com/vision/docs/detecting-safe-search?hl=en
 
@@ -298,7 +298,15 @@ Google 早在2015年中期，就宣布结束对 Eclipse ADT（安卓开发工具
 
 ### 状态栏颜色
 
-由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 15:12:36 +0000</pubDate></item><item><title>算法学习随笔09</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-09.html</link><description># Week10 毕业总结
+由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 15:12:36 +0000</pubDate></item><item><title>Android 小 Tips</title><link>https://blog.ian2018.club/post/Android%20-xiao-%20Tips.html</link><description># Android 对非 SDK 调用限制
+
+从 Android 9 ( API 28 ) 开始，对非 SDK 接口限制
+
+https://juejin.cn/post/6844903903037751309
+
+https://developer.android.com/distribute/best-practices/develop/restrictions-non-sdk-interfaces?hl=zh-cn
+
+* greylist 无限制，可以正常使用。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-xiao-%20Tips.html</guid><pubDate>Thu, 25 Mar 2021 06:20:52 +0000</pubDate></item><item><title>算法学习随笔09</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-09.html</link><description># Week10 毕业总结
 
 转眼已经过去70天了，在这70天里，收获最大的就是养成了每天刷题的习惯。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-09.html</guid><pubDate>Sun, 26 Jul 2020 14:53:00 +0000</pubDate></item><item><title>设计模式读书笔记</title><link>https://blog.ian2018.club/post/she-ji-mo-shi-du-shu-bi-ji.html</link><description># 一、 简单工厂模式（创建型）
 
