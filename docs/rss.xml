@@ -1,5 +1,71 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:21:02 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>屏幕适配小记</title><link>https://blog.ian2018.club/post/ping-mu-shi-pei-xiao-ji.html</link><description>最近在工作中遇到了屏幕适配的问题，这里做个记录，方便以后查看。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ping-mu-shi-pei-xiao-ji.html</guid><pubDate>Wed, 26 Jun 2024 15:20:27 +0000</pubDate></item><item><title>探索：搭建GitLab服务器(CentOS7.2)</title><link>https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-da-jian-GitLab-fu-wu-qi-%28CentOS7.2%29.html</link><description># 前言 #
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:22:22 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Markdown语法笔记</title><link>https://blog.ian2018.club/post/Markdown-yu-fa-bi-ji.html</link><description># 简单记一下markdown的语法
+
+## 1.标题
+```
+# 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+```
+最多有六级标题，只需要前面加上 # 即可
+
+
+## 2.字体
+```
+**加粗字体**
+*斜体*
+***斜体加粗***
+~~删除线字体~~
+```
+效果如下
+
+&gt;**加粗字体**
+&gt;
+&gt;*斜体*
+&gt;
+&gt;***斜体加粗***
+&gt;
+&gt;~~删除线字体~~
+
+
+
+## 3.引用
+可以套好多层引用下去
+```
+&gt;一级引用
+&gt;&gt;二级引用
+&gt;&gt;&gt;三级引用
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;n级引用
+```
+效果如下
+&gt;一级引用
+&gt;&gt;二级引用
+&gt;&gt;&gt;三级引用
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;n级引用
+
+## 4.分割线
+三个或三个以上的 - 或 *
+```
+---
+----
+***
+****
+```
+效果如下，好像看不出啥区别
+
+&gt;---
+&gt;----
+&gt;***
+&gt;****
+
+## 5.图片
+```
+![图片下的文字](图片地址 '图片标题')
+```
+图片标题是指当鼠标移动到图片上时显示的内容，标题可以不加。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Markdown-yu-fa-bi-ji.html</guid><pubDate>Wed, 26 Jun 2024 15:22:01 +0000</pubDate></item><item><title>屏幕适配小记</title><link>https://blog.ian2018.club/post/ping-mu-shi-pei-xiao-ji.html</link><description>最近在工作中遇到了屏幕适配的问题，这里做个记录，方便以后查看。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ping-mu-shi-pei-xiao-ji.html</guid><pubDate>Wed, 26 Jun 2024 15:20:27 +0000</pubDate></item><item><title>探索：搭建GitLab服务器(CentOS7.2)</title><link>https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-da-jian-GitLab-fu-wu-qi-%28CentOS7.2%29.html</link><description># 前言 #
 
 GitLab 是一个用于仓库管理系统的开源项目，使用Git作为代码管理工具，并在此基础上搭建起来的web服务。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-da-jian-GitLab-fu-wu-qi-%28CentOS7.2%29.html</guid><pubDate>Wed, 26 Jun 2024 15:18:53 +0000</pubDate></item><item><title>音乐播放器思路</title><link>https://blog.ian2018.club/post/yin-le-bo-fang-qi-si-lu.html</link><description>## 开发背景
 
