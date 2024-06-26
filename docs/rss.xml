@@ -1,5 +1,39 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:25:31 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>申请新加坡 OCBC 银行卡</title><link>https://blog.ian2018.club/post/shen-qing-xin-jia-po-%20OCBC%20-yin-xing-qia.html</link><description># 申请新加坡 OCBC 银行卡
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:27:06 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>WWDC 24 Apple Intelligence 新功能预览</title><link>https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</link><description># Apple Intelligence
+
+&gt; AI 相关的能力仅支持 iPhone 15 Pro 及以上的机型
+&gt;
+&gt; https://developer.apple.com/apple-intelligence/
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/03cac3f41a5d033b8a3bed66c5404607b0faa37c.png'&gt;`
+
+## Writing Tools
+&gt; 参考文档：
+&gt;
+&gt; https://developer.apple.com/videos/play/wwdc2024/10168/
+&gt;
+&gt; https://www.youtube.com/watch?v=79PkqsA_zk8
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/d4717848a1428549fc383812053238cdca0b2a54.png'&gt;`
+
+### 表现形式：
+- 系统键盘上的工具栏
+- 长按文本弹出的上下文菜单中
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/6a8d39e5b10a2e0c4aa7585fd183f5c17c7fec5a.png'&gt;`
+
+### 适用于文本类型：
+- 可编辑的文本：会直接在原文本上修改
+- 不可编辑的文本：会弹出系统弹窗面板展示结果
+
+### 支持的能力：
+- 文本校对
+- 文本重写
+- 摘要总结
+- 将文本转换为列表或者表格
+
+### 开发者能做的：
+- 默认应用内使用 `UITextView` 或者 `NSTextView` 的文本 UI 都支持 Writing Tools 功能。</description><guid isPermaLink="true">https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</guid><pubDate>Wed, 26 Jun 2024 16:26:42 +0000</pubDate></item><item><title>申请新加坡 OCBC 银行卡</title><link>https://blog.ian2018.club/post/shen-qing-xin-jia-po-%20OCBC%20-yin-xing-qia.html</link><description># 申请新加坡 OCBC 银行卡
 
 OCBC（Oversea-Chinese Banking Corporation，即新加坡华侨银行）是新加坡的第二大银行。</description><guid isPermaLink="true">https://blog.ian2018.club/post/shen-qing-xin-jia-po-%20OCBC%20-yin-xing-qia.html</guid><pubDate>Wed, 26 Jun 2024 16:25:08 +0000</pubDate></item><item><title>iOS 照片相似度检查调研</title><link>https://blog.ian2018.club/post/iOS%20-zhao-pian-xiang-si-du-jian-cha-diao-yan.html</link><description>## 照片相似度检查
 
