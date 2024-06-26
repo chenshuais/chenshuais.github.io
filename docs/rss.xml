@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:38:09 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>算法学习随笔08</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-08.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/bfb08bcb716a91120ade5e5d9b2bceef7c82eb70.png'&gt;`
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:39:44 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>算法学习随笔08</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-08.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/bfb08bcb716a91120ade5e5d9b2bceef7c82eb70.png'&gt;`
 
 # Week09 学习笔记
 
@@ -271,7 +271,9 @@ Google 早在2015年中期，就宣布结束对 Eclipse ADT（安卓开发工具
 
 ### 状态栏颜色
 
-由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 15:12:36 +0000</pubDate></item><item><title>设计模式读书笔记</title><link>https://blog.ian2018.club/post/she-ji-mo-shi-du-shu-bi-ji.html</link><description># 一、 简单工厂模式（创建型）
+由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 15:12:36 +0000</pubDate></item><item><title>算法学习随笔09</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-09.html</link><description># Week10 毕业总结
+
+转眼已经过去70天了，在这70天里，收获最大的就是养成了每天刷题的习惯。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-09.html</guid><pubDate>Sun, 26 Jul 2020 14:53:00 +0000</pubDate></item><item><title>设计模式读书笔记</title><link>https://blog.ian2018.club/post/she-ji-mo-shi-du-shu-bi-ji.html</link><description># 一、 简单工厂模式（创建型）
 
 1. 活字印刷，面向对象：可维护、可复用、可扩展、灵活性好。</description><guid isPermaLink="true">https://blog.ian2018.club/post/she-ji-mo-shi-du-shu-bi-ji.html</guid><pubDate>Tue, 15 Oct 2019 01:11:00 +0000</pubDate></item><item><title>Java io流</title><link>https://blog.ian2018.club/post/Java%20io-liu.html</link><description>
 类关系图：
