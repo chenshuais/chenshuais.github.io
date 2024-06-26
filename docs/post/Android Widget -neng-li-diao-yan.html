@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="## 特殊图形所需设计素材
+- 一张特殊图形的透明度遮罩（如下图中第二张图的样式，被剪裁的部分是透明的，图片需要是正方形的）
+`Gmeek-html<img src='https://blog-image.ian2018.cn/images/73aed981c0f66138f30b00f901c542a4317c0c8d.png'>`
+
+## 限制
+
+### 支持的布局：
+- `FrameLayout`
+- `LinearLayout`
+- `RelativeLayout`
+- `GridLayout`
+
+### 支持的控件：
+- [`AnalogClock`](https://developer.android.com/reference/android/widget/AnalogClock)（模拟时钟）
+- `Button`
+- [`Chronometer`](https://developer.android.com/reference/android/widget/Chronometer)（计时器）
+- `ImageButton`
+- `ImageView`
+- `ProgressBar`
+- `TextView`
+- [`ViewFlipper`](https://developer.android.com/reference/android/widget/ViewFlipper)（多页管理控件，可以用作图片轮播）
+- `ListView`
+- `GridView`
+- [`StackView`](https://developer.android.com/reference/android/widget/StackView)（堆叠视图，可以做多图切换）
+- [`AdapterViewFlipper`](https://developer.android.com/reference/android/widget/AdapterViewFlipper)（多个 View 切换，切换时可以有渐隐的动画效果）
+
+在 Android 12 上，增加了对 CheckBox 等控件的支持：
+- `CheckBox`
+- `Switch`
+- `RadioButton`
+
+
+## Android 12 更新
+
+> 从 Android 推出至今，AppWidget 的 API 基本就没有什么大的变化，从 2012 年到 2021 年更是只有一个 Android 版本包含了对 AppWidget API 的更新 --- [Google Android 开发者](https://juejin.cn/post/7051439506817286181#heading-2)
+
+[Android 12上焕然一新的小组件：美观、便捷和实用](https://juejin.cn/post/6968851189190377480#heading-7)
+
+- 增加 Widget 圆角设置
+- 增加主题颜色变化
+- 增加 Widget 动态预览，在添加 Widget 时，可以看到真实的效果
+- 支持响应式布局，可以根据 Widget 的大小选择不同的布局
+- 增加 targetCellWidth/targetCellHeight 配置，来直接指定 Widget 在桌面占用的 cell 大小（2 * 2 等）
+- 简化数据绑定，新增 setRemoteAdapter API
+- 支持 Compose 编写 Widget：[Jetpack Glance](https://juejin.cn/post/7042468014251311112)，不过也不能随心所欲，支持的控件都差不多，也是那几种
+
+
+## 结论
+- 支持的布局和控件有限，不能播放视频 （[官方文档](https://developer.android.com/guide/topics/appwidgets)）
+- 动画可以支持帧动画、和一些旋转、位移、缩放、透明度等简单动画，不过需要采用特殊手段，会比较耗电（[Android-自定义桌面小部件【搞定小米MIUI小部件】 - 掘金](https://juejin.cn/post/7048623673892143140)， [AppWidget 添加动画效果](https://www.jianshu.com/p/228a8ad91829)）
+- 可以通过剪裁图片，来显示一些特殊形状的图
+
+<!-- ##{'timestamp':1644549811}## -->。">
+<meta property="og:title" content="Android Widget 能力调研">
+<meta property="og:description" content="## 特殊图形所需设计素材
+- 一张特殊图形的透明度遮罩（如下图中第二张图的样式，被剪裁的部分是透明的，图片需要是正方形的）
+`Gmeek-html<img src='https://blog-image.ian2018.cn/images/73aed981c0f66138f30b00f901c542a4317c0c8d.png'>`
+
+## 限制
+
+### 支持的布局：
+- `FrameLayout`
+- `LinearLayout`
+- `RelativeLayout`
+- `GridLayout`
+
+### 支持的控件：
+- [`AnalogClock`](https://developer.android.com/reference/android/widget/AnalogClock)（模拟时钟）
+- `Button`
+- [`Chronometer`](https://developer.android.com/reference/android/widget/Chronometer)（计时器）
+- `ImageButton`
+- `ImageView`
+- `ProgressBar`
+- `TextView`
+- [`ViewFlipper`](https://developer.android.com/reference/android/widget/ViewFlipper)（多页管理控件，可以用作图片轮播）
+- `ListView`
+- `GridView`
+- [`StackView`](https://developer.android.com/reference/android/widget/StackView)（堆叠视图，可以做多图切换）
+- [`AdapterViewFlipper`](https://developer.android.com/reference/android/widget/AdapterViewFlipper)（多个 View 切换，切换时可以有渐隐的动画效果）
+
+在 Android 12 上，增加了对 CheckBox 等控件的支持：
+- `CheckBox`
+- `Switch`
+- `RadioButton`
+
+
+## Android 12 更新
+
+> 从 Android 推出至今，AppWidget 的 API 基本就没有什么大的变化，从 2012 年到 2021 年更是只有一个 Android 版本包含了对 AppWidget API 的更新 --- [Google Android 开发者](https://juejin.cn/post/7051439506817286181#heading-2)
+
+[Android 12上焕然一新的小组件：美观、便捷和实用](https://juejin.cn/post/6968851189190377480#heading-7)
+
+- 增加 Widget 圆角设置
+- 增加主题颜色变化
+- 增加 Widget 动态预览，在添加 Widget 时，可以看到真实的效果
+- 支持响应式布局，可以根据 Widget 的大小选择不同的布局
+- 增加 targetCellWidth/targetCellHeight 配置，来直接指定 Widget 在桌面占用的 cell 大小（2 * 2 等）
+- 简化数据绑定，新增 setRemoteAdapter API
+- 支持 Compose 编写 Widget：[Jetpack Glance](https://juejin.cn/post/7042468014251311112)，不过也不能随心所欲，支持的控件都差不多，也是那几种
+
+
+## 结论
+- 支持的布局和控件有限，不能播放视频 （[官方文档](https://developer.android.com/guide/topics/appwidgets)）
+- 动画可以支持帧动画、和一些旋转、位移、缩放、透明度等简单动画，不过需要采用特殊手段，会比较耗电（[Android-自定义桌面小部件【搞定小米MIUI小部件】 - 掘金](https://juejin.cn/post/7048623673892143140)， [AppWidget 添加动画效果](https://www.jianshu.com/p/228a8ad91829)）
+- 可以通过剪裁图片，来显示一些特殊形状的图
+
+<!-- ##{'timestamp':1644549811}## -->。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/Android%20Widget%20-neng-li-diao-yan.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>Android Widget 能力调研</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Android Widget 能力调研</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/chenshuais/chenshuais.github.io/issues/55" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h2>特殊图形所需设计素材</h2>
+<ul>
+<li>一张特殊图形的透明度遮罩（如下图中第二张图的样式，被剪裁的部分是透明的，图片需要是正方形的）<br>
+<img src="https://blog-image.ian2018.cn/images/73aed981c0f66138f30b00f901c542a4317c0c8d.png"></li>
+</ul>
+<h2>限制</h2>
+<h3>支持的布局：</h3>
+<ul>
+<li><code class="notranslate">FrameLayout</code></li>
+<li><code class="notranslate">LinearLayout</code></li>
+<li><code class="notranslate">RelativeLayout</code></li>
+<li><code class="notranslate">GridLayout</code></li>
+</ul>
+<h3>支持的控件：</h3>
+<ul>
+<li><a href="https://developer.android.com/reference/android/widget/AnalogClock" rel="nofollow"><code class="notranslate">AnalogClock</code></a>（模拟时钟）</li>
+<li><code class="notranslate">Button</code></li>
+<li><a href="https://developer.android.com/reference/android/widget/Chronometer" rel="nofollow"><code class="notranslate">Chronometer</code></a>（计时器）</li>
+<li><code class="notranslate">ImageButton</code></li>
+<li><code class="notranslate">ImageView</code></li>
+<li><code class="notranslate">ProgressBar</code></li>
+<li><code class="notranslate">TextView</code></li>
+<li><a href="https://developer.android.com/reference/android/widget/ViewFlipper" rel="nofollow"><code class="notranslate">ViewFlipper</code></a>（多页管理控件，可以用作图片轮播）</li>
+<li><code class="notranslate">ListView</code></li>
+<li><code class="notranslate">GridView</code></li>
+<li><a href="https://developer.android.com/reference/android/widget/StackView" rel="nofollow"><code class="notranslate">StackView</code></a>（堆叠视图，可以做多图切换）</li>
+<li><a href="https://developer.android.com/reference/android/widget/AdapterViewFlipper" rel="nofollow"><code class="notranslate">AdapterViewFlipper</code></a>（多个 View 切换，切换时可以有渐隐的动画效果）</li>
+</ul>
+<p>在 Android 12 上，增加了对 CheckBox 等控件的支持：</p>
+<ul>
+<li><code class="notranslate">CheckBox</code></li>
+<li><code class="notranslate">Switch</code></li>
+<li><code class="notranslate">RadioButton</code></li>
+</ul>
+<h2>Android 12 更新</h2>
+<blockquote>
+<p>从 Android 推出至今，AppWidget 的 API 基本就没有什么大的变化，从 2012 年到 2021 年更是只有一个 Android 版本包含了对 AppWidget API 的更新 --- <a href="https://juejin.cn/post/7051439506817286181#heading-2" rel="nofollow">Google Android 开发者</a></p>
+</blockquote>
+<p><a href="https://juejin.cn/post/6968851189190377480#heading-7" rel="nofollow">Android 12上焕然一新的小组件：美观、便捷和实用</a></p>
+<ul>
+<li>增加 Widget 圆角设置</li>
+<li>增加主题颜色变化</li>
+<li>增加 Widget 动态预览，在添加 Widget 时，可以看到真实的效果</li>
+<li>支持响应式布局，可以根据 Widget 的大小选择不同的布局</li>
+<li>增加 targetCellWidth/targetCellHeight 配置，来直接指定 Widget 在桌面占用的 cell 大小（2 * 2 等）</li>
+<li>简化数据绑定，新增 setRemoteAdapter API</li>
+<li>支持 Compose 编写 Widget：<a href="https://juejin.cn/post/7042468014251311112" rel="nofollow">Jetpack Glance</a>，不过也不能随心所欲，支持的控件都差不多，也是那几种</li>
+</ul>
+<h2>结论</h2>
+<ul>
+<li>支持的布局和控件有限，不能播放视频 （<a href="https://developer.android.com/guide/topics/appwidgets" rel="nofollow">官方文档</a>）</li>
+<li>动画可以支持帧动画、和一些旋转、位移、缩放、透明度等简单动画，不过需要采用特殊手段，会比较耗电（<a href="https://juejin.cn/post/7048623673892143140" rel="nofollow">Android-自定义桌面小部件【搞定小米MIUI小部件】 - 掘金</a>， <a href="https://www.jianshu.com/p/228a8ad91829" rel="nofollow">AppWidget 添加动画效果</a>）</li>
+<li>可以通过剪裁图片，来显示一些特殊形状的图</li>
+</ul>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
