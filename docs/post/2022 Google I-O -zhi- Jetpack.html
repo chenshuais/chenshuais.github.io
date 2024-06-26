@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="今年的 I/O 大会和往常一样，不过最有特色的就是 [Adventure](https://adventure.withgoogle.com/io) 这个线上会场，和摩尔庄园差不多，开发者可以在这里逛各个会场，还能全球的开发者聊天，钓鱼等等。">
+<meta property="og:title" content="2022 Google I/O 之 Jetpack">
+<meta property="og:description" content="今年的 I/O 大会和往常一样，不过最有特色的就是 [Adventure](https://adventure.withgoogle.com/io) 这个线上会场，和摩尔庄园差不多，开发者可以在这里逛各个会场，还能全球的开发者聊天，钓鱼等等。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/2022%20Google%20I-O%20-zhi-%20Jetpack.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>2022 Google I/O 之 Jetpack</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">2022 Google I/O 之 Jetpack</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/chenshuais/chenshuais.github.io/issues/57" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>今年的 I/O 大会和往常一样，不过最有特色的就是 <a href="https://adventure.withgoogle.com/io" rel="nofollow">Adventure</a> 这个线上会场，和摩尔庄园差不多，开发者可以在这里逛各个会场，还能全球的开发者聊天，钓鱼等等。</p>
+<p><img src="https://blog-image.ian2018.cn/images/06ab53e56d71d26e7192c5f432b6bff576da664e.png"></p>
+<p>好了，回到主题上来，<a href="https://developer.android.com/jetpack" rel="nofollow">Jetpack</a> 发展到今天，已经包含了 100 多个库、工具和指南，内容已经非常丰富，现在开发项目几乎都会使用 Jetpack，毕竟相比于其他开源项目，Jetpack 背靠 Google 还是更靠谱。</p>
+<p>下面介绍一下今年 I/O 大会 Jetpack 相关的内容。</p>
+<h1>一、Room</h1>
+<p><a href="https://developer.android.com/training/data-storage/room" rel="nofollow">Room</a> 是一个数据库工具，它在 SQLite 之上提供了抽象层，让开发者可以通过注解轻松完成数据库的开发工作。<br>
+<img src="https://blog-image.ian2018.cn/images/92accfb40571876567033954686f17ee78e58e02.png"></p>
+<p>Room 的更新点：</p>
+<ul>
+<li><strong>稳定支持 <a href="https://kotlinlang.org/docs/ksp-overview.html" rel="nofollow">KSP</a></strong>：在 Room 2.4 中，已经稳定支持 KSP 处理注解，并且完全支持 Kotlin 1.6。之前使用的是 <a href="https://kotlinlang.org/docs/kapt.html" rel="nofollow">KAPT</a> 处理注解，导致拖慢了编译速度。KSP 和 KAPT 相比，编译速度提高了 2 倍。</li>
+<li><strong>用 Kotlin 重写</strong>：从 Room 2.5 开始使用 Kotlin 完成重写，同时仍然与 Java 编写的版本二进制兼容。</li>
+<li><strong>对 Paging 3.0 的内置支持</strong>：允许 Room 查询返回 <code class="notranslate">PagingSource</code> 对象。</li>
+<li><strong>支持多映射关系查询</strong>：可以直接执行 JOIN 查询，无需额外定义数据结构：
+<div class="highlight highlight-source-kotlin"><pre class="notranslate">@Query(<span class="pl-s"><span class="pl-pds">"</span>SELECT * FROM Artist JOIN Song ON Artist.artistName = Song.songArtistName<span class="pl-pds">"</span></span>)
+<span class="pl-k">fun</span> <span class="pl-en">getArtistToSongs</span>(): <span class="pl-c1">Map</span>&lt;<span class="pl-en">Artist</span>, <span class="pl-en">List</span>&lt;<span class="pl-en">Song</span>&gt;&gt;</pre></div>
+</li>
+<li><strong>支持数据库自动升级</strong>：Database 注解增加 <code class="notranslate">autoMigrations</code> 参数，可以用于声明要从哪个版本升级到哪个版本，当 Room 需要执行有关表和列修改的信息时，还可以使用 <code class="notranslate">@AutoMigration</code> 注解的 spec 参数传入。
+<div class="highlight highlight-source-kotlin"><pre class="notranslate">@Database(
+    version <span class="pl-k">=</span> <span class="pl-c1">2</span>,
+    autoMigrations <span class="pl-k">=</span> {
+        @AutoMigration(from <span class="pl-k">=</span> <span class="pl-c1">1</span>, to <span class="pl-k">=</span> , spec <span class="pl-k">=</span> <span class="pl-en">MyMigration</span>::<span class="pl-c1">class</span>)
+    }
+)
+<span class="pl-k">abstract</span> <span class="pl-k">class</span> <span class="pl-en">MyDatabase</span> : <span class="pl-en">RoomDatabase</span>()</pre></div>
+</li>
+</ul>
+<h1>二、Paging</h1>
+<p><a href="https://developer.android.com/topic/libraries/architecture/paging/v3-overview" rel="nofollow">Paging</a> 是一个分页加载库，应用程序数据可以在 RecylerViews 或 Compose LazyColumns 中分页加载。<br>
+<img src="https://blog-image.ian2018.cn/images/fc0a4ccd04ef6499f0106edf32563b43ff74df4f.png"></p>
+<p>Paging 更新点：</p>
+<ul>
+<li><strong>支持 Rx 和 Guava</strong>：Paging 3.1 为 Rx 和 Guava 集成带来了稳定的支持，这为 Paging 对 Kotlin 协程的使用提供了 Java 版替代方案。</li>
+<li><strong>增加新的返回类型 <code class="notranslate">LoadResult.Invalid</code></strong>：改进了对无效竞争条件的处理。</li>
+<li><strong>增加了 <code class="notranslate">onPagesPresented</code> 和 <code class="notranslate">addOnPagesUpdateListener</code> API</strong>：改进了对空页面的无操作加载的处理。</li>
+<li><strong>针对 Paging 3 添加更简单的 Codelab</strong>：<a href="https://developer.android.com/codelabs/android-paging-basics%EF%BC%8C%E5%B8%AE%E5%8A%A9%E5%BC%80%E5%8F%91%E8%80%85%E5%8A%A0%E5%BF%AB" rel="nofollow">https://developer.android.com/codelabs/android-paging-basics，帮助开发者加快</a> Paging 3 的上手速度。</li>
+</ul>
+<h1>三、Navigation</h1>
+<p><a href="https://developer.android.com/guide/navigation" rel="nofollow">Navigation</a> 是一个页面导航框架，一般用于单 Activity 的架构中。</p>
+<p>更新点：</p>
+<ul>
+<li><strong>提供了 <a href="https://developer.android.com/reference/kotlin/androidx/navigation/compose/package-summary" rel="nofollow">Navigation Compose</a> 组件</strong>：可以集成到 Jetpack Compose 中，可以使 Composable 函数作为程序导航目的地。</li>
+<li><strong>改进对多回退栈的支持</strong>：NavigationUI 现在会自动保存和恢复弹出目标的状态，这意味着开发者可以支持多个回退栈（如多个 Tab 在切换时会保存或恢复当前 Tab 的回退栈），而无需更改任何代码。</li>
+<li><strong>增加对大屏幕的支持</strong>：在 <code class="notranslate">AbstractListDetailFragment</code> 中提供了双窗格布局的预构建，此 Fragment 使用 SlidingPaneLayout 来管理由子类管理的列表窗格和使用 <code class="notranslate">NavHostFragment</code> 的详细信息窗格。</li>
+<li><strong>全部用 Kotlin 重写</strong>：Navigation 所有组件都已经在 Kotlin 中重写，并使用泛型改进了类的可空性。</li>
+</ul>
+<h1>四、DataStore</h1>
+<p><a href="https://developer.android.com/topic/libraries/architecture/datastore" rel="nofollow">DataStore</a> 是一个数据存储库，旨在代替 <code class="notranslate">SharedPreferences</code> ，可以解决其大部分问题。</p>
+<p>今年 DataStore 没有更新点，主要就是推荐大家用起来，提供了一系列视频和文章，帮助开发者学习和使用 DataStore：<a href="http://goo.gle/mad-skills-datastore" rel="nofollow">MAD Skills（现代 Android 开发技能）: DataStore</a>。</p>
+<h1>五、JankStats</h1>
+<p><a href="https://developer.android.com/studio/profile/jankstats" rel="nofollow">JankStats</a> 是一个新的库，可以帮助开发者跟踪和分析应用 UI 中的性能问题，生成有关丢弃的渲染帧报告 "jank"。目前还是 alpha 版本。</p>
+<p>更新点：</p>
+<ul>
+<li><strong>兼容 API 16</strong>：JankStats 基于 Android 平台 API <a href="https://developer.android.com/reference/android/view/FrameMetrics" rel="nofollow">FrameMetrics</a> 之上，但可以兼容到 API 16。</li>
+<li><strong>提供 UI 上下文</strong>：JankStats 可以追踪 UI 和用户的当前状态，以便开发者可以了解问题发生的时间和用户当时在做什么。</li>
+<li><strong>报告回调</strong>：在每一帧中，JankStats 都会通过侦听器收到有关该帧的信息的通知，包括该帧完成所用的时间、是否被视为卡顿以及该帧期间的 UI 上下文。</li>
+</ul>
+<h1>六、Baseline Profiles</h1>
+<p><a href="https://developer.android.com/studio/profile/baselineprofiles" rel="nofollow">Baseline Profiles</a> 库可以优化应用首次启动速度。其主要是通过预编译的方式来提高启动速度，Baseline Profiles 允许应用和库向 Android Runtime 提供有关代码路径使用情况的 metadata，它使用这些 metadata 来确定提前编译的优先级。</p>
+<p>配置文件数据最终会作为 <code class="notranslate">baseline.prof</code> 文件放入 APK 中，然后在安装时使用改文件对应用程序及其静态链接库代码进行部分预编译，加快应用加载速度。<br>
+<img src="https://blog-image.ian2018.cn/images/8571f51147c57009c96c9a6915fa522a1553453a.png"></p>
+<ul>
+<li>在 Jetpack 的一些流行库中，已经使用 Baseline Profiles，例如 Fragments 和 Compose 等。</li>
+<li>如果要创建应用自己的 Baseline Profiles 配置文件，需要使用 <a href="https://developer.android.com/studio/profile/baselineprofiles" rel="nofollow">Macrobenchmark</a>。</li>
+</ul>
+<h1>七、Macrobenchmark</h1>
+<p><a href="https://developer.android.com/studio/profile/macrobenchmark" rel="nofollow">Macrobenchmark</a> 是一个基准测试库，兼容到 API 23，可以将 Jetpack 的基准测试覆盖范围扩展到更复杂的用例，包括应用启动和集成 UI 操作（如 RcyclerView 或运行动画），帮助开发者更好的了解应用性能。此外，Macrobenchmark 还可以用于生成 Baseline Profiles。</p>
+<p>新加的实验功能：</p>
+<ul>
+<li>使用 <code class="notranslate">TraceSectionMetric</code> 进行基于自定义跟踪的时序测量，它允许开发者对特定代码部分进行基准测试。</li>
+<li><code class="notranslate">AudioUnderrunMetric</code> 可以检测音频缓冲区欠载，帮助了解音频卡顿。</li>
+<li>增加 <code class="notranslate">BaselineProfileRule</code> ，它可以生成配置文件，以帮助上面提到的运行时优化。</li>
+</ul>
+<h1>八、Tracing</h1>
+<p><a href="https://developer.android.com/jetpack/androidx/releases/tracing" rel="nofollow">Tracing</a> 也是一个性能分析库，它可以将跟踪事件写入系统缓冲区，然后就可以使用 <a href="https://developer.android.google.cn/topic/performance/tracing" rel="nofollow">Systrace 和 Perfetto</a> 等工具进行分析了。此库代替了已弃用的 <code class="notranslate">androidx.core.os.TraceCompat</code> 类。</p>
+<p>更新点：</p>
+<ul>
+<li>Tracing 1.1 支持在 API 14 的非调试版本中进行分析，类似于在 API 29 中添加的 <code class="notranslate">&lt;profileable&gt;</code> 清单标记。</li>
+</ul>
+<h1>九、新的 WindowManager</h1>
+<p>新的 <a href="https://developer.android.com/jetpack/androidx/releases/window" rel="nofollow">WindowManager</a> 库通过提供支持低至 API 14 的通用 API 服务，帮助开发者调整应用程序以适应新的设备外形，如可折叠设备。</p>
+<ul>
+<li>初始版本针对可折叠设备用例，包括查询影响内容应该如何显示的物理属性。未来的版本将扩展到更多的显示类型和窗口功能。</li>
+<li>Jetpack 的 <a href="https://developer.android.com/guide/topics/ui/layout/twopane" rel="nofollow"><code class="notranslate">SlidingPaneLayout</code></a> 组件已经更新为使用 <code class="notranslate">WindowManager</code> 的智能布局 API 来实现，从而避免将内容放置在被遮挡的区域，如折叠屏跨物理铰链。</li>
+</ul>
+<h1>十、DragAndDrop</h1>
+<p><a href="https://developer.android.com/jetpack/androidx/releases/draganddrop" rel="nofollow">DragAndDrop</a> 是一个处理 <a href="https://developer.android.com/guide/topics/ui/drag-drop" rel="nofollow">View 拖放功能</a>的库，有助于简化拖放功能的实现。<br>
+<img src="https://blog-image.ian2018.cn/images/a70457c69f2b8997e1276284d8ecca634fe5842f.gif"></p>
+<ul>
+<li>支持新的外形尺寸和窗口模式。</li>
+<li>接受来自其应用程序内部和外部的拖放数据，并具有一致的放置目标可供性。</li>
+<li>最低支持 API 24。</li>
+</ul>
+<h1>十一、AppCompat</h1>
+<p><a href="https://developer.android.com/jetpack/androidx/releases/appcompat" rel="nofollow">AppCompat</a> 一个老库了，它可以在低版本 API 上使用新 API 的 UI 特性（很多都符合 Material Design 准则）。</p>
+<p>更新点：</p>
+<ul>
+<li>从 1.8 开始集成了 Emoji2 库，为 API 14 及以上的 AppCompat 支持的所有基于文本的视图带来了对新表情符号的默认支持。</li>
+<li>将<a href="https://developer.android.com/about/versions/13/features/app-languages" rel="nofollow">自定义语言环境选择</a>从 API 33 向后移植到 API 14。</li>
+</ul>
+<h1>十二、Annotation</h1>
+<p><a href="https://developer.android.com/jetpack/androidx/releases/annotation" rel="nofollow">Annotation</a> 库提供了大家熟悉的注解，如 <code class="notranslate">@NonNull</code> 与 lint 检查配对。</p>
+<p>更新点：</p>
+<ul>
+<li>正在迁移到 Kotlin。</li>
+<li>增加 <code class="notranslate">@ReturnThis</code>：确保相应方法的替换方法必须返回相同的实例（适用于构建器等）。</li>
+<li>增加 <code class="notranslate">@OpenForTesting</code>：标记为 “open” 的 Kotlin 类和方法可以添加此注解，并且 lint 将确保此类仅在单元测试中子类化（并且仅替换方法）。</li>
+<li>增加 <code class="notranslate">@DeprecatedSinceApi</code>：表示带注解的方法（或类/字段）是某个平台 API 的向后移植库的一部分，从指定的 API 级别开始将不再需要相应方法。</li>
+<li>增加 <code class="notranslate">@EmptySuper</code>：表示相应方法被定义为空方法，因此在替换该方法时不需要调用它（实际上，您不应调用该方法，例如，它可以包含向后兼容性检查）。</li>
+</ul>
+<h1>十三、Jetpack Compose</h1>
+<p><a href="https://developer.android.com/jetpack/compose" rel="nofollow">Compose</a> 是一个新的 UI 框架，特色就是声明式 UI。现在已经是稳定版本，在 Play 商店中排名前 1000 的应用中，已经有 100 多个正在使用 Compose。</p>
+<h2>Compose 主要更新点：</h2>
+<ul>
+<li><strong>嵌套滚动优化</strong>：当在视图系统中嵌入可组合滚动的 <code class="notranslate">CoordinatorLayout</code> 时，开发者现在可以确保它们的滚动行为是可互操作，这让可折叠工具栏的设置更加容易。可以通过实验 API <code class="notranslate">rememberNestedScrollInteropConnection</code> 传递给 nestedScroll 修饰符来选择加入此行为。</li>
+<li><strong><a href="https://developer.android.com/jetpack/compose/text#downloadable-fonts" rel="nofollow">可下载字体</a></strong>：开发者可以使用 Compose 的新 API 来异步访问 Google 字体，甚至可以定义备用字体，而无需任何复杂的设置。</li>
+<li><strong>懒布局</strong>：增加了一个新的实验性 API <code class="notranslate">LazyLayout</code>，它允许开发者实现自定义的惰性布局。</li>
+<li><strong>字体填充</strong>：通过可自定义的参数 <code class="notranslate">includeFontPadding</code>，使文本可以更精确的对齐，建议开发者设置为 false。<br>
+<img src="https://blog-image.ian2018.cn/images/0791b8933fa07a9ba1b475665e7dc88d8971462e.png"></li>
+<li><strong>文字放大镜</strong>：Android 文本提供了一个放大镜小部件，可以更轻松地选择文本。Compose 现在也支持文本放大镜。<br>
+<img src="https://blog-image.ian2018.cn/images/d3f98130b33a412ff8d54f69cc41e1865e20ee1f.png"></li>
+<li><strong>窗口插图</strong>：<a href="https://google.github.io/accompanist/" rel="nofollow">Accompanist</a> 中的 Insets 库已经升级到 Compose Foundation 库中。
+<ul>
+<li>Accompanist 是一个类似实验室的环境，适用于新的 Compose API。我们使用它来帮助填补 Compose 工具包中的已知空白，试验新的 API，并收集有关开发 Compose 库的开发经验的见解。这些库的目标是将它们上游到官方工具包中，此时它们将被弃用并从 Accompanist 中删除。</li>
+</ul>
+</li>
+<li><strong>窗口尺寸等级</strong>：为了更容易设计、开发和测试可调整大小的布局，发布了窗口大小类 <a href="https://developer.android.com/jetpack/androidx/releases/compose-material3" rel="nofollow"><code class="notranslate">material3-window-size-class</code></a> 作为 Material 3 库集的一部分，它们现在在新库中以 alpha 形式提供。</li>
+<li><strong>支持 Wear OS</strong>：Compose for Wear OS 进入 Beta 版，意味着它的功能完整且 API 稳定。</li>
+</ul>
+<h2>Android Studio Compose 工具更新点：</h2>
+<ul>
+<li>从 Android Studio Dolphin 开始，开发者可以使用 <code class="notranslate">Layout Inspector</code> 检查 recomposition 的频率，大量的 recomposition 可以帮助开发者指向可以优化方向。此外，Android Studio Electric Eel 现在包括一个 recomposition 荧光笔，这是一个用于查看哪些 composables 项何时 recomposition 的视觉辅助工具。<br>
+<img src="https://blog-image.ian2018.cn/images/eb13b85a4c58590bb4f0854844cbc598611fe6ef.png"></li>
+<li>Android Studio Electric Eel（在 Canary 中）带来了 <a href="https://developer.android.com/jetpack/compose/tooling#live-edit" rel="nofollow">LiveEdit</a>，可以自动更新 Preview 对象，并将代码更改部署到模拟器或设备上，从而实时查看可组合项更新后的效果。<br>
+<img src="https://blog-image.ian2018.cn/images/fc0e3429f6bf3964f991852258928ea15e952a1d.gif"></li>
+</ul>
+<blockquote>
+<p>参考资料：</p>
+<p><a href="https://io.google/2022/program/c7710536-a86d-42a6-b43e-e69ae76dbb34/intl/zh/" rel="nofollow">2022 Google I/O Jetpack 的新动态</a></p>
+<p><a href="https://juejin.cn/post/7097029239731388446" rel="nofollow">Google I/O 2022：Jetpack 的新功能 - 掘金- 恋猫de小郭</a></p>
+<p><a href="https://android-developers.googleblog.com/2022/05/whats-new-in-jetpack-compose.html" rel="nofollow">What's new in Jetpack Compose</a></p>
+</blockquote>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
