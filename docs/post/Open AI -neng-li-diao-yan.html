@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="> 由于技术发展太快，该文档具有实效性，调研时间为 2023.3.21。">
+<meta property="og:title" content="Open AI 能力调研">
+<meta property="og:description" content="> 由于技术发展太快，该文档具有实效性，调研时间为 2023.3.21。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/Open%20AI%20-neng-li-diao-yan.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>Open AI 能力调研</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Open AI 能力调研</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/chenshuais/chenshuais.github.io/issues/62" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><blockquote>
+<p>由于技术发展太快，该文档具有实效性，调研时间为 2023.3.21。</p>
+</blockquote>
+<h2>所有模型</h2>
+<h3>GPT-4</h3>
+<p>GPT-4 是一个大型多模态模型（目前只支持文本输入输出，将来会支持图像输入），<strong>由于其更广泛的常识和高级推理，它可以更准确地解决难题</strong>。GPT-4 针对聊天进行了优化，但也适用于传统的完成任务。</p>
+<p>对于许多基本任务，GPT-4 和 GPT-3.5 模型之间的差异不大。但在更复杂的推理情况下，GPT-4 的能力更强，准确率也高很多，但响应速度要比 GPT-3.5 慢许多。</p>
+<p>训练数据截至 2021 年 9 月。也就是说他不知道这之后发生的事情。</p>
+<p>缺点是目前还没有全量开放，只有在白名单内的账户才能使用，而且价格也更贵。</p>
+<p>定价：</p>
+<p>Tip: 1k tokens 大约等于 750 个单词</p>
+<p><a href="https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them" rel="nofollow">what-are-tokens-and-how-to-count-them</a></p>
+<table role="table">
+<thead>
+<tr>
+<th><strong>Model</strong></th>
+<th><strong>Prompt</strong></th>
+<th><strong>Completion</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8K context</td>
+<td>$0.03 / 1K tokens</td>
+<td>$0.06 / 1K tokens</td>
+</tr>
+<tr>
+<td>32K context</td>
+<td>$0.06 / 1K tokens</td>
+<td>$0.12 / 1K tokens</td>
+</tr>
+</tbody>
+</table>
+<h3>GPT-3.5</h3>
+<p>GPT-3.5 模型可以理解并生成自然语言或代码。也针对聊天进行了优化，但也适用于传统的完成任务。</p>
+<p>训练数据截至 2021 年 9 月。</p>
+<p>缺点对于一些问题准确率不是很高。</p>
+<p>优点是便宜，响应速度快。</p>
+<p>定价：</p>
+<table role="table">
+<thead>
+<tr>
+<th><strong>Model</strong></th>
+<th><strong>Usage</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gpt-3.5-turbo</td>
+<td>$0.002 / 1K tokens</td>
+</tr>
+</tbody>
+</table>
+<h3>GPT-3</h3>
+<p>GPT-3 模型可以理解和生成自然语言。这些模型被更强大的 GPT-3.5 所取代。但是，原始 GPT-3 基本模型（<code class="notranslate">davinci</code>、<code class="notranslate">curie</code>、<code class="notranslate">ada</code> 和 <code class="notranslate">babbage</code>）是当前唯一可用于微调的模型。也就是说这些模型可以根据自己的数据来训练微调。</p>
+<p>训练数据截至 2019 年 10 月。</p>
+<p>定价：</p>
+<table role="table">
+<thead>
+<tr>
+<th><strong>Model</strong></th>
+<th><strong>特点</strong></th>
+<th><strong>Usage</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ada</td>
+<td>GPT-3 系列里速度最快</td>
+<td>$0.0004 / 1K tokens</td>
+</tr>
+<tr>
+<td>babbage</td>
+<td>-</td>
+<td>$0.0005 / 1K tokens</td>
+</tr>
+<tr>
+<td>curie</td>
+<td>-</td>
+<td>$0.0020 / 1K tokens</td>
+</tr>
+<tr>
+<td>davinci</td>
+<td>能力更强，质量也更高</td>
+<td>$0.0200 / 1K tokens</td>
+</tr>
+</tbody>
+</table>
+<p>对于微调模型的价格：</p>
+<table role="table">
+<thead>
+<tr>
+<th><strong>Model</strong></th>
+<th><strong>Training</strong></th>
+<th><strong>Usage</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ada</td>
+<td>$0.0004 / 1K tokens</td>
+<td>$0.0016 / 1K tokens</td>
+</tr>
+<tr>
+<td>babbage</td>
+<td>$0.0006 / 1K tokens</td>
+<td>$0.0024 / 1K tokens</td>
+</tr>
+<tr>
+<td>curie</td>
+<td>$0.0030 / 1K tokens</td>
+<td>$0.0120 / 1K tokens</td>
+</tr>
+<tr>
+<td>davinci</td>
+<td>$0.0300 / 1K tokens</td>
+<td>$0.1200 / 1K tokens</td>
+</tr>
+</tbody>
+</table>
+<h3><del>Codex</del></h3>
+<p>Codex 是基于 GPT-3 模型的，可以用来理解和生成代码，它的训练数据包含自然语言和 GitHup 数十亿行公共代码。</p>
+<p>该模型最擅长 Python，精通 JavaScript、Go、Perl、PHP、Ruby、Swift、TypeScript、SQL 和 Shell 等十几种语言。</p>
+<p>训练数据截至 2021 年 6 月。</p>
+<p><del>目前还在有限测试中，在这期间</del><strong>免费</strong><del>使用</del>。最新消息，Open AI 于 2023 年 3 月 23 停止该模型，建议使用 GPT-3.5。</p>
+<h3>Embeddings</h3>
+<p>Embeddings 是文本的数字表示，可用于衡量两段文本之间的相关性。Embeddings 可用于搜索、聚类、推荐、异常检测和分类任务。</p>
+<p>定价：</p>
+<table role="table">
+<thead>
+<tr>
+<th><strong>Model</strong></th>
+<th><strong>Usage</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ada</td>
+<td>$0.0004 / 1K tokens</td>
+</tr>
+</tbody>
+</table>
+<h3>Moderation</h3>
+<p>Moderation 旨在检查内容是否符合 OpenAI 的<a href="https://openai.com/policies/usage-policies" rel="nofollow">使用政策</a>。这些模型提供了查找以下类别内容的分类功能：仇恨、仇恨/威胁、自残、性、性/未成年人、暴力和暴力/图片。</p>
+<p>目前也在<strong>免费</strong>使用阶段。</p>
+<h3>DALL·E</h3>
+<p>DALL·E 是一个人工智能系统，可以根据自然语言的描述创建逼真的图像和艺术作品。支持在提示的情况下创建具有特定大小的新图像、编辑现有图像或创建用户提供的图像的变体的能力。</p>
+<p>定价：</p>
+<table role="table">
+<thead>
+<tr>
+<th><strong>Resolution</strong></th>
+<th><strong>Price</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1024×1024</td>
+<td>$0.020 / image</td>
+</tr>
+<tr>
+<td>512×512</td>
+<td>$0.018 / image</td>
+</tr>
+<tr>
+<td>256×256</td>
+<td>$0.016 / image</td>
+</tr>
+</tbody>
+</table>
+<h3>Whisper</h3>
+<p>Whisper 是一种通用的语音识别模型。它在不同音频的大型数据集上进行训练，也是一个多任务模型，可以执行多语言语音识别以及语音翻译和语言识别。</p>
+<p>定价：</p>
+<table role="table">
+<thead>
+<tr>
+<th><strong>Model</strong></th>
+<th><strong>Usage</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Whisper</td>
+<td>$0.006 / minute (四舍五入到最接近的秒)</td>
+</tr>
+</tbody>
+</table>
+<h2>支持的 API</h2>
+<h3>Chat 聊天</h3>
+<p><code class="notranslate">POST https://api.openai.com/v1/chat/completions</code></p>
+<p>聊天对话，市面上主流的 ChatGPT 应用都是基于这个实现。</p>
+<p>支持的模型：</p>
+<ul>
+<li>gpt-4</li>
+<li>gpt-4-0314</li>
+<li>gpt-4-32k</li>
+<li>gpt-4-32k-0314</li>
+<li>gpt-3.5-turbo</li>
+<li>gpt-3.5-turbo-0301</li>
+</ul>
+<p>主要可调参数：</p>
+<ul>
+<li>message：对话列表，可以指定系统消息和对话记录，如：</li>
+</ul>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">messages</span><span class="pl-c1">=</span>[
+        {<span class="pl-s">"role"</span>: <span class="pl-s">"system"</span>, <span class="pl-s">"content"</span>: <span class="pl-s">"You are a helpful assistant."</span>},
+        {<span class="pl-s">"role"</span>: <span class="pl-s">"user"</span>, <span class="pl-s">"content"</span>: <span class="pl-s">"Who won the world series in 2020?"</span>},
+        {<span class="pl-s">"role"</span>: <span class="pl-s">"assistant"</span>, <span class="pl-s">"content"</span>: <span class="pl-s">"The Los Angeles Dodgers won the World Series in 2020."</span>},
+        {<span class="pl-s">"role"</span>: <span class="pl-s">"user"</span>, <span class="pl-s">"content"</span>: <span class="pl-s">"Where was it played?"</span>}
+]</pre></div>
+<p>可以通过设置不同的 system 消息，来营造各种特定的场景。</p>
+<ul>
+<li>temperature：使用什么采样温度，介于 0 和 2 之间。值越高输出内容越随机，反之越稳定。</li>
+<li>top_p：代替 temperature，称为核采样，其中模型考虑具有 top_p 概率质量的标记的结果。所以 0.1 意味着只考虑构成前 10% 概率质量的标记。temperature 和 top_p 设置一个即可，不能两个都设置。</li>
+</ul>
+<h3>Completions 内容补全</h3>
+<p><code class="notranslate">POST https://api.openai.com/v1/completions</code></p>
+<p>根据提示词补全内容，例如：输入提示词「传统网络是」，它就会补全这个句子。感觉这个能实现的，Chat 都可以实现。</p>
+<p>支持的模型：</p>
+<ul>
+<li>text-davinci-003</li>
+<li>text-davinci-002</li>
+<li>text-curie-001</li>
+<li>text-babbage-001</li>
+<li>text-ada-001</li>
+<li>davinci</li>
+<li>curie</li>
+<li>babbage</li>
+<li>ada</li>
+<li>code-davinci-002</li>
+<li>code-cushman-001</li>
+</ul>
+<p>主要可调参数：</p>
+<ul>
+<li>prompt：提示词，给出一段提示，它会补全后面的内容（包括代码）</li>
+<li>suffix：后缀，当要在中间补全内容时使用，如「小猫很 [insert] 但是也很可爱」，“小猫很” 是 prompt，“但是也很可爱” 就是 suffix</li>
+<li>temperature：和上面一样，采样温度，介于 0 和 2 之间。值越高输出内容越随机，反之越稳定。</li>
+<li>top_p：和上面一样，代替 temperature，称为核采样。temperature 和 top_p 设置一个即可，不能两个都设置。</li>
+<li>stop：结束标记，停止生成的标记，返回的补全内容不会包含此字符。</li>
+</ul>
+<h3>Edits 修改内容</h3>
+<p><code class="notranslate">POST https://api.openai.com/v1/edits</code></p>
+<p>通过给定的内容和修改命令，对内容进行修改。如输入：「What day of the wek is it?」，修改命令为：「修改拼写错误」，它就会返回正确拼写的句子：「What day of the week is it?」</p>
+<p>支持的模型：</p>
+<ul>
+<li>text-davinci-edit-001</li>
+<li>code-davinci-edit-001</li>
+</ul>
+<p>主要可调参数：</p>
+<ul>
+<li>input：待修改的内容。</li>
+<li>instruction：修改命令。</li>
+<li>temperature：和上面一样，采样温度，介于 0 和 2 之间。值越高输出内容越随机，反之越稳定。</li>
+<li>top_p：和上面一样，代替 temperature，称为核采样。temperature 和 top_p 设置一个即可，不能两个都设置。</li>
+</ul>
+<h3>Embeddings 嵌入向量转换</h3>
+<p><code class="notranslate">POST https://api.openai.com/v1/embeddings</code></p>
+<p>将给定的文本转换为数字向量。</p>
+<p>支持的模型：</p>
+<ul>
+<li>text-embedding-ada-002</li>
+<li>text-search-ada-doc-001</li>
+</ul>
+<p>主要可调参数：</p>
+<ul>
+<li>input：输入的内容。</li>
+</ul>
+<h3>Moderations 内容审核</h3>
+<p><code class="notranslate">POST https://api.openai.com/v1/moderations</code></p>
+<p>检查内容是否符合 Open AI 的政策，如暴力、色情等内容。</p>
+<p>支持的模型：</p>
+<ul>
+<li>text-moderation-stable</li>
+<li>text-moderation-latest</li>
+</ul>
+<p>主要参数：</p>
+<ul>
+<li>input：待检查的内容。</li>
+</ul>
+<p>返回例子：</p>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+  <span class="pl-ent">"id"</span>: <span class="pl-s"><span class="pl-pds">"</span>modr-5MWoLO<span class="pl-pds">"</span></span>,
+  <span class="pl-ent">"model"</span>: <span class="pl-s"><span class="pl-pds">"</span>text-moderation-001<span class="pl-pds">"</span></span>,
+  <span class="pl-ent">"results"</span>: [
+    {
+      <span class="pl-ent">"categories"</span>: {
+        <span class="pl-ent">"hate"</span>: <span class="pl-c1">false</span>,
+        <span class="pl-ent">"hate/threatening"</span>: <span class="pl-c1">true</span>,
+        <span class="pl-ent">"self-harm"</span>: <span class="pl-c1">false</span>,
+        <span class="pl-ent">"sexual"</span>: <span class="pl-c1">false</span>,
+        <span class="pl-ent">"sexual/minors"</span>: <span class="pl-c1">false</span>,
+        <span class="pl-ent">"violence"</span>: <span class="pl-c1">true</span>,
+        <span class="pl-ent">"violence/graphic"</span>: <span class="pl-c1">false</span>
+      },
+      <span class="pl-ent">"category_scores"</span>: {
+        <span class="pl-ent">"hate"</span>: <span class="pl-c1">0.22714105248451233</span>,
+        <span class="pl-ent">"hate/threatening"</span>: <span class="pl-c1">0.4132447838783264</span>,
+        <span class="pl-ent">"self-harm"</span>: <span class="pl-c1">0.005232391878962517</span>,
+        <span class="pl-ent">"sexual"</span>: <span class="pl-c1">0.01407341007143259</span>,
+        <span class="pl-ent">"sexual/minors"</span>: <span class="pl-c1">0.0038522258400917053</span>,
+        <span class="pl-ent">"violence"</span>: <span class="pl-c1">0.9223177433013916</span>,
+        <span class="pl-ent">"violence/graphic"</span>: <span class="pl-c1">0.036865197122097015</span>
+      },
+      <span class="pl-ent">"flagged"</span>: <span class="pl-c1">true</span>
+    }
+  ]
+}</pre></div>
+<h3>Images 生成/修改图片</h3>
+<h4>创建图片</h4>
+<p><code class="notranslate">POST https://api.openai.com/v1/images/generations</code></p>
+<p>根据提示词和图片分辨率，生成对应的图片</p>
+<p>支持的模型：</p>
+<ul>
+<li>DALL·E</li>
+</ul>
+<p>主要参数：</p>
+<ul>
+<li>prompt：提示词，就是要生成什么样的图片。</li>
+<li>n：生成几张图。</li>
+<li>size：图片的分辨率大小。</li>
+</ul>
+<p>返回例子：</p>
+<p><a href="https://oaidalleapiprodscus.blob.core.windows.net/private/org-XRmzS8bsRXK0Bv3bm3ZWG2pV/user-ugLS0njlcPKNCv7yd2f45jWN/img-CMU6Clg6A7oxjDquFPlSCXvf.png?st=2023-03-22T06%3A08%3A55Z&amp;se=2023-03-22T08%3A08%3A55Z&amp;sp=r&amp;sv=2021-08-06&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2023-03-21T15%3A59%3A24Z&amp;ske=2023-03-22T15%3A59%3A24Z&amp;sks=b&amp;skv=2021-08-06&amp;sig=Ye5WMUlSDjfct%2B1lZyzSF3tNo7C1z5pjwXc2lIAlguc%3D" rel="nofollow">https://oaidalleapiprodscus.blob.core.windows.net/private/org-XRmzS8bsR...</a></p>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+  <span class="pl-ent">"created"</span>: <span class="pl-c1">1679468935</span>,
+  <span class="pl-ent">"data"</span>: [
+    {
+      <span class="pl-ent">"url"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://oaidalleapiprodscus.blob.core.windows.net/private/org-XRmzS8bsRXK0Bv3bm3ZWG2pV/user-ugLS0njlcPKNCv7yd2f45jWN/img-CMU6Clg6A7oxjDquFPlSCXvf.png?st=2023-03-22T06%3A08%3A55Z&amp;se=2023-03-22T08%3A08%3A55Z&amp;sp=r&amp;sv=2021-08-06&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2023-03-21T15%3A59%3A24Z&amp;ske=2023-03-22T15%3A59%3A24Z&amp;sks=b&amp;skv=2021-08-06&amp;sig=Ye5WMUlSDjfct%2B1lZyzSF3tNo7C1z5pjwXc2lIAlguc%3D<span class="pl-pds">"</span></span>
+    },
+    {
+      <span class="pl-ent">"url"</span>: <span class="pl-s"><span class="pl-pds">"</span>https://oaidalleapiprodscus.blob.core.windows.net/private/org-XRmzS8bsRXK0Bv3bm3ZWG2pV/user-ugLS0njlcPKNCv7yd2f45jWN/img-Y2l5d1lVHmseGapwqPKuHiEE.png?st=2023-03-22T06%3A08%3A55Z&amp;se=2023-03-22T08%3A08%3A55Z&amp;sp=r&amp;sv=2021-08-06&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2023-03-21T15%3A59%3A24Z&amp;ske=2023-03-22T15%3A59%3A24Z&amp;sks=b&amp;skv=2021-08-06&amp;sig=AMR27FWMhMus1y0xI6H0f6mjOnI5kpMf8K0l89GaY1U%3D<span class="pl-pds">"</span></span>
+    }
+  ]
+}</pre></div>
+<h4>编辑图片</h4>
+<p><code class="notranslate">POST https://api.openai.com/v1/images/edits</code></p>
+<p>在给定的原始图片的基础上创建或修改图片。</p>
+<p>支持的模型：</p>
+<ul>
+<li>DALL·E</li>
+</ul>
+<p>主要参数：</p>
+<ul>
+<li>image：原始图片文件，必须是 PNG 格式的且必须是方形的，并且文件最大为 4 MB，如果没有传 mask，该图片还需要带透明度。</li>
+<li>mask：可选附加图片文件，必须带透明度，完全透明的区域表示图片应该被修改的位置，并且文件最大为 4 MB，且于 image 分辨率相同。</li>
+<li>prompt：提示词，就是要怎么修改图片。</li>
+<li>n：生成几张图。</li>
+<li>size：图片的分辨率大小。</li>
+</ul>
+<h4>生成图片变体</h4>
+<p><code class="notranslate">POST https://api.openai.com/v1/images/variations</code></p>
+<p>创建给定图片的变体。</p>
+<p>支持的模型：</p>
+<ul>
+<li>DALL·E</li>
+</ul>
+<p>主要参数：</p>
+<ul>
+<li>image：原始图片文件，必须是 PNG 格式的且必须是方形的，并且文件最大为 4 MB。</li>
+<li>n：生成几张图。</li>
+<li>size：图片的分辨率大小。</li>
+</ul>
+<h3>Audio 语音转文字</h3>
+<h4>语音转文字</h4>
+<p><code class="notranslate">POST https://api.openai.com/v1/audio/transcriptions</code></p>
+<p>将语音转换成所使用的语言文字。支持的语言如下，但有些语种的错误率高于 50%：</p>
+<table role="table">
+<thead>
+<tr>
+<th>语言</th>
+<th>英文</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>英语</td>
+<td>english</td>
+</tr>
+<tr>
+<td>中文</td>
+<td>chinese</td>
+</tr>
+<tr>
+<td>德语</td>
+<td>german</td>
+</tr>
+<tr>
+<td>西班牙语</td>
+<td>spanish</td>
+</tr>
+<tr>
+<td>俄语</td>
+<td>russian</td>
+</tr>
+<tr>
+<td>韩语</td>
+<td>korean</td>
+</tr>
+<tr>
+<td>法语</td>
+<td>french</td>
+</tr>
+<tr>
+<td>日语</td>
+<td>japanese</td>
+</tr>
+<tr>
+<td>葡萄牙语</td>
+<td>portuguese</td>
+</tr>
+<tr>
+<td>土耳其语</td>
+<td>turkish</td>
+</tr>
+<tr>
+<td>波兰语</td>
+<td>polish</td>
+</tr>
+<tr>
+<td>加泰罗尼亚语</td>
+<td>catalan</td>
+</tr>
+<tr>
+<td>荷兰语</td>
+<td>dutch</td>
+</tr>
+<tr>
+<td>阿拉伯语</td>
+<td>arabic</td>
+</tr>
+<tr>
+<td>瑞典语</td>
+<td>swedish</td>
+</tr>
+<tr>
+<td>意大利语</td>
+<td>italian</td>
+</tr>
+<tr>
+<td>印度尼西亚语</td>
+<td>indonesian</td>
+</tr>
+<tr>
+<td>印地语</td>
+<td>hindi</td>
+</tr>
+<tr>
+<td>芬兰语</td>
+<td>finnish</td>
+</tr>
+<tr>
+<td>越南语</td>
+<td>vietnamese</td>
+</tr>
+<tr>
+<td>希伯来语</td>
+<td>hebrew</td>
+</tr>
+<tr>
+<td>乌克兰语</td>
+<td>ukrainian</td>
+</tr>
+<tr>
+<td>希腊语</td>
+<td>greek</td>
+</tr>
+<tr>
+<td>马来语</td>
+<td>malay</td>
+</tr>
+<tr>
+<td>捷克语</td>
+<td>czech</td>
+</tr>
+<tr>
+<td>罗马尼亚语</td>
+<td>romanian</td>
+</tr>
+<tr>
+<td>丹麦语</td>
+<td>danish</td>
+</tr>
+<tr>
+<td>匈牙利语</td>
+<td>hungarian</td>
+</tr>
+<tr>
+<td>泰米尔语</td>
+<td>tamil</td>
+</tr>
+<tr>
+<td>挪威语</td>
+<td>norwegian</td>
+</tr>
+<tr>
+<td>泰语</td>
+<td>thai</td>
+</tr>
+<tr>
+<td>乌尔都语</td>
+<td>urdu</td>
+</tr>
+<tr>
+<td>克罗地亚语</td>
+<td>croatian</td>
+</tr>
+<tr>
+<td>保加利亚语</td>
+<td>bulgarian</td>
+</tr>
+<tr>
+<td>立陶宛语</td>
+<td>lithuanian</td>
+</tr>
+<tr>
+<td>拉丁语</td>
+<td>latin</td>
+</tr>
+<tr>
+<td>毛利语</td>
+<td>maori</td>
+</tr>
+<tr>
+<td>马拉雅拉姆语</td>
+<td>malayalam</td>
+</tr>
+<tr>
+<td>威尔士语</td>
+<td>welsh</td>
+</tr>
+<tr>
+<td>斯洛伐克语</td>
+<td>slovak</td>
+</tr>
+<tr>
+<td>泰卢固语</td>
+<td>telugu</td>
+</tr>
+<tr>
+<td>波斯语</td>
+<td>persian</td>
+</tr>
+<tr>
+<td>拉脱维亚语</td>
+<td>latvian</td>
+</tr>
+<tr>
+<td>孟加拉语</td>
+<td>bengali</td>
+</tr>
+<tr>
+<td>塞尔维亚语</td>
+<td>serbian</td>
+</tr>
+<tr>
+<td>阿塞拜疆语</td>
+<td>azerbaijani</td>
+</tr>
+<tr>
+<td>斯洛文尼亚语</td>
+<td>slovenian</td>
+</tr>
+<tr>
+<td>卡纳达语</td>
+<td>kannada</td>
+</tr>
+<tr>
+<td>爱沙尼亚语</td>
+<td>estonian</td>
+</tr>
+<tr>
+<td>马其顿语</td>
+<td>macedonian</td>
+</tr>
+<tr>
+<td>布列塔尼语</td>
+<td>breton</td>
+</tr>
+<tr>
+<td>巴斯克语</td>
+<td>basque</td>
+</tr>
+<tr>
+<td>冰岛语</td>
+<td>icelandic</td>
+</tr>
+<tr>
+<td>亚美尼亚语</td>
+<td>armenian</td>
+</tr>
+<tr>
+<td>尼泊尔语</td>
+<td>nepali</td>
+</tr>
+<tr>
+<td>蒙古语</td>
+<td>mongolian</td>
+</tr>
+<tr>
+<td>波斯尼亚</td>
+<td>bosnian</td>
+</tr>
+<tr>
+<td>哈萨克语</td>
+<td>kazakh</td>
+</tr>
+<tr>
+<td>阿尔巴尼亚语</td>
+<td>albanian</td>
+</tr>
+<tr>
+<td>斯瓦希里语</td>
+<td>swahili</td>
+</tr>
+<tr>
+<td>加利西亚语</td>
+<td>galician</td>
+</tr>
+<tr>
+<td>马拉地语</td>
+<td>marathi</td>
+</tr>
+<tr>
+<td>旁遮普语</td>
+<td>punjabi</td>
+</tr>
+<tr>
+<td>僧伽罗语</td>
+<td>sinhala</td>
+</tr>
+<tr>
+<td>高棉语</td>
+<td>khmer</td>
+</tr>
+<tr>
+<td>绍纳语</td>
+<td>shona</td>
+</tr>
+<tr>
+<td>约鲁巴语</td>
+<td>yoruba</td>
+</tr>
+<tr>
+<td>索马里语</td>
+<td>somali</td>
+</tr>
+<tr>
+<td>南非荷兰语</td>
+<td>afrikaans</td>
+</tr>
+<tr>
+<td>奥克语</td>
+<td>occitan</td>
+</tr>
+<tr>
+<td>格鲁吉亚语</td>
+<td>georgian</td>
+</tr>
+<tr>
+<td>白俄罗斯语</td>
+<td>belarusian</td>
+</tr>
+<tr>
+<td>塔吉克语</td>
+<td>tajik</td>
+</tr>
+<tr>
+<td>信德语</td>
+<td>sindhi</td>
+</tr>
+<tr>
+<td>古吉拉特语</td>
+<td>gujarati</td>
+</tr>
+<tr>
+<td>阿姆哈拉语</td>
+<td>amharic</td>
+</tr>
+<tr>
+<td>意第绪语</td>
+<td>yiddish</td>
+</tr>
+<tr>
+<td>老挝语</td>
+<td>lao</td>
+</tr>
+<tr>
+<td>乌兹别克斯坦语</td>
+<td>uzbek</td>
+</tr>
+<tr>
+<td>法罗语</td>
+<td>faroese</td>
+</tr>
+<tr>
+<td>海地克里奥尔语</td>
+<td>haitian creole</td>
+</tr>
+<tr>
+<td>普什图语</td>
+<td>pashto</td>
+</tr>
+<tr>
+<td>土库曼语</td>
+<td>turkmen</td>
+</tr>
+<tr>
+<td>尼诺斯克语</td>
+<td>nynorsk</td>
+</tr>
+<tr>
+<td>马耳他语</td>
+<td>maltese</td>
+</tr>
+<tr>
+<td>梵语</td>
+<td>sanskrit</td>
+</tr>
+<tr>
+<td>卢森堡语语</td>
+<td>luxembourgish</td>
+</tr>
+<tr>
+<td>缅甸语</td>
+<td>myanmar</td>
+</tr>
+<tr>
+<td>西藏语</td>
+<td>tibetan</td>
+</tr>
+<tr>
+<td>他加禄语</td>
+<td>tagalog</td>
+</tr>
+<tr>
+<td>马达加斯加语</td>
+<td>malagasy</td>
+</tr>
+<tr>
+<td>阿萨姆语</td>
+<td>assamese</td>
+</tr>
+<tr>
+<td>鞑靼语</td>
+<td>tatar</td>
+</tr>
+<tr>
+<td>夏威夷语</td>
+<td>hawaiian</td>
+</tr>
+<tr>
+<td>林加拉语</td>
+<td>lingala</td>
+</tr>
+<tr>
+<td>豪萨语</td>
+<td>hausa</td>
+</tr>
+<tr>
+<td>巴什基尔语</td>
+<td>bashkir</td>
+</tr>
+<tr>
+<td>爪哇语</td>
+<td>javanese</td>
+</tr>
+<tr>
+<td>巽他语</td>
+<td>sundanese</td>
+</tr>
+</tbody>
+</table>
+<p>支持的模型：</p>
+<ul>
+<li>whisper-1</li>
+</ul>
+<p>主要参数：</p>
+<ul>
+<li>file：录音文件，支持的格式有：mp3, mp4, mpeg, mpga, m4a, wav, webm，文件最大为 25 MB。</li>
+<li>prompt：提示语，用于指导模型的风格或继续上一个音频片段的可选文本。需要和音频语言相匹配。</li>
+<li>language：音频的语言， <strong>ISO-639-1</strong> 格式，有助于提高准确率和速度。</li>
+<li>temperature：采样温度，介于 0 和 1 之间。值越高输出内容越随机，反之越稳定。</li>
+</ul>
+<h4>语音翻译</h4>
+<p><code class="notranslate">POST https://api.openai.com/v1/audio/translations</code></p>
+<p>目前只能翻译成英文。</p>
+<p>支持的模型：</p>
+<ul>
+<li>whisper-1</li>
+</ul>
+<p>主要参数：</p>
+<ul>
+<li>file：录音文件，支持的格式有：mp3, mp4, mpeg, mpga, m4a, wav, webm，文件最大为 25 MB。</li>
+<li>prompt：提示语，用于指导模型的风格或继续上一个音频片段的可选文本。需要是英语。</li>
+<li>temperature：采样温度，介于 0 和 1 之间。值越高输出内容越随机，反之越稳定。</li>
+</ul>
+<h2>速率限制</h2>
+<p>有两种衡量方式：</p>
+<ul>
+<li><strong>RPM</strong>（每分钟请求数）</li>
+<li><strong>TPM</strong>（每分钟令牌数）</li>
+</ul>
+<table role="table">
+<thead>
+<tr>
+<th></th>
+<th><strong>TEXT &amp; EMBEDDING</strong></th>
+<th><strong>CHAT</strong></th>
+<th><strong>CODEX</strong></th>
+<th><strong>EDIT</strong></th>
+<th><strong>IMAGE</strong></th>
+<th><strong>AUDIO</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>免费用户</td>
+<td>•20 RPM•150,000 TPM</td>
+<td>•20 RPM•40,000 TPM</td>
+<td>•20 RPM•40,000 TPM</td>
+<td>•20 RPM•150,000 TPM</td>
+<td>50 images / min</td>
+<td>50 RPM</td>
+</tr>
+<tr>
+<td>按量付费(前 48 小时)</td>
+<td>•60 RPM•250,000 TPM*</td>
+<td>•60 RPM•60,000 TPM*</td>
+<td>•20 RPM•40,000 TPM</td>
+<td>•20 RPM•150,000 TPM</td>
+<td>50 images / min</td>
+<td>50 RPM</td>
+</tr>
+<tr>
+<td>按量付费 (后 48 小时)</td>
+<td>•3,500 RPM•350,000 TPM*</td>
+<td>•3,500 RPM•90,000 TPM*</td>
+<td>•20 RPM•40,000 TPM</td>
+<td>•20 RPM•150,000 TPM</td>
+<td>50 images / min</td>
+<td>50 RPM</td>
+</tr>
+</tbody>
+</table>
+<p>GPT-4 另外限制</p>
+<table role="table">
+<thead>
+<tr>
+<th><strong>gpt-4/gpt-4-0314</strong></th>
+<th><strong>gpt-4-32k/gpt-4-32k-0314</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>• 200 RPM• 40,000 TPM</td>
+<td>• 400 RPM• 80,000 TPM</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
