@@ -1,5 +1,78 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:28:45 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>算法学习随笔03</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-03.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/1c067681c9b691a73c72001665ca222590d6008e.png'&gt;`
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:30:15 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>算法学习随笔04</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-04.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/01e228108b214b8a922e7bc36945d4c410425c4d.png'&gt;`
+
+# Week04 学习笔记
+
+## 1 深度优先搜索、广度优先搜索
+
+树或图的遍历
+
+* 每个节点都要访问一次
+* 每个节点仅访问一次
+* 对于节点的访问顺序不限
+  * 深度优先
+  * 广度优先
+  * 其他 如优先级搜索
+
+### 1.1 深度优先搜索
+
+模版代码：
+
+* 递归写法
+
+  ```java
+  void dfs(Node node, List&lt;Node&gt; visited) {
+    if (visited.contains(node)) {
+      // 已经访问过
+      return;
+    }
+    
+    visited.add(node);
+    
+    // 处理当前节点
+    process(node);
+    
+    for (Node nextNode : node.children()) {
+      // 如果没有访问过 递归到下一层
+      if (!visited.contains(nextNode)) {
+        dfs(nextNode, visited);
+      }
+    }
+  }
+  ```
+
+* 非递归写法
+
+  ```java
+  void dfs(Node tree) {
+    if (tree.root == null) {
+      return;
+    }
+    
+    // 手动维护一个栈
+    Stack&lt;Node&gt; stack = new Stack&lt;&gt;();
+    stack.push(tree.root);
+    
+    while (!stack.empty()) {
+      // 出栈 访问节点
+      Node node = stack.pop();
+      visited.add(node);
+      
+      // 处理节点
+      process(node);
+      
+      // 获取相邻节点 分别压入栈中
+      List&lt;Node&gt; nodes = generateRelatedNodes(node);
+      for (Node node : nodes) {
+        stack.push(node);
+      }
+    }
+  }
+  ```
+
+### 1.2 广度优先
+
+由于使用的是队列方式实现，所以没有递归的方法。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-04.html</guid><pubDate>Wed, 26 Jun 2024 15:29:53 +0000</pubDate></item><item><title>算法学习随笔03</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-03.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/1c067681c9b691a73c72001665ca222590d6008e.png'&gt;`
 
 # Week03 学习笔记
 
