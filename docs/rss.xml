@@ -1,5 +1,28 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:16:09 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>通过 Stable Diffusion 进行照片风格转换</title><link>https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-jin-xing-zhao-pian-feng-ge-zhuan-huan.html</link><description>&gt; 经过几次测试，其中图生图的效果会比较好
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:17:39 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>通过 Stable Diffusion 给图片换背景</title><link>https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-gei-tu-pian-huan-bei-jing.html</link><description># 方案一：rembg + img2img Inpaint
+
+&gt; 参考 https://stable-diffusion-art.com/change-background/
+
+## 1. 下载安装 rembg 插件
+https://github.com/AUTOMATIC1111/stable-diffusion-webui-rembg
+
+## 2. 生成蒙版图
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/0765daa81db8d036a0060ba8ad908d01359b7a4f.png'&gt;`
+
+## 3. 使用图生图重绘背景
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/6b03c44dd15fa6574b9453a225f134ea28de0270.png'&gt;`
+还可以增加 ControlNet 的深度控制，可以避免出现奇怪的东西（多只胳膊之类的），但会导致出图结构受限：
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/3bbf161c6bef99b787524780ff7d16990dafab0d.png'&gt;`
+
+# 方案二：Segment Anything 
+## 1. 下载安装 Segment Anything  插件
+https://github.com/continue-revolution/sd-webui-segment-anything
+
+## 2. 提取相关蒙版图
+切换到 img2img Tab，找到 Segment Anything 插件，参数如下：
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/dce3cdbc03593af9f0a829b610a811fc79e7ba0c.png'&gt;`
+这里可以直接将第 7 不勾选上，这样就不用再保存蒙版图了。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-gei-tu-pian-huan-bei-jing.html</guid><pubDate>Wed, 26 Jun 2024 16:17:15 +0000</pubDate></item><item><title>通过 Stable Diffusion 进行照片风格转换</title><link>https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-jin-xing-zhao-pian-feng-ge-zhuan-huan.html</link><description>&gt; 经过几次测试，其中图生图的效果会比较好
 &gt;
 &gt; ControlNet 使用 3 层控制：Canny + Depth + IP-Adapter
 
