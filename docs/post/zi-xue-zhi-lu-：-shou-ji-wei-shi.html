@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="## 在自学时遇到的一些困难
+
+在自学中遇到的一些小问题，解决方法仅供参考，由于作者目前还处于小白阶段，有错误的地方还请指出(⊙o⊙)
+
+---
+
+### 状态栏颜色
+
+由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。">
+<meta property="og:title" content="自学之路：手机卫士">
+<meta property="og:description" content="## 在自学时遇到的一些困难
+
+在自学中遇到的一些小问题，解决方法仅供参考，由于作者目前还处于小白阶段，有错误的地方还请指出(⊙o⊙)
+
+---
+
+### 状态栏颜色
+
+由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>自学之路：手机卫士</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">自学之路：手机卫士</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/chenshuais/chenshuais.github.io/issues/30" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h2>在自学时遇到的一些困难</h2>
+<p>在自学中遇到的一些小问题，解决方法仅供参考，由于作者目前还处于小白阶段，有错误的地方还请指出(⊙o⊙)</p>
+<hr>
+<h3>状态栏颜色</h3>
+<p>由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</p>
+<p>这里我就想把状态栏的颜色换一换，达到沉浸式的效果。于是便在网上搜索一些资料，经过几次实验，找到了一个比较合适的方法。</p>
+<p>原文链接：<a href="http://blog.csdn.net/loongggdroid/article/details/47417233" rel="nofollow">http://blog.csdn.net/loongggdroid/article/details/47417233</a></p>
+<p>实现方法也比较简单</p>
+<ol>
+<li>首先到 <a href="https://github.com/hexiaochun/SystemBarTint">这里</a> 下载所需要的Java文件，在 SystemBarTint/library/src/com/readystatesoftware/systembartint/ 目录下，找到名字叫 <code class="notranslate">SystemBarTintManager.java</code> 的文件，拷贝到自己的工程中。</li>
+<li>在要使用沉浸式状态栏的布局文件的根布局中添加一个属性 <code class="notranslate">android:fitsSystemWindows="true"</code></li>
+<li>在 Activity 中使用，在 onCreate 方法里添加如下代码：
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-en">requestWindowFeature</span>(<span class="pl-smi">Window</span>.<span class="pl-c1">FEATURE_NO_TITLE</span>);
+<span class="pl-k">if</span> (<span class="pl-smi">Build</span>.<span class="pl-c1">VERSION</span>.<span class="pl-c1">SDK_INT</span> &gt;= <span class="pl-smi">Build</span>.<span class="pl-c1">VERSION_CODES</span>.<span class="pl-c1">KITKAT</span>) {
+    <span class="pl-en">setTranslucentStatus</span>(<span class="pl-c1">true</span>);
+    <span class="pl-smi">SystemBarTintManager</span> <span class="pl-s1">tintManager</span> = <span class="pl-k">new</span> <span class="pl-smi">SystemBarTintManager</span>(<span class="pl-smi">this</span>);
+    <span class="pl-s1">tintManager</span>.<span class="pl-en">setStatusBarTintEnabled</span>(<span class="pl-c1">true</span>);
+    <span class="pl-s1">tintManager</span>.<span class="pl-en">setStatusBarTintResource</span>(<span class="pl-smi">R</span>.<span class="pl-s1">color</span>.<span class="pl-s1">top_bg_color</span>);<span class="pl-c">// 通知栏所需颜色</span>
+}
+<span class="pl-en">setContentView</span>(<span class="pl-smi">R</span>.<span class="pl-s1">layout</span>.<span class="pl-s1">activity_main</span>);</pre></div>
+再在Activity中添加一个方法：
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-c1">@</span><span class="pl-c1">TargetApi</span>(<span class="pl-c1">19</span>)
+<span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-s1">setTranslucentStatus</span>(<span class="pl-smi">boolean</span> <span class="pl-s1">on</span>) {
+    <span class="pl-smi">Window</span> <span class="pl-s1">win</span> = <span class="pl-en">getWindow</span>();
+    <span class="pl-smi">WindowManager</span>.<span class="pl-smi">LayoutParams</span> <span class="pl-s1">winParams</span> = <span class="pl-s1">win</span>.<span class="pl-en">getAttributes</span>();
+    <span class="pl-k">final</span> <span class="pl-smi">int</span> <span class="pl-s1">bits</span> = <span class="pl-smi">WindowManager</span>.<span class="pl-s1">LayoutParams</span>.<span class="pl-c1">FLAG_TRANSLUCENT_STATUS</span>;
+    <span class="pl-k">if</span> (<span class="pl-s1">on</span>) {
+        <span class="pl-s1">winParams</span>.<span class="pl-s1">flags</span> |= <span class="pl-s1">bits</span>;
+    } <span class="pl-k">else</span> {
+        <span class="pl-s1">winParams</span>.<span class="pl-s1">flags</span> &amp;= ~<span class="pl-s1">bits</span>;
+    }
+    <span class="pl-s1">win</span>.<span class="pl-en">setAttributes</span>(<span class="pl-s1">winParams</span>);
+}</pre></div>
+不过这个方法还有一个缺点，由于自定义了状态栏，在设置来电归属地位置的时候，读取的屏幕位置会和实际位置有偏差，导致每次进入设置，提示框的位置都会向下移动。</li>
+</ol>
+<h3>短信备份中兼容特殊字符</h3>
+<p>短信备份是通过xml文件存储的，所以短信中可能存在一些xml文件中的非法字符，这样就会出现异常，使备份失败。</p>
+<p>解决方法就是过滤短信中的非法字符，可以通过以下方法过滤：</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">String</span> <span class="pl-s1">xmlChar</span>(<span class="pl-smi">String</span> <span class="pl-s1">str</span>){
+    <span class="pl-smi">StringBuffer</span> <span class="pl-s1">sb</span> = <span class="pl-k">new</span> <span class="pl-smi">StringBuffer</span>();
+    <span class="pl-smi">char</span> <span class="pl-s1">c</span>;
+    <span class="pl-k">if</span>(<span class="pl-s1">str</span>==<span class="pl-c1">null</span> || <span class="pl-s1">str</span>.<span class="pl-en">equals</span>(<span class="pl-s">""</span>)){
+        <span class="pl-k">return</span> <span class="pl-s">""</span>;
+    }
+    <span class="pl-k">for</span>(<span class="pl-smi">int</span> <span class="pl-s1">i</span>=<span class="pl-c1">0</span>; <span class="pl-s1">i</span>&lt;<span class="pl-s1">str</span>.<span class="pl-en">length</span>(); <span class="pl-s1">i</span>++){
+        <span class="pl-s1">c</span> = <span class="pl-s1">str</span>.<span class="pl-en">charAt</span>(<span class="pl-s1">i</span>);
+        <span class="pl-k">if</span>((<span class="pl-s1">c</span>==<span class="pl-c1">0x9</span>) || (<span class="pl-s1">c</span>==<span class="pl-c1">0xA</span>) || (<span class="pl-s1">c</span>==<span class="pl-c1">0xD</span>) || ((<span class="pl-s1">c</span>&gt;=<span class="pl-c1">0x20</span>)&amp;&amp;(<span class="pl-s1">c</span>&lt;=<span class="pl-c1">0xD7FF</span>)) || ((<span class="pl-s1">c</span>&gt;=<span class="pl-c1">0xE000</span>)&amp;&amp;(<span class="pl-s1">c</span>&lt;=<span class="pl-c1">0xFFFD</span>)) || (<span class="pl-s1">c</span>&gt;=<span class="pl-c1">0x10000</span>)&amp;&amp;(<span class="pl-s1">c</span>&lt;=<span class="pl-c1">0x10FFFF</span>)){
+            <span class="pl-s1">sb</span>.<span class="pl-en">append</span>(<span class="pl-s1">c</span>);
+        }
+    }
+    <span class="pl-k">return</span> <span class="pl-s1">sb</span>.<span class="pl-en">toString</span>();
+}</pre></div>
+<h3>程序锁</h3>
+<p>程序锁其实就是一直监听手机应用的启动情况，当有加锁应用启动时，就会启动自己设置的加锁界面。</p>
+<p>视频中是通过 ActivityManager 的 getRunningTasks 方法获得当前运行的任务栈集合，得到集合中第一个任务栈信息后，获得当前任务栈顶的activity对应应用的包名 <code class="notranslate">runningTaskInfo.topActivity.getPackageName()</code>; 再去和加锁应用的包名集合比较，如果存在就启动加锁界面(启动方式为FLAG_ACTIVITY_NEW_TASK，清单文件模式为singleInstance)。</p>
+<p>不过这种方法在有些手机上就不行，因为国内有些手机厂商的 rom 会就自己的启动器(比如OPPO)，就是应用程序都是通过一个启动器应用来启动的，再通过上面那种方法获得的运行任务栈顶activity对应的包名就会只有启动器的包名，这样就不能判断到底是哪个应用启动了。</p>
+<p>这里我就通过另一种方法，解决了这个问题。不去获取运行的任务栈，而是获取运行的应用进程 <code class="notranslate">getRunningAppProcesses</code> ，再通过应用信息获取应用包名，这样就可以判断是哪个应用启动了。</p>
+<h3>归属地查询</h3>
+<p>归属地查询这块，我加了聚合数据的内容。查询先是通过视频的方法，查本地数据库，当数据库查不到时，再调用聚合数据查询。</p>
+<p>不过在调用聚合数据查询时，不知道是不是网络查询的问题，总要点两下查询，才能显示结果。</p>
+<h3>进程管理</h3>
+<p>视频中的进程管理，直接写在 onCreate 方法里，这样UI就只能是固定的，当把程序挂起，有开启了另一个应用，这时进程管理中的UI却没有改变，所以为了能是UI随着更新，我把初始化UI的逻辑放在了 onResume 方法里，这样就能随时更新UI了。</p>
+<p>不过这样好像更消耗手机内存，如果你只是将应用挂起，没有开新的应用，这时候UI也会重新加载。</p>
+<h3>缓存清理界面</h3>
+<p>这里的界面我没有安装视频中的做，而是和手机杀毒的界面相似。当扫描完后，替换扫描的图片，并设置点击事件，点击图片时，又更换另一组图片，并设置动画，达到清理的效果。</p>
+<p><img src="https://blog-image.ian2018.cn/images/80b10900f6426e78674fa9a7259c7b19ba9e6f3f.png"></p>
+<p><img src="https://blog-image.ian2018.cn/images/39fd21f5ce2f129e6390a2d77c961799fd14deb0.png"></p>
+<hr>
+<h2>学完手机卫士，把Android的基础巩固了一下，后面的路还很长，需要继续努力。</h2>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
