@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 14:49:32 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>自学之路：初识HTTP——《图解HTTP》note1</title><link>https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</link><description># 前言
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 14:49:55 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>自学之路：初识HTTP——《图解HTTP》note1</title><link>https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</link><description># 前言
 
 最近打算学习一些网络相关的知识，经别人推荐，说《图解HTTP》这本书不错，于是便买来打算学习一波。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</guid><pubDate>Wed, 26 Jun 2024 14:48:48 +0000</pubDate></item><item><title>自学之路：手机卫士</title><link>https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</link><description>## 在自学时遇到的一些困难
 
@@ -9,7 +9,68 @@
 
 ### 状态栏颜色
 
-由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 14:48:24 +0000</pubDate></item><item><title>test</title><link>https://blog.ian2018.club/post/test.html</link><description>cf blog test。</description><guid isPermaLink="true">https://blog.ian2018.club/post/test.html</guid><pubDate>Wed, 26 Jun 2024 00:42:09 +0000</pubDate></item><item><title>初识背后的老朋友--JVM</title><link>https://blog.ian2018.club/post/chu-shi-bei-hou-de-lao-peng-you---JVM.html</link><description>一直在学Java基础，光知道怎么用了也不行，也得了解一下它的内部长什么样子。</description><guid isPermaLink="true">https://blog.ian2018.club/post/chu-shi-bei-hou-de-lao-peng-you---JVM.html</guid><pubDate>Sat, 14 Jul 2018 12:42:01 +0000</pubDate></item><item><title>探索：使用Hexo搭建博客(Windows用户)</title><link>https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-shi-yong-Hexo-da-jian-bo-ke-%28Windows-yong-hu-%29.html</link><description># 前言&#13;
+由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 14:48:24 +0000</pubDate></item><item><title>test</title><link>https://blog.ian2018.club/post/test.html</link><description>cf blog test。</description><guid isPermaLink="true">https://blog.ian2018.club/post/test.html</guid><pubDate>Wed, 26 Jun 2024 00:42:09 +0000</pubDate></item><item><title>虚线的实现方法</title><link>https://blog.ian2018.club/post/xu-xian-de-shi-xian-fang-fa.html</link><description># 水平虚线的实现
+
+在drawable下新建drawable资源 shape_dotted_line.xml
+
+```xml
+&lt;?xml version='1.0' encoding='utf-8'?&gt;
+&lt;shape xmlns:android='http://schemas.android.com/apk/res/android'
+    android:shape='line'&gt;
+    &lt;stroke
+        android:width='1dp'
+        android:color='#32ffffff'
+        android:dashWidth='4dp'
+        android:dashGap='4dp' /&gt;
+    &lt;size android:height='1dp' /&gt;
+&lt;/shape&gt;
+```
+
+然后再在xml布局中使用该drawable做背景即可
+
+```xml
+&lt;View
+    android:layout_width='match_parent'
+    android:layout_height='1.5dp'
+    android:background='@drawable/shape_dotted_line'
+    android:layerType='software' /&gt;
+```
+
+&gt; 注: android:layerType='software' 如果不加这个会显示实线
+&gt;
+&gt; view的高度也要大一点，不然虚线显示不出来
+
+# 垂直虚线的实现
+
+垂直虚线只需要把水平的旋转一下即可，不过还需要做一下特殊处理
+
+在drawable下新建drawable资源 shape_dotted_line_vertical.xml
+
+```xml
+&lt;?xml version='1.0' encoding='utf-8'?&gt;
+&lt;layer-list xmlns:android='http://schemas.android.com/apk/res/android'&gt;
+    &lt;item
+        android:left='-300dp'
+        android:right='-300dp'&gt;
+        &lt;rotate
+            android:drawable='@drawable/shape_dotted_line'
+            android:fromDegrees='90' /&gt;
+    &lt;/item&gt;
+&lt;/layer-list&gt;
+```
+
+然后再xml布局中使用
+
+```xml
+&lt;View
+    android:id='@+id/dotted_view'
+    android:layout_width='2dp'
+    android:layout_height='match_parent'
+    android:background='@drawable/shape_dotted_line_vertical'
+    android:layerType='software' /&gt;
+```
+
+&gt; 注： 如果直接旋转的话，在设置给view的背景后，发现虚线只有一小段。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xu-xian-de-shi-xian-fang-fa.html</guid><pubDate>Mon, 25 Feb 2019 01:30:52 +0000</pubDate></item><item><title>初识背后的老朋友--JVM</title><link>https://blog.ian2018.club/post/chu-shi-bei-hou-de-lao-peng-you---JVM.html</link><description>一直在学Java基础，光知道怎么用了也不行，也得了解一下它的内部长什么样子。</description><guid isPermaLink="true">https://blog.ian2018.club/post/chu-shi-bei-hou-de-lao-peng-you---JVM.html</guid><pubDate>Sat, 14 Jul 2018 12:42:01 +0000</pubDate></item><item><title>探索：使用Hexo搭建博客(Windows用户)</title><link>https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-shi-yong-Hexo-da-jian-bo-ke-%28Windows-yong-hu-%29.html</link><description># 前言&#13;
 我是在一个安卓开发群里了解到这种搭建博客的方法，群友发了两个链接，链接上的教程说是五分钟搭建自己的博客，可我经过了一个多小时的探索才完成了这个博客。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-shi-yong-Hexo-da-jian-bo-ke-%28Windows-yong-hu-%29.html</guid><pubDate>Thu, 01 Sep 2016 10:56:12 +0000</pubDate></item><item><title>Hello World</title><link>https://blog.ian2018.club/post/Hello%20World.html</link><description>&#13;
 第一次搭建自己的博客&#13;
 &#13;
