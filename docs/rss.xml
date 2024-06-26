@@ -1,5 +1,116 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:14:27 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>AI 写真效果优化调研</title><link>https://blog.ian2018.club/post/AI%20-xie-zhen-xiao-guo-you-hua-diao-yan.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:16:09 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>通过 Stable Diffusion 进行照片风格转换</title><link>https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-jin-xing-zhao-pian-feng-ge-zhuan-huan.html</link><description>&gt; 经过几次测试，其中图生图的效果会比较好
+&gt;
+&gt; ControlNet 使用 3 层控制：Canny + Depth + IP-Adapter
+
+## 用到的模型下载
+### 底模：
+https://civitai.com/api/download/models/302806
+
+### ControlNet：
+将其放到 `stable-diffusion-webui/extensions/sd-webui-controlnet/models` 或者 `stable-diffusion-webui/models/ControlNet` 下
+- Canny：
+  - https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/sai_xl_canny_256lora.safetensors?download=true
+- Depth：
+  - https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/sai_xl_depth_128lora.safetensors?download=true
+- IP-Adapter Face：
+  - https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter-plus-face_sdxl_vit-h.safetensors?download=true
+
+
+## 参数详情：
+
+### 图生图参数：
+Stable Diffusion checkpoint：dreamshaperXL_turboDpmppSDE.safetensors [676f0d60c8]
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/fbebebdd321dcdc173131becdbd50065e0f4a825.png'&gt;`
+
+### ControlNet 参数：
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/126b0ed20d343c23dd28b248a95e362d61958b6e.png'&gt;`
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/e4bda592201f46be6ad68585a302221d2c9067f2.png'&gt;`
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/9bdf5fa060ac6c3ebc6184dd7757c82cd0eefddb.png'&gt;`
+
+## 结果展示：
+
+### 动画风格，Style：SAI Anime
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/72a2f6b2f2f4220c959eacd09304661b38c5484b.png'&gt;`
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/5619a8bd240c0b28aa16029e7da1e86f606a112e.png'&gt;`
+
+### 3D 风格，Style：SAI 3D Model，SAI Disney Model
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/96d873e4c573ef84d44d19ef3bd6ba694b3a20ae.png'&gt;`
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/0e4e761661bd4ff8575b00e8cb70ae020ef80421.png'&gt;`
+
+### 复古游戏风，Style：Game Retro Game
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/935c2ca2d8bf33f56bd16279bcb981f0e942a792.png'&gt;`
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/3b7bf90b822424333ae703ce82147571dbfe0317.png'&gt;`
+
+## API 参数
+
+```python
+url = 'http://127.0.0.1:7860/sdapi/v1/img2img'
+img_path = './test_img/t4.png'
+data = {
+    'init_images': [get_base64_image(img_path)],
+    'resize_mode': 0,
+    'denoising_strength': 0.7,
+    'prompt': '(anime artwork), (anime style), key visual, vibrant, studio anime, highly detailed',
+    'negative_prompt': 'photo, deformed, black and white, realism, disfigured, low contrast',
+    'seed': -1,
+    'batch_size': 1,
+    'n_iter': 1,
+    'steps': 6,
+    'cfg_scale': 2,
+    'width': 1024,
+    'height': 1280,
+    'override_settings': {
+        'sd_model_checkpoint': 'dreamshaperXL_turboDpmppSDE.safetensors [676f0d60c8]'
+    },
+    'save_images': False,
+    'sampler_name': 'DPM++ SDE Karras',
+    'alwayson_scripts': {
+        'controlnet': {
+            'args': [
+                {
+                    'module': 'canny',
+                    'model': 'sai_xl_canny_256lora [566f20af]',
+                    'processor_res': 512,
+                    'weight': 0.8,
+                    'guidance_start': 0.0,
+                    'guidance_end': 1.0,
+                    'threshold_a': 100,
+                    'threshold_b': 200,
+                    'control_mode': 0
+                },
+                {
+                    'module': 'depth_midas',
+                    'model': 'sai_xl_depth_128lora [f5ddde75]',
+                    'processor_res': 512,
+                    'weight': 0.3,
+                    'guidance_start': 0.2,
+                    'guidance_end': 0.6,
+                    'control_mode': 0
+                },
+                {
+                    'module': 'ip-adapter_clip_sdxl_plus_vith',
+                    'model': 'ip-adapter-plus-face_sdxl_vit-h [c60d7d48]',
+                    'processor_res': 512,
+                    'weight': 0.3,
+                    'guidance_start': 0.3,
+                    'guidance_end': 0.8,
+                    'control_mode': 0
+                }
+            ]
+        }
+    }
+}
+```
+&lt;!-- ##{'timestamp':1703228951}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-jin-xing-zhao-pian-feng-ge-zhuan-huan.html</guid><pubDate>Wed, 26 Jun 2024 16:15:41 +0000</pubDate></item><item><title>AI 写真效果优化调研</title><link>https://blog.ian2018.club/post/AI%20-xie-zhen-xiao-guo-you-hua-diao-yan.html</link><description>
 ## 模版新方案
 
 不再使用图生图的方式，而是采用 **模版 ****tag**** 反推** + **文生图** + **ControlNet Pose 控制姿势** + **换脸**
