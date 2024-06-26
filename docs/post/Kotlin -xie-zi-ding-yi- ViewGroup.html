@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="`Gmeek-html<img src='https://blog-image.ian2018.cn/images/2bba4a3bdad5d534b40c4ffa5281b2761d91b28a.png'>`
+
+Android 最近推行的 Compose ，有着 Kotlin 的加持，使写 UI 更加方便快速，不用担心布局嵌套，还是声明式 UI，那么 Compose 有这么多好处，原生写法还有 “出路” 吗？
+
+今天给大家分享一种非传统的自定义 ViewGroup 写法，让你对自定义 ViewGroup 不再 “恐惧”，再借助 Kotlin ，我们用原生写法，也可以快速写出无嵌套的布局。">
+<meta property="og:title" content="Kotlin 写自定义 ViewGroup">
+<meta property="og:description" content="`Gmeek-html<img src='https://blog-image.ian2018.cn/images/2bba4a3bdad5d534b40c4ffa5281b2761d91b28a.png'>`
+
+Android 最近推行的 Compose ，有着 Kotlin 的加持，使写 UI 更加方便快速，不用担心布局嵌套，还是声明式 UI，那么 Compose 有这么多好处，原生写法还有 “出路” 吗？
+
+今天给大家分享一种非传统的自定义 ViewGroup 写法，让你对自定义 ViewGroup 不再 “恐惧”，再借助 Kotlin ，我们用原生写法，也可以快速写出无嵌套的布局。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/Kotlin%20-xie-zi-ding-yi-%20ViewGroup.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>Kotlin 写自定义 ViewGroup</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">Kotlin 写自定义 ViewGroup</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/chenshuais/chenshuais.github.io/issues/53" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p><img src="https://blog-image.ian2018.cn/images/2bba4a3bdad5d534b40c4ffa5281b2761d91b28a.png"></p>
+<p>Android 最近推行的 Compose ，有着 Kotlin 的加持，使写 UI 更加方便快速，不用担心布局嵌套，还是声明式 UI，那么 Compose 有这么多好处，原生写法还有 “出路” 吗？</p>
+<p>今天给大家分享一种非传统的自定义 ViewGroup 写法，让你对自定义 ViewGroup 不再 “恐惧”，再借助 Kotlin ，我们用原生写法，也可以快速写出无嵌套的布局。</p>
+<h2>为什么要用自定义 ViewGroup</h2>
+<p>平时大家写 UI，都直接用 xml 去写布局，或多或少都会注意去避免布局嵌套，自从有了 ConstraintLayout，嵌套的情况就减少了许多，但用 ConstraintLayout 就能达到极致性能吗？整体上相较于其他 Layout ，性能确实<a href="https://cloud.tencent.com/developer/article/1365408" rel="nofollow">有所提升</a>。但对于产品中具体的页面，可能就不会达到极致性能，因为 ConstraintLayout 要考虑的场景太多了，导致其逻辑很复杂，对于确定的页面来说，一个有 “针对性” 的自定义 ViewGroup ，是能够超越 ConstraintLayout 的，因为你只需要对一个页面负责即可，不用考虑那么全。</p>
+<p>这里我所说的自定义 ViewGroup 就是用代码去写布局，不是写一个公共的控件让别人去使的那种。<a href="https://github.com/DrKLO/Telegram/">Telegram</a> 的布局就全部用代码去写的。</p>
+<p>那么我们平时为什么不去用代码写布局呢？</p>
+<ul>
+<li>自定义 ViewGroup 太复杂了，什么 MeasureSpec 情况有一堆。</li>
+<li>每次写都忘，还得去查，学了就忘</li>
+<li>效率太低，我为了那点性能提升，没必要</li>
+</ul>
+<p>总结一下，就是因为自定义 ViewGroup 比较难，还费事。以前用 Java 写代码确实会比较麻烦，但现在有了 Kotlin，也可以很优雅的去用代码写布局了。接下来，我就带大家来捋一下自定义 ViewGroup 的流程，然后用 Kotlin 去实现。</p>
+<h2>自定义 ViewGroup 要做什么</h2>
+<p>一个 ViewGroup 有哪几步，我想大家都知道，无非就是测量、布局、绘制，就这三步，测量就是把子 View 的大小测量一下，再算一下自己的大小；布局就是设置一下子 View 的位置；绘制对于 ViewGroup 来说一般不需要，无非就是在自己这画点什么东西。这么看也不是很难嘛，那么难的是哪里呢？我想就是因为下面这张表：</p>
+<p><img src="https://blog-image.ian2018.cn/images/d6cfd28d1c2d38c89b5e4eb097ac3f6215240320.png"></p>
+<p>就是测量的时候的各种模式，很多书上讲自定义 View 的时候都会给出这张表，其实这是作者自己总结出来的，Android 官网上是没有这些东西的。</p>
+<p>现在让我们忘记上面这张表，就只看一下有几种测量模式：EXACTLY、AT_MOST、UNSPECIFIED，这三个英文意思已经很明确了。</p>
+<ul>
+<li>EXACTLY 就是精确的，就是你设置多少就是多少</li>
+<li>AT_MOST 就是最多能用多少，就是尽可能满足子 View</li>
+<li>UNSPECIFIED 就是不确定的，这种一般都是需要再次测量的，就比如 LinearLayout 使用 weight</li>
+</ul>
+<p>其中 UNSPECIFIED 对于我们用代码写布局这种情况，几乎就不会用到，这种就可以不用考虑，那么就只剩下两种模式了，总结一下就是 “View 实际多少就是多少” 和 "View 最多能用多少"，这么一想，是不是就没那么复杂了。光说大家估计也没有具体的概念，接下来上代码。</p>
+<h2>如何借助 Kotlin 提升写 ViewGroup 效率</h2>
+<p>接下来，让我们用 Kotlin 的扩展方法，来一步一步去完成自定义 ViewGroup 需要的东西。</p>
+<p>测量的时候要传一个 MeasureSpec 对象，这个对象是根据宽高 Int 值和测量模式确定的，有了 Kotlin ，我们是不是可以直接给 Int 定义一个扩展方法，来获取这个 Int 值的 MeasureSpec 不就行了，来，看代码：</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> EXACTLY 的测量模式</span>
+<span class="pl-k">fun</span> Int.<span class="pl-en">toExactlyMeasureSpec</span>() <span class="pl-k">=</span> <span class="pl-en">MeasureSpec</span>.makeMeasureSpec(<span class="pl-c1">this</span>, <span class="pl-en">MeasureSpec</span>.<span class="pl-en">EXACTLY</span>)
+<span class="pl-c"><span class="pl-c">//</span> AT_MOST 的测量模式</span>
+<span class="pl-k">fun</span> Int.<span class="pl-en">toAtMostMeasureSpec</span>() <span class="pl-k">=</span> <span class="pl-en">MeasureSpec</span>.makeMeasureSpec(<span class="pl-c1">this</span>, <span class="pl-en">MeasureSpec</span>.<span class="pl-en">AT_MOST</span>)</pre></div>
+<p>我们给一个控件设置宽高，一般都是给个具体的值，要么就是 MATCH_PARENT 或者 WRAP_CONTENT，那么我们是不是也这种常见的情况抽成一个方法呢？有了 Kotlin 我们可以直接在这个 View 上弄个扩展方法，来获取它的默认宽高：</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> 获取 View 宽度的默认测量值</span>
+<span class="pl-k">fun</span> View.<span class="pl-en">defaultWidthMeasureSpec</span>(<span class="pl-smi">parent</span><span class="pl-k">:</span> <span class="pl-en">ViewGroup</span>): <span class="pl-c1">Int</span> {
+    <span class="pl-k">return</span> <span class="pl-k">when</span> (layoutParams.width) {
+        <span class="pl-c"><span class="pl-c">//</span> 如果是 MATCH_PARENT，就说明它要填满父布局，那就给它一个父布局宽度的精确值呗</span>
+        <span class="pl-en">MATCH_PARENT</span> <span class="pl-k">-&gt;</span> parent.measuredWidth.toExactlyMeasureSpec()
+        <span class="pl-c"><span class="pl-c">//</span> 如果是 WRAP_CONTENT，就说明它满足自己的大小就行，那么我们应该尽可能提供剩余可用空间</span>
+        <span class="pl-en">WRAP_CONTENT</span> <span class="pl-k">-&gt;</span> <span class="pl-en">WRAP_CONTENT</span>.toAtMostMeasureSpec()
+        <span class="pl-c"><span class="pl-c">//</span> 0 就是不确定的，这里我们有 UI 稿，就没有不确定的情况了，所以这里就不用考虑了</span>
+        <span class="pl-c1">0</span> <span class="pl-k">-&gt;</span> <span class="pl-k">throw</span> <span class="pl-en">IllegalAccessException</span>(<span class="pl-s"><span class="pl-pds">"</span>我不考虑这种情况 <span class="pl-e">$this</span><span class="pl-pds">"</span></span>)
+        <span class="pl-c"><span class="pl-c">//</span> 最后就是具体的值了，那就给你具体的呗</span>
+        <span class="pl-k">else</span> <span class="pl-k">-&gt;</span> layoutParams.width.toExactlyMeasureSpec()
+    }
+}
+<span class="pl-c"><span class="pl-c">//</span> 获取 View 高度的默认测量值，和上面获取宽度的原理一样</span>
+<span class="pl-k">fun</span> View.<span class="pl-en">defaultHeightMeasureSpec</span>(<span class="pl-smi">parent</span><span class="pl-k">:</span> <span class="pl-en">ViewGroup</span>): <span class="pl-c1">Int</span> {
+    <span class="pl-k">return</span> <span class="pl-k">when</span> (layoutParams.height) {
+        <span class="pl-en">MATCH_PARENT</span> <span class="pl-k">-&gt;</span> parent.measuredHeight.toExactlyMeasureSpec()
+        <span class="pl-en">WRAP_CONTENT</span> <span class="pl-k">-&gt;</span> <span class="pl-en">WRAP_CONTENT</span>.toAtMostMeasureSpec()
+        <span class="pl-c1">0</span> <span class="pl-k">-&gt;</span> <span class="pl-k">throw</span> <span class="pl-en">IllegalAccessException</span>(<span class="pl-s"><span class="pl-pds">"</span>我不考虑这种情况 <span class="pl-e">$this</span><span class="pl-pds">"</span></span>)
+        <span class="pl-k">else</span> <span class="pl-k">-&gt;</span> layoutParams.height.toExactlyMeasureSpec()
+    }
+}</pre></div>
+<p>好了，有了这些，我们再写自定义 ViewGroup 是不是就简单多了，我们测量一个控件，直接这些写就可以了：</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate">textView.measure(textView.defaultWidthMeasureSpec(<span class="pl-c1">this</span>), textView.defaultHeightMeasureSpec(<span class="pl-c1">this</span>))</pre></div>
+<p>等等，这样写还是有点复杂，我们为什么不干脆再定义一个扩展方法，让 View 直接按默认的测量好了：</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> View.<span class="pl-en">autoMeasure</span>(<span class="pl-smi">parent</span><span class="pl-k">:</span> <span class="pl-en">ViewGroup</span>) {
+    measure(
+        <span class="pl-c1">this</span>.defaultWidthMeasureSpec(parent),
+        <span class="pl-c1">this</span>.defaultHeightMeasureSpec(parent)
+    )
+}</pre></div>
+<p>这样下次使用就可以这样写了：</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate">textView.autoMeasure(<span class="pl-c1">this</span>)</pre></div>
+<p>是不是更简单了，到这，测量的基本代码差不多就写完了，顺便把布局的基础方法也写一下吧，布局就比较简单了，就是告诉子 View 的位置就好了。</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> 设置 view 的位置</span>
+<span class="pl-k">fun</span> View.<span class="pl-en">autoLayout</span>(<span class="pl-smi">parent</span><span class="pl-k">:</span> <span class="pl-en">ViewGroup</span>, <span class="pl-smi">x</span><span class="pl-k">:</span> <span class="pl-c1">Int</span> = 0, <span class="pl-smi">y</span><span class="pl-k">:</span> <span class="pl-c1">Int</span> = 0, <span class="pl-smi">fromRight</span><span class="pl-k">:</span> <span class="pl-c1">Boolean</span> = false) {
+    <span class="pl-c"><span class="pl-c">//</span> 判断布局是不是从右边开始</span>
+    <span class="pl-k">if</span> (<span class="pl-k">!</span>fromRight) {
+        <span class="pl-c"><span class="pl-c">//</span> 注意这里为什么用 measuredWidth 而不是用 width</span>
+        <span class="pl-c"><span class="pl-c">//</span> 因为 width 是通过 mRight - mLeft 计算的，而这时它俩都没有被赋值，所以都是 0</span>
+        layout(x, y, x <span class="pl-k">+</span> measuredWidth, y <span class="pl-k">+</span> measuredHeight)
+    } <span class="pl-k">else</span> {
+        autoLayout(parent.measuredWidth <span class="pl-k">-</span> x <span class="pl-k">-</span> measuredWidth, y)
+    }
+}</pre></div>
+<p>我们其实可以把这些方法都写到一个类，以后写自定义 ViewGroup，直接继承它就可以了，就像下面这样：</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"> <span class="pl-c"><span class="pl-c">//</span> 为了方便设置 dp sp，直接在这里声明了扩展属性</span>
+<span class="pl-k">val</span> <span class="pl-c1">Int</span>.dp
+    get() <span class="pl-k">=</span> <span class="pl-en">TypedValue</span>.applyDimension(
+        <span class="pl-en">TypedValue</span>.<span class="pl-en">COMPLEX_UNIT_DIP</span>, <span class="pl-c1">this</span>.toFloat(), 
+        <span class="pl-en">Resources</span>.getSystem().displayMetrics
+    ).toInt()
+<span class="pl-k">val</span> <span class="pl-c1">Float</span>.sp
+    get() <span class="pl-k">=</span> <span class="pl-en">TypedValue</span>.applyDimension(
+        <span class="pl-en">TypedValue</span>.<span class="pl-en">COMPLEX_UNIT_SP</span>, <span class="pl-c1">this</span>,
+        <span class="pl-en">Resources</span>.getSystem().displayMetrics
+    )
+
+<span class="pl-k">abstract</span> <span class="pl-k">class</span> <span class="pl-en">CustomViewGroup</span>(<span class="pl-smi">context</span><span class="pl-k">:</span> <span class="pl-en">Context</span>) : ViewGroup(context) {
+
+    <span class="pl-c"><span class="pl-c">//</span> 方便获取带 Margin 的宽高</span>
+    <span class="pl-k">protected</span> <span class="pl-k">val</span> <span class="pl-en">View</span>.measuredWidthWithMargins get() <span class="pl-k">=</span> measuredWidth <span class="pl-k">+</span> marginStart <span class="pl-k">+</span> marginEnd
+    <span class="pl-k">protected</span> <span class="pl-k">val</span> <span class="pl-en">View</span>.measuredHeightWithMargins get() <span class="pl-k">=</span> measuredHeight <span class="pl-k">+</span> marginTop <span class="pl-k">+</span> marginBottom
+
+    <span class="pl-k">protected</span> <span class="pl-k">fun</span> Int.<span class="pl-en">toExactlyMeasureSpec</span>() <span class="pl-k">=</span> <span class="pl-en">MeasureSpec</span>.makeMeasureSpec(<span class="pl-c1">this</span>, <span class="pl-en">MeasureSpec</span>.<span class="pl-en">EXACTLY</span>)
+  
+    <span class="pl-k">protected</span> <span class="pl-k">fun</span> Int.<span class="pl-en">toAtMostMeasureSpec</span>() <span class="pl-k">=</span> <span class="pl-en">MeasureSpec</span>.makeMeasureSpec(<span class="pl-c1">this</span>, <span class="pl-en">MeasureSpec</span>.<span class="pl-en">AT_MOST</span>)
+
+    <span class="pl-k">protected</span> <span class="pl-k">fun</span> View.<span class="pl-en">defaultWidthMeasureSpec</span>(<span class="pl-smi">parent</span><span class="pl-k">:</span> <span class="pl-en">ViewGroup</span>): <span class="pl-c1">Int</span> {
+        <span class="pl-k">return</span> <span class="pl-k">when</span> (layoutParams.width) {
+            <span class="pl-en">MATCH_PARENT</span> <span class="pl-k">-&gt;</span> parent.measuredWidth.toExactlyMeasureSpec()
+            <span class="pl-en">WRAP_CONTENT</span> <span class="pl-k">-&gt;</span> <span class="pl-en">WRAP_CONTENT</span>.toAtMostMeasureSpec()
+            <span class="pl-c1">0</span> <span class="pl-k">-&gt;</span> <span class="pl-k">throw</span> <span class="pl-en">IllegalAccessException</span>(<span class="pl-s"><span class="pl-pds">"</span>我不考虑这种情况 <span class="pl-e">$this</span><span class="pl-pds">"</span></span>)
+            <span class="pl-k">else</span> <span class="pl-k">-&gt;</span> layoutParams.width.toExactlyMeasureSpec()
+        }
+    }
+
+    <span class="pl-k">protected</span> <span class="pl-k">fun</span> View.<span class="pl-en">defaultHeightMeasureSpec</span>(<span class="pl-smi">parent</span><span class="pl-k">:</span> <span class="pl-en">ViewGroup</span>): <span class="pl-c1">Int</span> {
+        <span class="pl-k">return</span> <span class="pl-k">when</span> (layoutParams.height) {
+            <span class="pl-en">MATCH_PARENT</span> <span class="pl-k">-&gt;</span> parent.measuredHeight.toExactlyMeasureSpec()
+            <span class="pl-en">WRAP_CONTENT</span> <span class="pl-k">-&gt;</span> <span class="pl-en">WRAP_CONTENT</span>.toAtMostMeasureSpec()
+            <span class="pl-c1">0</span> <span class="pl-k">-&gt;</span> <span class="pl-k">throw</span> <span class="pl-en">IllegalAccessException</span>(<span class="pl-s"><span class="pl-pds">"</span>我不考虑这种情况 <span class="pl-e">$this</span><span class="pl-pds">"</span></span>)
+            <span class="pl-k">else</span> <span class="pl-k">-&gt;</span> layoutParams.height.toExactlyMeasureSpec()
+        }
+    }
+
+    <span class="pl-k">protected</span> <span class="pl-k">fun</span> View.<span class="pl-en">autoMeasure</span>() {
+        measure(
+            <span class="pl-c1">this</span>.defaultWidthMeasureSpec(<span class="pl-c1">this</span>@CustomViewGroup),
+            <span class="pl-c1">this</span>.defaultHeightMeasureSpec(<span class="pl-c1">this</span>@CustomViewGroup)
+        )
+    }
+
+    <span class="pl-k">protected</span> <span class="pl-k">fun</span> View.<span class="pl-en">autoLayout</span>(<span class="pl-smi">x</span><span class="pl-k">:</span> <span class="pl-c1">Int</span> = 0, <span class="pl-smi">y</span><span class="pl-k">:</span> <span class="pl-c1">Int</span> = 0, <span class="pl-smi">fromRight</span><span class="pl-k">:</span> <span class="pl-c1">Boolean</span> = false) {
+        <span class="pl-k">if</span> (<span class="pl-k">!</span>fromRight) {
+            layout(x, y, x <span class="pl-k">+</span> measuredWidth, y <span class="pl-k">+</span> measuredHeight)
+        } <span class="pl-k">else</span> {
+            autoLayout(<span class="pl-c1">this</span>@CustomViewGroup.measuredWidth <span class="pl-k">-</span> x <span class="pl-k">-</span> measuredWidth, y)
+        }
+    }
+}</pre></div>
+<h2>写个自定义 ViewGroup 试试</h2>
+<p><img src="https://blog-image.ian2018.cn/images/3afa2ec5945a1469af18d637e5c965e1a4eb13e3.png"></p>
+<p>就以计算器界面为例吧。上面👆是通过 ConstraintLayout 实现的，看看有哪些控件，1 个 EditText，17 个 Button。我们来试试用自定义 ViewGroup 来简单复刻一下，直接上代码吧：</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-en">CalculatorLayout</span>(<span class="pl-smi">context</span><span class="pl-k">:</span> <span class="pl-en">Context</span>) : CustomViewGroup(context) {
+    <span class="pl-c"><span class="pl-c">//</span> 我们可以直接这样在把控件 new 出来，设置一些属性，这样我们还省去了 findViewById，而且不用担心空指针</span>
+    <span class="pl-k">val</span> etResult <span class="pl-k">=</span> <span class="pl-en">AppCompatEditText</span>(context).<span class="pl-c1">apply</span> {
+        typeface <span class="pl-k">=</span> <span class="pl-en">ResourcesCompat</span>.getFont(context, <span class="pl-en">R</span>.font.comfortaa_regular)
+        setTextColor(<span class="pl-en">ResourcesCompat</span>.getColor(resources, <span class="pl-en">R</span>.color.white, <span class="pl-c1">null</span>))
+        background <span class="pl-k">=</span> <span class="pl-c1">null</span>
+        textSize <span class="pl-k">=</span> <span class="pl-c1">65f</span>
+        gravity <span class="pl-k">=</span> <span class="pl-en">Gravity</span>.<span class="pl-en">BOTTOM</span> <span class="pl-k">or</span> <span class="pl-en">Gravity</span>.<span class="pl-en">END</span>
+        maxLines <span class="pl-k">=</span> <span class="pl-c1">1</span>
+        isFocusable <span class="pl-k">=</span> <span class="pl-c1">false</span>
+        isCursorVisible <span class="pl-k">=</span> <span class="pl-c1">false</span>
+        setPadding(<span class="pl-c1">16</span>.dp, paddingTop, <span class="pl-c1">16</span>.dp, paddingBottom)
+        layoutParams <span class="pl-k">=</span> <span class="pl-en">LayoutParams</span>(<span class="pl-en">LayoutParams</span>.<span class="pl-en">MATCH_PARENT</span>, <span class="pl-en">LayoutParams</span>.<span class="pl-en">WRAP_CONTENT</span>)
+        <span class="pl-c"><span class="pl-c">//</span> 注意，这里直接 add 不会触发 onMeasure 这些流程，可以放心 add</span>
+        addView(<span class="pl-c1">this</span>)
+    }
+    <span class="pl-c"><span class="pl-c">//</span> 数字键盘后面的背景</span>
+    <span class="pl-k">val</span> keyboardBackgroundView <span class="pl-k">=</span> <span class="pl-en">View</span>(context).<span class="pl-c1">apply</span> {<span class="pl-k">..</span>.}
+
+    <span class="pl-k">class</span> <span class="pl-en">NumButton</span>(<span class="pl-smi">context</span><span class="pl-k">:</span> <span class="pl-en">Context</span>, <span class="pl-smi">text</span><span class="pl-k">:</span> <span class="pl-c1">String</span>, <span class="pl-smi">parent</span><span class="pl-k">:</span> <span class="pl-en">ViewGroup</span>) : AppCompatTextView(context) {
+        <span class="pl-en">init</span> {
+            setText(text)
+            gravity <span class="pl-k">=</span> <span class="pl-en">Gravity</span>.<span class="pl-en">CENTER</span>
+            background <span class="pl-k">=</span>
+                <span class="pl-en">ResourcesCompat</span>.getDrawable(resources, <span class="pl-en">R</span>.drawable.ripple_cal_btn_num, <span class="pl-c1">null</span>)
+            layoutParams <span class="pl-k">=</span>
+                <span class="pl-en">MarginLayoutParams</span>(<span class="pl-en">LayoutParams</span>.<span class="pl-en">WRAP_CONTENT</span>, <span class="pl-en">LayoutParams</span>.<span class="pl-en">WRAP_CONTENT</span>).<span class="pl-c1">apply</span> {
+                    leftMargin <span class="pl-k">=</span> <span class="pl-c1">2</span>.dp
+                    rightMargin <span class="pl-k">=</span> <span class="pl-c1">2</span>.dp
+                    topMargin <span class="pl-k">=</span> <span class="pl-c1">6</span>.dp
+                    bottomMargin <span class="pl-k">=</span> <span class="pl-c1">6</span>.dp
+                }
+            isClickable <span class="pl-k">=</span> <span class="pl-c1">true</span>
+            setTextAppearance(context, <span class="pl-en">R</span>.style.<span class="pl-en">StyleCalBtn</span>)
+            parent.addView(<span class="pl-c1">this</span>)
+        }
+    }
+  
+    <span class="pl-k">val</span> btn0 <span class="pl-k">=</span> <span class="pl-en">NumButton</span>(context, <span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span>, <span class="pl-c1">this</span>)
+    <span class="pl-k">..</span>.
+
+    <span class="pl-en">init</span> {
+        <span class="pl-c"><span class="pl-c">//</span> 给自己设置个背景</span>
+        background <span class="pl-k">=</span> <span class="pl-en">ResourcesCompat</span>.getDrawable(resources, <span class="pl-en">R</span>.drawable.shape_cal_bg, <span class="pl-c1">null</span>)
+    }
+
+    <span class="pl-k">override</span> <span class="pl-k">fun</span> <span class="pl-en">onMeasure</span>(<span class="pl-smi">widthMeasureSpec</span><span class="pl-k">:</span> <span class="pl-c1">Int</span>, <span class="pl-smi">heightMeasureSpec</span><span class="pl-k">:</span> <span class="pl-c1">Int</span>) {
+        <span class="pl-c1">super</span>.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        <span class="pl-c"><span class="pl-c">//</span> 先算一下数字按钮的大小</span>
+        <span class="pl-k">val</span> allSize <span class="pl-k">=</span>
+            measuredWidth <span class="pl-k">-</span> keyboardBackgroundView.paddingLeft <span class="pl-k">-</span> keyboardBackgroundView.paddingRight <span class="pl-k">-</span>
+                    btn0.marginLeft <span class="pl-k">*</span> <span class="pl-c1">8</span>
+        <span class="pl-k">val</span> numBtSize <span class="pl-k">=</span> (allSize <span class="pl-k">*</span> (<span class="pl-c1">1</span> <span class="pl-k">/</span> <span class="pl-c1">3.8</span>)).toInt()
+        <span class="pl-c"><span class="pl-c">//</span> 计算操作按钮的大小</span>
+        <span class="pl-k">val</span> operatorBtWidth <span class="pl-k">=</span> (allSize <span class="pl-k">*</span> (<span class="pl-c1">0.8</span> <span class="pl-k">/</span> <span class="pl-c1">3.8</span>)).toInt()
+        <span class="pl-k">val</span> operatorBtHeight <span class="pl-k">=</span> (numBtSize <span class="pl-k">*</span> <span class="pl-c1">4</span> <span class="pl-k">+</span> btn0.marginTop <span class="pl-k">*</span> <span class="pl-c1">6</span> <span class="pl-k">-</span> btnDel.marginTop <span class="pl-k">*</span> <span class="pl-c1">8</span>) <span class="pl-k">/</span> <span class="pl-c1">5</span>
+
+        <span class="pl-c"><span class="pl-c">//</span> 再计算数字盘的高度</span>
+        <span class="pl-k">val</span> keyboardHeight <span class="pl-k">=</span>
+            keyboardBackgroundView.paddingTop <span class="pl-k">+</span> keyboardBackgroundView.paddingBottom <span class="pl-k">+</span>
+                    numBtSize <span class="pl-k">*</span> <span class="pl-c1">4</span> <span class="pl-k">+</span> btn0.marginTop <span class="pl-k">*</span> <span class="pl-c1">8</span>
+
+        <span class="pl-c"><span class="pl-c">//</span> 最后把高度剩余空间都给 EditText</span>
+        <span class="pl-k">val</span> editTextHeight <span class="pl-k">=</span> measuredHeight <span class="pl-k">-</span> keyboardHeight
+
+        <span class="pl-c"><span class="pl-c">//</span> 测量背景</span>
+        keyboardBackgroundView.measure(
+            measuredWidth.toExactlyMeasureSpec(),
+            keyboardHeight.toExactlyMeasureSpec()
+        )
+
+        <span class="pl-c"><span class="pl-c">//</span> 测量按钮</span>
+        btn0.measure(numBtSize.toExactlyMeasureSpec(), numBtSize.toExactlyMeasureSpec())
+        <span class="pl-k">..</span>.
+        btnDiv.measure(operatorBtWidth.toExactlyMeasureSpec(), operatorBtHeight.toExactlyMeasureSpec())
+        <span class="pl-k">..</span>.
+
+        <span class="pl-c"><span class="pl-c">//</span> 测量 EditText</span>
+        etResult.measure(
+            measuredWidth.toExactlyMeasureSpec(),
+            editTextHeight.toExactlyMeasureSpec()
+        )
+
+        <span class="pl-c"><span class="pl-c">//</span> 最后设置自己的宽高</span>
+        setMeasuredDimension(measuredWidth, measuredHeight)
+    }
+
+    <span class="pl-k">override</span> <span class="pl-k">fun</span> <span class="pl-en">onLayout</span>(<span class="pl-smi">changed</span><span class="pl-k">:</span> <span class="pl-c1">Boolean</span>, <span class="pl-smi">l</span><span class="pl-k">:</span> <span class="pl-c1">Int</span>, <span class="pl-smi">t</span><span class="pl-k">:</span> <span class="pl-c1">Int</span>, <span class="pl-smi">r</span><span class="pl-k">:</span> <span class="pl-c1">Int</span>, <span class="pl-smi">b</span><span class="pl-k">:</span> <span class="pl-c1">Int</span>) {
+        <span class="pl-c"><span class="pl-c">//</span> 好了，测量都完了，就一个个放吧</span>
+        <span class="pl-c"><span class="pl-c">//</span> 先放 EditText</span>
+        etResult.autoLayout()
+
+        <span class="pl-c"><span class="pl-c">//</span> 把背景放上</span>
+        keyboardBackgroundView.autoLayout(<span class="pl-c1">0</span>, etResult.bottom)
+
+        <span class="pl-c"><span class="pl-c">//</span> 开始放按钮吧</span>
+        btn7.<span class="pl-c1">let</span> {
+            it.autoLayout(
+                keyboardBackgroundView.paddingLeft <span class="pl-k">+</span> it.marginLeft,
+                keyboardBackgroundView.top <span class="pl-k">+</span> keyboardBackgroundView.paddingTop <span class="pl-k">+</span> it.marginTop
+            )
+        }
+        btn8.<span class="pl-c1">let</span> {
+            it.autoLayout(
+                btn7.right <span class="pl-k">+</span> btn7.marginRight <span class="pl-k">+</span> it.marginLeft,
+                btn7.top
+            )
+        }
+        btn9.<span class="pl-c1">let</span> {
+            it.autoLayout(
+                btn8.right <span class="pl-k">+</span> btn8.marginRight <span class="pl-k">+</span> it.marginLeft,
+                btn7.top
+            )
+        }
+        <span class="pl-k">..</span>.
+    }
+}</pre></div>
+<p>Ok，以上就完成了自定义 ViewGroup，我们可以直接这样用了：</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">override</span> <span class="pl-k">fun</span> <span class="pl-en">onCreate</span>(<span class="pl-smi">savedInstanceState</span><span class="pl-k">:</span> <span class="pl-en">Bundle</span><span class="pl-k">?</span>) {
+    <span class="pl-c1">super</span>.onCreate(savedInstanceState)
+    <span class="pl-k">val</span> contentView <span class="pl-k">=</span> <span class="pl-en">CalculatorLayout</span>(<span class="pl-c1">this</span>)
+    setContentView(contentView)
+    
+    <span class="pl-c"><span class="pl-c">//</span> 不用 findViewById 和 ktx插件、ViewBinding 这些东西，直接用就可以</span>
+    contentView.btnDel.setOnClickListener {
+        contentView.etResult.setText(<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>)
+    }
+}</pre></div>
+<p>看看最终的对比效果：</p>
+<p><img src="https://blog-image.ian2018.cn/images/eac7aa7435f613da784a1ab8ab2af6545a3cd845.png"></p>
+<p>看上去还算可以，怎么样，是不是用 Kotlin 代码写布局也不是很复杂，缺点就是不能在 Android Studio 上预览（其实是可以显示预览框的，只要在自定义 View 的构造方法加上 AttributeSet 参数就可以了，不过不一定能显示成功，反正我这预览的还是灰色的）。</p>
+<h2>结束了？</h2>
+<p>这就完了？是不是感觉还少点，如果我在 xml 里设置了 style 怎么办？设置 style 可是减少重复代码的常用手段，那么怎么在代码里设置 style 呢？</p>
+<p>据我所知，Android 官方是没有提供设置 style 的 API 的，那么就没法用 style 了吗？当然不是，我们可以换个思路。</p>
+<p>我们用 style 是为了减少相同样式 View 的重复代码，将重复代码抽成 style 达到复用的效果，其实我们上面的那种写法就已经达到了这个目的，就是 <code class="notranslate">NumButton</code> 那个类，我们把重复的属性设置都放到了这个类里，看，这样是不是已经满足设置 style 的需求了。</p>
+<p>什么？你就要用 style。好吧，那就再教大家一个小技巧来用代码设置 style。</p>
+<p>大家记不记得 View 的构造方法中有一个是四个参数的：</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-c">/**</span>
+<span class="pl-c"> * ...</span>
+<span class="pl-c"> * @param defStyleAttr An attribute in the current theme that contains a</span>
+<span class="pl-c"> *        reference to a style resource that supplies default values for</span>
+<span class="pl-c"> *        the view. Can be 0 to not look for defaults. </span>
+<span class="pl-c"> *        当前主题中的一个属性，包含对为视图提供默认值的样式资源的引用。可以为 0 以不查找默认值</span>
+<span class="pl-c"> * @param defStyleRes A resource identifier of a style resource that</span>
+<span class="pl-c"> *        supplies default values for the view, used only if</span>
+<span class="pl-c"> *        defStyleAttr is 0 or can not be found in the theme. Can be 0</span>
+<span class="pl-c"> *        to not look for defaults.</span>
+<span class="pl-c"> *        为视图提供默认值的样式资源的资源标识符，仅在 defStyleAttr 为 0 或在主题中找不到时使用。可以为 0 以不查找默认值。</span>
+<span class="pl-c"> * ...</span>
+<span class="pl-c"> */</span>
+<span class="pl-k">public</span> <span class="pl-smi">View</span>(<span class="pl-s1">context</span>: <span class="pl-s1">Context</span>, <span class="pl-s1">attrs</span>: <span class="pl-s1">AttributeSet</span>?, <span class="pl-s1">defStyleAttr</span>: <span class="pl-s1">Int</span>, <span class="pl-s1">defStyleRes</span>: <span class="pl-s1">Int</span>)</pre></div>
+<p>着重看一下后两个参数的意思，其中第四个参数 defStyleRes 不就是我们要找的设置 style 的地方嘛。那么我们想要给 View 设置 style 可以这样写：</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> 注意，这里的第三个参数传 0 ，原因上面源码注释里已经写了</span>
+<span class="pl-k">val</span> btn0 <span class="pl-k">=</span> <span class="pl-en">Button</span>(context, <span class="pl-c1">null</span>, <span class="pl-c1">0</span>, <span class="pl-en">R</span>.style.<span class="pl-en">StyleCalBtn</span>)</pre></div>
+<p>这样我们写的 style 就能用了。但是... 还有一个问题，有的 View 就没给提供四个参数的构造方法咋办？就比如 <code class="notranslate">AppCompatButton</code> ，像这种情况我们怎么设置 style 呢？这时候就需要看一下 View 的第三个参数 defStyleAttr 的含义了。</p>
+<p>defStyleAttr 的解释当前主题中的一个属性 attr，这个属性里有默认 style 的引用，那么，我们把这个默认 style 的引用换成我们自己的不就达到了设置 style 的目的了嘛。</p>
+<p>先看一下 <code class="notranslate">AppCompatButton</code> 的 attr 名字叫什么：</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-s1">AppCompatButton</span>(<span class="pl-c1">@</span><span class="pl-c1">NonNull</span> <span class="pl-smi">Context</span> <span class="pl-s1">context</span>, <span class="pl-c1">@</span><span class="pl-c1">Nullable</span> <span class="pl-smi">AttributeSet</span> <span class="pl-s1">attrs</span>) {
+    <span class="pl-smi">this</span>(<span class="pl-s1">context</span>, <span class="pl-s1">attrs</span>, <span class="pl-s1">R</span>.<span class="pl-s1">attr</span>.<span class="pl-s1">buttonStyle</span>);
+}</pre></div>
+<p>根据 <code class="notranslate">AppCompatButton</code> 的源码可以知道，它的 attr 叫 buttonStyle，然后我们就可以自定义一个 theme，把 buttonStyle 的值给覆盖掉：</p>
+<div class="highlight highlight-text-xml"><pre class="notranslate">&lt;<span class="pl-ent">style</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>Theme.CalBtn<span class="pl-pds">"</span></span> <span class="pl-e">parent</span>=<span class="pl-s"><span class="pl-pds">"</span>Theme.CustomViewGroup<span class="pl-pds">"</span></span>&gt;
+    <span class="pl-c"><span class="pl-c">&lt;!--</span> 注意这里前面加了 android: <span class="pl-c">--&gt;</span></span>
+    &lt;<span class="pl-ent">item</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>android:buttonStyle<span class="pl-pds">"</span></span>&gt;@style/StyleCalBtn&lt;/<span class="pl-ent">item</span>&gt;
+&lt;/<span class="pl-ent">style</span>&gt;</pre></div>
+<p>那么我们怎么用这个主题呢？直接传到 View 的第三个参数上？这样不行，第三个参数要的是一个 attr，不能传 theme。那怎么办呢？</p>
+<p>我们可以从 Context 上做手脚，通过 <code class="notranslate">ContextThemeWrapper</code> 给 Context 再包装一层：</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> Context.<span class="pl-en">toTheme</span>(@StyleRes <span class="pl-smi">style</span><span class="pl-k">:</span> <span class="pl-c1">Int</span>) <span class="pl-k">=</span> <span class="pl-en">ContextThemeWrapper</span>(<span class="pl-c1">this</span>, style)</pre></div>
+<p>这样 View 在通过 <code class="notranslate">context.obtainStyledAttributes()</code> 方法获取属性值的时候，就可以加载我们设置的主题了。</p>
+<p>新的写法就可以这样：</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> 注意，这里不能只传 context ，如果只传 context 它内部会走 (context, null, 0) 这个构造，导致设置的 style 无效</span>
+<span class="pl-k">val</span> btn0 <span class="pl-k">=</span> <span class="pl-en">AppCompatButton</span>(context.toTheme(<span class="pl-en">R</span>.style.<span class="pl-en">Theme_CalBtn</span>), <span class="pl-c1">null</span>, android.<span class="pl-en">R</span>.attr.buttonStyle)</pre></div>
+<p>这下可以用代码设置 style 了吧。</p>
+<h2>真的结束了</h2>
+<p>虽然与 xml 的书写相比，确实有些麻烦，但熟练之后，我感觉都差不多，还能帮助我们对自定义 View 这块更加熟悉，感兴趣的小伙伴可以在项目不忙的时候先试试这种写法。当然，也可以试试 Compose，其实 Compose 最终也是一个 ViewGroup ，可以看看 <code class="notranslate">AndroidComposeView</code> ，它最终也是会添加到 DecorView 上。</p>
+<p>最后感谢纯纯写作的作者 <a href="https://github.com/drakeet">drakeet</a> 大神的分享。</p>
+<p>Demo 地址：<a href="https://github.com/IAn2018cs/CustomViewGroup">https://github.com/IAn2018cs/CustomViewGroup</a></p>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
