@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:36:39 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>算法学习随笔07</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-07.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/ef0e64c956cd0063b1c9f020b36a760e666a8e3d.png'&gt;`
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:38:09 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>算法学习随笔08</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-08.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/bfb08bcb716a91120ade5e5d9b2bceef7c82eb70.png'&gt;`
+
+# Week09 学习笔记
+
+## 1. 动态规划、状态转移方程
+
+### 1.1 要点
+
+* 将一个复杂的问题，分解成各个简单的子问题。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-08.html</guid><pubDate>Wed, 26 Jun 2024 15:37:47 +0000</pubDate></item><item><title>算法学习随笔07</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-07.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/ef0e64c956cd0063b1c9f020b36a760e666a8e3d.png'&gt;`
 
 # Week08 学习笔记
 
