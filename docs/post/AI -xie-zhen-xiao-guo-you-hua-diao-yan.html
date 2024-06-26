@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+## 模版新方案
+
+不再使用图生图的方式，而是采用 **模版 ****tag**** 反推** + **文生图** + **ControlNet Pose 控制姿势** + **换脸**
+
+该方案是为了解决图生图方案导致的画面不真实的问题，采用合适的大模型，也能顺带缓解换脸丑的问题（因为模型生成的脸型都比较好看，相当于先做了一次美颜，然后换脸）
+
+### SD 具体实施步骤
+
+#### 一、使用 [wd14-tagger](https://github.com/picobyte/stable-diffusion-webui-wd14-tagger) 插件对模版图片进行 tag 反推
+
+`Gmeek-html<img src='https://blog-image.ian2018.cn/images/374886d1e7c58b556feb8bd7ad8fa410b88d1c9b.png'>`
+
+#### 二、生成 ControlNet 骨架图
+
+这一步也可以直接放文生图里，这里提前生成可以不用进行预处理，减少一点生成时间。">
+<meta property="og:title" content="AI 写真效果优化调研">
+<meta property="og:description" content="
+## 模版新方案
+
+不再使用图生图的方式，而是采用 **模版 ****tag**** 反推** + **文生图** + **ControlNet Pose 控制姿势** + **换脸**
+
+该方案是为了解决图生图方案导致的画面不真实的问题，采用合适的大模型，也能顺带缓解换脸丑的问题（因为模型生成的脸型都比较好看，相当于先做了一次美颜，然后换脸）
+
+### SD 具体实施步骤
+
+#### 一、使用 [wd14-tagger](https://github.com/picobyte/stable-diffusion-webui-wd14-tagger) 插件对模版图片进行 tag 反推
+
+`Gmeek-html<img src='https://blog-image.ian2018.cn/images/374886d1e7c58b556feb8bd7ad8fa410b88d1c9b.png'>`
+
+#### 二、生成 ControlNet 骨架图
+
+这一步也可以直接放文生图里，这里提前生成可以不用进行预处理，减少一点生成时间。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/AI%20-xie-zhen-xiao-guo-you-hua-diao-yan.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>AI 写真效果优化调研</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">AI 写真效果优化调研</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/chenshuais/chenshuais.github.io/issues/68" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h2>模版新方案</h2>
+<p>不再使用图生图的方式，而是采用 <strong>模版 tag 反推</strong> + <strong>文生图</strong> + <strong>ControlNet Pose 控制姿势</strong> + <strong>换脸</strong></p>
+<p>该方案是为了解决图生图方案导致的画面不真实的问题，采用合适的大模型，也能顺带缓解换脸丑的问题（因为模型生成的脸型都比较好看，相当于先做了一次美颜，然后换脸）</p>
+<h3>SD 具体实施步骤</h3>
+<h4>一、使用 <a href="https://github.com/picobyte/stable-diffusion-webui-wd14-tagger">wd14-tagger</a> 插件对模版图片进行 tag 反推</h4>
+<p><img src="https://blog-image.ian2018.cn/images/374886d1e7c58b556feb8bd7ad8fa410b88d1c9b.png"></p>
+<h4>二、生成 ControlNet 骨架图</h4>
+<p>这一步也可以直接放文生图里，这里提前生成可以不用进行预处理，减少一点生成时间。</p>
+<p><img src="https://blog-image.ian2018.cn/images/07dd6eacdddc76601351eabc10f3f717c70e3b99.png"></p>
+<p>直接点击文生图的生成按钮，结果的第二张就是骨架图：</p>
+<p><img src="https://blog-image.ian2018.cn/images/f5227e0edeb5a2679d1658692ec920fcc7f6e5ad.png"></p>
+<h4>三、文生图 + ControlNet** **+ FaceSwapLab</h4>
+<h5>这里用了摄影写实风格的大模型：<a href="https://civitai.com/models/43331?modelVersionId=176425" rel="nofollow">majicMIX realistic</a>，文生图参数如下：</h5>
+<p>Checkpoint: <strong>majicMIX_v7_realistic</strong></p>
+<p>Sampler: <strong>Euler a</strong></p>
+<p>Steps: <strong>20</strong></p>
+<p>Hires upscaler: <strong>ESRGAN 4x</strong></p>
+<p>Hires upscale: <strong>2</strong></p>
+<p>Hires steps: <strong>15</strong></p>
+<p>Hires denoising strength: <strong>0.25</strong></p>
+<p>Width: 512</p>
+<p>Height: 700</p>
+<p>CFG Scale: 7</p>
+<p><strong>clip skip: 2 （全局设置，本地 sd 上已经设置好了）</strong></p>
+<p>Prompt: 1girl, solo, flower, long hair, realistic, blonde hair, dress, lips, blue eyes, wavy hair, bouquet, blurry, looking away, looking to the side, head wreath, upper body, blurry background, breasts, white dress, nose, holding</p>
+<p>Negative prompt: (worst quality:2), (low quality:2), (normal quality:2), lowres, watermark,  nsfw, cartoon, painting, illustration, bad body, ugly</p>
+<h5>打开 ControlNet，直接使用骨架图</h5>
+<p><img src="https://blog-image.ian2018.cn/images/2197a870079060df0c91c95df1f8280c1be91c4b.png"></p>
+<h5>设置 FaceSwapLab 换脸参数，缓解锯齿问题</h5>
+<p><img src="https://blog-image.ian2018.cn/images/5a249fb39145c92811587ae748fde439b8077cf5.png"><br>
+<img src="https://blog-image.ian2018.cn/images/83716e54f2dfd5be41701b6623c79497649fc2c8.png"><br>
+<img src="https://blog-image.ian2018.cn/images/7f7a2608adf16859343db94b50df2a7e5d414dcb.png"></p>
+<h4>四、结果预览</h4>
+<p>女性：</p>
+<p><img src="https://blog-image.ian2018.cn/images/83be71478b38be54235064aa8ca09ccc9dfa9736.png"></p>
+<p><img src="https://blog-image.ian2018.cn/images/8b33799523e5f74e15057ea883cb590d0a0a6509.png"><br>
+<img src="https://blog-image.ian2018.cn/images/9aa61184103ea13e98e29346135138c0ca26d8de.png"></p>
+<p>男性（模型更偏向女性，这里在提示词里加了 性别控制的 embedding <a href="https://civitai.com/models/89709?modelVersionId=95532" rel="nofollow">https://civitai.com/models/89709?modelVersionId=95532</a>）：</p>
+<p><img src="https://blog-image.ian2018.cn/images/0b174a3e870af9185dab545d30d743044f6f00c4.png"></p>
+<p><img src="https://blog-image.ian2018.cn/images/1488b6bb2b4fbccc46d01a0db293f08a2e1061cf.png"><br>
+<img src="https://blog-image.ian2018.cn/images/5eea42131de903cb815c64bfaa50d7f646f9b6a0.png"></p>
+<h4>五、细节调整 LoRA 测试</h4>
+<p>可以增加图像的细节，看起来更真实</p>
+<p>LoRA：<a href="https://civitai.com/models/58390/detail-tweaker-lora-lora" rel="nofollow">https://civitai.com/models/58390/detail-tweaker-lora-lora</a></p>
+<p><img src="https://blog-image.ian2018.cn/images/ed792f809622e7e911c6acc358acbbc9346d9d12.png"></p>
+<h4>六、其他大模型测试：</h4>
+<h5>使用 <a href="https://tensor.art/models/596158958383661078" rel="nofollow">deliberate_v2</a> 模型测试：</h5>
+<p>Checkpoint: <strong>deliberate_v2</strong></p>
+<p>Sampler: <strong>DPM++ SDE Karras</strong></p>
+<p>Steps: <strong>25</strong></p>
+<p>Hires upscaler: none</p>
+<p>Width: 512</p>
+<p>Height: 700</p>
+<p>CFG Scale: 7</p>
+<p><img src="https://blog-image.ian2018.cn/images/f7fa20fad9f1e505ff9e5b227600b03e9bf799b4.png"></p>
+<h5>使用 <a href="https://tensor.art/models/634494689980086052" rel="nofollow">deliberate_v3</a> 模型测试：</h5>
+<p>Checkpoint: <strong>deliberate_v3</strong></p>
+<p>Sampler: <strong>DPM++ SDE Karras</strong></p>
+<p>Steps: <strong>25</strong></p>
+<p>Hires upscaler: none</p>
+<p>Width: 512</p>
+<p>Height: 700</p>
+<p>CFG Scale: 7</p>
+<p><img src="https://blog-image.ian2018.cn/images/ffa4d3f0ba6c0f0cd3f7b9a80cccd559aa30b6dc.png"></p>
+<h5>使用 <a href="https://tensor.art/models/623683531446469158" rel="nofollow">reliberate_v2</a> 模型测试：</h5>
+<p>Checkpoint: <strong>reliberate_v20</strong></p>
+<p>Sampler: <strong>DPM++ 2M</strong></p>
+<p>Steps: <strong>24</strong></p>
+<p>Hires upscaler: none</p>
+<p>Width: 512</p>
+<p>Height: 700</p>
+<p>CFG Scale: 6.5</p>
+<p><img src="https://blog-image.ian2018.cn/images/025b67f4c23ac839dff00a6ddab47865e2d2b9a3.png"></p>
+<h5>使用 <a href="https://civitai.com/models/4201/realistic-vision-v51" rel="nofollow">realistic-vision-v51</a> 模型测试：</h5>
+<p>Checkpoint: <strong>realisticVisionV51_v51VAE</strong></p>
+<p>Sampler: <strong>DPM++ SDE Karra</strong></p>
+<p>Steps: <strong>25</strong></p>
+<p>Hires upscaler: <strong>4x-UltraSharp</strong></p>
+<p>Hires upscale: <strong>2</strong></p>
+<p>Hires steps: <strong>10</strong></p>
+<p>Hires denoising strength: <strong>0.25</strong></p>
+<p>Width: 512</p>
+<p>Height: 700</p>
+<p>CFG Scale: 7</p>
+<p>Prompt: RAW photo, subject, 8k uhd, dslr, soft lighting, high quality, film grain, Fujifilm XT3, solo, 1boy, realistic, male focus, necktie, formal, suit, blue background, brown hair, upper body, blue necktie, shirt, brown eyes, looking to the side, white shirt, simple background, collared shirt, jacket, blue jacket, short hair, facial hair, closed mouth</p>
+<p>Negative prompt: (deformed iris, deformed pupils, semi-realistic, cgi, 3d, render, sketch, cartoon, drawing, anime), text, cropped, out of frame, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, extra fingers, mutated hands, poorly drawn hands, poorly drawn face, mutation, deformed, blurry, dehydrated, bad anatomy, bad proportions, extra limbs, cloned face, disfigured, gross proportions, malformed limbs, missing arms, missing legs, extra arms, extra legs, fused fingers, too many fingers, long neck, BadDream</p>
+<p><img src="https://blog-image.ian2018.cn/images/ab71be42d06a52b0f72c18873542d775191df215.png"></p>
+<h5>使用 <a href="https://civitai.com/models/57319/a-zovya-photoreal" rel="nofollow">a-zovya-photoreal</a> 模型测试：</h5>
+<p>Checkpoint: <strong>a-zovya-photoreal</strong></p>
+<p>Sampler: <strong>DPM++ SDE Karra</strong></p>
+<p>Steps: <strong>25</strong></p>
+<p>Hires upscaler: none</p>
+<p>Width: 512</p>
+<p>Height: 700</p>
+<p>CFG Scale: 7</p>
+<p>Prompt: solo, 1boy, realistic, male focus, necktie, formal, suit, blue background, brown hair, upper body, blue necktie, shirt, brown eyes, looking to the side, white shirt, simple background, collared shirt, jacket, blue jacket, short hair, facial hair, closed mouth, 200mm zoom lens f/1.4 (masterpiece:1.2) (photorealistic:1.2) (bokeh) (best quality) (detailed skin:1.3) (intricate details) (8k) (HDR) (analog film) (canon d5) (cinematic lighting) (sharp focus)</p>
+<p>Negative prompt: nsfw, (monochrome) (bad hands) (disfigured) (grain) (Deformed) (poorly drawn) (mutilated) (lowres) (deformed) (dark) (lowpoly) (CG) (3d) (blurry) (duplicate) (watermark) (label) (signature) (frames) (text)</p>
+<p><img src="https://blog-image.ian2018.cn/images/4b2c98adf25fdad0dcd171cb18faa77594a393a0.png"></p>
+<h5>使用 <a href="https://civitai.com/models/4384/dreamshaper" rel="nofollow">dreamshaper</a> （可以生成一些奇幻色彩的）模型测试：</h5>
+<p>Checkpoint: <strong>dreamshaper</strong></p>
+<p>Sampler: <strong>DPM++ SDE Karra</strong></p>
+<p>Steps: <strong>30</strong></p>
+<p>Hires upscaler: none</p>
+<p>Width: 512</p>
+<p>Height: 700</p>
+<p>CFG Scale: 9</p>
+<p>Prompt: (masterpiece), (extremely intricate:1.3), (realistic), solo, 1boy, realistic, male focus, necktie, formal, suit, blue background, brown hair, upper body, blue necktie, shirt, brown eyes, looking to the side, white shirt, simple background, collared shirt, jacket, blue jacket, short hair, facial hair, closed mouth</p>
+<p>Negative prompt: BadDream, (UnrealisticDream:1.3)</p>
+<p><img src="https://blog-image.ian2018.cn/images/19d83b9554085d203f58136baf81aae1d09bfcc7.png"></p>
+<h2>文生图写真改进方案</h2>
+<h3>针对半身照的效果好，全身照的效果差</h3>
+<p>使用 <a href="https://github.com/Bing-su/adetailer">ADetailer</a> 插件对面部进行重绘</p>
+<h4>SD 参数：</h4>
+<p>Checkpoint: <strong>deliberate_v2</strong></p>
+<p>Sampler: <strong>DPM++ SDE Karra</strong></p>
+<p>Steps: <strong>25</strong></p>
+<p>Hires upscaler: <strong>none</strong></p>
+<p>Width: <strong>512</strong></p>
+<p>Height: <strong>700</strong></p>
+<p>CFG Scale: <strong>3.5</strong></p>
+<p>Seed: <strong>1226343406</strong></p>
+<p>Prompt: <strong>Man,handsome,mixed race,travel,(full body), natural skin texture, 24mm, 4k textures, soft cinematic light, adobe lightroom , photo lab , hdr, intricate, elegant, highly detailed, sharp focus, soothing tones, insane details, intricate details, hyperdetailed, low contrast, dim colors, exposure blend, hdr, (solo), lora:aiphoto_v2:0.99</strong></p>
+<p>Negative prompt: <strong>nsfw,cartoon, painting, illustration, (worst quality),  (low quality),  (normal quality),bad body,ugly</strong></p>
+<h4>开启 ADetailer 插件</h4>
+<p><img src="https://blog-image.ian2018.cn/images/ff4b38dc405fde7658bd46243a27afaa2216c9a4.png"></p>
+<h4>结果对比</h4>
+<p><img src="https://blog-image.ian2018.cn/images/23da4e22d787d0bba0138eb530128f357dfa59a5.png"></p>
+<h3>针对手部经常出现畸形</h3>
+<h4>方案一</h4>
+<p>在负向提示词增加手部的 embedding：<a href="https://civitai.com/models/16993/badhandv4-animeillustdiffusion" rel="nofollow">badhandv4</a></p>
+<p>其他参数一样，ADetailer 1st 开启面部重绘模型</p>
+<p>Negative prompt: **nsfw,cartoon, painting, illustration, (worst quality),  (low quality),  (normal quality),bad body,ugly, **<strong>badhandv4</strong></p>
+<p>这种会对画风内容有些影响，下面可以看到相同的参数，加了 embedding 导致了人物和服装都发生了变化。</p>
+<p><img src="https://blog-image.ian2018.cn/images/365e10f5ba0437b46e2aab83a94b9ef7867dcac8.png"></p>
+<h4>方案二</h4>
+<p>用 <a href="https://github.com/Bing-su/adetailer">ADetailer</a> 对手部进行重绘，把 badhandv4 放到重绘时的反向提示词中</p>
+<p><img src="https://blog-image.ian2018.cn/images/0a720c1c61eca5d0c827ff5f21b452ea60d32b8c.png"></p>
+<p><img src="https://blog-image.ian2018.cn/images/57218ccf942b44b21e5edfe359bdec031746e9fd.png"></p>
+<h3>针对性别问题</h3>
+<p>使用性别控制的 embedding <a href="https://civitai.com/models/89709?modelVersionId=95532" rel="nofollow">https://civitai.com/models/89709?modelVersionId=95532</a> 修正一下。这块就需要服务端根据提示词过滤一下是否有男性相关的，有的话再拼接一下 embedding 提示词。</p>
+<h4>SD 参数：</h4>
+<p>Checkpoint: <strong>deliberate_v2</strong></p>
+<p>Sampler: <strong>DPM++ SDE Karra</strong></p>
+<p>Steps: <strong>25</strong></p>
+<p>Hires upscaler: <strong>none</strong></p>
+<p>Width: <strong>512</strong></p>
+<p>Height: <strong>700</strong></p>
+<p>CFG Scale: <strong>3.5</strong></p>
+<p>Seed: <strong>1553387558</strong></p>
+<p>Prompt: <strong>Man, natural skin texture, 24mm, 4k textures, soft cinematic light, adobe lightroom , photo lab , hdr, intricate, elegant, highly detailed, sharp focus, soothing tones, insane details, intricate details, hyperdetailed, low contrast, dim colors, exposure blend, hdr, (solo), lora:aiphoto_v2:0.99</strong></p>
+<p>Negative prompt: **nsfw,cartoon, painting, illustration, (worst quality),  (low quality),  (normal quality),bad body,ugly, **<strong>GS-DeFeminize-neg</strong></p>
+<h4>结果对比：</h4>
+<p><img src="https://blog-image.ian2018.cn/images/782b8c01a5add81964dfc441e403cc31dd434afa.png"></p>
+<h4>Gender Slider 性别滑块使用方法：</h4>
+<p>如果想让角色人物更加男性化，加入如下提示词：</p>
+<table role="table">
+<thead>
+<tr>
+<th>正面：</th>
+<th>负面：</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GS-Boyish（男孩）</td>
+<td>GS-DeFeminize-Neg（移除女性性征）</td>
+</tr>
+<tr>
+<td>GS-Masculine（粗犷的成熟男性）</td>
+<td></td>
+</tr>
+<tr>
+<td>权重一般为 0.2~1.3</td>
+<td>权重一般为 1.0~1.3</td>
+</tr>
+</tbody>
+</table>
+<p>如果想让角色人物变得更年轻/年老，加入如下提示词：</p>
+<table role="table">
+<thead>
+<tr>
+<th>正面：</th>
+<th>负面：</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GS-Girlish（可爱的女孩）</td>
+<td>GS-DeMasculate-Neg（移除男性性征）</td>
+</tr>
+<tr>
+<td>GS-Womanly（成熟女性）</td>
+<td></td>
+</tr>
+<tr>
+<td>权重一般为 0.1~1.3</td>
+<td>权重一般为 1.0~1.3</td>
+</tr>
+</tbody>
+</table>
+<h3>针对偶尔出的图脸部是不完整的问题</h3>
+<p>这个单通过改提示词不太好弄，可以用 ControlNet 控制一下姿势，就能避免出一些奇怪的图，但这样姿势就不能随机了，就是固定提供的那几个。</p>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>

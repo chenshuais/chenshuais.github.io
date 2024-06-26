@@ -1,5 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:11:21 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>AI 写真方案调研</title><link>https://blog.ian2018.club/post/AI%20-xie-zhen-fang-an-diao-yan.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:12:55 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>AI 写真效果优化调研</title><link>https://blog.ian2018.club/post/AI%20-xie-zhen-xiao-guo-you-hua-diao-yan.html</link><description>
+## 模版新方案
+
+不再使用图生图的方式，而是采用 **模版 ****tag**** 反推** + **文生图** + **ControlNet Pose 控制姿势** + **换脸**
+
+该方案是为了解决图生图方案导致的画面不真实的问题，采用合适的大模型，也能顺带缓解换脸丑的问题（因为模型生成的脸型都比较好看，相当于先做了一次美颜，然后换脸）
+
+### SD 具体实施步骤
+
+#### 一、使用 [wd14-tagger](https://github.com/picobyte/stable-diffusion-webui-wd14-tagger) 插件对模版图片进行 tag 反推
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/374886d1e7c58b556feb8bd7ad8fa410b88d1c9b.png'&gt;`
+
+#### 二、生成 ControlNet 骨架图
+
+这一步也可以直接放文生图里，这里提前生成可以不用进行预处理，减少一点生成时间。</description><guid isPermaLink="true">https://blog.ian2018.club/post/AI%20-xie-zhen-xiao-guo-you-hua-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:12:32 +0000</pubDate></item><item><title>AI 写真方案调研</title><link>https://blog.ian2018.club/post/AI%20-xie-zhen-fang-an-diao-yan.html</link><description>
 ## 一、换脸方案
 
 &gt; 核心技术都是使用 [roop](https://github.com/s0md3v/roop) 进行换脸，StableDiffusion 上也有对应的插件：[https://github.com/s0md3v/sd-webui-roop](https://github.com/s0md3v/sd-webui-roop)
