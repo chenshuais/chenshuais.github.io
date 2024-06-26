@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="`Gmeek-html<img src='https://blog-image.ian2018.cn/images/975ec0f0e79f4323745882275bd0e48d24c415b6.png'>`
+
+# Week07 学习笔记
+
+## 1. 字典树和并查集
+
+### 1.1 字典树 Trie
+
+#### 1.1.1 基本结构
+
+字典树又称为单词查找树或键树，是一种树形结构。">
+<meta property="og:title" content="算法学习随笔06">
+<meta property="og:description" content="`Gmeek-html<img src='https://blog-image.ian2018.cn/images/975ec0f0e79f4323745882275bd0e48d24c415b6.png'>`
+
+# Week07 学习笔记
+
+## 1. 字典树和并查集
+
+### 1.1 字典树 Trie
+
+#### 1.1.1 基本结构
+
+字典树又称为单词查找树或键树，是一种树形结构。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-06.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>算法学习随笔06</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">算法学习随笔06</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/chenshuais/chenshuais.github.io/issues/44" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p><img src="https://blog-image.ian2018.cn/images/975ec0f0e79f4323745882275bd0e48d24c415b6.png"></p>
+<h1>Week07 学习笔记</h1>
+<h2>1. 字典树和并查集</h2>
+<h3>1.1 字典树 Trie</h3>
+<h4>1.1.1 基本结构</h4>
+<p>字典树又称为单词查找树或键树，是一种树形结构。</p>
+<p>常应用于统计和排序大量的字符串（但不仅限于字符串），经常被搜索引擎系统用于文本词频统计。</p>
+<p>字典树的优点是：最大限度地减少无谓的字符串比较，查询效率比hash表高。</p>
+<p><img src="https://blog-image.ian2018.cn/images/7a3a80321b548951135172653fbc6fa3f860a088.png"></p>
+<h4>1.1.2 基本性质</h4>
+<ul>
+<li>
+<p>结点本身不存完整的单词。</p>
+</li>
+<li>
+<p>从根结点到某一结点，路径上经过的字符连接起来，为该结点对应的字符串。</p>
+</li>
+<li>
+<p>每个结点的所有子结点路径，代表的字符串都不相同。</p>
+</li>
+</ul>
+<p><img src="https://blog-image.ian2018.cn/images/11fb63998640bbd72d6e23bed2380b43f5a4e2b5.png"></p>
+<h4>1.1.3 核心思想</h4>
+<ul>
+<li>Trie树的核心思想是空间换时间。</li>
+<li>利用字符串的公共前缀来降低查询时间的开销以达到提高效率的目的。</li>
+</ul>
+<h4>1.1.4 实现一个Trie</h4>
+<p><a href="https://leetcode-cn.com/problems/implement-trie-prefix-tree/" rel="nofollow">https://leetcode-cn.com/problems/implement-trie-prefix-tree/</a></p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-smi">Trie</span> {
+    <span class="pl-smi">String</span> <span class="pl-s1">word</span> = <span class="pl-c1">null</span>;
+    <span class="pl-smi">HashMap</span>&lt;<span class="pl-smi">Character</span>, <span class="pl-smi">Trie</span>&gt; <span class="pl-s1">child</span> = <span class="pl-k">new</span> <span class="pl-smi">HashMap</span>&lt;&gt;();
+    
+    <span class="pl-k">private</span> <span class="pl-smi">Trie</span> <span class="pl-s1">root</span>;
+
+    <span class="pl-c">/** Initialize your data structure here. */</span>
+    <span class="pl-k">public</span> <span class="pl-smi">Trie</span>() {
+        <span class="pl-s1">root</span> = <span class="pl-smi">this</span>;
+    }
+
+    <span class="pl-c">/** Inserts a word into the trie. */</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">insert</span>(<span class="pl-smi">String</span> <span class="pl-s1">word</span>) {
+        <span class="pl-smi">Trie</span> <span class="pl-s1">node</span> = <span class="pl-s1">root</span>;
+        <span class="pl-k">for</span> (<span class="pl-smi">char</span> <span class="pl-s1">c</span> : <span class="pl-s1">word</span>.<span class="pl-en">toCharArray</span>()) {
+            <span class="pl-k">if</span> (<span class="pl-s1">node</span>.<span class="pl-s1">child</span>.<span class="pl-en">containsKey</span>(<span class="pl-s1">c</span>)) {
+                <span class="pl-s1">node</span> = <span class="pl-s1">node</span>.<span class="pl-s1">child</span>.<span class="pl-en">get</span>(<span class="pl-s1">c</span>);
+            } <span class="pl-k">else</span> {
+                <span class="pl-smi">Trie</span> <span class="pl-s1">newNode</span> = <span class="pl-k">new</span> <span class="pl-smi">Trie</span>();
+                <span class="pl-s1">node</span>.<span class="pl-s1">child</span>.<span class="pl-en">put</span>(<span class="pl-s1">c</span>, <span class="pl-s1">newNode</span>);
+                <span class="pl-s1">node</span> = <span class="pl-s1">newNode</span>;
+            }
+        }
+        <span class="pl-s1">node</span>.<span class="pl-s1">word</span> = <span class="pl-s1">word</span>;
+    }
+
+    <span class="pl-c">/** Returns if the word is in the trie. */</span>
+    <span class="pl-k">public</span> <span class="pl-smi">boolean</span> <span class="pl-en">search</span>(<span class="pl-smi">String</span> <span class="pl-s1">word</span>) {
+        <span class="pl-smi">Trie</span> <span class="pl-s1">node</span> = <span class="pl-s1">root</span>;
+        <span class="pl-k">for</span> (<span class="pl-smi">char</span> <span class="pl-s1">c</span> : <span class="pl-s1">word</span>.<span class="pl-en">toCharArray</span>()) {
+            <span class="pl-k">if</span> (!<span class="pl-s1">node</span>.<span class="pl-s1">child</span>.<span class="pl-en">containsKey</span>(<span class="pl-s1">c</span>)) {
+                <span class="pl-k">return</span> <span class="pl-c1">false</span>;
+            }
+            <span class="pl-s1">node</span> = <span class="pl-s1">node</span>.<span class="pl-s1">child</span>.<span class="pl-en">get</span>(<span class="pl-s1">c</span>);
+        }
+        <span class="pl-k">return</span> <span class="pl-s1">node</span>.<span class="pl-s1">word</span> != <span class="pl-c1">null</span>;
+    }
+
+    <span class="pl-c">/** Returns if there is any word in the trie that starts with the given prefix. */</span>
+    <span class="pl-k">public</span> <span class="pl-smi">boolean</span> <span class="pl-en">startsWith</span>(<span class="pl-smi">String</span> <span class="pl-s1">prefix</span>) {
+        <span class="pl-smi">Trie</span> <span class="pl-s1">node</span> = <span class="pl-s1">root</span>;
+        <span class="pl-k">for</span> (<span class="pl-smi">char</span> <span class="pl-s1">c</span> : <span class="pl-s1">prefix</span>.<span class="pl-en">toCharArray</span>()) {
+            <span class="pl-k">if</span> (!<span class="pl-s1">node</span>.<span class="pl-s1">child</span>.<span class="pl-en">containsKey</span>(<span class="pl-s1">c</span>)) {
+                <span class="pl-k">return</span> <span class="pl-c1">false</span>;
+            }
+            <span class="pl-s1">node</span> = <span class="pl-s1">node</span>.<span class="pl-s1">child</span>.<span class="pl-en">get</span>(<span class="pl-s1">c</span>);
+        }
+        <span class="pl-k">return</span> <span class="pl-c1">true</span>;
+    }
+}</pre></div>
+<h3>2. 并查集 Disjoint Set</h3>
+<p>并查集解决的场景就是组团和配对问题。</p>
+<p>比如在有些现实的问题中，需要很快地判断这两个个体是不是在一个集合当中，如微信的朋友圈功能。</p>
+<h4>2.1 基本操作</h4>
+<ul>
+<li>makeSet(s)：建立一个新的并查集，其中包含s个单元素集合。</li>
+<li>unionSet(x, y)：把元素x和元素y所在的集合合并，要求x和y所在的集合不相交，如果相交则不合并。</li>
+<li>find(x)：找到元素x所在的集合的代表，该操作也可以用于判断两个元素是否位于同一个集合，只要将它们各自的代表比较一下就可以了。</li>
+</ul>
+<h4>2.2 初始化</h4>
+<p><img src="https://blog-image.ian2018.cn/images/92d7c9fc02264937fa0cf2f7bfe06b535692f7b5.png"></p>
+<p>如上图，一开始每一个元素都有一个parent数组指向自己，表示自己就是自己的集合。</p>
+<h4>2.3 查询、合并</h4>
+<p><img src="https://blog-image.ian2018.cn/images/00e4e955ea15e3568971e7038c854b23fd27e79e.png"></p>
+<ul>
+<li>查询就是一直向上看它的parent，直到它的parent等于它自己的时候，就找到了它的集合代表元素。</li>
+<li>合并就是先找出一个集合的代表元素a，和另外一个集合的代表元素e，然后将parent[e]指向a，或者parent[a]指向e。</li>
+</ul>
+<h4>2.4 路径压缩</h4>
+<p><img src="https://blog-image.ian2018.cn/images/4bea680389aec24ab6b563f17e74a5ba72a637ab.png"></p>
+<p>如上所示，就是把路径上的所有元素都指向a。</p>
+<h4>2.5 并查集代码模版</h4>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">class</span> <span class="pl-smi">UnionFind</span> {
+    <span class="pl-k">private</span> <span class="pl-smi">int</span> <span class="pl-s1">count</span> = <span class="pl-c1">0</span>;
+    <span class="pl-k">private</span> <span class="pl-smi">int</span>[] <span class="pl-s1">parent</span>;
+    
+    <span class="pl-c">// 初始化</span>
+    <span class="pl-k">public</span> <span class="pl-smi">UnionFind</span>(<span class="pl-smi">int</span> <span class="pl-s1">n</span>) {
+        <span class="pl-s1">count</span> = <span class="pl-s1">n</span>;
+        <span class="pl-s1">parent</span> = <span class="pl-k">new</span> <span class="pl-smi">int</span>[<span class="pl-s1">n</span>];
+        <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-c1">0</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">n</span>; <span class="pl-s1">i</span>++) {
+            <span class="pl-s1">parent</span>[<span class="pl-s1">i</span>] = <span class="pl-s1">i</span>;
+        }
+    }
+
+    <span class="pl-c">// 查找</span>
+    <span class="pl-k">public</span> <span class="pl-smi">int</span> <span class="pl-en">find</span>(<span class="pl-smi">int</span> <span class="pl-s1">p</span>) {
+        <span class="pl-k">while</span> (<span class="pl-s1">p</span> != <span class="pl-s1">parent</span>[<span class="pl-s1">p</span>]) {
+            <span class="pl-s1">parent</span>[<span class="pl-s1">p</span>] = <span class="pl-s1">parent</span>[<span class="pl-s1">parent</span>[<span class="pl-s1">p</span>]];
+            <span class="pl-s1">p</span> = <span class="pl-s1">parent</span>[<span class="pl-s1">p</span>];
+        }
+        <span class="pl-k">return</span> <span class="pl-s1">p</span>;
+    }
+
+    <span class="pl-c">// 合并</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">union</span>(<span class="pl-smi">int</span> <span class="pl-s1">p</span>, <span class="pl-smi">int</span> <span class="pl-s1">q</span>) {
+        <span class="pl-smi">int</span> <span class="pl-s1">rootP</span> = <span class="pl-en">find</span>(<span class="pl-s1">p</span>);
+        <span class="pl-smi">int</span> <span class="pl-s1">rootQ</span> = <span class="pl-en">find</span>(<span class="pl-s1">q</span>);
+        <span class="pl-k">if</span> (<span class="pl-s1">rootP</span> == <span class="pl-s1">rootQ</span>) <span class="pl-k">return</span>;
+        <span class="pl-s1">parent</span>[<span class="pl-s1">rootP</span>] = <span class="pl-s1">rootQ</span>;
+        <span class="pl-s1">count</span>--;
+    }
+}</pre></div>
+<h2>2. 高级搜索</h2>
+<p>初级搜索就是朴素搜索，简单暴力。</p>
+<p>高级搜索就是在朴素搜索的基础上，进行优化，如 剪枝、双向搜索、启发式搜索。</p>
+<h3>2.1 剪枝</h3>
+<p>一般处理是会有一个缓存，将已经处理的结果存起来，如果遇到相同的问题，就直接取缓存中的值，不再进行重复计算。</p>
+<h3>2.2 双向搜索（BFS）</h3>
+<p><img src="https://blog-image.ian2018.cn/images/6e0615a7c2d746e42ed4e3414d3623896c09bb9f.png"></p>
+<p>正常的单向BFS，就是从A向外扩散，一直到L，得到它的最短路径。</p>
+<p><img src="https://blog-image.ian2018.cn/images/7fcc814272e96589ead017978b144ae936547027.png"></p>
+<p>双向BFS，就是同时从A和L向外扩散，第一次重合的地方就是A和L之间的最短路径。</p>
+<h3>2.3 启发式搜索</h3>
+<p>根据某一条件，不断优化搜索的方向。本质上就是通过优先级去搜索。</p>
+<h4>2.3.1 基于BFS的 A*搜索，就是使用优先队列。</h4>
+<pre class="notranslate"><code class="notranslate">void astarSearch(int[] graph, int start, int end) {
+    HashSet&lt;Integer&gt; visited = new HashSet&lt;&gt;();
+    // 优先级队列
+    PriorityQueue&lt;Integer&gt; pd = new PriorityQueue&lt;&gt;();
+    pd.add(graph[start]);
+    visited.add(graph[start]);
+    // BFS
+    while (!pd.isEmpty()) {
+        // 将优先级高的出队
+        int node = pd.poll();
+        visited.add(node);
+        // 处理结点
+        // process(node);
+        // 根据子结点是否访问过，继续将去加入到优先队列中
+        // for (int node : nodes) pd.add(node);
+    }
+}
+</code></pre>
+<h4>2.3.2 估价函数</h4>
+<p>启发式函数：h(n)，它用来评价哪些结点是最优希望是我们想要找的结点。h(n)会返回一个非负实数，也可以认为是从结点n到目标结点路径的估计成本。</p>
+<p>启发式函数是一种告知搜索方向的方法。它提供了一种明智的方法来猜测哪个相邻结点会最终找到目标结点。</p>
+<h2>3. AVL树和红黑树</h2>
+<p>普通的树有时候会出现一种极端的情况，如下所示，从而退化成一个链表。</p>
+<p><img src="https://blog-image.ian2018.cn/images/1126bdb59ca527082706f422bf7ae37de42ddb57.png"></p>
+<p>所有就有了平衡树的结构，就是保证树的左右子树不会出现相差高度过大的问题。</p>
+<h3>3.1 AVL树</h3>
+<ol>
+<li>
+<p>是一棵平衡二叉搜索树</p>
+</li>
+<li>
+<p>平衡因子（Balance Factor）：是它的左子树高度减去它的右子树高度，或者右子树高度减去左子树高度。</p>
+<p>balance factor = {-1, 0, 1}，即左右子树高度相差不能大于1。</p>
+</li>
+<li>
+<p>通过旋转操作来进行平衡。</p>
+</li>
+<li>
+<p>缺点是需要存储额外的信息，且调整次数频繁。</p>
+</li>
+</ol>
+<p><img src="https://blog-image.ian2018.cn/images/892d6a7522b95ff3f4d6c79b1cdae76c847dec43.png"></p>
+<h4>3.1.1 旋转操作 - 左旋</h4>
+<p><img src="https://blog-image.ian2018.cn/images/10df8580dddf913845c4cd13568cdea84334f7ee.png"></p>
+<h4>3.1.2 旋转操作 - 右旋</h4>
+<p><img src="https://blog-image.ian2018.cn/images/9328b8e98325258f9f02e089d6c865fb70f76edc.png"></p>
+<h4>3.1.3 旋转操作 - 左右旋</h4>
+<p><img src="https://blog-image.ian2018.cn/images/cea32f6ccaea429776af79020e8df7a51b3b7fd0.png"></p>
+<p>就是先将子结点都旋转到左侧，然后在进行右旋操作。</p>
+<h4>3.1.4 旋转操作 - 右左旋</h4>
+<p><img src="https://blog-image.ian2018.cn/images/ea09cb4b80417f29e99261157629df4695a4b81e.png"></p>
+<p>就是先将子结点都旋转到右侧，然后在进行左旋操作。</p>
+<h3>3.2 红黑树</h3>
+<p>红黑树是一种近似平衡的二叉搜索树，它能够保证左右子树的高度差小于两倍（高度大的最多是小的两倍）。</p>
+<p>满足红黑树的条件如下：</p>
+<ul>
+<li>每个结点要么是红色，要么是黑色。</li>
+<li>根结点是黑色。</li>
+<li>每个叶结点是黑色的。</li>
+<li>不能有相邻的两个红色结点（是指上下相邻，不是左右）。</li>
+<li>从任一结点到其每个叶子的所有路径都包含相同数目的黑色结点。</li>
+<li>最关键的是：从根到叶子的最长路径不多于最短路径的两倍。</li>
+</ul>
+<p><img src="https://blog-image.ian2018.cn/images/221d1318a04976b6c0eef423f826d2c460fe955d.png"></p>
+<p>红黑树和AVL树对比：</p>
+<ul>
+<li>AVL提供了更快的查找操作，因为AVL是更加严格的平衡。</li>
+<li>红黑树提供了更快的插入删除操作，因为红黑树是近似平衡，所以它的旋转操作会少很多。</li>
+<li>AVL要存额外的信息，就是平衡因子和高度，红黑树只需要存0或1（黑或红）。</li>
+<li>在读操作比较多的时候就使用AVL树，修改操作比较多的时候就使用红黑树。</li>
+</ul>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
