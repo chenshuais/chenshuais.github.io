@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="## Android 12 [新功能预览](https://android-developers.googleblog.com/2021/03/android-12-developer-preview-2.html)
+
+### 界面上巨大的更新
+- 新的设计语言 Material NEXT
+- 扩展了调色板，以适配 Android 12 的新设计。">
+<meta property="og:title" content="2021 Google IO Android">
+<meta property="og:description" content="## Android 12 [新功能预览](https://android-developers.googleblog.com/2021/03/android-12-developer-preview-2.html)
+
+### 界面上巨大的更新
+- 新的设计语言 Material NEXT
+- 扩展了调色板，以适配 Android 12 的新设计。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/2021%20Google%20IO%20Android.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>2021 Google IO Android</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">2021 Google IO Android</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/chenshuais/chenshuais.github.io/issues/52" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h2>Android 12 <a href="https://android-developers.googleblog.com/2021/03/android-12-developer-preview-2.html" rel="nofollow">新功能预览</a></h2>
+<h3>界面上巨大的更新</h3>
+<ul>
+<li>新的设计语言 Material NEXT</li>
+<li>扩展了调色板，以适配 Android 12 的新设计。能从壁纸中提取颜色的仅限于 Pixel 手机。<br>
+<img src="https://blog-image.ian2018.cn/images/b022b2583e5bd84c33a8eb94ce2da4127d172fa9.png"></li>
+</ul>
+<h3>Widget</h3>
+<ul>
+<li>在 Android 12 上移除了过去添加 Widget 的方式</li>
+<li>提供了全新的 API 来构建 Widget</li>
+<li>增加了 Widget 的使用场景，如 Google 助理上互动</li>
+</ul>
+<h3>Launch animations</h3>
+<ul>
+<li><a href="https://developer.android.com/about/versions/12/features/splash-screen" rel="nofollow">https://developer.android.com/about/versions/12/features/splash-screen</a></li>
+<li>应用冷启动动画，在 Android 12 中默认就有，展示应用 icon 放大的动画。</li>
+<li>也可以自定义动画，通过 <code class="notranslate">Activity.getSplashScreen()</code> 来修改动画属性</li>
+</ul>
+<h3>Notifications</h3>
+<ul>
+<li>又重新设计了通知模版 ，颜色、背景、字体等</li>
+<li>如果是用的系统默认的样式，则不需要进行修改，但是如果用的是自定义的样式，则需要进行很多调整，因为在新版本中已经完全弃用自定义样式了，提供了在固定模版内自定义的方式。</li>
+<li>在 Android 12 上，通知必须有启动 Activity 的 Intent，否则通知则无法正常工作。</li>
+</ul>
+<h3>Toast</h3>
+<ul>
+<li>对 Toast 增加了所属应用的 icon</li>
+<li>减少了 Toast 内容文字的长度</li>
+<li>限制了弹出速率</li>
+</ul>
+<h3>Picture in Picture</h3>
+<ul>
+<li>调整了画中画的切换动画，并提供了相应的 API 使用交叉淡入淡出的效果</li>
+<li>在调整画中画大小时，会无缝适配视频内容</li>
+</ul>
+<h3>新增模糊处理 API</h3>
+<ul>
+<li><code class="notranslate">imageView.setRenderEffect(RenderEffect.createBlurEffect(20f, 20f, SHADER_TILE_MODE))</code></li>
+<li>不只是 View ，也可以设置屏幕背景的模糊度，通过 style 或者 WindowManager API 设置。<br>
+<img src="https://blog-image.ian2018.cn/images/678be2d2533b967e2bf2c46f468bcbe902fc7115.png"></li>
+<li>其实在 Android 第一个版本就有模糊的功能，只不过当时只有一款手机的硬件支持，所以采用了将背景调暗的效果。现在随着时代的进步，手机的性能大幅提高，现在已经到了使用模糊的成熟时机。</li>
+</ul>
+<h3>更新了按钮的水波纹点击效果</h3>
+<ul>
+<li>增加了闪光效果，会在 Android 12 上默认开启<br>
+<img src="https://blog-image.ian2018.cn/images/3aae19121c6f16ea8143a9a685b07260e49d0542.png"></li>
+</ul>
+<h3>更新滑动的边缘效果 <a href="https://developer.android.com/about/versions/12/overscroll" rel="nofollow">https://developer.android.com/about/versions/12/overscroll</a></h3>
+<ul>
+<li>将之前的发光效果改成了类似于 iOS 的拉伸弹性效果，会在 Android 12 上默认开启。<br>
+<img src="https://blog-image.ian2018.cn/images/2ca2125d0755cd478ec8d4e95a8f39871a25cbcd.png"></li>
+<li>提供了 API 可以控制这种效果</li>
+</ul>
+<h3>图像</h3>
+<ul>
+<li>新增了对 AVIF 格式的图片支持，AVIF 相比于 JPEG 图像质量更好，磁盘占用更小。</li>
+</ul>
+<h3>视频</h3>
+<ul>
+<li>为不支持的视频编码格式，增加了自动转码功能，可以在 Manifest 中注册，设置支持哪些格式，不支持哪些格式。也可以使用 Media API 来处理。<br>
+<img src="https://blog-image.ian2018.cn/images/65694939e574c77f62ec850c13743bec3ead6cdd.png"></li>
+</ul>
+<h3>音频</h3>
+<ul>
+<li>增加了根据音频产生相匹配的震动效果功能，但是并不是所有设备都支持，需要判断 <code class="notranslate">isAvailable()</code><br>
+<img src="https://blog-image.ian2018.cn/images/69b27024225c59d0855438b38253dc1da744bee3.png"></li>
+<li>可以应用到游戏中，提取音频中的脚步声雨声等音轨，然后同步震动效果</li>
+</ul>
+<h3>隐私权限</h3>
+<ul>
+<li>相机和录音权限
+<ul>
+<li>当应用在使用这两个权限时，系统会状态栏上提示用户有应用在访问相机或者麦克风，并且可以在下拉快捷面板上查看是哪个应用，并可以直接在这里取消授权</li>
+</ul>
+</li>
+<li>新的蓝牙权限
+<ul>
+<li>有了这个权限，就可以扫描蓝牙设备，而不是像之前，需要申请位置权限才可以使用。</li>
+</ul>
+</li>
+<li>位置权限
+<ul>
+<li>区分了精确位置权限和大概位置权限</li>
+</ul>
+</li>
+<li>剪切板
+<ul>
+<li>只有键盘和前台应用可以访问剪切板数据，并且前台应用在访问剪切板时，系统会弹出 Toast 告诉用户应用在读取剪切板数据。<br>
+<img src="https://blog-image.ian2018.cn/images/fa58d4d242d41773c9c8d07507872f14f6742d78.png"></li>
+</ul>
+</li>
+<li>前台通知限制
+<ul>
+<li>如果通知的时间出现不到 10 s，则通知不会出现</li>
+<li>不再允许从后台启动前台服务，推荐做法是使用 WorkManager<br>
+<img src="https://blog-image.ian2018.cn/images/466312132c0b4bfe852d9dd09b4487682790e2f5.png"></li>
+</ul>
+</li>
+<li>经常不使用的应用对权限回收
+<ul>
+<li>在 Android 12 上，不仅会回收权限，还会清除缓存数据，休眠应用</li>
+</ul>
+</li>
+</ul>
+<h3>拖拽、复制粘贴、键盘 Stickers 三个 API 合并</h3>
+<ul>
+<li>Android 12 之前的样子<br>
+<img src="https://blog-image.ian2018.cn/images/c67b79543b61b8da35b63e6864cf3207145b216f.png"></li>
+<li>合并之后<br>
+<img src="https://blog-image.ian2018.cn/images/628efd5d0a3edfa546281fd20891acee51dd9cb6.png">
+<ul>
+<li>不过目前还没有全面上线该功能，目前只为 <code class="notranslate">AppCompatEditText</code> 启用了，并且只能通过依赖 Platform 来支持，AndroidX 还没有上线</li>
+</ul>
+</li>
+</ul>
+<h3>性能测试的库</h3>
+<ul>
+<li><a href="https://developer.android.com/studio/profile/macrobenchmark" rel="nofollow">Macrobenchmark</a>，可以测试启动、列表滚动等的性能</li>
+</ul>
+<h3>Wear 手表系统</h3>
+<ul>
+<li>发布了新的手表系统</li>
+</ul>
+<h3>Android Tools</h3>
+<ul>
+<li>new development tools
+<ul>
+<li>数据库 Database Inspector</li>
+<li>Work Manager Inspector （可以查看任务的执行状态）</li>
+</ul>
+</li>
+<li>new design tools
+<ul>
+<li>Compose 预览功能</li>
+</ul>
+</li>
+<li>gradle plugin</li>
+</ul>
+<h3>Jetpack</h3>
+<ul>
+<li>推出稳定版
+<ul>
+<li>CameraX</li>
+<li>Paging 3</li>
+<li>Hilt</li>
+</ul>
+</li>
+<li>α &amp; β 新版本
+<ul>
+<li>DataStore</li>
+<li>WorkManager 2.7</li>
+<li>Navigation</li>
+<li>Marobenchmark</li>
+</ul>
+</li>
+</ul>
+<h3>Jetpack Compose</h3>
+<ul>
+<li>声明式 UI 库</li>
+</ul>
+<h2>Jetpack <a href="https://developer.android.com/jetpack/compose" rel="nofollow">Compose</a></h2>
+<p>即将发布 1.0 稳定版本</p>
+<h3>什么是 Compose</h3>
+<ul>
+<li>Compose 是一个完全基于 Kotlin 编写的声明式 UI 工具库，可以简单快捷的构建 UI</li>
+<li>如果要使用 Compose ，必须要用 Kotlin 编写</li>
+</ul>
+<h3>声明式 UI 和命令式 UI 的区别</h3>
+<ul>
+<li>命令式，状态的更新，需要通过代码去控制刷新界面，从而保持状态和 UI 的同步<br>
+<img src="https://blog-image.ian2018.cn/images/25abe4bfca27f420e230156b04941246d44fbaa3.png"></li>
+<li>声明式，UI 可以根据状态自动更新，开发者只需要管理好 UI 的状态
+<ul>
+<li>Compose 当状态变化时，会去创建新的 UI 对象，不过他会跳过没有改变的元素，使其效率更高<br>
+<img src="https://blog-image.ian2018.cn/images/49438857005ef09a1eaf359fd9482bd511fd6cb0.png"></li>
+</ul>
+</li>
+</ul>
+<h3>Compose 代码长什么样</h3>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate">@Composable
+<span class="pl-k">fun</span> <span class="pl-en">MassageList</span>(<span class="pl-smi">messages</span><span class="pl-k">:</span> <span class="pl-c1">List</span>&lt;<span class="pl-en">String</span>&gt;) {
+  <span class="pl-en">Column</span> {
+    messages.forEach { message <span class="pl-k">-&gt;</span>
+    	<span class="pl-en">Text</span>(text <span class="pl-k">=</span> message)
+    }
+  }
+}</pre></div>
+<ul>
+<li>上面就是创建一个字符串列表界面</li>
+<li>带有 <a class="user-mention notranslate" data-hovercard-type="organization" data-hovercard-url="/orgs/composable/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="https://github.com/composable">@composable</a> 注解的函数，为了区分其他普通函数，函数名字推荐首字母大写。</li>
+<li>该函数没有返回值，不过这样也会直接创建 UI</li>
+</ul>
+<h3>与 LiveData 结合</h3>
+<p><img src="https://blog-image.ian2018.cn/images/8bd65640e9662dd07b54d8bbc17b1d59ccc3f703.png"></p>
+<ul>
+<li>不需要自己手动设置 Observe，Compose 编译器会自动读取状态，并在状态变化时更新 recomposable</li>
+</ul>
+<h3>在项目中使用</h3>
+<ul>
+<li>支持逐步替换<br>
+<img src="https://blog-image.ian2018.cn/images/b72b9076445a0bd15cb9dd1819887e9dc4abf215.png"></li>
+<li>View 里使用 Compose</li>
+<li>Compose 里使用 View</li>
+</ul>
+<h3>Android Studio 工具</h3>
+<ul>
+<li>支持对 Compose 预览<br>
+<img src="https://blog-image.ian2018.cn/images/aae5cf7d5d44e542f48d394d73a16b78a9e3deea.png"></li>
+</ul>
+<h3>其他</h3>
+<ul>
+<li>Compose 不会多次测量，从而使嵌套布局更加高效</li>
+<li>自定义布局更加简单，只需要写一个 layout 函数就可以测量和摆放</li>
+<li>动画更加简单 <code class="notranslate">animateDpAsState</code></li>
+<li>支持无障碍</li>
+<li>提供更方便的测试 API，甚至测试动画</li>
+<li>支持 Kotlin 特性，如协程等</li>
+<li>对其他 Jetpack 库的支持</li>
+</ul>
+<h2>Android TV &amp; Google TV</h2>
+<ul>
+<li>播放下一个的 API</li>
+<li>投屏设备转移</li>
+<li>增加了遥控器模拟器</li>
+<li>Firebase Test 支持 TV 测试</li>
+</ul>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
