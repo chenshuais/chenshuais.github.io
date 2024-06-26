@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="# 1 Google Cloud - Cloud Vision API - SafeSearch
+
+https://cloud.google.com/vision/docs/detecting-safe-search?hl=en
+
+## 1.1 检测方式
+
+REST 或者客户端 SDK。">
+<meta property="og:title" content="图片审核云平台 API 方案对比">
+<meta property="og:description" content="# 1 Google Cloud - Cloud Vision API - SafeSearch
+
+https://cloud.google.com/vision/docs/detecting-safe-search?hl=en
+
+## 1.1 检测方式
+
+REST 或者客户端 SDK。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/tu-pian-shen-he-yun-ping-tai-%20API%20-fang-an-dui-bi.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>图片审核云平台 API 方案对比</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">图片审核云平台 API 方案对比</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/chenshuais/chenshuais.github.io/issues/49" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h1>1 Google Cloud - Cloud Vision API - SafeSearch</h1>
+<p><a href="https://cloud.google.com/vision/docs/detecting-safe-search?hl=en" rel="nofollow">https://cloud.google.com/vision/docs/detecting-safe-search?hl=en</a></p>
+<h2>1.1 检测方式</h2>
+<p>REST 或者客户端 SDK。<br>
+可以一次性检查图片在以下 5 个种类的可能性：</p>
+<ul>
+<li>adult（成人）</li>
+<li>spoof（欺诈）</li>
+<li>medical（医疗）</li>
+<li>violence（暴力）</li>
+<li>racy（恶意内容）</li>
+</ul>
+<p><a href="https://cloud.google.com/vision/docs/reference/rpc/google.cloud.vision.v1#google.cloud.vision.v1.Likelihood" rel="nofollow">检测的几种结果</a></p>
+<table role="table">
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNKNOWN</td>
+<td>未知的可能性。</td>
+</tr>
+<tr>
+<td>VERY_UNLIKELY</td>
+<td>这是极不可能的。</td>
+</tr>
+<tr>
+<td>UNLIKELY</td>
+<td>不太可能。</td>
+</tr>
+<tr>
+<td>POSSIBLE</td>
+<td>有可能的。</td>
+</tr>
+<tr>
+<td>LIKELY</td>
+<td>这有可能。</td>
+</tr>
+<tr>
+<td>VERY_LIKELY</td>
+<td>这很有可能。</td>
+</tr>
+</tbody>
+</table>
+<p>提供了两种检测方式：</p>
+<ol>
+<li>将本地图片转成 Base64 编码格式，请求 API 接口，获取图片的可能性。</li>
+<li>直接检查远端图片，如 Google Cloud Storage 中的图片，或者其他的图片 URL 地址。</li>
+</ol>
+<h2>1.2 价格</h2>
+<p><a href="https://cloud.google.com/vision/pricing?hl=en" rel="nofollow">https://cloud.google.com/vision/pricing?hl=en</a></p>
+<p><img src="https://blog-image.ian2018.cn/images/08f72e5ebc602e2a11aab9f39a550b6af6b42430.png"></p>
+<h2>1.3 使用</h2>
+<ul>
+<li>到 GCP 上启用 Cloud Vision API 服务</li>
+<li>获取凭据中的 <a href="https://cloud.google.com/docs/authentication/api-keys" rel="nofollow">API 密钥</a></li>
+</ul>
+<h1>2 Microsoft - Content Moderator</h1>
+<p><a href="https://azure.microsoft.com/en-us/services/cognitive-services/content-moderator/" rel="nofollow">https://azure.microsoft.com/en-us/services/cognitive-services/content-moderator/</a></p>
+<h2>2.1 检测方式</h2>
+<p><a href="https://westus.dev.cognitive.microsoft.com/docs/services/57cf753a3f9b070c105bd2c1/operations/57cf753a3f9b070868a1f66c" rel="nofollow">Cognitive Services APIs Reference</a></p>
+<p>API 接口方式，域名支持按地区访问。请求可以是图片的 URL 地址，或者图片源文件（MIEI types）。</p>
+<h2>2.2 价格</h2>
+<p><a href="https://azure.microsoft.com/en-us/pricing/details/cognitive-services/content-moderator/" rel="nofollow">https://azure.microsoft.com/en-us/pricing/details/cognitive-services/content-moderator/</a></p>
+<p>根据不同地区定价，以 East US 为例。</p>
+<p><img src="https://blog-image.ian2018.cn/images/0668d5b7c4ed4f749841ec8b139dde479e17fa5e.png"></p>
+<h1>3 AWS - Amazon Rekognition Image</h1>
+<p><a href="https://docs.aws.amazon.com/rekognition/latest/dg/moderation.html" rel="nofollow">https://docs.aws.amazon.com/rekognition/latest/dg/moderation.html</a></p>
+<h2>3.1 检测方式</h2>
+<p><a href="https://docs.aws.amazon.com/rekognition/latest/dg/procedure-moderate-images.html" rel="nofollow">https://docs.aws.amazon.com/rekognition/latest/dg/procedure-moderate-images.html</a></p>
+<p>需要先上传到 S3 ，然后使用它的客户端 SDK 去检测图片的敏感标签。</p>
+<h2>3.2 价格</h2>
+<p><a href="https://aws.amazon.com/rekognition/pricing/?nc1=h_ls" rel="nofollow">https://aws.amazon.com/rekognition/pricing/?nc1=h_ls</a></p>
+<p>可以先免费试用一年，每月有 5000 张图片检测。</p>
+<p>根据不同地区定价，以 East US 为例。</p>
+<p><img src="https://blog-image.ian2018.cn/images/6e99299f8b02261e83d5783a1760ebac0ad2b49b.png"></p>
+<h1>4 腾讯云 - 图片内容安全 / 数据万象图片审核</h1>
+<h2>4.1 图片内容安全</h2>
+<p><a href="https://cloud.tencent.com/document/product/1125" rel="nofollow">https://cloud.tencent.com/document/product/1125</a></p>
+<h3>4.1.1 检测方式</h3>
+<p>接口支持按地域访问，支持境外地区，如北美、欧洲等地。</p>
+<p>API 接口形式，可以传图片 Base64 编码，或者图片的 URL 地址。可以返回图片的标签和置信度打分。</p>
+<ul>
+<li>Normal（正常）</li>
+<li>Porn（色情）</li>
+<li>Abuse（谩骂）</li>
+<li>Ad（广告）</li>
+<li>Custom（自定义图片）</li>
+<li>其他恶意图片</li>
+</ul>
+<h3>4.1.2 价格</h3>
+<p><a href="https://cloud.tencent.com/document/product/1125/37108" rel="nofollow">https://cloud.tencent.com/document/product/1125/37108</a></p>
+<p>采用预付费方式，超出套餐后按量计费（¥25 / 万张），可以重复购买套餐。</p>
+<p><img src="https://blog-image.ian2018.cn/images/cb68a386c87259921cebaa76c058999f6adbf673.png"></p>
+<h2>4.2 数据万象图片审核</h2>
+<p><a href="https://cloud.tencent.com/document/product/460" rel="nofollow">https://cloud.tencent.com/document/product/460</a></p>
+<h3>4.2.1 检测方式</h3>
+<p>需要开通对象存储服务，然后在控制后台打开图片审核功能，在上传到 Bucket 时，会自动审核图片。后台还可以设置检测类型、置信度回调接口等配置。</p>
+<p>也可以使用 API 接口检测 Bucket 中的图片。</p>
+<p>检测到敏感图片后，该资源无法公开访问。</p>
+<h3>4.2.2 价格</h3>
+<p><a href="https://cloud.tencent.com/document/product/460/6970" rel="nofollow">https://cloud.tencent.com/document/product/460/6970</a></p>
+<p>分为按量计费和预付费两种。预付费方式只适用中国大陆地区。</p>
+<p><img src="https://blog-image.ian2018.cn/images/fbcd747ec46b166914d05c15495d1231f33b1a2e.png"></p>
+<p>流量费用，分境内和境外，以下为境外费用。</p>
+<p><img src="https://blog-image.ian2018.cn/images/58510f052a857848e9b10df8354a43541a7a76c8.png"></p>
+<h1>5 Alibaba Cloud - Content Moderation</h1>
+<p><a href="https://www.alibabacloud.com/product/content-moderation" rel="nofollow">https://www.alibabacloud.com/product/content-moderation</a></p>
+<h2>5.1 检测方式</h2>
+<p><a href="https://www.alibabacloud.com/help/zh/doc-detail/70292.htm?spm=a2c63.p38356.b99.35.12dd7cab0805Ta" rel="nofollow">https://www.alibabacloud.com/help/zh/doc-detail/70292.htm?spm=a2c63.p38356.b99.35.12dd7cab0805Ta</a></p>
+<p>有 API 和 SDK 两种方式。只能传图片的 URL 地址。有同步和异步两种方式，可以指定检测类型：</p>
+<ul>
+<li>porn：图片智能鉴黄</li>
+<li>terrorism：图片暴恐涉政</li>
+<li>ad：图文违规</li>
+<li>qrcode：图片二维码</li>
+<li>live：图片不良场景</li>
+<li>logo：图片logo</li>
+</ul>
+<h2>5.2 价格</h2>
+<p><a href="https://www.alibabacloud.com/zh/product/content-moderation/pricing#producttabimage-0" rel="nofollow">https://www.alibabacloud.com/zh/product/content-moderation/pricing#producttabimage-0</a></p>
+<p>按量计费，每日计算。每个账户首月每日有 3000 张图片检测额度，超出后收费。</p>
+<p><img src="https://blog-image.ian2018.cn/images/76302881b99bd3ccce7bb6bc985c98a900a07dcc.png"></p>
+<h1>6 百度 - 图像审核</h1>
+<p><a href="https://ai.baidu.com/tech/imagecensoring" rel="nofollow">https://ai.baidu.com/tech/imagecensoring</a></p>
+<h2>6.1 检测方式</h2>
+<p><a href="https://ai.baidu.com/ai-doc/ANTIPORN/ek3h6x90n" rel="nofollow">https://ai.baidu.com/ai-doc/ANTIPORN/ek3h6x90n</a></p>
+<p><a href="https://ai.baidu.com/ai-doc/ANTIPORN/jk42xep4e" rel="nofollow">https://ai.baidu.com/ai-doc/ANTIPORN/jk42xep4e</a></p>
+<p>API 接口方式，支持传图片 Base64 编码和图片 URL 地址。可以自定义审核策略（在后台配置），默认策略如下：</p>
+<ul>
+<li>百度官方违禁图库</li>
+<li>色情识别（默认违规标签包含：一般色情、卡通色情、SM、低俗、儿童裸露、艺术品色情、性玩具）</li>
+<li>暴恐识别（默认违规标签包含：警察部队、血腥、尸体、爆炸火灾、杀人、暴乱、暴恐人物、军事武器、暴恐旗帜、血腥动物或动物尸体、车祸）</li>
+<li>政治人物识别</li>
+</ul>
+<h2>6.2 价格</h2>
+<p><a href="https://ai.baidu.com/ai-doc/ANTIPORN/lk3h6x7if" rel="nofollow">https://ai.baidu.com/ai-doc/ANTIPORN/lk3h6x7if</a></p>
+<p>按审核策略使用了哪些规则收费。每次请求各项服务累加计算，如果用了色情、暴恐、旗帜标志三个，则每千张收费 0.25 + 0.38 + 0.56 = 1.19 。</p>
+<p><img src="https://blog-image.ian2018.cn/images/1d8ed3b77aded58f92ca03f6407583783acdb4f5.png"></p>
+<h1>7 七牛云</h1>
+<h2>7.1 检测方式</h2>
+<p><a href="https://developer.qiniu.com/censor/5588/image-censor" rel="nofollow">https://developer.qiniu.com/censor/5588/image-censor</a></p>
+<p>API 接口方式，支持图片 Base64 编码和图片 URL。可以分类型检测。</p>
+<ul>
+<li>pulp（图片鉴黄）</li>
+<li>terror（图片鉴暴恐）</li>
+<li>politician（图片敏感人物识别）</li>
+<li>ads（图片广告识别）</li>
+</ul>
+<h2>7.2 价格</h2>
+<p><a href="https://developer.qiniu.com/censor/4833/censor-price" rel="nofollow">https://developer.qiniu.com/censor/4833/censor-price</a></p>
+<p>按检测类型收费，使用了多种类型则进行累加计算，如果四种都检测，则每千张收费 0.85 + 0.85 + 0.85 + 0.85 = 3.4。</p>
+<p><img src="https://blog-image.ian2018.cn/images/3b609b40a79b177bef336b3bb239fb849db4ee02.png"></p>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
