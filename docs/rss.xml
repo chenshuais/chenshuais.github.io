@@ -1,5 +1,37 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:22:18 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>iOS 文档扫描技术调研</title><link>https://blog.ian2018.club/post/iOS%20-wen-dang-sao-miao-ji-shu-diao-yan.html</link><description>&gt; 文本扫描和文本 OCR，系统 API 已经有了很好的支持，效果好，开发成本低，缺点就是文档扫描的 UI 无法定制，只能使用系统的。</description><guid isPermaLink="true">https://blog.ian2018.club/post/iOS%20-wen-dang-sao-miao-ji-shu-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:21:58 +0000</pubDate></item><item><title>Fooocus 局部重绘换装</title><link>https://blog.ian2018.club/post/Fooocus%20-ju-bu-zhong-hui-huan-zhuang.html</link><description>## 一、导入图片
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:23:57 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>iOS 照片相似度检查调研</title><link>https://blog.ian2018.club/post/iOS%20-zhao-pian-xiang-si-du-jian-cha-diao-yan.html</link><description>## 照片相似度检查
+
+参考文章：
+&gt; [OpenCV 相似度算法](https://juejin.cn/post/6969457808378953735)
+&gt;
+&gt; [苹果机器学习判断图片相似度](https://cloud.tencent.com/developer/article/2277725)
+&gt;
+&gt; [OpenCV 相似度算法2](https://www.cnblogs.com/yangyuxiaozi/p/7419349.html)
+&gt;
+&gt; [OpenCV](https://medium.com/@hdpoorna/integrating-opencv-to-your-swift-ios-project-in-xcode-and-working-with-uiimages-4c614e62ac88)
+
+参考项目：
+&gt; https://github.com/coderFrankenstain/WJSimilarPhotos
+&gt;
+&gt; https://github.com/ZYHshao/MachineLearnDemo
+&gt;
+&gt; https://github.com/ameingast/cocoaimagehashing
+&gt;
+&gt; https://github.com/ameingast/cocoaimagehashing/issues/18
+&gt;
+&gt; https://github.com/yeatse/opencv-spm
+
+### 图片匹配算法
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/d42335aa1006b6f1f2f0443fccd625ce6761f61a.png'&gt;`
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/fa7395e7c8313e9eb9f8605eb889d7fc8f5dc525.png'&gt;`
+
+### 图片相似度检测方案
+
+#### 方案一、通过 OpenCV 实现
+
+识别算法
+1. 利用 PHASH 算法（感知哈希算法，通常用于图片相似度识别）对比图片轮廓相似度。</description><guid isPermaLink="true">https://blog.ian2018.club/post/iOS%20-zhao-pian-xiang-si-du-jian-cha-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:23:32 +0000</pubDate></item><item><title>iOS 文档扫描技术调研</title><link>https://blog.ian2018.club/post/iOS%20-wen-dang-sao-miao-ji-shu-diao-yan.html</link><description>&gt; 文本扫描和文本 OCR，系统 API 已经有了很好的支持，效果好，开发成本低，缺点就是文档扫描的 UI 无法定制，只能使用系统的。</description><guid isPermaLink="true">https://blog.ian2018.club/post/iOS%20-wen-dang-sao-miao-ji-shu-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:21:58 +0000</pubDate></item><item><title>Fooocus 局部重绘换装</title><link>https://blog.ian2018.club/post/Fooocus%20-ju-bu-zhong-hui-huan-zhuang.html</link><description>## 一、导入图片
 `Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/5021f64db62f0363ed806ff3b27f1d701410c91d.png'&gt;`
 
 `Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/4d0c62fc4fdb014da7f592a905a02f78009e9165.png'&gt;`

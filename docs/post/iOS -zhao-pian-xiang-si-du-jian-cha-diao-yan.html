@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="## 照片相似度检查
+
+参考文章：
+> [OpenCV 相似度算法](https://juejin.cn/post/6969457808378953735)
+>
+> [苹果机器学习判断图片相似度](https://cloud.tencent.com/developer/article/2277725)
+>
+> [OpenCV 相似度算法2](https://www.cnblogs.com/yangyuxiaozi/p/7419349.html)
+>
+> [OpenCV](https://medium.com/@hdpoorna/integrating-opencv-to-your-swift-ios-project-in-xcode-and-working-with-uiimages-4c614e62ac88)
+
+参考项目：
+> https://github.com/coderFrankenstain/WJSimilarPhotos
+>
+> https://github.com/ZYHshao/MachineLearnDemo
+>
+> https://github.com/ameingast/cocoaimagehashing
+>
+> https://github.com/ameingast/cocoaimagehashing/issues/18
+>
+> https://github.com/yeatse/opencv-spm
+
+### 图片匹配算法
+
+`Gmeek-html<img src='https://blog-image.ian2018.cn/images/d42335aa1006b6f1f2f0443fccd625ce6761f61a.png'>`
+`Gmeek-html<img src='https://blog-image.ian2018.cn/images/fa7395e7c8313e9eb9f8605eb889d7fc8f5dc525.png'>`
+
+### 图片相似度检测方案
+
+#### 方案一、通过 OpenCV 实现
+
+识别算法
+1. 利用 PHASH 算法（感知哈希算法，通常用于图片相似度识别）对比图片轮廓相似度。">
+<meta property="og:title" content="iOS 照片相似度检查调研">
+<meta property="og:description" content="## 照片相似度检查
+
+参考文章：
+> [OpenCV 相似度算法](https://juejin.cn/post/6969457808378953735)
+>
+> [苹果机器学习判断图片相似度](https://cloud.tencent.com/developer/article/2277725)
+>
+> [OpenCV 相似度算法2](https://www.cnblogs.com/yangyuxiaozi/p/7419349.html)
+>
+> [OpenCV](https://medium.com/@hdpoorna/integrating-opencv-to-your-swift-ios-project-in-xcode-and-working-with-uiimages-4c614e62ac88)
+
+参考项目：
+> https://github.com/coderFrankenstain/WJSimilarPhotos
+>
+> https://github.com/ZYHshao/MachineLearnDemo
+>
+> https://github.com/ameingast/cocoaimagehashing
+>
+> https://github.com/ameingast/cocoaimagehashing/issues/18
+>
+> https://github.com/yeatse/opencv-spm
+
+### 图片匹配算法
+
+`Gmeek-html<img src='https://blog-image.ian2018.cn/images/d42335aa1006b6f1f2f0443fccd625ce6761f61a.png'>`
+`Gmeek-html<img src='https://blog-image.ian2018.cn/images/fa7395e7c8313e9eb9f8605eb889d7fc8f5dc525.png'>`
+
+### 图片相似度检测方案
+
+#### 方案一、通过 OpenCV 实现
+
+识别算法
+1. 利用 PHASH 算法（感知哈希算法，通常用于图片相似度识别）对比图片轮廓相似度。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/iOS%20-zhao-pian-xiang-si-du-jian-cha-diao-yan.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>iOS 照片相似度检查调研</title>
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">iOS 照片相似度检查调研</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/chenshuais/chenshuais.github.io/issues/75" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h2>照片相似度检查</h2>
+<p>参考文章：</p>
+<blockquote>
+<p><a href="https://juejin.cn/post/6969457808378953735" rel="nofollow">OpenCV 相似度算法</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/2277725" rel="nofollow">苹果机器学习判断图片相似度</a></p>
+<p><a href="https://www.cnblogs.com/yangyuxiaozi/p/7419349.html" rel="nofollow">OpenCV 相似度算法2</a></p>
+<p><a href="https://medium.com/@hdpoorna/integrating-opencv-to-your-swift-ios-project-in-xcode-and-working-with-uiimages-4c614e62ac88" rel="nofollow">OpenCV</a></p>
+</blockquote>
+<p>参考项目：</p>
+<blockquote>
+<p><a href="https://github.com/coderFrankenstain/WJSimilarPhotos">https://github.com/coderFrankenstain/WJSimilarPhotos</a></p>
+<p><a href="https://github.com/ZYHshao/MachineLearnDemo">https://github.com/ZYHshao/MachineLearnDemo</a></p>
+<p><a href="https://github.com/ameingast/cocoaimagehashing">https://github.com/ameingast/cocoaimagehashing</a></p>
+<p><a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="462656129" data-permission-text="Title is private" data-url="https://github.com/ameingast/cocoaimagehashing/issues/18" data-hovercard-type="issue" data-hovercard-url="/ameingast/cocoaimagehashing/issues/18/hovercard" href="https://github.com/ameingast/cocoaimagehashing/issues/18">ameingast/cocoaimagehashing#18</a></p>
+<p><a href="https://github.com/yeatse/opencv-spm">https://github.com/yeatse/opencv-spm</a></p>
+</blockquote>
+<h3>图片匹配算法</h3>
+<p><img src="https://blog-image.ian2018.cn/images/d42335aa1006b6f1f2f0443fccd625ce6761f61a.png"><br>
+<img src="https://blog-image.ian2018.cn/images/fa7395e7c8313e9eb9f8605eb889d7fc8f5dc525.png"></p>
+<h3>图片相似度检测方案</h3>
+<h4>方案一、通过 OpenCV 实现</h4>
+<p>识别算法</p>
+<ol>
+<li>利用 PHASH 算法（感知哈希算法，通常用于图片相似度识别）对比图片轮廓相似度。</li>
+<li>利用图片的 HSV 直方图，对比图片颜色上的相似度。</li>
+<li>利用 ORB 特征 算法，对比图片的细节特征相似度。</li>
+<li>将几种相似度算法结果取一个 hash 值，最终通过 hash 值来判定两张图相似。</li>
+</ol>
+<p><img src="https://blog-image.ian2018.cn/images/dc6cbd33532220636d3f540e20e9e794832a6408.png"></p>
+<p>匹配耗时</p>
+<p>平均一张图 25 毫秒左右</p>
+<ul>
+<li>phash 阈值为 14（小于该值的图片被判断为相似）</li>
+<li>histogram 阈值为 0.5（大于等于该值的图片被判断为相似）</li>
+<li>orb 阈值为 0.173（大于等于该值的图片被判断为相似）</li>
+</ul>
+<h4>方案二、利用苹果的 Vision 框架，通过机器学习对比图片相似度</h4>
+<p>识别算法</p>
+<ol>
+<li>使用 VNGenerateImageFeaturePrintRequest 创建图片特征分析请求。</li>
+<li>得到特征数据对象，调用 computeDistance 计算特征差距，从而对比相似度。</li>
+</ol>
+<p><img src="https://blog-image.ian2018.cn/images/74f86b80ae18ade251b1f9892e6378dba5932fd8.png"></p>
+<p>匹配耗时</p>
+<p>平均一张图 122 毫秒左右</p>
+<ul>
+<li>相似差异阈值为：0.55（小于该值的图片被判断为相似）</li>
+</ul>
+<h2>图片质量对比，找出最优的</h2>
+<blockquote>
+<p>参考文章</p>
+<p><a href="https://yulingtianxia.com/blog/2018/11/30/Photo-Assessment/" rel="nofollow">https://yulingtianxia.com/blog/2018/11/30/Photo-Assessment/</a></p>
+</blockquote>
+<p>通过对比图片的饱和度、亮度、模糊度、颜色分布来给图片打分。</p>
+<h2>视频压缩</h2>
+<blockquote>
+<p>参考文章</p>
+<p><a href="https://www.jianshu.com/p/35fc959cef17" rel="nofollow">传统视频压缩</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MDI3MjA5MQ%3D%3D&amp;mid=2697267472&amp;idx=2&amp;sn=8260857e7fc9201bad8decaf04b0ebe9&amp;chksm=8376f624b4017f32c18186ac4c30ce3e0a22b2ca3d82089c857d5d7ed4c26e6e433f0ac44e5c&amp;mpshare=1&amp;scene=23&amp;srcid=0904cbU12nkK96nGMZwKCHVf%23rd" rel="nofollow">自定义视频压缩</a></p>
+<p><a href="https://blog.csdn.net/cai_huaer/article/details/131572817" rel="nofollow">自定义视频压缩 2</a></p>
+<p><a href="https://github.com/arthenica/ffmpeg-kit">https://github.com/arthenica/ffmpeg-kit</a></p>
+</blockquote>
+<ul>
+<li>方案一：通过系统 API AVFoundation 进行压缩</li>
+<li>方案二：自定义压缩</li>
+<li>方案二：使用 FFmpeg 压缩</li>
+</ul>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
