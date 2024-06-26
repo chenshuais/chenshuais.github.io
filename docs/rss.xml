@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:12:55 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>AI 写真效果优化调研</title><link>https://blog.ian2018.club/post/AI%20-xie-zhen-xiao-guo-you-hua-diao-yan.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:14:27 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>AI 写真效果优化调研</title><link>https://blog.ian2018.club/post/AI%20-xie-zhen-xiao-guo-you-hua-diao-yan.html</link><description>
 ## 模版新方案
 
 不再使用图生图的方式，而是采用 **模版 ****tag**** 反推** + **文生图** + **ControlNet Pose 控制姿势** + **换脸**
@@ -433,7 +433,38 @@ Google 早在2015年中期，就宣布结束对 Eclipse ADT（安卓开发工具
 
 ### 状态栏颜色
 
-由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 15:12:36 +0000</pubDate></item><item><title>Android 小 Tips 2（状态栏配置及显示壁纸等）</title><link>https://blog.ian2018.club/post/Android%20-xiao-%20Tips%202%EF%BC%88-zhuang-tai-lan-pei-zhi-ji-xian-shi-bi-zhi-deng-%EF%BC%89.html</link><description>
+由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 15:12:36 +0000</pubDate></item><item><title>ControlNet IP-Adapter 优化写真效果</title><link>https://blog.ian2018.club/post/ControlNet%20IP-Adapter%20-you-hua-xie-zhen-xiao-guo.html</link><description>还是使用图生图，需要用到 ControlNet 插件，使用 [IP-Adapter](https://ip-adapter.github.io/) 对人脸进行控制，具体参数设置如下：
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/e01db614b6ce1f6d27ecb99f6b7cdb62aaa2ef51.png'&gt;`
+
+参数：
+
+dreamshaperXL_turboDpmppSDE
+
+Sampling method：DPM++ SDE Karras
+
+Sampling steps：6
+
+Width * Height：1024x1400
+
+CFG Scale：2
+
+Seed：2104314926
+
+Denoising strength：0.4
+
+ControlNet IP-Adapter Preprocessor：ip-adapter_clip_sdxl_plus_vith
+
+ControlNet IP-Adapter Model：[ip-adapter-plus-face_sdxl_vit-h [c60d7d48]](https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter-plus-face_sdxl_vit-h.bin?download=true)
+
+ControlNet Control Weight：0.75
+
+ControlNet Ending Control Step：0.9
+
+效果：
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/72f0fee15808bbbd63b53d298d5199ffdbd3860d.png'&gt;`
+
+&lt;!-- ##{'timestamp':1702951291}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ControlNet%20IP-Adapter%20-you-hua-xie-zhen-xiao-guo.html</guid><pubDate>Tue, 19 Dec 2023 02:01:31 +0000</pubDate></item><item><title>Android 小 Tips 2（状态栏配置及显示壁纸等）</title><link>https://blog.ian2018.club/post/Android%20-xiao-%20Tips%202%EF%BC%88-zhuang-tai-lan-pei-zhi-ji-xian-shi-bi-zhi-deng-%EF%BC%89.html</link><description>
 # 设置状态栏
 
 ```java
