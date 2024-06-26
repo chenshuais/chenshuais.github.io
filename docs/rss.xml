@@ -1,5 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:10:06 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>FCM 推送技术调研</title><link>https://blog.ian2018.club/post/FCM%20-tui-song-ji-shu-diao-yan.html</link><description>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:11:21 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>AI 写真方案调研</title><link>https://blog.ian2018.club/post/AI%20-xie-zhen-fang-an-diao-yan.html</link><description>
+## 一、换脸方案
+
+&gt; 核心技术都是使用 [roop](https://github.com/s0md3v/roop) 进行换脸，StableDiffusion 上也有对应的插件：[https://github.com/s0md3v/sd-webui-roop](https://github.com/s0md3v/sd-webui-roop)
+
+整体大概流程：
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/c30b25dc6c72bf1769b8be626f5b67729750943d.png'&gt;`
+
+
+### 1.1 文生图 + 换脸
+
+由 StableDiffusion 生成一张写真图，然后使用 roop 插件进行换脸。</description><guid isPermaLink="true">https://blog.ian2018.club/post/AI%20-xie-zhen-fang-an-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:10:57 +0000</pubDate></item><item><title>FCM 推送技术调研</title><link>https://blog.ian2018.club/post/FCM%20-tui-song-ji-shu-diao-yan.html</link><description>
 FCM 有[两种消息类型](https://firebase.google.com/docs/cloud-messaging/concept-options#notifications_and_data_messages)：
 
 - **通知消息****：**又叫显示消息，由 FCM sdk 处理。</description><guid isPermaLink="true">https://blog.ian2018.club/post/FCM%20-tui-song-ji-shu-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:09:22 +0000</pubDate></item><item><title>Kotlin 协程中的 Job</title><link>https://blog.ian2018.club/post/Kotlin%20-xie-cheng-zhong-de-%20Job.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/86ff272f7ad726ad95ce92b6d9bb8137b55e2ea1.png'&gt;`

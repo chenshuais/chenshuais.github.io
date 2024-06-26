@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="
+## 一、换脸方案
+
+> 核心技术都是使用 [roop](https://github.com/s0md3v/roop) 进行换脸，StableDiffusion 上也有对应的插件：[https://github.com/s0md3v/sd-webui-roop](https://github.com/s0md3v/sd-webui-roop)
+
+整体大概流程：
+`Gmeek-html<img src='https://blog-image.ian2018.cn/images/c30b25dc6c72bf1769b8be626f5b67729750943d.png'>`
+
+
+### 1.1 文生图 + 换脸
+
+由 StableDiffusion 生成一张写真图，然后使用 roop 插件进行换脸。">
+<meta property="og:title" content="AI 写真方案调研">
+<meta property="og:description" content="
+## 一、换脸方案
+
+> 核心技术都是使用 [roop](https://github.com/s0md3v/roop) 进行换脸，StableDiffusion 上也有对应的插件：[https://github.com/s0md3v/sd-webui-roop](https://github.com/s0md3v/sd-webui-roop)
+
+整体大概流程：
+`Gmeek-html<img src='https://blog-image.ian2018.cn/images/c30b25dc6c72bf1769b8be626f5b67729750943d.png'>`
+
+
+### 1.1 文生图 + 换脸
+
+由 StableDiffusion 生成一张写真图，然后使用 roop 插件进行换脸。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/AI%20-xie-zhen-fang-an-diao-yan.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>AI 写真方案调研</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">AI 写真方案调研</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/chenshuais/chenshuais.github.io/issues/67" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><h2>一、换脸方案</h2>
+<blockquote>
+<p>核心技术都是使用 <a href="https://github.com/s0md3v/roop">roop</a> 进行换脸，StableDiffusion 上也有对应的插件：<a href="https://github.com/s0md3v/sd-webui-roop">https://github.com/s0md3v/sd-webui-roop</a></p>
+</blockquote>
+<p>整体大概流程：<br>
+<img src="https://blog-image.ian2018.cn/images/c30b25dc6c72bf1769b8be626f5b67729750943d.png"></p>
+<h3>1.1 文生图 + 换脸</h3>
+<p>由 StableDiffusion 生成一张写真图，然后使用 roop 插件进行换脸。</p>
+<h4>StableDiffusion 关键参数预览：</h4>
+<p><img src="https://blog-image.ian2018.cn/images/9405f6c5fea44303de3f27d416f24e7946f8be3f.png"></p>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+    <span class="pl-ent">"prompt"</span>:<span class="pl-s"><span class="pl-pds">"</span>提示词<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"negative_prompt"</span>:<span class="pl-s"><span class="pl-pds">"</span>反向提示词<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"sampler_index"</span>:<span class="pl-s"><span class="pl-pds">"</span>采样算法<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"steps"</span>:<span class="pl-c1">50</span>,
+    <span class="pl-ent">"batch_size"</span>:<span class="pl-c1">1</span>,
+    <span class="pl-ent">"cfg_scale"</span>:<span class="pl-c1">7</span>,
+    <span class="pl-ent">"width"</span>:<span class="pl-c1">512</span>,
+    <span class="pl-ent">"height"</span>:<span class="pl-c1">683</span>,
+    <span class="pl-ent">"override_settings"</span>:{
+        <span class="pl-ent">"sd_model_checkpoint"</span>:<span class="pl-s"><span class="pl-pds">"</span>大模型名字<span class="pl-pds">"</span></span>
+    },
+    <span class="pl-ent">"alwayson_scripts"</span>:{
+        <span class="pl-ii">// 使用 roop 插件</span>
+        <span class="pl-ent">"roop"</span>:{
+            <span class="pl-ent">"args"</span>:[
+                <span class="pl-s"><span class="pl-pds">"</span>base64 人脸图片<span class="pl-pds">"</span></span>,
+                <span class="pl-c1">true</span>, <span class="pl-ii">// 是否启用 roop</span>
+                <span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span>, <span class="pl-ii">// 人脸下标（替换第几个人脸，多个用逗号分隔）</span>
+                <span class="pl-s"><span class="pl-pds">"</span>inswapper_128.onnx（换脸模型路径）<span class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>CodeFormer<span class="pl-pds">"</span></span>, <span class="pl-ii">// 面部修复</span>
+                <span class="pl-c1">1</span>, <span class="pl-ii">// 面部修复强度</span>
+                <span class="pl-s"><span class="pl-pds">"</span>放大算法<span class="pl-pds">"</span></span>,
+                <span class="pl-c1">1</span>, <span class="pl-ii">// 放大倍率</span>
+                <span class="pl-c1">1</span>, <span class="pl-ii">// 放大强度</span>
+                <span class="pl-c1">false</span>, <span class="pl-ii">// 替换原图片</span>
+                <span class="pl-c1">true</span> <span class="pl-ii">// 替换生成后的图片</span>
+            ]
+        }
+    }
+}</pre></div>
+<h4>生成效果示例：</h4>
+<p><img src="https://blog-image.ian2018.cn/images/a180cbb320a0e9698e0a06984874e3a4dc0e51ee.png"></p>
+<h4>耗时情况：</h4>
+<p>在 4090 的显卡上，一张图的总耗时<strong>大概在 23 秒左右</strong>，其中换脸大概需要 7 秒。</p>
+<h4>优点：</h4>
+<ul>
+<li>所需数据少，只需要一张人脸图片即可</li>
+<li>生成时间短</li>
+<li>技术部署难度较低，安装并使用 StableDiffusion roop 插件即可</li>
+</ul>
+<h4>缺点：</h4>
+<ul>
+<li>对人脸的要求比较高，清晰的正脸效果会比较好</li>
+<li>侧脸的效果不是很好</li>
+<li>有些脸型会受到 SD 生成的底图的影响</li>
+</ul>
+<h4>影响效果关键点：</h4>
+<ul>
+<li>
+<p>人脸图片的质量</p>
+<ul>
+<li>上传图片之前可以先检测一下是不人脸</li>
+</ul>
+</li>
+<li>
+<p>SD 大模型的选择</p>
+<ul>
+<li>亚洲面孔比较好的模型：<a href="https://www.liblibai.com/modelinfo/9470cdf92e33f5ad72cc2f40f834a69a" rel="nofollow">https://www.liblibai.com/modelinfo/9470cdf92e33f5ad72cc2f40f834a69a</a></li>
+<li>西方面孔比较好的模型：<a href="https://civitai.com/models/4201/realistic-vision-v51" rel="nofollow">https://civitai.com/models/4201/realistic-vision-v51</a></li>
+</ul>
+</li>
+<li>
+<p>SD 提示词和各种参数</p>
+</li>
+</ul>
+<h3>1.2 预设图片 + 换脸</h3>
+<p>流程和上面类似，只不过不通过 SD 生图了，直接使用预设好的图片进行换脸。</p>
+<h4>预设图来源：</h4>
+<p>目前可能的有以下几种</p>
+<ul>
+<li>设计师设计</li>
+<li>通过 SD 或者 MJ 生成图片，然后交由设计师调整</li>
+<li>无版权的写真相关图片</li>
+</ul>
+<h4>roop sd webui api 参数预览：</h4>
+<p><a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="1858148488" data-permission-text="Title is private" data-url="https://github.com/s0md3v/sd-webui-roop/issues/214" data-hovercard-type="pull_request" data-hovercard-url="/s0md3v/sd-webui-roop/pull/214/hovercard" href="https://github.com/s0md3v/sd-webui-roop/pull/214">s0md3v/sd-webui-roop#214</a> roop 插件最近的更新中也已经提供了换脸的接口。</p>
+<p><img src="https://blog-image.ian2018.cn/images/cb281d09a5b3c823a17b8706d434ebf0adb6c8af.png"></p>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+    <span class="pl-ent">"source_image"</span>:<span class="pl-s"><span class="pl-pds">"</span>base64 人脸图片<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"target_image"</span>:<span class="pl-s"><span class="pl-pds">"</span>base64 底图<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"face_index"</span>:[<span class="pl-c1">0</span>], <span class="pl-ii">// 人脸下标（替换第几个人脸）</span>
+    <span class="pl-ent">"scale"</span>:<span class="pl-c1">1</span>, <span class="pl-ii">// 放大倍率</span>
+    <span class="pl-ent">"upscale_visibility"</span>:<span class="pl-c1">1</span>, <span class="pl-ii">// 放大强度</span>
+    <span class="pl-ent">"face_restorer"</span>:<span class="pl-s"><span class="pl-pds">"</span>CodeFormer<span class="pl-pds">"</span></span>, <span class="pl-ii">// 面部修复</span>
+    <span class="pl-ent">"restorer_visibility"</span>:<span class="pl-c1">1</span>, <span class="pl-ii">// 面部修复强度</span>
+    <span class="pl-ent">"model"</span>:<span class="pl-s"><span class="pl-pds">"</span>inswapper_128.onnx<span class="pl-pds">"</span></span> <span class="pl-ii">// 换脸模型名字</span>
+}</pre></div>
+<p>返回的结果是一个 json：</p>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+    <span class="pl-ent">"image"</span>:<span class="pl-s"><span class="pl-pds">"</span>base64 图片<span class="pl-pds">"</span></span>
+}</pre></div>
+<h4>生成效果示例：</h4>
+<p><img src="https://blog-image.ian2018.cn/images/f15d933eed9735b66002bec63fa5d41f8f5cd4bd.png"></p>
+<h4>耗时情况：</h4>
+<p>在 4090 显卡上，<strong>大概需要 7 秒左右</strong>。</p>
+<h4>优缺点：</h4>
+<p>缺点和 1.1 一样，优点是更快了，省去了 SD 生图的时间。</p>
+<h4>影响效果关键点：</h4>
+<ul>
+<li>预设底图的质量</li>
+<li>人脸图片的质量</li>
+</ul>
+<h3>1.3 图生图 + 换脸</h3>
+<p>将预设图片通过 SD 进行图生图，然后进行换脸。</p>
+<p><img src="https://blog-image.ian2018.cn/images/88e6ae54fb91e1a7f28c8325fe5bb369ec95324b.png"></p>
+<h4>1.3.1 roop StableDiffusion 关键参数预览：</h4>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+    <span class="pl-ent">"init_images"</span>:[<span class="pl-s"><span class="pl-pds">"</span>底图 base64<span class="pl-pds">"</span></span>],
+    <span class="pl-ent">"resize_mode"</span>:<span class="pl-c1">0</span>,
+    <span class="pl-ent">"denoising_strength"</span>:<span class="pl-c1">0.4</span>,
+    <span class="pl-ent">"prompt"</span>:<span class="pl-s"><span class="pl-pds">"</span>提示词<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"seed"</span>:<span class="pl-c1">-1</span>,
+    <span class="pl-ent">"batch_size"</span>:<span class="pl-c1">1</span>,
+    <span class="pl-ent">"steps"</span>:<span class="pl-c1">20</span>,
+    <span class="pl-ent">"cfg_scale"</span>:<span class="pl-c1">7</span>,
+    <span class="pl-ent">"width"</span>:<span class="pl-c1">512</span>,
+    <span class="pl-ent">"height"</span>:<span class="pl-c1">512</span>,
+    <span class="pl-ent">"negative_prompt"</span>:<span class="pl-s"><span class="pl-pds">"</span>NSFW<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"override_settings"</span>:{
+        <span class="pl-ent">"sd_model_checkpoint"</span>:<span class="pl-s"><span class="pl-pds">"</span>大模型<span class="pl-pds">"</span></span>
+    },
+    <span class="pl-ent">"sampler_name"</span>:<span class="pl-s"><span class="pl-pds">"</span>采样名字<span class="pl-pds">"</span></span>,
+    <span class="pl-ent">"alwayson_scripts"</span>:{
+        <span class="pl-ent">"roop"</span>:{
+            <span class="pl-ent">"args"</span>:[
+                <span class="pl-s"><span class="pl-pds">"</span>人脸 base64<span class="pl-pds">"</span></span>,
+                <span class="pl-c1">true</span>,
+                <span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>stable-diffusion-webui/models/roop/inswapper_128.onnx<span class="pl-pds">"</span></span>,
+                <span class="pl-s"><span class="pl-pds">"</span>GFPGAN<span class="pl-pds">"</span></span>,
+                <span class="pl-c1">1</span>,
+                <span class="pl-s"><span class="pl-pds">"</span>None<span class="pl-pds">"</span></span>,
+                <span class="pl-c1">1</span>,
+                <span class="pl-c1">1</span>,
+                <span class="pl-c1">false</span>,
+                <span class="pl-c1">true</span>
+            ]
+        }
+    }
+}</pre></div>
+<h4>1.3.2 FaceSwapLab StableDiffusion 关键参数预览：</h4>
+<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-s1">data</span> <span class="pl-c1">=</span> {
+    <span class="pl-c"># 模版底图</span>
+    <span class="pl-s">"init_images"</span>: [<span class="pl-en">get_base64_image</span>(<span class="pl-s1">img_path</span>)],
+    <span class="pl-s">"resize_mode"</span>: <span class="pl-c1">0</span>,
+    <span class="pl-s">"denoising_strength"</span>: <span class="pl-c1">0.45</span>,
+    <span class="pl-s">"prompt"</span>: <span class="pl-s">""</span>,
+    <span class="pl-s">"seed"</span>: <span class="pl-c1">-</span><span class="pl-c1">1</span>,
+    <span class="pl-s">"batch_size"</span>: <span class="pl-c1">4</span>,
+    <span class="pl-s">"steps"</span>: <span class="pl-c1">20</span>,
+    <span class="pl-s">"cfg_scale"</span>: <span class="pl-c1">7</span>,
+    <span class="pl-s">"width"</span>: <span class="pl-s1">width</span>,
+    <span class="pl-s">"height"</span>: <span class="pl-s1">height</span>,
+    <span class="pl-s">"negative_prompt"</span>: <span class="pl-s">""</span>,
+    <span class="pl-s">"override_settings"</span>: {
+        <span class="pl-s">"sd_model_checkpoint"</span>: <span class="pl-s">"deliberate_v2.safetensors [9aba26abdf]"</span>
+    },
+    <span class="pl-s">"save_images"</span>: <span class="pl-c1">False</span>,
+    <span class="pl-s">"sampler_name"</span>: <span class="pl-s">"DPM++ SDE Karras"</span>,
+    <span class="pl-s">"alwayson_scripts"</span>: {
+        <span class="pl-s">"faceswaplab"</span>: {
+            <span class="pl-s">"args"</span>: [
+                <span class="pl-c"># ============&gt; Face 1 &lt;============</span>
+                <span class="pl-c"># Reference （人脸照片）</span>
+                <span class="pl-en">get_base64_image</span>(<span class="pl-s">'./test_img/t1.png'</span>),
+                <span class="pl-c"># Face Checkpoint (precedence over reference face)</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Batch Sources Images（待融合的人脸照片，可以有多张）</span>
+                <span class="pl-s">f"<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-en">get_base64_image</span>(<span class="pl-s">'./test_img/t1.png'</span>)<span class="pl-kos">}</span></span>,<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-en">get_base64_image</span>(<span class="pl-s">'./test_img/t2.webp'</span>)<span class="pl-kos">}</span></span>,<span class="pl-s1"><span class="pl-kos">{</span><span class="pl-en">get_base64_image</span>(<span class="pl-s">'./test_img/t3.jpg'</span>)<span class="pl-kos">}</span></span>"</span>,
+                <span class="pl-c"># Blend Faces ((Source|Checkpoint)+References = 1)</span>
+                <span class="pl-c1">True</span>,
+                <span class="pl-c"># Enable</span>
+                <span class="pl-c1">True</span>,
+                <span class="pl-c"># Same Gender</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Sort by size (larger&gt;smaller)</span>
+                <span class="pl-c1">True</span>,
+                <span class="pl-c"># Check similarity</span>
+                <span class="pl-c1">True</span>,
+                <span class="pl-c"># Compute similarity</span>
+                <span class="pl-c1">True</span>,
+                <span class="pl-c"># Min similarity</span>
+                <span class="pl-c1">0.5</span>,
+                <span class="pl-c"># "Min reference similarity"</span>
+                <span class="pl-c1">0.2</span>,
+                <span class="pl-c"># Target face : Comma separated face number(s)</span>
+                <span class="pl-s">"0"</span>,
+                <span class="pl-c"># Reference source face : start from 0</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Swap in source image (blended face)</span>
+                <span class="pl-c1">True</span>,
+                <span class="pl-c"># Swap in generated image</span>
+                <span class="pl-c1">True</span>,
+                <span class="pl-c"># Denoising strenght</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Inpainting prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"Portrait of a [gender]"</span>,
+                <span class="pl-c"># Inpainting negative prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"blurry"</span>,
+                <span class="pl-c"># Inpainting steps</span>
+                <span class="pl-c1">20</span>,
+                <span class="pl-c"># Inpainting Sampler</span>
+                <span class="pl-s">"Euler a"</span>,
+                <span class="pl-c"># sd model (experimental)</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Inpainting seed</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Restore Face</span>
+                <span class="pl-s">"None"</span>,
+                <span class="pl-c"># Restore visibility</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># codeformer weight</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># Upscaler</span>
+                <span class="pl-s">""</span>,
+                <span class="pl-c"># Use improved segmented mask (use pastenet to mask only the face)</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Use color corrections</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># sharpen face</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Upscaled swapper mask erosion factor, 1 = default behaviour.</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># Denoising strenght</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Inpainting prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"Portrait of a [gender]"</span>,
+                <span class="pl-c"># Inpainting negative prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"blurry"</span>,
+                <span class="pl-c"># Inpainting steps</span>
+                <span class="pl-c1">20</span>,
+                <span class="pl-c"># Inpainting Sampler</span>
+                <span class="pl-s">"Euler a"</span>,
+                <span class="pl-c"># sd model (experimental)</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Inpainting seed</span>
+                <span class="pl-c1">0</span>,
+
+                <span class="pl-c"># ============&gt; Face 2 &lt;============</span>
+                <span class="pl-c"># Reference</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Face Checkpoint (precedence over reference face)</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Batch Sources Images</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Blend Faces ((Source|Checkpoint)+References = 1)</span>
+                <span class="pl-c1">True</span>,
+                <span class="pl-c"># Enable</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Same Gender</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Sort by size (larger&gt;smaller)</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Check similarity</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Compute similarity</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Min similarity</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># "Min reference similarity"</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Target face : Comma separated face number(s)</span>
+                <span class="pl-s">"1"</span>,
+                <span class="pl-c"># Reference source face : start from 0</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Swap in source image (blended face)</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Swap in generated image</span>
+                <span class="pl-c1">True</span>,
+                <span class="pl-c"># Denoising strenght</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Inpainting prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"Portrait of a [gender]"</span>,
+                <span class="pl-c"># Inpainting negative prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"blurry"</span>,
+                <span class="pl-c"># Inpainting steps</span>
+                <span class="pl-c1">20</span>,
+                <span class="pl-c"># Inpainting Sampler</span>
+                <span class="pl-s">"Euler a"</span>,
+                <span class="pl-c"># sd model (experimental)</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Inpainting seed</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Restore Face</span>
+                <span class="pl-s">"None"</span>,
+                <span class="pl-c"># Restore visibility</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># codeformer weight</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># Upscaler</span>
+                <span class="pl-s">""</span>,
+                <span class="pl-c"># Use improved segmented mask (use pastenet to mask only the face)</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Use color corrections</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># sharpen face</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Upscaled swapper mask erosion factor, 1 = default behaviour.</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># Denoising strenght</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Inpainting prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"Portrait of a [gender]"</span>,
+                <span class="pl-c"># Inpainting negative prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"blurry"</span>,
+                <span class="pl-c"># Inpainting steps</span>
+                <span class="pl-c1">20</span>,
+                <span class="pl-c"># Inpainting Sampler</span>
+                <span class="pl-s">"Euler a"</span>,
+                <span class="pl-c"># sd model (experimental)</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Inpainting seed</span>
+                <span class="pl-c1">0</span>,
+
+                <span class="pl-c"># ============&gt; Face 3 &lt;============</span>
+                <span class="pl-c"># Reference</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Face Checkpoint (precedence over reference face)</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Batch Sources Images</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Blend Faces ((Source|Checkpoint)+References = 1)</span>
+                <span class="pl-c1">True</span>,
+                <span class="pl-c"># Enable</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Same Gender</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Sort by size (larger&gt;smaller)</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Check similarity</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Compute similarity</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Min similarity</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># "Min reference similarity"</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Target face : Comma separated face number(s)</span>
+                <span class="pl-s">"2"</span>,
+                <span class="pl-c"># Reference source face : start from 0</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Swap in source image (blended face)</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Swap in generated image</span>
+                <span class="pl-c1">True</span>,
+                <span class="pl-c"># Denoising strenght</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Inpainting prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"Portrait of a [gender]"</span>,
+                <span class="pl-c"># Inpainting negative prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"blurry"</span>,
+                <span class="pl-c"># Inpainting steps</span>
+                <span class="pl-c1">20</span>,
+                <span class="pl-c"># Inpainting Sampler</span>
+                <span class="pl-s">"Euler a"</span>,
+                <span class="pl-c"># sd model (experimental)</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Inpainting seed</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Restore Face</span>
+                <span class="pl-s">"None"</span>,
+                <span class="pl-c"># Restore visibility</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># codeformer weight</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># Upscaler</span>
+                <span class="pl-s">""</span>,
+                <span class="pl-c"># Use improved segmented mask (use pastenet to mask only the face)</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Use color corrections</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># sharpen face</span>
+                <span class="pl-c1">False</span>,
+                <span class="pl-c"># Upscaled swapper mask erosion factor, 1 = default behaviour.</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># Denoising strenght</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Inpainting prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"Portrait of a [gender]"</span>,
+                <span class="pl-c"># Inpainting negative prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"blurry"</span>,
+                <span class="pl-c"># Inpainting steps</span>
+                <span class="pl-c1">20</span>,
+                <span class="pl-c"># Inpainting Sampler</span>
+                <span class="pl-s">"Euler a"</span>,
+                <span class="pl-c"># sd model (experimental)</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Inpainting seed</span>
+                <span class="pl-c1">0</span>,
+
+                <span class="pl-c"># ============&gt; Global Post-Processing &lt;============</span>
+                <span class="pl-c"># Restore Face</span>
+                <span class="pl-s">"GFPGAN"</span>,
+                <span class="pl-c"># Restore visibility</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># codeformer weight</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># Upscaler</span>
+                <span class="pl-s">"R-ESRGAN 4x+"</span>,
+                <span class="pl-c"># Upscaler scale</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># Upscaler visibility (if scale = 1)</span>
+                <span class="pl-c1">1</span>,
+                <span class="pl-c"># Enable/When</span>
+                <span class="pl-s">"After Upscaling/Before Restore Face"</span>,
+                <span class="pl-c"># Denoising strenght</span>
+                <span class="pl-c1">0</span>,
+                <span class="pl-c"># Inpainting prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"Portrait of a [gender]"</span>,
+                <span class="pl-c"># Inpainting negative prompt use [gender] instead of men or woman</span>
+                <span class="pl-s">"blurry"</span>,
+                <span class="pl-c"># Inpainting steps</span>
+                <span class="pl-c1">20</span>,
+                <span class="pl-c"># Inpainting Sampler</span>
+                <span class="pl-s">"Euler a"</span>,
+                <span class="pl-c"># sd model (experimental)</span>
+                <span class="pl-c1">None</span>,
+                <span class="pl-c"># Inpainting seed</span>
+                <span class="pl-c1">0</span>
+            ]
+        }
+    }
+}</pre></div>
+<h2>二、训练 LoRA 模型</h2>
+<p>需要用户上传 20 - 30 张左右的照片，然后训练成用户的人脸 LoRA。</p>
+<h4>所用到的技术：</h4>
+<ul>
+<li>人脸检测：python opencv <a href="https://github.com/kipr/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xml">https://github.com/kipr/opencv/blob/master/data/haarcascades/haarcascade_frontalface_default.xml</a></li>
+<li>图片预处理（将图剪裁成 512*512）：通过 SD webui 的插件 api 实现 <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/blob/68f336bd994bed5442ad95bad6b6ad5564a5409a/modules/textual_inversion/preprocess.py#L10">https://github.com/AUTOMATIC1111/stable-diffusion-webui/blob/68f336bd994bed5442ad95bad6b6ad5564a5409a/modules/textual_inversion/preprocess.py#L10</a></li>
+<li>图片打 tag：<a href="https://github.com/toriato/stable-diffusion-webui-wd14-tagger">https://github.com/toriato/stable-diffusion-webui-wd14-tagger</a></li>
+<li>LoRA 训练脚本：<a href="https://jihulab.com/Akegarasu/lora-scripts" rel="nofollow">https://jihulab.com/Akegarasu/lora-scripts</a></li>
+</ul>
+<h4>大致训练流程：</h4>
+<p><img src="https://blog-image.ian2018.cn/images/4bd4665d10a0dccd05894c27a3f1351f54e5ca33.png"></p>
+<h4>生成效果示例：</h4>
+<p>训练参数：</p>
+<ul>
+<li>大模型：<a href="https://civitai.com/models/4201/realistic-vision-v51" rel="nofollow">https://civitai.com/models/4201/realistic-vision-v51</a></li>
+<li>图片数量：20</li>
+<li>每张图学习次数：16</li>
+<li>学习轮数：15</li>
+<li>batch size：2</li>
+</ul>
+<p>结果测试提示词（使用的是数据源图片 03 的 tag 提示词）：</p>
+<pre class="notranslate"><code class="notranslate">RAW photo, subject, 8k uhd, dslr, soft lighting, high quality, film grain, male focus, 1boy, jacket, shirt, black shirt, realistic, open clothes, facial hair, looking at viewer, open jacket, blurry background, short hair, solo,  &lt;lora:ou_musk-0000X:Y&gt;
+</code></pre>
+<p>结果 XY 对比（X 是第几个模型，Y 是 LoRA 权重）：</p>
+<p><img src="https://blog-image.ian2018.cn/images/35e839e2071741bd538f41082bcab40f8d74d5d9.png"></p>
+<h4>耗时情况：</h4>
+<p>20 张图片、每张图片学习 16 次、epochs 15、batch size 2 等参数，总训练步数 2400，在 4090 显卡上<strong>大概 7.6 分钟</strong>左右。</p>
+<h4>影响效果关键点：</h4>
+<ul>
+<li>上传图片的质量</li>
+<li>给图片打 tag 的准确性</li>
+<li>训练参数（repeats、epochs、unet_lr、text_encoder_lr 等等）</li>
+</ul>
+<h4>技术难点：</h4>
+<ul>
+<li>
+<p>给图片打 tag 的准确性</p>
+</li>
+<li>
+<p>不同图片的训练参数可能会不同，需要找到一个平衡点</p>
+</li>
+<li>
+<p>训练后的模型一般会有多个，不一定是最后一个效果最好，最后选用哪个技术上不太好判定</p>
+<ul>
+<li>不过这个可以在产品上解决，训练结束后，用每个模型给用户生成一张图，让用户选择用哪个</li>
+</ul>
+</li>
+</ul>
+<h2>三、训练 LoRA 模型 + 换脸</h2>
+<p>先通过训练好 LoRA 生成一张底图，然后使用 roop 插件换脸。</p>
+<p>这种方案是上面两种的结合，如果 LoRA 模型训练的好，再加上人脸质量好，最后达到的效果就会很好。</p>
+<p>但是难点也是 LoRA 训练这一步。</p>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
