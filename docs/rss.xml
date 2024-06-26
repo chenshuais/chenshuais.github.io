@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:44:24 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>图片审核云平台 API 方案对比</title><link>https://blog.ian2018.club/post/tu-pian-shen-he-yun-ping-tai-%20API%20-fang-an-dui-bi.html</link><description># 1 Google Cloud - Cloud Vision API - SafeSearch
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:45:59 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>图片审核云平台 API 方案对比</title><link>https://blog.ian2018.club/post/tu-pian-shen-he-yun-ping-tai-%20API%20-fang-an-dui-bi.html</link><description># 1 Google Cloud - Cloud Vision API - SafeSearch
 
 https://cloud.google.com/vision/docs/detecting-safe-search?hl=en
 
@@ -298,7 +298,48 @@ Google 早在2015年中期，就宣布结束对 Eclipse ADT（安卓开发工具
 
 ### 状态栏颜色
 
-由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 15:12:36 +0000</pubDate></item><item><title>Android 小 Tips</title><link>https://blog.ian2018.club/post/Android%20-xiao-%20Tips.html</link><description># Android 对非 SDK 调用限制
+由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 15:12:36 +0000</pubDate></item><item><title>Android 小 Tips 2（状态栏配置及显示壁纸等）</title><link>https://blog.ian2018.club/post/Android%20-xiao-%20Tips%202%EF%BC%88-zhuang-tai-lan-pei-zhi-ji-xian-shi-bi-zhi-deng-%EF%BC%89.html</link><description>
+# 设置状态栏
+
+```java
+//设置状态栏字体颜色为白色
+getWindow().getDecorView().setSystemUiVisibility(
+        View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+//设置状态栏颜色为透明
+getWindow().setStatusBarColor(Color.TRANSPARENT);
+```
+
+```java
+//设置状态栏字体颜色为黑色
+window.getDecorView().setSystemUiVisibility(
+                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+//设置导航键颜色也为透明
+window.setNavigationBarColor(Color.TRANSPARENT);                                
+```
+
+在 style 中配置
+
+```xml
+&lt;item name='android:navigationBarColor' tools:targetApi='21'&gt;@android:color/transparent&lt;/item&gt;
+&lt;item name='android:enforceNavigationBarContrast' tools:targetApi='29'&gt;false&lt;/item&gt;
+&lt;item name='android:statusBarColor'  tools:targetApi='21'&gt;@android:color/transparent&lt;/item&gt;
+&lt;item name='android:enforceStatusBarContrast' tools:targetApi='29'&gt;false&lt;/item&gt;
+
+&lt;item name='android:windowTranslucentStatus'&gt;true&lt;/item&gt;
+&lt;item name='android:windowTranslucentNavigation'&gt;true&lt;/item&gt;
+```
+
+# 显示壁纸
+
+```xml
+&lt;!-- 显示壁纸 --&gt;
+&lt;item name='android:windowShowWallpaper'&gt;true&lt;/item&gt;
+&lt;item name='android:windowBackground'&gt;@android:color/transparent&lt;/item&gt;
+```
+&lt;!-- ##{'timestamp':1619595112}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-xiao-%20Tips%202%EF%BC%88-zhuang-tai-lan-pei-zhi-ji-xian-shi-bi-zhi-deng-%EF%BC%89.html</guid><pubDate>Wed, 28 Apr 2021 07:31:52 +0000</pubDate></item><item><title>Android 小 Tips</title><link>https://blog.ian2018.club/post/Android%20-xiao-%20Tips.html</link><description># Android 对非 SDK 调用限制
 
 从 Android 9 ( API 28 ) 开始，对非 SDK 接口限制
 
