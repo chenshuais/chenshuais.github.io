@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="2020 Google 开发者大会 - 线上
+
+# Day03 - Flutter | Web | Material Design
+
+
+## 1. Flutter性能进展及着色器编译预热
+
+flutter在过去一年中的性能优化进展：
+
+<img src='https://blog-image.ian2018.cn/images/5e89bdafd2fc9159e3153133a9f3235e085e4454.png' style='zoom:50%;' />
+
+### 1.1 性能测试
+
+<img src='https://blog-image.ian2018.cn/images/f5f4f65a17ff5b88cd6973c4d3ebcaa28a7f6541.png' style='zoom:50%;' />
+
+#### 1.1.1 能耗测试
+
+* 能耗 ≈ 速度，但是能耗 ≠ 速度
+* 速度快可以导致能耗高
+* 速度慢也有可能不耗能，如cpu上的任务被别的IO或GPU任务阻塞，进行长时间的等待，但这个时候并没有多大的能耗
+
+目前只加入了iOS的能耗测试工具，Android的会在以后增加。">
+<meta property="og:title" content="2020 Google IO - Day03">
+<meta property="og:description" content="2020 Google 开发者大会 - 线上
+
+# Day03 - Flutter | Web | Material Design
+
+
+## 1. Flutter性能进展及着色器编译预热
+
+flutter在过去一年中的性能优化进展：
+
+<img src='https://blog-image.ian2018.cn/images/5e89bdafd2fc9159e3153133a9f3235e085e4454.png' style='zoom:50%;' />
+
+### 1.1 性能测试
+
+<img src='https://blog-image.ian2018.cn/images/f5f4f65a17ff5b88cd6973c4d3ebcaa28a7f6541.png' style='zoom:50%;' />
+
+#### 1.1.1 能耗测试
+
+* 能耗 ≈ 速度，但是能耗 ≠ 速度
+* 速度快可以导致能耗高
+* 速度慢也有可能不耗能，如cpu上的任务被别的IO或GPU任务阻塞，进行长时间的等待，但这个时候并没有多大的能耗
+
+目前只加入了iOS的能耗测试工具，Android的会在以后增加。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/2020%20Google%20IO%20-%20Day03.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>2020 Google IO - Day03</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">2020 Google IO - Day03</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/chenshuais/chenshuais.github.io/issues/48" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>2020 Google 开发者大会 - 线上</p>
+<h1>Day03 - Flutter | Web | Material Design</h1>
+<h2>1. Flutter性能进展及着色器编译预热</h2>
+<p>flutter在过去一年中的性能优化进展：</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/9b735222ae3fefd02866fb64241315eb6293648dfd357915fe1ac0bc719d13ad/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f356538396264616664326663393135396533313533313333613966333233356530383565343435342e706e67"><img src="https://camo.githubusercontent.com/9b735222ae3fefd02866fb64241315eb6293648dfd357915fe1ac0bc719d13ad/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f356538396264616664326663393135396533313533313333613966333233356530383565343435342e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/5e89bdafd2fc9159e3153133a9f3235e085e4454.png" style="max-width: 100%;"></a></p>
+<h3>1.1 性能测试</h3>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/ad65ffc5345bc8e6ed8a1a93026c6a785c5e1dd84eb6c6d01314ef81cbad383d/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f663566346636356131376666356238386364363937336334643365626361613238613766363534312e706e67"><img src="https://camo.githubusercontent.com/ad65ffc5345bc8e6ed8a1a93026c6a785c5e1dd84eb6c6d01314ef81cbad383d/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f663566346636356131376666356238386364363937336334643365626361613238613766363534312e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/f5f4f65a17ff5b88cd6973c4d3ebcaa28a7f6541.png" style="max-width: 100%;"></a></p>
+<h4>1.1.1 能耗测试</h4>
+<ul>
+<li>能耗 ≈ 速度，但是能耗 ≠ 速度</li>
+<li>速度快可以导致能耗高</li>
+<li>速度慢也有可能不耗能，如cpu上的任务被别的IO或GPU任务阻塞，进行长时间的等待，但这个时候并没有多大的能耗</li>
+</ul>
+<p>目前只加入了iOS的能耗测试工具，Android的会在以后增加。</p>
+<h4>1.1.2 在Timeline中查看CPU/GPU使用率</h4>
+<p>在用 <code class="notranslate">flutter run --profile --track-skia</code> 命令启动App后，打开 Observatory 的监听URL，进入 timeline</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c64c5a7ddb8ee77e4092b82a233ca70becbe9115bcfbe7eed05e7f369a89e0d4/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f373833656538633463396239353439633533653138383332313437303638373933626462613561332e706e67"><img src="https://camo.githubusercontent.com/c64c5a7ddb8ee77e4092b82a233ca70becbe9115bcfbe7eed05e7f369a89e0d4/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f373833656538633463396239353439633533653138383332313437303638373933626462613561332e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/783ee8c4c9b9549c53e18832147068793bdba5a3.png" style="max-width: 100%;"></a></p>
+<p>现在App里触发一段动画，之后在timeline中点击Refresh加载该动画的timeline，选取一段时间线，就可以看到此时的CPU、内存和GPU的使用率。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/6935faee6e97b5abed7dc72ae5c399ea67cc61cbd38ff0b59e8ff73a2a07ab44/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f343462323332343163653131633662663231386538646161383530636163616161376634633030322e706e67"><img src="https://camo.githubusercontent.com/6935faee6e97b5abed7dc72ae5c399ea67cc61cbd38ff0b59e8ff73a2a07ab44/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f343462323332343163653131633662663231386538646161383530636163616161376634633030322e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/44b23241ce11c6bf218e8daa850cacaaa7f4c002.png" style="max-width: 100%;"></a></p>
+<p>除了手动查看timeline，还可以利用FlutterDriver集成测试来自动获取CPU、GPU的使用率的统计信息。在集成测试之前调用 <code class="notranslate">enableFlutterDriverExtension()</code> 来支持Driver集成测试。</p>
+<div class="highlight highlight-source-dart"><pre class="notranslate"><span class="pl-k">void</span> <span class="pl-en">main</span>() {
+  <span class="pl-en">test</span>(<span class="pl-s">'perf test'</span>, () <span class="pl-k">async</span> {
+    <span class="pl-c">// 先建立电脑和手机的连接</span>
+    <span class="pl-c1">FlutterDriver</span> driver <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-c1">FlutterDriver</span>.<span class="pl-en">connect</span>();
+    <span class="pl-c">// 等待3s，为了更好的看到测试初始的状态</span>
+    <span class="pl-k">await</span> <span class="pl-c1">Future</span>&lt;<span class="pl-k">void</span>&gt;.<span class="pl-en">delayed</span>(<span class="pl-k">const</span> <span class="pl-c1">Duration</span>(seconds<span class="pl-k">:</span> <span class="pl-c1">3</span>));
+    <span class="pl-c">// 收集timeline进行性能测试</span>
+    <span class="pl-k">final</span> <span class="pl-c1">Timeline</span> timeline <span class="pl-k">=</span> <span class="pl-k">await</span> driver.<span class="pl-en">traceAction</span>(() <span class="pl-k">async</span> {
+      <span class="pl-c">// 点击 Button 播放动画</span>
+      <span class="pl-k">await</span> driver.<span class="pl-en">tap</span>(find.<span class="pl-en">byType</span>(<span class="pl-s">'Button'</span>));
+      <span class="pl-c">// 等待3s，获得这3s的性能数据</span>
+      <span class="pl-k">await</span> <span class="pl-c1">Future</span>&lt;<span class="pl-k">void</span>&gt;.<span class="pl-en">delayed</span>(<span class="pl-k">const</span> <span class="pl-c1">Duration</span>(seconds<span class="pl-k">:</span> <span class="pl-c1">3</span>));
+    });
+    <span class="pl-c">// 将timeline的性能数据 输出到 前缀为perf的json文件中</span>
+    <span class="pl-k">final</span> <span class="pl-c1">TimelineSummary</span> summary <span class="pl-k">=</span> <span class="pl-c1">TimelineSummary</span>.<span class="pl-en">summarize</span>(timeline);
+    summary.<span class="pl-en">writeSummartToFile</span>(<span class="pl-s">'perf'</span>, pretty<span class="pl-k">:</span> <span class="pl-c1">true</span>);
+    driver.<span class="pl-en">close</span>();
+  });
+}</pre></div>
+<p>通过运行 <code class="notranslate">flutter drive --profile -t xxx/xxx/dart</code> 运行集成测试。</p>
+<h3>1.2 SkSL 着色器编译预热</h3>
+<p>使用SkSL预热，可以将最慢帧的渲染速度提升2-5倍，消除着色器编译卡顿。</p>
+<h4>1.2.1 如何确定着色器编译卡顿</h4>
+<p>着色器编译卡顿是：一个Flutter App第一次渲染某类动画时有明显的卡顿，之后再渲染同样的动画就没有卡顿了，这很有可能就是着色器编译卡顿。</p>
+<p>要进一步确定是否为编译器着色卡顿，可以使用命令 <code class="notranslate">flutter run --profile --trace-skia</code> 运行App后，进入Observatory 的timeline，查看raster thread，查看一帧的Draw函数耗时，如果有长时间的 GrGLProgramBuilder::finalize，就意味着有着色器编译卡顿。</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c952c30664fcb011c43ef6003d07edde2473bebea94c1b389ee0819aeb9b08f0/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f376131303138393736383565623730393265623163373039333538646238663131333136613731612e706e67"><img src="https://camo.githubusercontent.com/c952c30664fcb011c43ef6003d07edde2473bebea94c1b389ee0819aeb9b08f0/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f376131303138393736383565623730393265623163373039333538646238663131333136613731612e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/7a101897685eb7092eb1c709358db8f11316a71a.png" style="max-width: 100%;"></a></p>
+<h4>1.2.2 使用SkSL预热降低卡顿</h4>
+<p>手动方式：</p>
+<ul>
+<li>
+<p>在运行App时，加入 cache-sksl 的参数</p>
+<pre class="notranslate"><code class="notranslate">flutter run --profile --cache-sksl
+</code></pre>
+</li>
+<li>
+<p>然后操作App，产生有卡顿的动画，然后回调命令界面，按？键可以得到所有命令。其中 M 可以将捕捉到的SkSL着色器进行导出。按下M后得到一个json文件，然后关闭程序。</p>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/1976d281b024131019d392666c57de89e4e4a0d38e8079d8d223d483f934698a/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f356438373462646437366235313139663932306636333039623137303332616666393966353465642e706e67"><img src="https://camo.githubusercontent.com/1976d281b024131019d392666c57de89e4e4a0d38e8079d8d223d483f934698a/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f356438373462646437366235313139663932306636333039623137303332616666393966353465642e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/5d874bdd76b5119f920f6309b17032aff99f54ed.png" style="max-width: 100%;"></a>
+</li>
+<li>
+<p>然后使用 bundle-sksl-path 参数和刚刚得到的json文件路径，build一个包含SkSL着色器预热的App</p>
+<pre class="notranslate"><code class="notranslate">flutter build apk --bundle-sksl-path xxx/xxx/flutter_01.sksl.json --profile
+</code></pre>
+</li>
+<li>
+<p>最后通过 use-application-binary 运行这个新的App，再次查看timeline，可以看到卡顿已经消失了</p>
+<pre class="notranslate"><code class="notranslate">flutter run --profile --use-application-binary xxx/xxx/app-profile.apk --track-skia
+</code></pre>
+</li>
+</ul>
+<p>自动化方式：</p>
+<p>通过集成测试自动化生成SkSL着色器文件。</p>
+<ul>
+<li>
+<p>编写好测试文件</p>
+</li>
+<li>
+<p>执行以下命令，可以将运行当中遇到的所有着色器输出到json文件中</p>
+<pre class="notranslate"><code class="notranslate">flutter drive --profile -t xxx/xxx.dart --cache-sksl --write0sksl-on-exit flutter_01.sksl.json
+</code></pre>
+</li>
+</ul>
+<p>之后的步骤就和手动的一样了，使用<code class="notranslate">bundle-sksl-path</code>命令build一个SkSL预热的apk。</p>
+<h4>1.2.3 更多内容</h4>
+<p><a href="https://flutter.dev/docs/perf/rendering/shader" rel="nofollow">https://flutter.dev/docs/perf/rendering/shader</a></p>
+<h2>2. 新的 Flutter 开发工具功能：内存和包体积调试工具</h2>
+<p>默认情况下，只要安装了Flutter环境，就已经安装了DevTools工具。</p>
+<p>Dart开发工具新功能：</p>
+<ul>
+<li>内存调试</li>
+<li>内存测试</li>
+<li>包体积调试</li>
+</ul>
+<p>Dart开发工具的功能：</p>
+<ul>
+<li>布局检查（Inspector）</li>
+<li>性能调试（Performance）</li>
+<li>内存调试（Memory）</li>
+<li>网络调试（Network）</li>
+<li>包体积调试（App Size）</li>
+<li>调试器（Debugger）</li>
+<li>日志（Logging）</li>
+</ul>
+<h3>2.1 内存调试</h3>
+<p>内存调试器功能：</p>
+<ul>
+<li>时间窗格（Dart和Android内存）</li>
+<li>手动和自动快照（snapshot）和垃圾回收（GC）</li>
+<li>内存分析</li>
+<li>内存堆分配累加器（Heap Allocation Accumulators）</li>
+<li>通过命令行界面将内存统计信息导出到json文件</li>
+</ul>
+<h3>2.2 内存测试</h3>
+<p>内存测试的方法：</p>
+<ul>
+<li>通过ADB交互直接进行内存测试</li>
+<li>Dart开发工具内存测试</li>
+<li>iOS内存测试</li>
+</ul>
+<p><a href="https://github.com/flutter/flutter/wiki/How-to-write-a-memory-test-for-Flutter">更多详细信息</a></p>
+<h3>2.3 包体积调试</h3>
+<p>包体积调试功能：</p>
+<ul>
+<li>可视化应用程序的总大小，包括功能级别的Dart AOT快照</li>
+<li>分析快照和应用包（APK，IPA等）</li>
+<li>分析快照或应用程序包（APK，IPA等）的差异</li>
+<li>查看软件包级别的应用大小归因数据</li>
+</ul>
+<h2>3. Pigeon 与 Flutter 混合工程</h2>
+<p>Pigeon工具库可以帮助简化Flutter在混合开发中，原生与Flutter代码之间的函数调用与数据共享，减少模版代码，使编写插件更简单。</p>
+<p>使用 MethodChannels 和 Pigeon 对比：</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/c4d7627aa8a514276b572c32a191dc1664668795db27f2e34ab4807c64836ab3/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f393433633436333239616330333166353866656164356639626263656361313231376366663262372e706e67"><img src="https://camo.githubusercontent.com/c4d7627aa8a514276b572c32a191dc1664668795db27f2e34ab4807c64836ab3/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f393433633436333239616330333166353866656164356639626263656361313231376366663262372e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/943c46329ac031f58fead5f9bbceca1217cff2b7.png" style="max-width: 100%;"></a></p>
+<p>可以看到 MethodChannels的方法高度依赖与字符串检查和类型转换，但在Pigeon中就可以像编写原生方法那样去实现。</p>
+<h3>3.1 Pigeon的运行流程</h3>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/3c74f47ce77610ceb208dfe4b5d19cc9bbf0a3b0707b56b5aad617437abb3a19/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f623931343266363832333936396562646631323632363637646138313264656266626539356132622e706e67"><img src="https://camo.githubusercontent.com/3c74f47ce77610ceb208dfe4b5d19cc9bbf0a3b0707b56b5aad617437abb3a19/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f623931343266363832333936396562646631323632363637646138313264656266626539356132622e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/b9142f6823969ebdf1262667da812debfbe95a2b.png" style="max-width: 100%;"></a></p>
+<p>首先声明好接口定义，然后运行Pigeon工具，它可以为不同平台生成代码，这些代码都会使用MethodChannels的方法，省去了平台通道的样板代码。</p>
+<h3>3.2 Pigeon 使用方法</h3>
+<ul>
+<li>
+<p>在 <code class="notranslate">pubspec.yaml</code> 中的 <code class="notranslate">dev_dependencies</code> 下添加 Pigeon 插件依赖，然后运行 <code class="notranslate">flutter pub get</code> 安装。</p>
+<pre class="notranslate"><code class="notranslate">dev_dependencies:
+	flutter_test:
+		sdk: flutter
+	pigeon: ^0.1.3
+</code></pre>
+</li>
+<li>
+<p>一般会在项目根目录下新建一个pigeons的文件夹，用来放Pigeon的接口定义文件</p>
+</li>
+<li>
+<p>在pigeons文件下创建一个dart文件，然后声明接口定义</p>
+<div class="highlight highlight-source-dart"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s">'package:pigeon/pigeon.dart'</span>;
+
+<span class="pl-c">// 需要的数据类</span>
+<span class="pl-k">class</span> <span class="pl-c1">Version</span> {
+  <span class="pl-c1">String</span> string;
+}
+
+<span class="pl-c">// 声明Flutter调用原生的方法，（如果原生要调Flutter的方法，可以用@FlutterApi的注解）</span>
+<span class="pl-k">@HostApi</span>()
+<span class="pl-k">abstract</span> <span class="pl-k">class</span> <span class="pl-c1">ExampleApi</span> {
+  <span class="pl-c1">Version</span> <span class="pl-en">getPlatformVersion</span>();
+}</pre></div>
+</li>
+<li>
+<p>使用Pigeon生成不同平台的代码</p>
+<pre class="notranslate"><code class="notranslate">flutter pub run pigeon \
+  --input pigeons/xxx.dart \ #指定输入为刚刚编写的pigeon文件，以下都是设置不同的输出选项
+  --dart_out lib/xxxxx.dart \ #dart
+  --objc_header_out ios/Runner/xxxxx.h \ #ios
+  --objc_source_out ios/Runner/xxxxx.m \ #ios
+  --java_out ./android/app/src/main/java/dev/flutter/pigeon/xxxxx.java \ #android
+  --java_package "dev.flutter.pigeon" #指定android包名
+</code></pre>
+</li>
+<li>
+<p>开始使用</p>
+<ul>
+<li>
+<p>在原生代码中实现刚声明的接口</p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-smi">dev.flutter.pigeon.xxxxx</span>
+
+<span class="pl-k">class</span> <span class="pl-en">PigeonPlugin</span>: <span class="pl-en">FlutterPlugin</span>, xxxxx.<span class="pl-en">ExampleApi</span> {
+  <span class="pl-k">private</span> <span class="pl-k">lateinit</span> <span class="pl-k">var</span> channel <span class="pl-k">:</span> <span class="pl-en">MethodChannel</span>
+
+  <span class="pl-k">override</span> <span class="pl-k">fun</span> <span class="pl-en">onAttachedToEngine</span>(@NonNull <span class="pl-smi">flutterPluginBinding</span><span class="pl-k">:</span> <span class="pl-en">FlutterPlugin</span>.<span class="pl-en">FlutterPluginBinding</span>) {
+    xxxxx.<span class="pl-en">ExampleApi</span>.setup(flutterPluginBinding.binaryMessenger, <span class="pl-c1">this</span>)
+  }
+
+  <span class="pl-k">override</span> <span class="pl-k">fun</span> <span class="pl-en">onDetachedFromEngine</span>(@NonNull <span class="pl-smi">binding</span><span class="pl-k">:</span> <span class="pl-en">FlutterPlugin</span>.<span class="pl-en">FlutterPluginBinding</span>) {
+    xxxxx.<span class="pl-en">ExampleApi</span>.setup(binding.binaryMessenger, <span class="pl-c1">null</span>)
+  }
+
+  <span class="pl-c"><span class="pl-c">//</span> 实现接口的方法</span>
+  <span class="pl-k">override</span> <span class="pl-k">fun</span> <span class="pl-en">getPlatformVersion</span>(): xxxxx.<span class="pl-en">Version</span> {
+    <span class="pl-k">var</span> result <span class="pl-k">=</span> xxxxx.<span class="pl-en">Version</span>()
+    result.string <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>Android <span class="pl-e">${android.os.<span class="pl-en">Build</span>.<span class="pl-en">VERSION</span>.<span class="pl-en">RELEASE</span>}</span><span class="pl-pds">"</span></span>
+    <span class="pl-k">return</span> result
+  }
+}</pre></div>
+</li>
+<li>
+<p>在dart中调用原生方法</p>
+<div class="highlight highlight-source-dart"><pre class="notranslate"><span class="pl-k">import</span> <span class="pl-s">'dart:async'</span>;
+
+<span class="pl-k">import</span> <span class="pl-s">'package:flutter/services.dart'</span>;
+<span class="pl-k">import</span> <span class="pl-s">'xxxxx.dart'</span>;
+
+<span class="pl-k">class</span> <span class="pl-c1">PigeonPlugin</span> {
+  <span class="pl-k">static</span> <span class="pl-c1">ExampleApi</span> _apiInstance;
+
+  <span class="pl-k">static</span> <span class="pl-c1">ExampleApi</span> <span class="pl-k">get</span> _api {
+    <span class="pl-k">if</span> (_apiInstance <span class="pl-k">==</span> <span class="pl-c1">null</span>) {
+      _apiInstance <span class="pl-k">=</span> <span class="pl-c1">ExampleApi</span>();
+    }
+    <span class="pl-k">return</span> _apiInstance;
+  }
+
+  <span class="pl-k">static</span> <span class="pl-c1">Future</span>&lt;<span class="pl-c1">String</span>&gt; <span class="pl-k">get</span> platformVersion <span class="pl-k">async</span> {
+    <span class="pl-c">// 调用原生的方法</span>
+    <span class="pl-c1">Version</span> version <span class="pl-k">=</span> <span class="pl-k">await</span> _api.<span class="pl-en">getPlatformVersion</span>();
+    <span class="pl-k">return</span> version.string;
+  }
+}</pre></div>
+</li>
+</ul>
+</li>
+</ul>
+<h3>3.3 更多信息</h3>
+<ul>
+<li>
+<p><a href="https://github.com/gaaclarke/GiantsA2A">视频示例代码</a></p>
+</li>
+<li>
+<p><a href="https://pub.flutter-io.cn/packages/pigeon" rel="nofollow">Pigeon文档</a></p>
+</li>
+<li>
+<p><a href="https://flutter.dev/docs/development/add-to-app" rel="nofollow">Flutter混合编程文档</a></p>
+</li>
+</ul>
+<h2>4. 阿里巴巴如何在复杂业务场景中使用 Flutter</h2>
+<h3>4.1 阿里中使用了Flutter的App：</h3>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/92dde5620d88b1f7a111ac89d12c1d69e7bb8d9805e0a9a757a55f399f5eee2f/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f356463363333653631386462366130323833303437393766373464613436623437623561376165392e706e67"><img src="https://camo.githubusercontent.com/92dde5620d88b1f7a111ac89d12c1d69e7bb8d9805e0a9a757a55f399f5eee2f/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f356463363333653631386462366130323833303437393766373464613436623437623561376165392e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/5dc633e618db6a028304797f74da46b47b5a7ae9.png" style="max-width: 100%;"></a></p>
+<h3>4.2 Flutter的技术优势</h3>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/30c342b45d2b9639fa05ab4edc00d9829a7901a50c6d937eff671fdad2e5750e/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f303363396164326639353666663539323735343766353937373665613932393531623032333439652e706e67"><img src="https://camo.githubusercontent.com/30c342b45d2b9639fa05ab4edc00d9829a7901a50c6d937eff671fdad2e5750e/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f303363396164326639353666663539323735343766353937373665613932393531623032333439652e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/03c9ad2f956ff5927547f59776ea92951b02349e.png" style="max-width: 100%;"></a></p>
+<h3>4.3 Flutter的适用场景</h3>
+<p><img src="https://blog-image.ian2018.cn/images/90ba012494e4935d8545880a21e741e5353dd2af.png"></p>
+<h3>4.4 融入客户端开发工作流</h3>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/82cc9236aa05119a736a0c15993625181bf24d1d98cf485a29dc5b6c21d3400d/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f383030623136376561376539636238353232636166313234353362326234396264663431336362642e706e67"><img src="https://camo.githubusercontent.com/82cc9236aa05119a736a0c15993625181bf24d1d98cf485a29dc5b6c21d3400d/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f383030623136376561376539636238353232636166313234353362326234396264663431336362642e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/800b167ea7e9cb8522caf12453b2b49bdf413cbd.png" style="max-width: 100%;"></a></p>
+<h3>4.5 接入现存技术积累</h3>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b0f53cfa646910d6f18b3caffc3b9ee0d79ac27f177882fcbbc9411af61d72fb/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f303930366534313864326562636565306238363962346634363466346332313838303432653463332e706e67"><img src="https://camo.githubusercontent.com/b0f53cfa646910d6f18b3caffc3b9ee0d79ac27f177882fcbbc9411af61d72fb/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f303930366534313864326562636565306238363962346634363466346332313838303432653463332e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/0906e418d2ebcee0b869b4f464f4c2188042e4c3.png" style="max-width: 100%;"></a></p>
+<p>其中导航栈管理和状态管理已经开源</p>
+<h3>4.6 实际案例：<a href="https://mp.weixin.qq.com/s/Mcfj3lRR8VJACxsjjIiVsA" rel="nofollow">解决多图长列表页面的内存问题</a></h3>
+<p>问题：</p>
+<ul>
+<li>页面很长、图片很多，首屏时间太长</li>
+<li>大量图片同时加载并生成纹理，内存飙升</li>
+<li>Sliver中每项Cell拆分粒度太大，单个Cell占用多屏，难以实现回收</li>
+</ul>
+<p>解决方案：</p>
+<ul>
+<li>拆分Cell，使每一项变得更小</li>
+<li>根据坐标判断图片是否在屏幕内，添加通知图片懒加载和回收</li>
+<li>提前获取图片宽高大小，减少布局和重绘</li>
+<li>以图片为单位进行纹理回收，而不是以Sliver中的每项Cell为单位</li>
+<li>通过外接原生图片库，实现共用本地缓存</li>
+</ul>
+<h3>4.7 Flutter<a href="https://mp.weixin.qq.com/s/Xh18fq7CYUoPEnnL5eL5Fg" rel="nofollow">体系化建设</a></h3>
+<p>思路：</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/bbc522361ab4135ec730b66997a9965a3506f272016d06bdeac50454fad2d272/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f346362323132386330363838646461383935663339373534386634653561653866636433363236642e706e67"><img src="https://camo.githubusercontent.com/bbc522361ab4135ec730b66997a9965a3506f272016d06bdeac50454fad2d272/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f346362323132386330363838646461383935663339373534386634653561653866636433363236642e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/4cb2128c0688dda895f397548f4e5ae8fcd3626d.png" style="max-width: 100%;"></a></p>
+<p>具体技术规划：</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/b50969abac87a37ff0eb8cbc1869501a561d08bfb9b294fb8fd13d37b406a3f2/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f316137383637386664383536303535346335363633623936343266356565323335636135613563632e706e67"><img src="https://camo.githubusercontent.com/b50969abac87a37ff0eb8cbc1869501a561d08bfb9b294fb8fd13d37b406a3f2/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f316137383637386664383536303535346335363633623936343266356565323335636135613563632e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/1a78678fd8560554c5663b9642f5ee235ca5a5cc.png" style="max-width: 100%;"></a></p>
+<p>各项任务之间的联系：</p>
+<p><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/4981f5d3c4b420ce5ce90dd4cdce28a2a694187eba50214fea8c0335bf69e29e/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f613137303866336430343631616236343565343362356566303661336137303030643736663031382e706e67"><img src="https://camo.githubusercontent.com/4981f5d3c4b420ce5ce90dd4cdce28a2a694187eba50214fea8c0335bf69e29e/68747470733a2f2f626c6f672d696d6167652e69616e323031382e636e2f696d616765732f613137303866336430343631616236343565343362356566303661336137303030643736663031382e706e67" data-canonical-src="https://blog-image.ian2018.cn/images/a1708f3d0461ab645e43b5ef06a3a7000d76f018.png" style="max-width: 100%;"></a></p>
+<h3>4.8 社区贡献</h3>
+<p>开源项目：</p>
+<ul>
+<li><a href="https://github.com/alibaba-flutter/flutter-boot">flutter-boost</a> 核心解决了混合开发模式下的两个问题：flutter混合开发的工程化设计和混合栈</li>
+<li><a href="https://github.com/alibaba/fish-redux">fish-redux</a> 一个基于 Redux 数据管理的组装式 flutter 应用框架， 它特别适用于构建中大型的复杂应用</li>
+<li><a href="https://github.com/alibaba/flutter-go">flutter-go</a> 一个提供了各种常用的widget组件的库，目前暂停维护</li>
+</ul>
+<p>书籍：</p>
+<ul>
+<li><a href="https://developer.aliyun.com/article/720790" rel="nofollow">Flutter in action</a></li>
+<li><a href="https://developer.aliyun.com/article/754410" rel="nofollow">Flutter 技术解析与实战</a></li>
+<li><a href="https://developer.aliyun.com/article/765471" rel="nofollow">AliFlutter 体系化建设和实践</a></li>
+</ul>
+<h2>5. 在 Flutter 和 Android 中使用 Material Motion</h2>
+<p><a href="https://material.io/design/motion/understanding-motion.html#principles" rel="nofollow">Motion</a> 有助于使界面更具表现力、更易于使用。</p>
+<p>设计原则：</p>
+<p><img src="https://blog-image.ian2018.cn/images/c7e34bd4c0274daf2cab591ebe48eb5fd9747c93.gif"></p>
+<h3>5.1 Transition</h3>
+<p>Transition是一种可将同一界面中的不同状态连接的动画。让用户可以感知界面元素之间的关系。</p>
+<p><a href="https://material.io/design/motion/the-motion-system.html" rel="nofollow">Material Motion指南</a>中介绍了四种模式，涵盖了最常用的Transition类型，使用Motion库可以轻松实现这些效果。</p>
+<p>目前Motion库只支持Android和Flutter：</p>
+<table role="table">
+<thead>
+<tr>
+<th>平台</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Android</td>
+<td><a href="https://material.io/develop/android/theming/motion/" rel="nofollow"><strong>Available</strong></a></td>
+</tr>
+<tr>
+<td>iOS</td>
+<td>Not planned</td>
+</tr>
+<tr>
+<td>Web</td>
+<td>Not planned</td>
+</tr>
+<tr>
+<td>Flutter</td>
+<td><a href="https://pub.dev/packages/animations" rel="nofollow"><strong>Available</strong></a></td>
+</tr>
+</tbody>
+</table>
+<h4>5.1.1 Container Transform</h4>
+<p>可以在两个元素之间实现无缝连接。</p>
+<p><img src="https://blog-image.ian2018.cn/images/b8e22fd2fea932c8e8077a03e6da884cca9a1d29.gif"></p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">val</span> transform <span class="pl-k">=</span> <span class="pl-en">MaterialContainerTransform</span>().<span class="pl-c1">apply</span> {
+  <span class="pl-c"><span class="pl-c">//</span> 设置开始和结束View</span>
+  startView <span class="pl-k">=</span> fab
+  endView <span class="pl-k">=</span> bottomToolbar
+
+  <span class="pl-c"><span class="pl-c">//</span> 确保容器转换仅在单个目标上运行</span>
+  addTarget(endView)
+
+  <span class="pl-c"><span class="pl-c">//</span> 添加运行路径</span>
+  pathMotion <span class="pl-k">=</span> <span class="pl-en">MaterialArcMotion</span>()
+
+  <span class="pl-c"><span class="pl-c">//</span> 移除蒙层颜色</span>
+  scrimColor <span class="pl-k">=</span> <span class="pl-en">Color</span>.<span class="pl-en">TRANSPARENT</span>
+}
+
+<span class="pl-c"><span class="pl-c">//</span> 开始延迟执行，并设置开始和结束view的可见性</span>
+<span class="pl-en">TransitionManager</span>.beginDelayedTransition(container, transform)
+fab.visibility <span class="pl-k">=</span> <span class="pl-en">View</span>.<span class="pl-en">GONE</span>
+bottomToolbar.visibility <span class="pl-k">=</span> <span class="pl-en">View</span>.<span class="pl-en">VISIBLE</span></pre></div>
+<h4>5.1.2 Shared axis</h4>
+<p>会使用淡化效果，并在转换时共用X轴、Y轴或Z轴。</p>
+<p><img src="https://blog-image.ian2018.cn/images/7fa1e073dfce2b029b15f54cf662dd55e81ebb92.gif"></p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> 创建Motion实例，并设置要使用的轴</span>
+<span class="pl-k">val</span> sharedAxis <span class="pl-k">=</span> <span class="pl-en">MaterialSharedAxis</span>(<span class="pl-en">MaterialSharedAxis</span>.<span class="pl-en">Y</span>, <span class="pl-c1">true</span>)
+
+<span class="pl-c"><span class="pl-c">//</span> 使用TransitionManager延迟开始</span>
+<span class="pl-en">TransitionManager</span>.beginDelayedTransition(container, sharedAxis)
+
+<span class="pl-c"><span class="pl-c">//</span> 设置开始和结束view的可见性</span>
+outgoingView.visibility <span class="pl-k">=</span> <span class="pl-en">View</span>.<span class="pl-en">GONE</span>
+incomingView.visibility <span class="pl-k">=</span> <span class="pl-en">View</span>.<span class="pl-en">VISIBLE</span></pre></div>
+<h4>5.1.3 Fade Through（淡出后淡入）</h4>
+<p>适用于元素之间的关系不太紧密的情况。</p>
+<p><img src="https://blog-image.ian2018.cn/images/0097b8664adda31eaecf2b1c3a15e0a689ce9d36.gif"></p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> 创建淡出后淡入Motion实例</span>
+<span class="pl-k">val</span> fadeThrough <span class="pl-k">=</span> <span class="pl-en">MaterialFadeThrough</span>()
+
+<span class="pl-c"><span class="pl-c">//</span> 使用TransitionManager延迟开始</span>
+<span class="pl-en">TransitionManager</span>.beginDelayedTransition(container, fadeThrough)
+
+<span class="pl-c"><span class="pl-c">//</span> 切换两个试图的可见性</span>
+outgoingView.visibility <span class="pl-k">=</span> <span class="pl-en">View</span>.<span class="pl-en">GONE</span>
+incomingView.visibility <span class="pl-k">=</span> <span class="pl-en">View</span>.<span class="pl-en">VISIBLE</span></pre></div>
+<h4>5.1.4 Fade（淡化）</h4>
+<p>适用于进入或退出画面的界面元素，如对话框、菜单等。</p>
+<p><img src="https://blog-image.ian2018.cn/images/f9481ec474c61f8cbce1de805e34e8138efdd2bf.gif"></p>
+<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span> 创建Fade Motion实例</span>
+<span class="pl-k">val</span> materialFade <span class="pl-k">=</span> <span class="pl-en">MaterialFade</span>().<span class="pl-c1">apply</span> {
+  duration <span class="pl-k">=</span> <span class="pl-c1">150L</span>
+}
+<span class="pl-c"><span class="pl-c">//</span> 使用TransitionManager延迟开始</span>
+<span class="pl-en">TransitionManager</span>.beginDelayedTransition(container, materialFade)
+<span class="pl-c"><span class="pl-c">//</span> 设置view的可见性</span>
+fab.visibility <span class="pl-k">=</span> <span class="pl-en">View</span>.<span class="pl-en">VISIBLE</span></pre></div>
+<h3>5.2 更多信息</h3>
+<p><a href="https://material.io/design/motion" rel="nofollow">https://material.io/design/motion</a></p>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>

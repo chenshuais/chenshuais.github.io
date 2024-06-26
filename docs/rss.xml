@@ -1,5 +1,26 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:39:44 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>算法学习随笔08</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-08.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/bfb08bcb716a91120ade5e5d9b2bceef7c82eb70.png'&gt;`
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 15:41:21 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>2020 Google IO - Day03</title><link>https://blog.ian2018.club/post/2020%20Google%20IO%20-%20Day03.html</link><description>2020 Google 开发者大会 - 线上
+
+# Day03 - Flutter | Web | Material Design
+
+
+## 1. Flutter性能进展及着色器编译预热
+
+flutter在过去一年中的性能优化进展：
+
+&lt;img src='https://blog-image.ian2018.cn/images/5e89bdafd2fc9159e3153133a9f3235e085e4454.png' style='zoom:50%;' /&gt;
+
+### 1.1 性能测试
+
+&lt;img src='https://blog-image.ian2018.cn/images/f5f4f65a17ff5b88cd6973c4d3ebcaa28a7f6541.png' style='zoom:50%;' /&gt;
+
+#### 1.1.1 能耗测试
+
+* 能耗 ≈ 速度，但是能耗 ≠ 速度
+* 速度快可以导致能耗高
+* 速度慢也有可能不耗能，如cpu上的任务被别的IO或GPU任务阻塞，进行长时间的等待，但这个时候并没有多大的能耗
+
+目前只加入了iOS的能耗测试工具，Android的会在以后增加。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2020%20Google%20IO%20-%20Day03.html</guid><pubDate>Wed, 26 Jun 2024 15:40:55 +0000</pubDate></item><item><title>算法学习随笔08</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-08.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/bfb08bcb716a91120ade5e5d9b2bceef7c82eb70.png'&gt;`
 
 # Week09 学习笔记
 
