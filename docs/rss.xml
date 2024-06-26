@@ -1,13 +1,154 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 14:50:13 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>算法学习随笔02</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-02.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/551fee04516aebc8be1314d3f1e8b1754e2cc0c0.png'&gt;`
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 14:51:52 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>算法学习随笔02</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-02.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/551fee04516aebc8be1314d3f1e8b1754e2cc0c0.png'&gt;`
 
 # Week02 学习笔记
 
 ## 1  哈希表、映射、集合的实现与特性
 
-* 哈希表（Hash table）也叫散列表。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-02.html</guid><pubDate>Wed, 26 Jun 2024 14:49:53 +0000</pubDate></item><item><title>自学之路：初识HTTP——《图解HTTP》note1</title><link>https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</link><description># 前言
+* 哈希表（Hash table）也叫散列表。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-02.html</guid><pubDate>Wed, 26 Jun 2024 14:49:53 +0000</pubDate></item><item><title>算法学习随笔01</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-01.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/80da86e91597b0ed66841d3875a6b7db3cd051cd.png'&gt;`
 
-最近打算学习一些网络相关的知识，经别人推荐，说《图解HTTP》这本书不错，于是便买来打算学习一波。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</guid><pubDate>Wed, 26 Jun 2024 14:48:48 +0000</pubDate></item><item><title>自学之路：手机卫士</title><link>https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</link><description>## 在自学时遇到的一些困难
+# Week01 学习笔记
+
+## 1 学习算法方法
+
+### 1.1 课程学习流程
+
+* 课前预习，把ppt先过一遍
+* 倍速看视频，不懂的地方暂停反复看
+* 做课后练习题，刻意练习
+* 构建自己的知识图谱，逐渐完善
+
+### 1.2 做题流程 五毒神掌
+
+* 5分钟看题，不要着急做，先理解题目
+* 10分钟内想不出来，看题解，理解别人的代码
+* 自己写一遍，尽量不再看题解
+* 自己AC之后，看国际站上的高分解题方法
+* 回来自己再做一遍
+* 一天后，一周后再来做一遍，忘记了就再重复一遍上面的流程，直到不看题解就能做出来
+* 面试前集中过一遍
+
+### 1.3 数据结构与算法脑图
+
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/991b44ffa909e7dd89d1dd5041c0640fe3b5e988.png'&gt;`
+
+
+## 2 编程习惯
+
+* 设置好最适合自己的编程环境
+* 摒弃之前的坏习惯
+* 自顶向下的编程方式，结构清晰
+
+## 3 复杂度分析
+
+### 3.1 时间复杂度
+
+只看最高的复杂度
+
+常见的时间复杂度
+
+* O(1) 常数级别，如散列表操作
+* O(log n) 对数级别，如二分查找
+* O(n) 线性级别，如计数排序
+* O(n^2) 平方级别，如冒泡排序
+* O(2^n) 指数级别，如斐波拉契递归
+* O(n!) 阶乘
+
+### 3.2 空间复杂度
+
+有没有额外申请空间，原地操作为O(1)
+
+* 数组的长度
+* 递归的深度
+
+## 4 数组、链表、跳表
+
+### 4.1 数组
+
+* 随机访问，O(1)时间复杂度
+* 插入删除，O(n)时间复杂度 (涉及到元素的搬移)
+
+Java中的ArrayList就是对数组的封装，默认数组大小是10，
+每次插入都会进行元素的copy，
+如果大小不够，就会进行扩容，申请一个当前大小二倍的空间，再把当前元素copy过去。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-01.html</guid><pubDate>Wed, 26 Jun 2024 14:49:49 +0000</pubDate></item><item><title>Arrays中的ArrayList</title><link>https://blog.ian2018.club/post/Arrays-zhong-de-ArrayList.html</link><description># 1. Arrays 类介绍
+
+&gt; This class contains various methods for manipulating arrays (such as sorting and searching). This class also contains a static factory that allows arrays to be viewed as lists.
+&gt; 
+&gt; 该类包含用于操作数组的各种方法（例如排序和搜索）。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Arrays-zhong-de-ArrayList.html</guid><pubDate>Wed, 26 Jun 2024 14:49:41 +0000</pubDate></item><item><title>Markdown语法笔记</title><link>https://blog.ian2018.club/post/Markdown-yu-fa-bi-ji.html</link><description># 简单记一下markdown的语法
+
+## 1.标题
+```
+# 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+```
+最多有六级标题，只需要前面加上 # 即可
+
+
+## 2.字体
+```
+**加粗字体**
+*斜体*
+***斜体加粗***
+~~删除线字体~~
+```
+效果如下
+
+&gt;**加粗字体**
+&gt;
+&gt;*斜体*
+&gt;
+&gt;***斜体加粗***
+&gt;
+&gt;~~删除线字体~~
+
+
+
+## 3.引用
+可以套好多层引用下去
+```
+&gt;一级引用
+&gt;&gt;二级引用
+&gt;&gt;&gt;三级引用
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;n级引用
+```
+效果如下
+&gt;一级引用
+&gt;&gt;二级引用
+&gt;&gt;&gt;三级引用
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;n级引用
+
+## 4.分割线
+三个或三个以上的 - 或 *
+```
+---
+----
+***
+****
+```
+效果如下，好像看不出啥区别
+
+&gt;---
+&gt;----
+&gt;***
+&gt;****
+
+## 5.图片
+```
+![图片下的文字](图片地址 '图片标题')
+```
+图片标题是指当鼠标移动到图片上时显示的内容，标题可以不加。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Markdown-yu-fa-bi-ji.html</guid><pubDate>Wed, 26 Jun 2024 14:49:19 +0000</pubDate></item><item><title>屏幕适配小记</title><link>https://blog.ian2018.club/post/ping-mu-shi-pei-xiao-ji.html</link><description>最近在工作中遇到了屏幕适配的问题，这里做个记录，方便以后查看。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ping-mu-shi-pei-xiao-ji.html</guid><pubDate>Wed, 26 Jun 2024 14:49:15 +0000</pubDate></item><item><title>探索：搭建GitLab服务器(CentOS7.2)</title><link>https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-da-jian-GitLab-fu-wu-qi-%28CentOS7.2%29.html</link><description># 前言 #
+
+GitLab 是一个用于仓库管理系统的开源项目，使用Git作为代码管理工具，并在此基础上搭建起来的web服务。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-da-jian-GitLab-fu-wu-qi-%28CentOS7.2%29.html</guid><pubDate>Wed, 26 Jun 2024 14:49:04 +0000</pubDate></item><item><title>音乐播放器思路</title><link>https://blog.ian2018.club/post/yin-le-bo-fang-qi-si-lu.html</link><description>## 开发背景
+
+为了放松心情，让听歌更加方便快捷，没有广告等其他干扰使用，于是便有了自己写一个音乐播放器的想法。</description><guid isPermaLink="true">https://blog.ian2018.club/post/yin-le-bo-fang-qi-si-lu.html</guid><pubDate>Wed, 26 Jun 2024 14:48:56 +0000</pubDate></item><item><title>自学之路：初识HTTP——《图解HTTP》note1</title><link>https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</link><description># 前言
+
+最近打算学习一些网络相关的知识，经别人推荐，说《图解HTTP》这本书不错，于是便买来打算学习一波。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</guid><pubDate>Wed, 26 Jun 2024 14:48:48 +0000</pubDate></item><item><title>新生使用IntelliJ IDEA计划</title><link>https://blog.ian2018.club/post/xin-sheng-shi-yong-IntelliJ%20IDEA-ji-hua.html</link><description># 1.为什么要使用 IntelliJ IDEA
+
+Google 早在2015年中期，就宣布结束对 Eclipse ADT（安卓开发工具）的支持，并推荐开发者使用 Google 专门为开发者定制的 Android Studio ，而且提供了将项目从 Eclipse 转移到 Android Studio 的方法。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xin-sheng-shi-yong-IntelliJ%20IDEA-ji-hua.html</guid><pubDate>Wed, 26 Jun 2024 14:48:32 +0000</pubDate></item><item><title>自学之路：手机卫士</title><link>https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</link><description>## 在自学时遇到的一些困难
 
 在自学中遇到的一些小问题，解决方法仅供参考，由于作者目前还处于小白阶段，有错误的地方还请指出(⊙o⊙)
 
@@ -15,7 +156,13 @@
 
 ### 状态栏颜色
 
-由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 14:48:24 +0000</pubDate></item><item><title>test</title><link>https://blog.ian2018.club/post/test.html</link><description>cf blog test。</description><guid isPermaLink="true">https://blog.ian2018.club/post/test.html</guid><pubDate>Wed, 26 Jun 2024 00:42:09 +0000</pubDate></item><item><title>虚线的实现方法</title><link>https://blog.ian2018.club/post/xu-xian-de-shi-xian-fang-fa.html</link><description># 水平虚线的实现
+由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 14:48:24 +0000</pubDate></item><item><title>设计模式读书笔记</title><link>https://blog.ian2018.club/post/she-ji-mo-shi-du-shu-bi-ji.html</link><description># 一、 简单工厂模式（创建型）
+
+1. 活字印刷，面向对象：可维护、可复用、可扩展、灵活性好。</description><guid isPermaLink="true">https://blog.ian2018.club/post/she-ji-mo-shi-du-shu-bi-ji.html</guid><pubDate>Tue, 15 Oct 2019 01:11:00 +0000</pubDate></item><item><title>Java io流</title><link>https://blog.ian2018.club/post/Java%20io-liu.html</link><description>
+类关系图：
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/6b82af80bd927dd911fa4e17dcf189258562236b.png'&gt;`
+
+由于InputStream、OutputStream是抽象类，所以要创建他们的子类对象。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Java%20io-liu.html</guid><pubDate>Mon, 25 Feb 2019 01:42:00 +0000</pubDate></item><item><title>虚线的实现方法</title><link>https://blog.ian2018.club/post/xu-xian-de-shi-xian-fang-fa.html</link><description># 水平虚线的实现
 
 在drawable下新建drawable资源 shape_dotted_line.xml
 
@@ -76,7 +223,87 @@
     android:layerType='software' /&gt;
 ```
 
-&gt; 注： 如果直接旋转的话，在设置给view的背景后，发现虚线只有一小段。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xu-xian-de-shi-xian-fang-fa.html</guid><pubDate>Mon, 25 Feb 2019 01:30:52 +0000</pubDate></item><item><title>初识背后的老朋友--JVM</title><link>https://blog.ian2018.club/post/chu-shi-bei-hou-de-lao-peng-you---JVM.html</link><description>一直在学Java基础，光知道怎么用了也不行，也得了解一下它的内部长什么样子。</description><guid isPermaLink="true">https://blog.ian2018.club/post/chu-shi-bei-hou-de-lao-peng-you---JVM.html</guid><pubDate>Sat, 14 Jul 2018 12:42:01 +0000</pubDate></item><item><title>探索：使用Hexo搭建博客(Windows用户)</title><link>https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-shi-yong-Hexo-da-jian-bo-ke-%28Windows-yong-hu-%29.html</link><description># 前言&#13;
+&gt; 注： 如果直接旋转的话，在设置给view的背景后，发现虚线只有一小段。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xu-xian-de-shi-xian-fang-fa.html</guid><pubDate>Mon, 25 Feb 2019 01:30:52 +0000</pubDate></item><item><title>绘制圆角矩形</title><link>https://blog.ian2018.club/post/hui-zhi-yuan-jiao-ju-xing.html</link><description>canvas.drawRoundRect(RectF, x半径,y半径, Paint)
+
+```java
+// 创建降雨概率矩形-
+private Bitmap createRainRect(int width, int height, float rainHeight) {
+    final Paint paint = new Paint();
+    paint.setAntiAlias(true);
+    Bitmap target = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+    Canvas canvas = new Canvas(target);
+
+    // 绘制降雨概率背景圆角矩形
+    paint.setColor(getResources().getColor(R.color.rain_rect_bg_color));
+    mRainBgRect.set(0,0, mRainRectWidth,mRainRectHeight);
+    canvas.drawRoundRect(mRainBgRect,ToolUtils.dp2px(context, 20),ToolUtils.dp2px(context, 20),paint);
+
+    // 绘制降雨概率圆角矩形
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+    paint.setColor(getResources().getColor(R.color.rain_rect_color));
+    mRainRect.set(0,mRainRectHeight - rainHeight,
+            mRainRectWidth,(mRainRectHeight - rainHeight) + mRainRectHeight);
+    canvas.drawRoundRect(mRainRect,ToolUtils.dp2px(context, 20),ToolUtils.dp2px(context, 20),paint);
+
+    return target;
+} 
+```
+
+&lt;!-- ##{'timestamp':1548240772}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/hui-zhi-yuan-jiao-ju-xing.html</guid><pubDate>Wed, 23 Jan 2019 10:52:52 +0000</pubDate></item><item><title>Android Fragment中添加Fragment</title><link>https://blog.ian2018.club/post/Android%20Fragment-zhong-tian-jia-Fragment.html</link><description>最好使用 getChildFragmentManager 来获取manager
+
+子fragment调用父fragment的方法：
+```java
+List&lt;Fragment&gt;list=(List&lt;Fragment&gt;)SonFragment.this.getFragmentManager().getFragments();
+for(Fragment f:list){
+    if(f!=null&amp;&amp;f instanceof FatherMainFragment){
+        ((FatherMainFragment) f).changView();
+        break;
+    }
+}
+```
+
+如果是fragment 里的viewpager 中的 fragment  想调用父fragment里的方法  需要通过获取activity来获取FragmentManager
+```java
+List&lt;Fragment&gt; fragments = getActivity().getSupportFragmentManager().getFragments();
+for (Fragment fragment : fragments) {
+    if (fragment != null &amp;&amp; fragment instanceof WeatherFragment) {
+        mHomeFragment = (WeatherFragment) fragment;
+    }
+}
+```
+
+&lt;!-- ##{'timestamp':1546663800}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20Fragment-zhong-tian-jia-Fragment.html</guid><pubDate>Sat, 05 Jan 2019 04:50:00 +0000</pubDate></item><item><title>Android Gradle依赖冲突问题</title><link>https://blog.ian2018.club/post/Android%20Gradle-yi-lai-chong-tu-wen-ti.html</link><description>查看依赖的库中都引用了哪些
+```gradle
+gradlew -q app:dependencies
+```
+
+查看各model的依赖树
+```gradle
+gradlew :app:dependencies --configuration compile
+```
+
+把jar文件解压后  删除冲突的文件  然后通过以下命令 重新打包jar
+```bash
+jar cvf 新的文件.jar -C 原解压出来的文件夹/ .
+```
+
+&lt;!-- ##{'timestamp':1544668980}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20Gradle-yi-lai-chong-tu-wen-ti.html</guid><pubDate>Thu, 13 Dec 2018 02:43:00 +0000</pubDate></item><item><title>初识背后的老朋友--JVM</title><link>https://blog.ian2018.club/post/chu-shi-bei-hou-de-lao-peng-you---JVM.html</link><description>一直在学Java基础，光知道怎么用了也不行，也得了解一下它的内部长什么样子。</description><guid isPermaLink="true">https://blog.ian2018.club/post/chu-shi-bei-hou-de-lao-peng-you---JVM.html</guid><pubDate>Sat, 14 Jul 2018 12:42:01 +0000</pubDate></item><item><title>第一次电话面试</title><link>https://blog.ian2018.club/post/di-yi-ci-dian-hua-mian-shi.html</link><description>京东Android实习电话一面 人生第一次，2018年4月13日晚上8点，时长28分钟：
+
+周三的时候京东给打电话确认一下能不能去面试，问我能去现场吗，我开始说能去，但发现那天还有事，下午就又给京东打电话，换成了电话面试。</description><guid isPermaLink="true">https://blog.ian2018.club/post/di-yi-ci-dian-hua-mian-shi.html</guid><pubDate>Sat, 14 Apr 2018 00:59:24 +0000</pubDate></item><item><title>修身之道</title><link>https://blog.ian2018.club/post/xiu-shen-zhi-dao.html</link><description>修身之道，这个存在中国历史几千年的一种行为，以我个人的观点来看，这或许参杂着一些帝王统治阶级的私心，因为修身之道可以使天下百姓更加稳定，容易管理，方便统治，存天理，去人欲，教导人们去克制自己的人性，遵循封建阶级制造出来的所谓的理。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xiu-shen-zhi-dao.html</guid><pubDate>Thu, 27 Jul 2017 07:09:35 +0000</pubDate></item><item><title>第一次笔试</title><link>https://blog.ian2018.club/post/di-yi-ci-bi-shi.html</link><description>今天晚上，参加了美团点评Android工程师（实习）的春招笔试。</description><guid isPermaLink="true">https://blog.ian2018.club/post/di-yi-ci-bi-shi.html</guid><pubDate>Tue, 21 Mar 2017 15:28:11 +0000</pubDate></item><item><title>“转发”：王久良的纪录片：从《垃圾围城》到《塑料王国》</title><link>https://blog.ian2018.club/post/%E2%80%9C-zhuan-fa-%E2%80%9D%EF%BC%9A-wang-jiu-liang-de-ji-lu-pian-%EF%BC%9A-cong-%E3%80%8A-la-ji-wei-cheng-%E3%80%8B-dao-%E3%80%8A-su-liao-wang-guo-%E3%80%8B.html</link><description>2015-10-29 10:36:00
+
+**环境教育杂志**
+
+**作者：崔维敏**
+
+**王久良**，自由摄影师，纪录片《**垃圾围城**》和《**塑料王国**》的作者。</description><guid isPermaLink="true">https://blog.ian2018.club/post/%E2%80%9C-zhuan-fa-%E2%80%9D%EF%BC%9A-wang-jiu-liang-de-ji-lu-pian-%EF%BC%9A-cong-%E3%80%8A-la-ji-wei-cheng-%E3%80%8B-dao-%E3%80%8A-su-liao-wang-guo-%E3%80%8B.html</guid><pubDate>Sun, 08 Jan 2017 08:08:36 +0000</pubDate></item><item><title>2017半年计划</title><link>https://blog.ian2018.club/post/2017-ban-nian-ji-hua.html</link><description>~~1·把第一行代码后面的实战项目做出来。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2017-ban-nian-ji-hua.html</guid><pubDate>Fri, 06 Jan 2017 06:31:11 +0000</pubDate></item><item><title>2016→2017</title><link>https://blog.ian2018.club/post/2016%E2%86%922017.html</link><description>第一次写些类似年终总结的东西，不过我感觉这更像是回忆，一个大日记。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2016%E2%86%922017.html</guid><pubDate>Sat, 31 Dec 2016 15:57:59 +0000</pubDate></item><item><title>深夜感悟</title><link>https://blog.ian2018.club/post/shen-ye-gan-wu.html</link><description>你们当初为什么会选这个专业？
+
+是自己选的，还是家里选的？
+
+是你对这方面感兴趣，还是以为这个专业好找工作？
+
+无论是哪个，你既然来这了，当初一定有自己的想法，那就不要荒废了自己，想想自己来大学到底是来干什么的！
+
+或许开始，你还有一股子冲劲，带着对大学的新鲜感，去去尝试各种事情，上课也比较积极。</description><guid isPermaLink="true">https://blog.ian2018.club/post/shen-ye-gan-wu.html</guid><pubDate>Mon, 31 Oct 2016 05:23:54 +0000</pubDate></item><item><title>探索：使用Hexo搭建博客(Windows用户)</title><link>https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-shi-yong-Hexo-da-jian-bo-ke-%28Windows-yong-hu-%29.html</link><description># 前言&#13;
 我是在一个安卓开发群里了解到这种搭建博客的方法，群友发了两个链接，链接上的教程说是五分钟搭建自己的博客，可我经过了一个多小时的探索才完成了这个博客。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-shi-yong-Hexo-da-jian-bo-ke-%28Windows-yong-hu-%29.html</guid><pubDate>Thu, 01 Sep 2016 10:56:12 +0000</pubDate></item><item><title>Hello World</title><link>https://blog.ian2018.club/post/Hello%20World.html</link><description>&#13;
 第一次搭建自己的博客&#13;
 &#13;

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="//cdn.staticfile.net/Primer/21.0.7/primer.css" rel="stylesheet" />
+    <link rel="icon" href="https://ian2018.cn/favicon.png"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="`Gmeek-html<img src='https://blog-image.ian2018.cn/images/80da86e91597b0ed66841d3875a6b7db3cd051cd.png'>`
+
+# Week01 学习笔记
+
+## 1 学习算法方法
+
+### 1.1 课程学习流程
+
+* 课前预习，把ppt先过一遍
+* 倍速看视频，不懂的地方暂停反复看
+* 做课后练习题，刻意练习
+* 构建自己的知识图谱，逐渐完善
+
+### 1.2 做题流程 五毒神掌
+
+* 5分钟看题，不要着急做，先理解题目
+* 10分钟内想不出来，看题解，理解别人的代码
+* 自己写一遍，尽量不再看题解
+* 自己AC之后，看国际站上的高分解题方法
+* 回来自己再做一遍
+* 一天后，一周后再来做一遍，忘记了就再重复一遍上面的流程，直到不看题解就能做出来
+* 面试前集中过一遍
+
+### 1.3 数据结构与算法脑图
+
+`Gmeek-html<img src='https://blog-image.ian2018.cn/images/991b44ffa909e7dd89d1dd5041c0640fe3b5e988.png'>`
+
+
+## 2 编程习惯
+
+* 设置好最适合自己的编程环境
+* 摒弃之前的坏习惯
+* 自顶向下的编程方式，结构清晰
+
+## 3 复杂度分析
+
+### 3.1 时间复杂度
+
+只看最高的复杂度
+
+常见的时间复杂度
+
+* O(1) 常数级别，如散列表操作
+* O(log n) 对数级别，如二分查找
+* O(n) 线性级别，如计数排序
+* O(n^2) 平方级别，如冒泡排序
+* O(2^n) 指数级别，如斐波拉契递归
+* O(n!) 阶乘
+
+### 3.2 空间复杂度
+
+有没有额外申请空间，原地操作为O(1)
+
+* 数组的长度
+* 递归的深度
+
+## 4 数组、链表、跳表
+
+### 4.1 数组
+
+* 随机访问，O(1)时间复杂度
+* 插入删除，O(n)时间复杂度 (涉及到元素的搬移)
+
+Java中的ArrayList就是对数组的封装，默认数组大小是10，
+每次插入都会进行元素的copy，
+如果大小不够，就会进行扩容，申请一个当前大小二倍的空间，再把当前元素copy过去。">
+<meta property="og:title" content="算法学习随笔01">
+<meta property="og:description" content="`Gmeek-html<img src='https://blog-image.ian2018.cn/images/80da86e91597b0ed66841d3875a6b7db3cd051cd.png'>`
+
+# Week01 学习笔记
+
+## 1 学习算法方法
+
+### 1.1 课程学习流程
+
+* 课前预习，把ppt先过一遍
+* 倍速看视频，不懂的地方暂停反复看
+* 做课后练习题，刻意练习
+* 构建自己的知识图谱，逐渐完善
+
+### 1.2 做题流程 五毒神掌
+
+* 5分钟看题，不要着急做，先理解题目
+* 10分钟内想不出来，看题解，理解别人的代码
+* 自己写一遍，尽量不再看题解
+* 自己AC之后，看国际站上的高分解题方法
+* 回来自己再做一遍
+* 一天后，一周后再来做一遍，忘记了就再重复一遍上面的流程，直到不看题解就能做出来
+* 面试前集中过一遍
+
+### 1.3 数据结构与算法脑图
+
+`Gmeek-html<img src='https://blog-image.ian2018.cn/images/991b44ffa909e7dd89d1dd5041c0640fe3b5e988.png'>`
+
+
+## 2 编程习惯
+
+* 设置好最适合自己的编程环境
+* 摒弃之前的坏习惯
+* 自顶向下的编程方式，结构清晰
+
+## 3 复杂度分析
+
+### 3.1 时间复杂度
+
+只看最高的复杂度
+
+常见的时间复杂度
+
+* O(1) 常数级别，如散列表操作
+* O(log n) 对数级别，如二分查找
+* O(n) 线性级别，如计数排序
+* O(n^2) 平方级别，如冒泡排序
+* O(2^n) 指数级别，如斐波拉契递归
+* O(n!) 阶乘
+
+### 3.2 空间复杂度
+
+有没有额外申请空间，原地操作为O(1)
+
+* 数组的长度
+* 递归的深度
+
+## 4 数组、链表、跳表
+
+### 4.1 数组
+
+* 随机访问，O(1)时间复杂度
+* 插入删除，O(n)时间复杂度 (涉及到元素的搬移)
+
+Java中的ArrayList就是对数组的封装，默认数组大小是10，
+每次插入都会进行元素的copy，
+如果大小不够，就会进行扩容，申请一个当前大小二倍的空间，再把当前元素copy过去。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-01.html">
+<meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
+<title>算法学习随笔01</title>
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">算法学习随笔01</h1>
+<div class="title-right">
+    <a href="https://blog.ian2018.club" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p><img src="https://blog-image.ian2018.cn/images/80da86e91597b0ed66841d3875a6b7db3cd051cd.png"></p>
+<h1>Week01 学习笔记</h1>
+<h2>1 学习算法方法</h2>
+<h3>1.1 课程学习流程</h3>
+<ul>
+<li>课前预习，把ppt先过一遍</li>
+<li>倍速看视频，不懂的地方暂停反复看</li>
+<li>做课后练习题，刻意练习</li>
+<li>构建自己的知识图谱，逐渐完善</li>
+</ul>
+<h3>1.2 做题流程 五毒神掌</h3>
+<ul>
+<li>5分钟看题，不要着急做，先理解题目</li>
+<li>10分钟内想不出来，看题解，理解别人的代码</li>
+<li>自己写一遍，尽量不再看题解</li>
+<li>自己AC之后，看国际站上的高分解题方法</li>
+<li>回来自己再做一遍</li>
+<li>一天后，一周后再来做一遍，忘记了就再重复一遍上面的流程，直到不看题解就能做出来</li>
+<li>面试前集中过一遍</li>
+</ul>
+<h3>1.3 数据结构与算法脑图</h3>
+<p><img src="https://blog-image.ian2018.cn/images/991b44ffa909e7dd89d1dd5041c0640fe3b5e988.png"></p>
+<h2>2 编程习惯</h2>
+<ul>
+<li>设置好最适合自己的编程环境</li>
+<li>摒弃之前的坏习惯</li>
+<li>自顶向下的编程方式，结构清晰</li>
+</ul>
+<h2>3 复杂度分析</h2>
+<h3>3.1 时间复杂度</h3>
+<p>只看最高的复杂度</p>
+<p>常见的时间复杂度</p>
+<ul>
+<li>O(1) 常数级别，如散列表操作</li>
+<li>O(log n) 对数级别，如二分查找</li>
+<li>O(n) 线性级别，如计数排序</li>
+<li>O(n^2) 平方级别，如冒泡排序</li>
+<li>O(2^n) 指数级别，如斐波拉契递归</li>
+<li>O(n!) 阶乘</li>
+</ul>
+<h3>3.2 空间复杂度</h3>
+<p>有没有额外申请空间，原地操作为O(1)</p>
+<ul>
+<li>数组的长度</li>
+<li>递归的深度</li>
+</ul>
+<h2>4 数组、链表、跳表</h2>
+<h3>4.1 数组</h3>
+<ul>
+<li>随机访问，O(1)时间复杂度</li>
+<li>插入删除，O(n)时间复杂度 (涉及到元素的搬移)</li>
+</ul>
+<p>Java中的ArrayList就是对数组的封装，默认数组大小是10，<br>
+每次插入都会进行元素的copy，<br>
+如果大小不够，就会进行扩容，申请一个当前大小二倍的空间，再把当前元素copy过去。</p>
+<h3>4.2 链表</h3>
+<ul>
+<li>查找，O(n)时间复杂度</li>
+<li>插入删除，O(1)时间复杂度</li>
+</ul>
+<p>Java中的LinkList使用双向链表来实现</p>
+<p>添加节点操作</p>
+<ol>
+<li><code class="notranslate">new.next = node.next</code></li>
+<li><code class="notranslate">node.next = new</code></li>
+</ol>
+<p>删除节点操作</p>
+<ol>
+<li><code class="notranslate">node.pre.next = node.next</code></li>
+<li><code class="notranslate">node.next = null</code></li>
+</ol>
+<h3>4.3 跳表</h3>
+<ul>
+<li>插入删除查找，O(log n)时间复杂度</li>
+</ul>
+<p>只能用于有序列表</p>
+<p>通过空间换时间，增加索引，优化链表的查找速度，空间复杂度O(n)</p>
+<p>对标的是平衡树(AVL)和二分查找</p>
+<p>实际应用有：Redis、LevelDB等</p>
+<h2>5 栈、队列、双端队列、优先队列</h2>
+<h3>5.1 栈</h3>
+<ul>
+<li>后进先出</li>
+<li>添加删除，O(1)时间复杂度</li>
+</ul>
+<p>Java中<code class="notranslate">Stack</code>的API，其内部通过数组实现</p>
+<ul>
+<li><code class="notranslate">peek()</code> 查看栈顶元素</li>
+<li><code class="notranslate">pop()</code> 出栈</li>
+<li><code class="notranslate">push(e)</code> 入栈</li>
+<li><code class="notranslate">search(e)</code> 搜索栈内元素，返回该元素在栈内的深度，即下标+1</li>
+</ul>
+<h3>5.2 队列</h3>
+<ul>
+<li>先进先出</li>
+<li>添加删除，O(1)时间复杂度</li>
+</ul>
+<p>Java中的<code class="notranslate">Queue</code>是一个接口，他的实现有好多种，如<code class="notranslate">LinkedList</code>，<code class="notranslate">PriorityQueue</code>，<code class="notranslate">LinkedBlockingQueue</code>等</p>
+<table role="table">
+<thead>
+<tr>
+<th>抛出异常</th>
+<th>返回值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">add(e)</code></td>
+<td><code class="notranslate">offer(e)</code></td>
+<td>入队</td>
+</tr>
+<tr>
+<td><code class="notranslate">remove()</code></td>
+<td><code class="notranslate">poll()</code></td>
+<td>出队</td>
+</tr>
+<tr>
+<td><code class="notranslate">element()</code></td>
+<td><code class="notranslate">peek()</code></td>
+<td>查看队首元素</td>
+</tr>
+</tbody>
+</table>
+<h3>5.3 双端队列</h3>
+<ul>
+<li>两端都可以进出的队列</li>
+<li>添加删除，O(1)时间复杂度</li>
+</ul>
+<p>Java中的<code class="notranslate">Deque</code>也是一个接口，他继承了<code class="notranslate">Queue</code></p>
+<table role="table">
+<thead>
+<tr>
+<th>抛出异常</th>
+<th>返回值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="notranslate">addFirst(e)</code></td>
+<td><code class="notranslate">offerFirst(e)</code></td>
+<td>在队头添加元素</td>
+</tr>
+<tr>
+<td><code class="notranslate">addLast(e)</code></td>
+<td><code class="notranslate">offerLast(e)</code></td>
+<td>在队尾添加元素</td>
+</tr>
+<tr>
+<td><code class="notranslate">getFirst()</code></td>
+<td><code class="notranslate">peekFirst()</code></td>
+<td>查看队首元素</td>
+</tr>
+<tr>
+<td><code class="notranslate">getLast()</code></td>
+<td><code class="notranslate">peekLast()</code></td>
+<td>查看队尾元素</td>
+</tr>
+<tr>
+<td><code class="notranslate">removeFirst()</code></td>
+<td><code class="notranslate">pollFirst()</code></td>
+<td>删除队首元素</td>
+</tr>
+<tr>
+<td><code class="notranslate">removeLast()</code></td>
+<td><code class="notranslate">pollLast()</code></td>
+<td>删除队尾元素</td>
+</tr>
+</tbody>
+</table>
+<h3>5.4 优先队列</h3>
+<ul>
+<li>可以按优先级出队</li>
+<li>插入，O(1)时间复杂度</li>
+<li>取出，O(log n)时间复杂度</li>
+<li>底层实现有：堆(heap)、二叉树搜索树(bst)等</li>
+</ul>
+<p>Java中的是<code class="notranslate">PriorityQueue</code>，继承<code class="notranslate">AbstractQueue</code>，最终实现了<code class="notranslate">Queue</code></p>
+<h2>6 本周作业</h2>
+<h3>6.1 用 add first 或 add last 这套新的 API 改写 Deque 的代码</h3>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">Deque</span>&lt;<span class="pl-smi">String</span>&gt; <span class="pl-s1">deque</span> = <span class="pl-k">new</span> <span class="pl-smi">LinkedList</span>&lt;&gt;();
+
+<span class="pl-c">// 双端队列 实现 队列 先进先出</span>
+<span class="pl-s1">deque</span>.<span class="pl-en">addLast</span>(<span class="pl-s">"a"</span>);
+<span class="pl-s1">deque</span>.<span class="pl-en">addLast</span>(<span class="pl-s">"b"</span>);
+<span class="pl-s1">deque</span>.<span class="pl-en">addLast</span>(<span class="pl-s">"c"</span>);
+<span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">deque</span>);
+
+<span class="pl-smi">String</span> <span class="pl-s1">peek</span> = <span class="pl-s1">deque</span>.<span class="pl-en">peekFirst</span>();
+<span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">peek</span>);
+<span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">deque</span>);
+
+<span class="pl-k">while</span> (<span class="pl-s1">deque</span>.<span class="pl-en">size</span>() &gt; <span class="pl-c1">0</span>) {
+    <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">deque</span>.<span class="pl-en">pollFirst</span>());
+}
+
+<span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">deque</span>);
+
+<span class="pl-c">// 双端队列 实现 栈 后进先出</span>
+<span class="pl-s1">deque</span>.<span class="pl-en">addFirst</span>(<span class="pl-s">"a"</span>);
+<span class="pl-s1">deque</span>.<span class="pl-en">addFirst</span>(<span class="pl-s">"b"</span>);
+<span class="pl-s1">deque</span>.<span class="pl-en">addFirst</span>(<span class="pl-s">"c"</span>);
+<span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">deque</span>);
+
+<span class="pl-smi">String</span> <span class="pl-s1">peek2</span> = <span class="pl-s1">deque</span>.<span class="pl-en">peekFirst</span>();
+<span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">peek2</span>);
+<span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">deque</span>);
+
+<span class="pl-k">while</span> (<span class="pl-s1">deque</span>.<span class="pl-en">size</span>() &gt; <span class="pl-c1">0</span>) {
+    <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">deque</span>.<span class="pl-en">pollFirst</span>());
+}
+
+<span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">deque</span>);</pre></div>
+<h3>6.2 分析 Queue 和 Priority Queue 的源码</h3>
+<h4>6.2 .1 Queue</h4>
+<p>Java中的<code class="notranslate">Queue</code>是一个接口，继承了<code class="notranslate">Collection</code>接口</p>
+<p>主要方法有：</p>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-c">// 添加一个元素，添加失败会抛出异常 IllegalStateException</span>
+<span class="pl-smi">boolean</span> <span class="pl-s1">add</span>(<span class="pl-smi">E</span> <span class="pl-s1">e</span>);
+
+<span class="pl-c">// 添加一个元素，添加失败返回false</span>
+<span class="pl-smi">boolean</span> <span class="pl-s1">offer</span>(<span class="pl-smi">E</span> <span class="pl-s1">e</span>);
+
+<span class="pl-c">// 删除队首元素，删除失败会抛出异常 NoSuchElementException</span>
+<span class="pl-smi">E</span> <span class="pl-s1">remove</span>();
+
+<span class="pl-c">// 删除队首元素，删除失败返回null</span>
+<span class="pl-smi">E</span> <span class="pl-s1">poll</span>();
+
+<span class="pl-c">// 查看队首元素，不存在则抛出异常 NoSuchElementException</span>
+<span class="pl-smi">E</span> <span class="pl-s1">element</span>();
+
+<span class="pl-c">// 查看队首元素，不存在返回null</span>
+<span class="pl-smi">E</span> <span class="pl-s1">peek</span>();</pre></div>
+<h4>6.2.2 Priority Queue</h4>
+<p>Java中的<code class="notranslate">PriorityQueue</code>继承了<code class="notranslate">AbstractQueue</code>，类关系图如下：</p>
+<p><img src="https://blog-image.ian2018.cn/images/0f80bd3dead306fbcbc6b5431adddcaee3a19fc2.png"></p>
+<p>主要看一下他的入队和出对方法</p>
+<ul>
+<li>入队<code class="notranslate">offer(e)</code></li>
+</ul>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-smi">boolean</span> <span class="pl-s1">offer</span>(<span class="pl-smi">E</span> <span class="pl-s1">e</span>) {
+    <span class="pl-k">if</span> (<span class="pl-s1">e</span> == <span class="pl-c1">null</span>)
+        <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-smi">NullPointerException</span>();
+    <span class="pl-c">// 修改次数加一，无论添加还是删除，这个值都会加一</span>
+    <span class="pl-s1">modCount</span>++;
+    <span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-s1">size</span>;
+    <span class="pl-c">// 判断是否需要扩容，默认数组大小是11</span>
+    <span class="pl-c">// 扩容会比较是否原始大小是否小于64，如果小于扩容一倍大小，否则扩容50%</span>
+    <span class="pl-k">if</span> (<span class="pl-s1">i</span> &gt;= <span class="pl-s1">queue</span>.<span class="pl-s1">length</span>)
+        <span class="pl-en">grow</span>(<span class="pl-s1">i</span> + <span class="pl-c1">1</span>);
+    <span class="pl-en">siftUp</span>(<span class="pl-s1">i</span>, <span class="pl-s1">e</span>);
+    <span class="pl-c">// 大小加一</span>
+    <span class="pl-s1">size</span> = <span class="pl-s1">i</span> + <span class="pl-c1">1</span>;
+    <span class="pl-k">return</span> <span class="pl-c1">true</span>;
+}
+
+<span class="pl-c">// 扩容</span>
+<span class="pl-k">private</span> <span class="pl-smi">void</span> <span class="pl-s1">grow</span>(<span class="pl-smi">int</span> <span class="pl-s1">minCapacity</span>) {
+    <span class="pl-smi">int</span> <span class="pl-s1">oldCapacity</span> = <span class="pl-s1">queue</span>.<span class="pl-s1">length</span>;
+    <span class="pl-c">// Double size if small; else grow by 50%</span>
+    <span class="pl-smi">int</span> <span class="pl-s1">newCapacity</span> = <span class="pl-s1">oldCapacity</span> + ((<span class="pl-s1">oldCapacity</span> &lt; <span class="pl-c1">64</span>) ? (<span class="pl-s1">oldCapacity</span> + <span class="pl-c1">2</span>) : (<span class="pl-s1">oldCapacity</span> &gt;&gt; <span class="pl-c1">1</span>));
+    <span class="pl-c">// overflow-conscious code</span>
+    <span class="pl-k">if</span> (<span class="pl-s1">newCapacity</span> - <span class="pl-c1">MAX_ARRAY_SIZE</span> &gt; <span class="pl-c1">0</span>)
+        <span class="pl-s1">newCapacity</span> = <span class="pl-en">hugeCapacity</span>(<span class="pl-s1">minCapacity</span>);
+    <span class="pl-s1">queue</span> = <span class="pl-smi">Arrays</span>.<span class="pl-en">copyOf</span>(<span class="pl-s1">queue</span>, <span class="pl-s1">newCapacity</span>);
+}
+
+<span class="pl-c">// 将元素x插入到最小二叉堆的k位置</span>
+<span class="pl-k">private</span> <span class="pl-smi">void</span> <span class="pl-s1">siftUp</span>(<span class="pl-smi">int</span> <span class="pl-s1">k</span>, <span class="pl-smi">E</span> <span class="pl-s1">x</span>) {
+    <span class="pl-k">if</span> (<span class="pl-s1">comparator</span> != <span class="pl-c1">null</span>)
+        <span class="pl-en">siftUpUsingComparator</span>(<span class="pl-s1">k</span>, <span class="pl-s1">x</span>, <span class="pl-s1">queue</span>, <span class="pl-s1">comparator</span>);
+    <span class="pl-k">else</span>
+        <span class="pl-en">siftUpComparable</span>(<span class="pl-s1">k</span>, <span class="pl-s1">x</span>, <span class="pl-s1">queue</span>);
+}
+
+<span class="pl-k">private</span> <span class="pl-k">static</span> &lt;<span class="pl-smi">T</span>&gt; <span class="pl-smi">void</span> <span class="pl-s1">siftUpComparable</span>(<span class="pl-smi">int</span> <span class="pl-s1">k</span>, <span class="pl-s1">T</span> <span class="pl-s1">x</span>, <span class="pl-s1">Object</span>[] <span class="pl-s1">es</span>) {
+    <span class="pl-s1">Comparable</span>&lt;? <span class="pl-en">super</span> <span class="pl-s1">T</span>&gt; <span class="pl-s1">key</span> = (<span class="pl-smi">Comparable</span>&lt;? <span class="pl-en">super</span> <span class="pl-smi">T</span>&gt;) <span class="pl-s1">x</span>;
+    <span class="pl-k">while</span> (<span class="pl-s1">k</span> &gt; <span class="pl-c1">0</span>) {
+        <span class="pl-c">// 找到插入位置的父结点</span>
+        <span class="pl-smi">int</span> <span class="pl-s1">parent</span> = (<span class="pl-s1">k</span> - <span class="pl-c1">1</span>) &gt;&gt;&gt; <span class="pl-c1">1</span>;
+        <span class="pl-smi">Object</span> <span class="pl-s1">e</span> = <span class="pl-s1">es</span>[<span class="pl-s1">parent</span>];
+        <span class="pl-c">// 如果插入结点比父结点大，则不用调整位置</span>
+        <span class="pl-k">if</span> (<span class="pl-s1">key</span>.<span class="pl-en">compareTo</span>((<span class="pl-smi">T</span>) <span class="pl-s1">e</span>) &gt;= <span class="pl-c1">0</span>)
+            <span class="pl-k">break</span>;
+        <span class="pl-c">// 如果插入数据比父结点大，将插入结点跟父结点数据互换</span>
+        <span class="pl-s1">es</span>[<span class="pl-s1">k</span>] = <span class="pl-s1">e</span>;
+        <span class="pl-s1">k</span> = <span class="pl-s1">parent</span>;
+    }
+    <span class="pl-c">// 最后找到了调整后的位置</span>
+    <span class="pl-s1">es</span>[<span class="pl-s1">k</span>] = <span class="pl-s1">key</span>;
+}
+
+<span class="pl-c">// 和siftUpComparable相同，只不过使用传入的比较器</span>
+<span class="pl-k">private</span> <span class="pl-k">static</span> &lt;<span class="pl-smi">T</span>&gt; <span class="pl-smi">void</span> <span class="pl-s1">siftUpUsingComparator</span>(<span class="pl-smi">int</span> <span class="pl-s1">k</span>, <span class="pl-s1">T</span> <span class="pl-s1">x</span>, <span class="pl-s1">Object</span>[] <span class="pl-s1">es</span>, <span class="pl-s1">Comparator</span>&lt;? <span class="pl-en">super</span> <span class="pl-s1">T</span>&gt; <span class="pl-s1">cmp</span>) {
+    <span class="pl-k">while</span> (<span class="pl-s1">k</span> &gt; <span class="pl-c1">0</span>) {
+        <span class="pl-smi">int</span> <span class="pl-s1">parent</span> = (<span class="pl-s1">k</span> - <span class="pl-c1">1</span>) &gt;&gt;&gt; <span class="pl-c1">1</span>;
+        <span class="pl-smi">Object</span> <span class="pl-s1">e</span> = <span class="pl-s1">es</span>[<span class="pl-s1">parent</span>];
+        <span class="pl-k">if</span> (<span class="pl-s1">cmp</span>.<span class="pl-en">compare</span>(<span class="pl-s1">x</span>, (<span class="pl-smi">T</span>) <span class="pl-s1">e</span>) &gt;= <span class="pl-c1">0</span>)
+            <span class="pl-k">break</span>;
+        <span class="pl-s1">es</span>[<span class="pl-s1">k</span>] = <span class="pl-s1">e</span>;
+        <span class="pl-s1">k</span> = <span class="pl-s1">parent</span>;
+    }
+    <span class="pl-s1">es</span>[<span class="pl-s1">k</span>] = <span class="pl-s1">x</span>;
+}</pre></div>
+<ul>
+<li>出队<code class="notranslate">poll()</code></li>
+</ul>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-smi">E</span> <span class="pl-s1">poll</span>() {
+    <span class="pl-k">final</span> <span class="pl-smi">Object</span>[] <span class="pl-s1">es</span>;
+    <span class="pl-k">final</span> <span class="pl-smi">E</span> <span class="pl-s1">result</span>;
+
+    <span class="pl-k">if</span> ((<span class="pl-s1">result</span> = (<span class="pl-smi">E</span>) ((<span class="pl-s1">es</span> = <span class="pl-s1">queue</span>)[<span class="pl-c1">0</span>])) != <span class="pl-c1">null</span>) {
+        <span class="pl-s1">modCount</span>++;
+        <span class="pl-k">final</span> <span class="pl-smi">int</span> <span class="pl-s1">n</span>;
+        <span class="pl-c">// 先减少堆大小，把最后位的数据缓存在x里</span>
+        <span class="pl-k">final</span> <span class="pl-smi">E</span> <span class="pl-s1">x</span> = (<span class="pl-smi">E</span>) <span class="pl-s1">es</span>[(<span class="pl-s1">n</span> = --<span class="pl-s1">size</span>)];
+        <span class="pl-s1">es</span>[<span class="pl-s1">n</span>] = <span class="pl-c1">null</span>;
+        <span class="pl-k">if</span> (<span class="pl-s1">n</span> &gt; <span class="pl-c1">0</span>) {
+            <span class="pl-c">// 把x跟0位置及其子结点循环比较，直到x插入到了合适位置</span>
+            <span class="pl-k">final</span> <span class="pl-smi">Comparator</span>&lt;? <span class="pl-en">super</span> <span class="pl-smi">E</span>&gt; <span class="pl-s1">cmp</span>;
+            <span class="pl-k">if</span> ((<span class="pl-s1">cmp</span> = <span class="pl-s1">comparator</span>) == <span class="pl-c1">null</span>)
+                <span class="pl-en">siftDownComparable</span>(<span class="pl-c1">0</span>, <span class="pl-s1">x</span>, <span class="pl-s1">es</span>, <span class="pl-s1">n</span>);
+            <span class="pl-k">else</span>
+                <span class="pl-en">siftDownUsingComparator</span>(<span class="pl-c1">0</span>, <span class="pl-s1">x</span>, <span class="pl-s1">es</span>, <span class="pl-s1">n</span>, <span class="pl-s1">cmp</span>);
+        }
+    }
+    <span class="pl-k">return</span> <span class="pl-s1">result</span>;
+}
+
+<span class="pl-k">private</span> <span class="pl-k">static</span> &lt;<span class="pl-smi">T</span>&gt; <span class="pl-smi">void</span> <span class="pl-s1">siftDownComparable</span>(<span class="pl-smi">int</span> <span class="pl-s1">k</span>, <span class="pl-s1">T</span> <span class="pl-s1">x</span>, <span class="pl-s1">Object</span>[] <span class="pl-s1">es</span>, <span class="pl-s1">int</span> <span class="pl-s1">n</span>) {
+    <span class="pl-c">// assert n &gt; 0;</span>
+    <span class="pl-s1">Comparable</span>&lt;? <span class="pl-en">super</span> <span class="pl-s1">T</span>&gt; <span class="pl-s1">key</span> = (<span class="pl-smi">Comparable</span>&lt;? <span class="pl-en">super</span> <span class="pl-smi">T</span>&gt;)<span class="pl-s1">x</span>;
+    <span class="pl-smi">int</span> <span class="pl-s1">half</span> = <span class="pl-s1">n</span> &gt;&gt;&gt; <span class="pl-c1">1</span>;           <span class="pl-c">// loop while a non-leaf</span>
+    <span class="pl-k">while</span> (<span class="pl-s1">k</span> &lt; <span class="pl-s1">half</span>) {
+        <span class="pl-smi">int</span> <span class="pl-s1">child</span> = (<span class="pl-s1">k</span> &lt;&lt; <span class="pl-c1">1</span>) + <span class="pl-c1">1</span>; <span class="pl-c">// assume left child is least</span>
+        <span class="pl-smi">Object</span> <span class="pl-s1">c</span> = <span class="pl-s1">es</span>[<span class="pl-s1">child</span>];
+        <span class="pl-smi">int</span> <span class="pl-s1">right</span> = <span class="pl-s1">child</span> + <span class="pl-c1">1</span>;
+        <span class="pl-k">if</span> (<span class="pl-s1">right</span> &lt; <span class="pl-s1">n</span> &amp;&amp; ((<span class="pl-smi">Comparable</span>&lt;? <span class="pl-en">super</span> <span class="pl-smi">T</span>&gt;) <span class="pl-s1">c</span>).<span class="pl-en">compareTo</span>((<span class="pl-smi">T</span>) <span class="pl-s1">es</span>[<span class="pl-s1">right</span>]) &gt; <span class="pl-c1">0</span>)
+            <span class="pl-s1">c</span> = <span class="pl-s1">es</span>[<span class="pl-s1">child</span> = <span class="pl-s1">right</span>];
+        <span class="pl-k">if</span> (<span class="pl-s1">key</span>.<span class="pl-en">compareTo</span>((<span class="pl-smi">T</span>) <span class="pl-s1">c</span>) &lt;= <span class="pl-c1">0</span>)
+            <span class="pl-k">break</span>;
+        <span class="pl-s1">es</span>[<span class="pl-s1">k</span>] = <span class="pl-s1">c</span>;
+        <span class="pl-s1">k</span> = <span class="pl-s1">child</span>;
+    }
+    <span class="pl-s1">es</span>[<span class="pl-s1">k</span>] = <span class="pl-s1">key</span>;
+}
+
+<span class="pl-k">private</span> <span class="pl-k">static</span> &lt;<span class="pl-smi">T</span>&gt; <span class="pl-smi">void</span> <span class="pl-s1">siftDownUsingComparator</span>(
+    <span class="pl-smi">int</span> <span class="pl-s1">k</span>, <span class="pl-s1">T</span> <span class="pl-s1">x</span>, <span class="pl-s1">Object</span>[] <span class="pl-s1">es</span>, <span class="pl-s1">int</span> <span class="pl-s1">n</span>, <span class="pl-s1">Comparator</span>&lt;? <span class="pl-en">super</span> <span class="pl-s1">T</span>&gt; <span class="pl-s1">cmp</span>) {
+    <span class="pl-c">// assert n &gt; 0;</span>
+    int <span class="pl-s1">half</span> = <span class="pl-s1">n</span> &gt;&gt;&gt; <span class="pl-c1">1</span>;
+    <span class="pl-k">while</span> (<span class="pl-s1">k</span> &lt; <span class="pl-s1">half</span>) {
+        <span class="pl-smi">int</span> <span class="pl-s1">child</span> = (<span class="pl-s1">k</span> &lt;&lt; <span class="pl-c1">1</span>) + <span class="pl-c1">1</span>;
+        <span class="pl-smi">Object</span> <span class="pl-s1">c</span> = <span class="pl-s1">es</span>[<span class="pl-s1">child</span>];
+        <span class="pl-smi">int</span> <span class="pl-s1">right</span> = <span class="pl-s1">child</span> + <span class="pl-c1">1</span>;
+        <span class="pl-k">if</span> (<span class="pl-s1">right</span> &lt; <span class="pl-s1">n</span> &amp;&amp; <span class="pl-s1">cmp</span>.<span class="pl-en">compare</span>((<span class="pl-smi">T</span>) <span class="pl-s1">c</span>, (<span class="pl-smi">T</span>) <span class="pl-s1">es</span>[<span class="pl-s1">right</span>]) &gt; <span class="pl-c1">0</span>)
+            <span class="pl-s1">c</span> = <span class="pl-s1">es</span>[<span class="pl-s1">child</span> = <span class="pl-s1">right</span>];
+        <span class="pl-k">if</span> (<span class="pl-s1">cmp</span>.<span class="pl-en">compare</span>(<span class="pl-s1">x</span>, (<span class="pl-smi">T</span>) <span class="pl-s1">c</span>) &lt;= <span class="pl-c1">0</span>)
+            <span class="pl-k">break</span>;
+        <span class="pl-s1">es</span>[<span class="pl-s1">k</span>] = <span class="pl-s1">c</span>;
+        <span class="pl-s1">k</span> = <span class="pl-s1">child</span>;
+    }
+    <span class="pl-s1">es</span>[<span class="pl-s1">k</span>] = <span class="pl-s1">x</span>;
+}</pre></div>
+</div>
+<div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</div>
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+</div>
+    <div id="footer">Copyright © <span id="year"></span><a href="https://blog.ian2018.club"> IAn2018cs </a>
+<p>
+<span id="runday"></span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a>
+</p>
+
+<script>
+if("08/31/2016"!=""){
+    var now=new Date();
+    var startSite=new Date("08/31/2016");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("year").innerHTML=now.getFullYear();
+    if(""!=""){document.getElementById("runday").innerHTML=" • "+"网站运行"+diffDay+"天"+" • ";}
+    else{document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";}
+}
+</script>
+</div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek v2.19 https://github.com/Meekdai/Gmeek \n\n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","chenshuais/chenshuais.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+</script>
+
+
+</html>
