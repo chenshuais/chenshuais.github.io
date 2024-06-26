@@ -1,5 +1,95 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:17:39 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>通过 Stable Diffusion 给图片换背景</title><link>https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-gei-tu-pian-huan-bei-jing.html</link><description># 方案一：rembg + img2img Inpaint
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Wed, 26 Jun 2024 16:19:14 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Stable Diffusion InstantID ControlNet 参数</title><link>https://blog.ian2018.club/post/Stable%20Diffusion%20InstantID%20ControlNet%20-can-shu.html</link><description>&gt; sd-webui 版本： v1.7.0-408-g94d4b3c8
+&gt;
+&gt; controlnet 版本：v1.1.439
+
+## 用到的模型下载
+
+### 底模：
+https://civitai.com/api/download/models/302806
+### ControlNet：
+将其放到 `stable-diffusion-webui/models/ControlNet` 下
+- instant_id_face_embedding 预处理器所需模型：
+  - https://huggingface.co/InstantX/InstantID/resolve/main/ip-adapter.bin?download=true
+  - 下载后需要重命名成 ：`ip-adapter_instant_id_sdx.bin`
+- instant_id_face_keypoints 预处理器所需模型：
+  - https://huggingface.co/InstantX/InstantID/resolve/main/ControlNetModel/diffusion_pytorch_model.safetensors?download=true
+  - 下载后需要重命名成 ：`control_instant_id_sdxl.safetensors`
+
+## 任意风格：
+
+### SD-WebUI 参数
+类型：文生图/图生图
+
+底模：dreamshaperXL_sfwTurboDpmppSDE.safetensors [3a22504d8a]
+
+提示词 &amp; 负向提示词：可以直接使用 Styles
+
+采样器：DPM++ SDE Karras
+
+步数：6
+
+CFG Scale：2
+
+### ControlNet 参数
+
+这一步是提取人脸信息
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/01798863202fc45eac5330d73ec6b1b3c7447c32.png'&gt;`
+
+这一步是提取目标图片中人脸的位置（一般是放模板图）
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/b08051af9cf1042dbf20fe09699d63251a9bd1ea.png'&gt;`
+
+### API 参数
+
+```python
+url = 'http://127.0.0.1:7860/sdapi/v1/txt2img'
+img_path = './test_img/t4.png'
+data = {
+    'prompt': '1man',
+    'styles': [
+        'SAI Anime'
+    ],
+    'seed': -1,
+    'batch_size': 1,
+    'n_iter': 1,
+    'steps': 6,
+    'cfg_scale': 2,
+    'width': 1024,
+    'height': 1024,
+    'override_settings': {
+        'sd_model_checkpoint': 'dreamshaperXL_sfwTurboDpmppSDE.safetensors [3a22504d8a]'
+    },
+    'save_images': False,
+    'sampler_name': 'DPM++ SDE Karras',
+    'alwayson_scripts': {
+        'controlnet': {
+            'args': [
+                {
+                    'input_image': get_base64_image(img_path),
+                    'module': 'instant_id_face_embedding',
+                    'model': 'ip-adapter_instant_id_sdx [eb2d3ec0]',
+                    'processor_res': 512,
+                    'weight': 1,
+                    'guidance_start': 0.0,
+                    'guidance_end': 1.0,
+                    'control_mode': 0
+                },
+                {
+                    'input_image': get_base64_image(img_path),
+                    'module': 'instant_id_face_keypoints',
+                    'model': 'control_instant_id_sdxl [c5c25a50]',
+                    'processor_res': 512,
+                    'weight': 1,
+                    'guidance_start': 0,
+                    'guidance_end': 1,
+                    'control_mode': 0
+                }
+            ]
+        }
+    }
+}
+```
+&lt;!-- ##{'timestamp':1706576591}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Stable%20Diffusion%20InstantID%20ControlNet%20-can-shu.html</guid><pubDate>Wed, 26 Jun 2024 16:18:49 +0000</pubDate></item><item><title>通过 Stable Diffusion 给图片换背景</title><link>https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-gei-tu-pian-huan-bei-jing.html</link><description># 方案一：rembg + img2img Inpaint
 
 &gt; 参考 https://stable-diffusion-art.com/change-background/
 
