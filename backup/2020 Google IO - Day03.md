@@ -7,11 +7,11 @@
 
 flutter在过去一年中的性能优化进展：
 
-<img src="https://blog-image.ian2018.cn/images/5e89bdafd2fc9159e3153133a9f3235e085e4454.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/5e89bdafd2fc9159e3153133a9f3235e085e4454.png" style="zoom:50%;" />`
 
 ### 1.1 性能测试
 
-<img src="https://blog-image.ian2018.cn/images/f5f4f65a17ff5b88cd6973c4d3ebcaa28a7f6541.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/f5f4f65a17ff5b88cd6973c4d3ebcaa28a7f6541.png" style="zoom:50%;" />`
 
 #### 1.1.1 能耗测试
 
@@ -27,11 +27,11 @@ flutter在过去一年中的性能优化进展：
 
 在用 `flutter run --profile --track-skia` 命令启动App后，打开 Observatory 的监听URL，进入 timeline
 
-<img src="https://blog-image.ian2018.cn/images/783ee8c4c9b9549c53e18832147068793bdba5a3.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/783ee8c4c9b9549c53e18832147068793bdba5a3.png" style="zoom:50%;" />`
 
 现在App里触发一段动画，之后在timeline中点击Refresh加载该动画的timeline，选取一段时间线，就可以看到此时的CPU、内存和GPU的使用率。
 
-<img src="https://blog-image.ian2018.cn/images/44b23241ce11c6bf218e8daa850cacaaa7f4c002.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/44b23241ce11c6bf218e8daa850cacaaa7f4c002.png" style="zoom:50%;" />`
 
 除了手动查看timeline，还可以利用FlutterDriver集成测试来自动获取CPU、GPU的使用率的统计信息。在集成测试之前调用 `enableFlutterDriverExtension()` 来支持Driver集成测试。
 
@@ -73,7 +73,7 @@ void main() {
 
 要进一步确定是否为编译器着色卡顿，可以使用命令 `flutter run --profile --trace-skia` 运行App后，进入Observatory 的timeline，查看raster thread，查看一帧的Draw函数耗时，如果有长时间的 GrGLProgramBuilder::finalize，就意味着有着色器编译卡顿。
 
-<img src="https://blog-image.ian2018.cn/images/7a101897685eb7092eb1c709358db8f11316a71a.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/7a101897685eb7092eb1c709358db8f11316a71a.png" style="zoom:50%;" />`
 
 
 
@@ -89,7 +89,7 @@ void main() {
 
 * 然后操作App，产生有卡顿的动画，然后回调命令界面，按？键可以得到所有命令。其中 M 可以将捕捉到的SkSL着色器进行导出。按下M后得到一个json文件，然后关闭程序。
 
-  <img src="https://blog-image.ian2018.cn/images/5d874bdd76b5119f920f6309b17032aff99f54ed.png" style="zoom:50%;" />
+  `Gmeek-html<img src="https://blog-image.ian2018.cn/images/5d874bdd76b5119f920f6309b17032aff99f54ed.png" style="zoom:50%;" />`
 
 * 然后使用 bundle-sksl-path 参数和刚刚得到的json文件路径，build一个包含SkSL着色器预热的App
 
@@ -184,7 +184,7 @@ Dart开发工具的功能：
 
 使用 MethodChannels 和 Pigeon 对比：
 
-<img src="https://blog-image.ian2018.cn/images/943c46329ac031f58fead5f9bbceca1217cff2b7.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/943c46329ac031f58fead5f9bbceca1217cff2b7.png" style="zoom:50%;" />`
 
 可以看到 MethodChannels的方法高度依赖与字符串检查和类型转换，但在Pigeon中就可以像编写原生方法那样去实现。
 
@@ -192,7 +192,7 @@ Dart开发工具的功能：
 
 ### 3.1 Pigeon的运行流程
 
-<img src="https://blog-image.ian2018.cn/images/b9142f6823969ebdf1262667da812debfbe95a2b.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/b9142f6823969ebdf1262667da812debfbe95a2b.png" style="zoom:50%;" />`
 
 首先声明好接口定义，然后运行Pigeon工具，它可以为不同平台生成代码，这些代码都会使用MethodChannels的方法，省去了平台通道的样板代码。
 
@@ -304,13 +304,13 @@ Dart开发工具的功能：
 
 ### 4.1 阿里中使用了Flutter的App：
 
-<img src="https://blog-image.ian2018.cn/images/5dc633e618db6a028304797f74da46b47b5a7ae9.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/5dc633e618db6a028304797f74da46b47b5a7ae9.png" style="zoom:50%;" />`
 
 
 
 ### 4.2 Flutter的技术优势
 
-<img src="https://blog-image.ian2018.cn/images/03c9ad2f956ff5927547f59776ea92951b02349e.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/03c9ad2f956ff5927547f59776ea92951b02349e.png" style="zoom:50%;" />`
 
 
 
@@ -322,13 +322,13 @@ Dart开发工具的功能：
 
 ### 4.4 融入客户端开发工作流
 
-<img src="https://blog-image.ian2018.cn/images/800b167ea7e9cb8522caf12453b2b49bdf413cbd.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/800b167ea7e9cb8522caf12453b2b49bdf413cbd.png" style="zoom:50%;" />`
 
 
 
 ### 4.5 接入现存技术积累
 
-<img src="https://blog-image.ian2018.cn/images/0906e418d2ebcee0b869b4f464f4c2188042e4c3.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/0906e418d2ebcee0b869b4f464f4c2188042e4c3.png" style="zoom:50%;" />`
 
 其中导航栈管理和状态管理已经开源
 
@@ -356,15 +356,15 @@ Dart开发工具的功能：
 
 思路：
 
-<img src="https://blog-image.ian2018.cn/images/4cb2128c0688dda895f397548f4e5ae8fcd3626d.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/4cb2128c0688dda895f397548f4e5ae8fcd3626d.png" style="zoom:50%;" />`
 
 具体技术规划：
 
-<img src="https://blog-image.ian2018.cn/images/1a78678fd8560554c5663b9642f5ee235ca5a5cc.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/1a78678fd8560554c5663b9642f5ee235ca5a5cc.png" style="zoom:50%;" />`
 
 各项任务之间的联系：
 
-<img src="https://blog-image.ian2018.cn/images/a1708f3d0461ab645e43b5ef06a3a7000d76f018.png" style="zoom:50%;" />
+`Gmeek-html<img src="https://blog-image.ian2018.cn/images/a1708f3d0461ab645e43b5ef06a3a7000d76f018.png" style="zoom:50%;" />`
 
 
 
@@ -501,6 +501,5 @@ fab.visibility = View.VISIBLE
 ### 5.2 更多信息
 
 [https://material.io/design/motion](https://material.io/design/motion)
-
 
 <!-- ##{"timestamp":1606055477}## -->

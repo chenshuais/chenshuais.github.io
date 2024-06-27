@@ -27,8 +27,7 @@ https://developer.android.com/training/basics/intents/package-visibility-use-cas
 Intent intent = Intent.createChooser(sendIntent, null);
 ```
 
- https://developer.android.com/training/sharing/send?hl=zh-cn#why-to-use-system-sharesheet
+https://developer.android.com/training/sharing/send?hl=zh-cn#why-to-use-system-sharesheet
 
- 
 
 <!-- ##{"timestamp":1616653252}## -->

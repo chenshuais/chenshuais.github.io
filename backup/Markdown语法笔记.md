@@ -69,7 +69,7 @@
 ![hello](https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg "hi")
 ```
 效果如下
->![hello](https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg "hi")
+>`Gmeek-html<img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg">`
 
 ### 6.超链接
 ```
@@ -88,7 +88,7 @@
 ```
 显示效果相同
 
-><a href="http://ian2018.cn" target="">我的博客</a>
+>`Gmeek-html<a href="http://ian2018.cn" target="">我的博客</a>`
 
 ## 7.列表
 ### 7.1无序列表
@@ -142,4 +142,5 @@ class Main {
 >     }
 > }
 >```
+
 <!-- ##{"timestamp":1543727940}## -->

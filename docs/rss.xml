@@ -1,312 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Thu, 27 Jun 2024 00:35:43 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Kotlin 写自定义 ViewGroup</title><link>https://blog.ian2018.club/post/Kotlin%20-xie-zi-ding-yi-%20ViewGroup.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/2bba4a3bdad5d534b40c4ffa5281b2761d91b28a.png'&gt;`
-
-Android 最近推行的 Compose ，有着 Kotlin 的加持，使写 UI 更加方便快速，不用担心布局嵌套，还是声明式 UI，那么 Compose 有这么多好处，原生写法还有 “出路” 吗？
-
-今天给大家分享一种非传统的自定义 ViewGroup 写法，让你对自定义 ViewGroup 不再 “恐惧”，再借助 Kotlin ，我们用原生写法，也可以快速写出无嵌套的布局。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Kotlin%20-xie-zi-ding-yi-%20ViewGroup.html</guid><pubDate>Wed, 26 Jun 2024 15:48:47 +0000</pubDate></item><item><title>2021 Google IO Android</title><link>https://blog.ian2018.club/post/2021%20Google%20IO%20Android.html</link><description>## Android 12 [新功能预览](https://android-developers.googleblog.com/2021/03/android-12-developer-preview-2.html)
-
-### 界面上巨大的更新
-- 新的设计语言 Material NEXT
-- 扩展了调色板，以适配 Android 12 的新设计。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2021%20Google%20IO%20Android.html</guid><pubDate>Wed, 26 Jun 2024 15:47:12 +0000</pubDate></item><item><title>图片审核云平台 API 方案对比</title><link>https://blog.ian2018.club/post/tu-pian-shen-he-yun-ping-tai-%20API%20-fang-an-dui-bi.html</link><description># 1 Google Cloud - Cloud Vision API - SafeSearch
-
-https://cloud.google.com/vision/docs/detecting-safe-search?hl=en
-
-## 1.1 检测方式
-
-REST 或者客户端 SDK。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tu-pian-shen-he-yun-ping-tai-%20API%20-fang-an-dui-bi.html</guid><pubDate>Wed, 26 Jun 2024 15:42:29 +0000</pubDate></item><item><title>2020 Google IO - Day03</title><link>https://blog.ian2018.club/post/2020%20Google%20IO%20-%20Day03.html</link><description>2020 Google 开发者大会 - 线上
-
-# Day03 - Flutter | Web | Material Design
-
-
-## 1. Flutter性能进展及着色器编译预热
-
-flutter在过去一年中的性能优化进展：
-
-&lt;img src='https://blog-image.ian2018.cn/images/5e89bdafd2fc9159e3153133a9f3235e085e4454.png' style='zoom:50%;' /&gt;
-
-### 1.1 性能测试
-
-&lt;img src='https://blog-image.ian2018.cn/images/f5f4f65a17ff5b88cd6973c4d3ebcaa28a7f6541.png' style='zoom:50%;' /&gt;
-
-#### 1.1.1 能耗测试
-
-* 能耗 ≈ 速度，但是能耗 ≠ 速度
-* 速度快可以导致能耗高
-* 速度慢也有可能不耗能，如cpu上的任务被别的IO或GPU任务阻塞，进行长时间的等待，但这个时候并没有多大的能耗
-
-目前只加入了iOS的能耗测试工具，Android的会在以后增加。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2020%20Google%20IO%20-%20Day03.html</guid><pubDate>Wed, 26 Jun 2024 15:40:55 +0000</pubDate></item><item><title>算法学习随笔08</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-08.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/bfb08bcb716a91120ade5e5d9b2bceef7c82eb70.png'&gt;`
-
-# Week09 学习笔记
-
-## 1. 动态规划、状态转移方程
-
-### 1.1 要点
-
-* 将一个复杂的问题，分解成各个简单的子问题。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-08.html</guid><pubDate>Wed, 26 Jun 2024 15:37:47 +0000</pubDate></item><item><title>算法学习随笔07</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-07.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/ef0e64c956cd0063b1c9f020b36a760e666a8e3d.png'&gt;`
-
-# Week08 学习笔记
-
-## 1. 位运算
-
-机器里的数字表示方式和存储格式是二进制，所以计算机里的计算通过位运算速度更快。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-07.html</guid><pubDate>Wed, 26 Jun 2024 15:36:12 +0000</pubDate></item><item><title>算法学习随笔06</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-06.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/975ec0f0e79f4323745882275bd0e48d24c415b6.png'&gt;`
-
-# Week07 学习笔记
-
-## 1. 字典树和并查集
-
-### 1.1 字典树 Trie
-
-#### 1.1.1 基本结构
-
-字典树又称为单词查找树或键树，是一种树形结构。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-06.html</guid><pubDate>Wed, 26 Jun 2024 15:34:38 +0000</pubDate></item><item><title>显示器参数小记</title><link>https://blog.ian2018.club/post/xian-shi-qi-can-shu-xiao-ji.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/108b49a8f4f525659bdbbca583f3a3febdb718a9.png'&gt;`
-
-## 前言
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/ea2a1a3035379764c142741e6238e370d027b530.png'&gt;`
-
-在选购显示器时，介绍的一堆参数，对于一个电子小白，都不知道他说啥。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xian-shi-qi-can-shu-xiao-ji.html</guid><pubDate>Wed, 26 Jun 2024 15:33:03 +0000</pubDate></item><item><title>算法学习随笔05</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-05.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/fd688f3969faa60a5550a3ee0f2f2fd72d42964a.png'&gt;`
-
-# Week06 学习笔记
-
-## 动态规划
-
-将一个复杂的问题，用一种递归的方式分解成简单的子问题。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-05.html</guid><pubDate>Wed, 26 Jun 2024 15:31:28 +0000</pubDate></item><item><title>算法学习随笔04</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-04.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/01e228108b214b8a922e7bc36945d4c410425c4d.png'&gt;`
-
-# Week04 学习笔记
-
-## 1 深度优先搜索、广度优先搜索
-
-树或图的遍历
-
-* 每个节点都要访问一次
-* 每个节点仅访问一次
-* 对于节点的访问顺序不限
-  * 深度优先
-  * 广度优先
-  * 其他 如优先级搜索
-
-### 1.1 深度优先搜索
-
-模版代码：
-
-* 递归写法
-
-  ```java
-  void dfs(Node node, List&lt;Node&gt; visited) {
-    if (visited.contains(node)) {
-      // 已经访问过
-      return;
-    }
-    
-    visited.add(node);
-    
-    // 处理当前节点
-    process(node);
-    
-    for (Node nextNode : node.children()) {
-      // 如果没有访问过 递归到下一层
-      if (!visited.contains(nextNode)) {
-        dfs(nextNode, visited);
-      }
-    }
-  }
-  ```
-
-* 非递归写法
-
-  ```java
-  void dfs(Node tree) {
-    if (tree.root == null) {
-      return;
-    }
-    
-    // 手动维护一个栈
-    Stack&lt;Node&gt; stack = new Stack&lt;&gt;();
-    stack.push(tree.root);
-    
-    while (!stack.empty()) {
-      // 出栈 访问节点
-      Node node = stack.pop();
-      visited.add(node);
-      
-      // 处理节点
-      process(node);
-      
-      // 获取相邻节点 分别压入栈中
-      List&lt;Node&gt; nodes = generateRelatedNodes(node);
-      for (Node node : nodes) {
-        stack.push(node);
-      }
-    }
-  }
-  ```
-
-### 1.2 广度优先
-
-由于使用的是队列方式实现，所以没有递归的方法。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-04.html</guid><pubDate>Wed, 26 Jun 2024 15:29:53 +0000</pubDate></item><item><title>算法学习随笔03</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-03.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/1c067681c9b691a73c72001665ca222590d6008e.png'&gt;`
-
-# Week03 学习笔记
-
-## 1 递归的实现、特性以及思维要点
-
-递归的本质就是循环。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-03.html</guid><pubDate>Wed, 26 Jun 2024 15:28:20 +0000</pubDate></item><item><title>算法学习随笔02</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-02.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/551fee04516aebc8be1314d3f1e8b1754e2cc0c0.png'&gt;`
-
-# Week02 学习笔记
-
-## 1  哈希表、映射、集合的实现与特性
-
-* 哈希表（Hash table）也叫散列表。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-02.html</guid><pubDate>Wed, 26 Jun 2024 15:26:45 +0000</pubDate></item><item><title>算法学习随笔01</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-01.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/80da86e91597b0ed66841d3875a6b7db3cd051cd.png'&gt;`
-
-# Week01 学习笔记
-
-## 1 学习算法方法
-
-### 1.1 课程学习流程
-
-* 课前预习，把ppt先过一遍
-* 倍速看视频，不懂的地方暂停反复看
-* 做课后练习题，刻意练习
-* 构建自己的知识图谱，逐渐完善
-
-### 1.2 做题流程 五毒神掌
-
-* 5分钟看题，不要着急做，先理解题目
-* 10分钟内想不出来，看题解，理解别人的代码
-* 自己写一遍，尽量不再看题解
-* 自己AC之后，看国际站上的高分解题方法
-* 回来自己再做一遍
-* 一天后，一周后再来做一遍，忘记了就再重复一遍上面的流程，直到不看题解就能做出来
-* 面试前集中过一遍
-
-### 1.3 数据结构与算法脑图
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/991b44ffa909e7dd89d1dd5041c0640fe3b5e988.png'&gt;`
-
-
-## 2 编程习惯
-
-* 设置好最适合自己的编程环境
-* 摒弃之前的坏习惯
-* 自顶向下的编程方式，结构清晰
-
-## 3 复杂度分析
-
-### 3.1 时间复杂度
-
-只看最高的复杂度
-
-常见的时间复杂度
-
-* O(1) 常数级别，如散列表操作
-* O(log n) 对数级别，如二分查找
-* O(n) 线性级别，如计数排序
-* O(n^2) 平方级别，如冒泡排序
-* O(2^n) 指数级别，如斐波拉契递归
-* O(n!) 阶乘
-
-### 3.2 空间复杂度
-
-有没有额外申请空间，原地操作为O(1)
-
-* 数组的长度
-* 递归的深度
-
-## 4 数组、链表、跳表
-
-### 4.1 数组
-
-* 随机访问，O(1)时间复杂度
-* 插入删除，O(n)时间复杂度 (涉及到元素的搬移)
-
-Java中的ArrayList就是对数组的封装，默认数组大小是10，
-每次插入都会进行元素的copy，
-如果大小不够，就会进行扩容，申请一个当前大小二倍的空间，再把当前元素copy过去。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-01.html</guid><pubDate>Wed, 26 Jun 2024 15:25:10 +0000</pubDate></item><item><title>Arrays中的ArrayList</title><link>https://blog.ian2018.club/post/Arrays-zhong-de-ArrayList.html</link><description># 1. Arrays 类介绍
-
-&gt; This class contains various methods for manipulating arrays (such as sorting and searching). This class also contains a static factory that allows arrays to be viewed as lists.
-&gt; 
-&gt; 该类包含用于操作数组的各种方法（例如排序和搜索）。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Arrays-zhong-de-ArrayList.html</guid><pubDate>Wed, 26 Jun 2024 15:23:35 +0000</pubDate></item><item><title>Markdown语法笔记</title><link>https://blog.ian2018.club/post/Markdown-yu-fa-bi-ji.html</link><description># 简单记一下markdown的语法
-
-## 1.标题
-```
-# 一级标题
-## 二级标题
-### 三级标题
-#### 四级标题
-##### 五级标题
-###### 六级标题
-```
-最多有六级标题，只需要前面加上 # 即可
-
-
-## 2.字体
-```
-**加粗字体**
-*斜体*
-***斜体加粗***
-~~删除线字体~~
-```
-效果如下
-
-&gt;**加粗字体**
-&gt;
-&gt;*斜体*
-&gt;
-&gt;***斜体加粗***
-&gt;
-&gt;~~删除线字体~~
-
-
-
-## 3.引用
-可以套好多层引用下去
-```
-&gt;一级引用
-&gt;&gt;二级引用
-&gt;&gt;&gt;三级引用
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;n级引用
-```
-效果如下
-&gt;一级引用
-&gt;&gt;二级引用
-&gt;&gt;&gt;三级引用
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;n级引用
-
-## 4.分割线
-三个或三个以上的 - 或 *
-```
----
-----
-***
-****
-```
-效果如下，好像看不出啥区别
-
-&gt;---
-&gt;----
-&gt;***
-&gt;****
-
-## 5.图片
-```
-![图片下的文字](图片地址 '图片标题')
-```
-图片标题是指当鼠标移动到图片上时显示的内容，标题可以不加。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Markdown-yu-fa-bi-ji.html</guid><pubDate>Wed, 26 Jun 2024 15:22:01 +0000</pubDate></item><item><title>屏幕适配小记</title><link>https://blog.ian2018.club/post/ping-mu-shi-pei-xiao-ji.html</link><description>最近在工作中遇到了屏幕适配的问题，这里做个记录，方便以后查看。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ping-mu-shi-pei-xiao-ji.html</guid><pubDate>Wed, 26 Jun 2024 15:20:27 +0000</pubDate></item><item><title>探索：搭建GitLab服务器(CentOS7.2)</title><link>https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-da-jian-GitLab-fu-wu-qi-%28CentOS7.2%29.html</link><description># 前言 #
-
-GitLab 是一个用于仓库管理系统的开源项目，使用Git作为代码管理工具，并在此基础上搭建起来的web服务。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-da-jian-GitLab-fu-wu-qi-%28CentOS7.2%29.html</guid><pubDate>Wed, 26 Jun 2024 15:18:53 +0000</pubDate></item><item><title>音乐播放器思路</title><link>https://blog.ian2018.club/post/yin-le-bo-fang-qi-si-lu.html</link><description>## 开发背景
-
-为了放松心情，让听歌更加方便快捷，没有广告等其他干扰使用，于是便有了自己写一个音乐播放器的想法。</description><guid isPermaLink="true">https://blog.ian2018.club/post/yin-le-bo-fang-qi-si-lu.html</guid><pubDate>Wed, 26 Jun 2024 15:17:19 +0000</pubDate></item><item><title>自学之路：初识HTTP——《图解HTTP》note1</title><link>https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</link><description># 前言
-
-最近打算学习一些网络相关的知识，经别人推荐，说《图解HTTP》这本书不错，于是便买来打算学习一波。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</guid><pubDate>Wed, 26 Jun 2024 15:15:44 +0000</pubDate></item><item><title>新生使用IntelliJ IDEA计划</title><link>https://blog.ian2018.club/post/xin-sheng-shi-yong-IntelliJ%20IDEA-ji-hua.html</link><description># 1.为什么要使用 IntelliJ IDEA
-
-Google 早在2015年中期，就宣布结束对 Eclipse ADT（安卓开发工具）的支持，并推荐开发者使用 Google 专门为开发者定制的 Android Studio ，而且提供了将项目从 Eclipse 转移到 Android Studio 的方法。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xin-sheng-shi-yong-IntelliJ%20IDEA-ji-hua.html</guid><pubDate>Wed, 26 Jun 2024 15:14:11 +0000</pubDate></item><item><title>自学之路：手机卫士</title><link>https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</link><description>## 在自学时遇到的一些困难
-
-在自学中遇到的一些小问题，解决方法仅供参考，由于作者目前还处于小白阶段，有错误的地方还请指出(⊙o⊙)
-
----
-
-### 状态栏颜色
-
-由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 15:12:36 +0000</pubDate></item><item><title>Android 手机运行 Ollama</title><link>https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</link><description>在你的安卓设备上通过 Termux 和 Ollama 释放大型语言模型的力量在这篇博客文章中，我们将探讨如何使用强大的终端模拟器 Termux 在安卓设备上安装和运行 Ollama 语言模型。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</guid><pubDate>Fri, 14 Jun 2024 07:53:31 +0000</pubDate></item><item><title>WWDC 24 Apple Intelligence 新功能预览</title><link>https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</link><description># Apple Intelligence&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Thu, 27 Jun 2024 01:00:30 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Android 手机运行 Ollama</title><link>https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</link><description>在你的安卓设备上通过 Termux 和 Ollama 释放大型语言模型的力量在这篇博客文章中，我们将探讨如何使用强大的终端模拟器 Termux 在安卓设备上安装和运行 Ollama 语言模型。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</guid><pubDate>Fri, 14 Jun 2024 07:53:31 +0000</pubDate></item><item><title>WWDC 24 Apple Intelligence 新功能预览</title><link>https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</link><description># Apple Intelligence&#13;
 &#13;
 &gt; [!NOTE]&#13;
 &gt; AI 相关的能力仅支持 iPhone 15 Pro 及以上的机型&#13;
@@ -782,60 +475,285 @@ Python中可以使用replace()函数来替换字符串。</description><guid isP
 开源项目代表：https://github.com/harjot-oberai/MusicDNA，2.7 K star，最近更新 2019.5.31&#13;
 &#13;
 ### 1.1 原理&#13;
-使用系统 API 去设置各种参数。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-jun-heng-qi-shi-xian-fang-shi-diao-yan.html</guid><pubDate>Tue, 09 Nov 2021 06:29:17 +0000</pubDate></item><item><title>Android 小 Tips 2（状态栏配置及显示壁纸等）</title><link>https://blog.ian2018.club/post/Android%20-xiao-%20Tips%202%EF%BC%88-zhuang-tai-lan-pei-zhi-ji-xian-shi-bi-zhi-deng-%EF%BC%89.html</link><description>
-# 设置状态栏
-
-```java
-//设置状态栏字体颜色为白色
-getWindow().getDecorView().setSystemUiVisibility(
-        View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-//设置状态栏颜色为透明
-getWindow().setStatusBarColor(Color.TRANSPARENT);
-```
-
-```java
-//设置状态栏字体颜色为黑色
-window.getDecorView().setSystemUiVisibility(
-                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
-                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-//设置导航键颜色也为透明
-window.setNavigationBarColor(Color.TRANSPARENT);                                
-```
-
-在 style 中配置
-
-```xml
-&lt;item name='android:navigationBarColor' tools:targetApi='21'&gt;@android:color/transparent&lt;/item&gt;
-&lt;item name='android:enforceNavigationBarContrast' tools:targetApi='29'&gt;false&lt;/item&gt;
-&lt;item name='android:statusBarColor'  tools:targetApi='21'&gt;@android:color/transparent&lt;/item&gt;
-&lt;item name='android:enforceStatusBarContrast' tools:targetApi='29'&gt;false&lt;/item&gt;
-
-&lt;item name='android:windowTranslucentStatus'&gt;true&lt;/item&gt;
-&lt;item name='android:windowTranslucentNavigation'&gt;true&lt;/item&gt;
-```
-
-# 显示壁纸
-
-```xml
-&lt;!-- 显示壁纸 --&gt;
-&lt;item name='android:windowShowWallpaper'&gt;true&lt;/item&gt;
-&lt;item name='android:windowBackground'&gt;@android:color/transparent&lt;/item&gt;
-```
-&lt;!-- ##{'timestamp':1619595112}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-xiao-%20Tips%202%EF%BC%88-zhuang-tai-lan-pei-zhi-ji-xian-shi-bi-zhi-deng-%EF%BC%89.html</guid><pubDate>Wed, 28 Apr 2021 07:31:52 +0000</pubDate></item><item><title>Android 小 Tips</title><link>https://blog.ian2018.club/post/Android%20-xiao-%20Tips.html</link><description># Android 对非 SDK 调用限制
-
-从 Android 9 ( API 28 ) 开始，对非 SDK 接口限制
-
-https://juejin.cn/post/6844903903037751309
-
-https://developer.android.com/distribute/best-practices/develop/restrictions-non-sdk-interfaces?hl=zh-cn
-
-* greylist 无限制，可以正常使用。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-xiao-%20Tips.html</guid><pubDate>Thu, 25 Mar 2021 06:20:52 +0000</pubDate></item><item><title>算法学习随笔09</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-09.html</link><description># Week10 毕业总结
-
-转眼已经过去70天了，在这70天里，收获最大的就是养成了每天刷题的习惯。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-09.html</guid><pubDate>Sun, 26 Jul 2020 14:53:00 +0000</pubDate></item><item><title>设计模式读书笔记</title><link>https://blog.ian2018.club/post/she-ji-mo-shi-du-shu-bi-ji.html</link><description># 一、 简单工厂模式（创建型）
-
-1. 活字印刷，面向对象：可维护、可复用、可扩展、灵活性好。</description><guid isPermaLink="true">https://blog.ian2018.club/post/she-ji-mo-shi-du-shu-bi-ji.html</guid><pubDate>Tue, 15 Oct 2019 01:11:00 +0000</pubDate></item><item><title>Java io流</title><link>https://blog.ian2018.club/post/Java%20io-liu.html</link><description>
+使用系统 API 去设置各种参数。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-jun-heng-qi-shi-xian-fang-shi-diao-yan.html</guid><pubDate>Tue, 09 Nov 2021 06:29:17 +0000</pubDate></item><item><title>Kotlin 写自定义 ViewGroup</title><link>https://blog.ian2018.club/post/Kotlin%20-xie-zi-ding-yi-%20ViewGroup.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/2bba4a3bdad5d534b40c4ffa5281b2761d91b28a.png'&gt;`&#13;
+&#13;
+Android 最近推行的 Compose ，有着 Kotlin 的加持，使写 UI 更加方便快速，不用担心布局嵌套，还是声明式 UI，那么 Compose 有这么多好处，原生写法还有 “出路” 吗？&#13;
+&#13;
+今天给大家分享一种非传统的自定义 ViewGroup 写法，让你对自定义 ViewGroup 不再 “恐惧”，再借助 Kotlin ，我们用原生写法，也可以快速写出无嵌套的布局。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Kotlin%20-xie-zi-ding-yi-%20ViewGroup.html</guid><pubDate>Mon, 06 Sep 2021 12:39:00 +0000</pubDate></item><item><title>2021 Google IO Android</title><link>https://blog.ian2018.club/post/2021%20Google%20IO%20Android.html</link><description>## Android 12 [新功能预览](https://android-developers.googleblog.com/2021/03/android-12-developer-preview-2.html)&#13;
+&#13;
+### 界面上巨大的更新&#13;
+- 新的设计语言 Material NEXT&#13;
+- 扩展了调色板，以适配 Android 12 的新设计。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2021%20Google%20IO%20Android.html</guid><pubDate>Tue, 29 Jun 2021 12:31:17 +0000</pubDate></item><item><title>Android 小 Tips 2（状态栏配置及显示壁纸等）</title><link>https://blog.ian2018.club/post/Android%20-xiao-%20Tips%202%EF%BC%88-zhuang-tai-lan-pei-zhi-ji-xian-shi-bi-zhi-deng-%EF%BC%89.html</link><description># 设置状态栏&#13;
+&#13;
+```java&#13;
+//设置状态栏字体颜色为白色&#13;
+getWindow().getDecorView().setSystemUiVisibility(&#13;
+        View.SYSTEM_UI_FLAG_LAYOUT_STABLE |&#13;
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);&#13;
+//设置状态栏颜色为透明&#13;
+getWindow().setStatusBarColor(Color.TRANSPARENT);&#13;
+```&#13;
+&#13;
+```java&#13;
+//设置状态栏字体颜色为黑色&#13;
+window.getDecorView().setSystemUiVisibility(&#13;
+                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE |&#13;
+                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |&#13;
+                                View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);&#13;
+//设置导航键颜色也为透明&#13;
+window.setNavigationBarColor(Color.TRANSPARENT);                                &#13;
+```&#13;
+&#13;
+在 style 中配置&#13;
+&#13;
+```xml&#13;
+&lt;item name='android:navigationBarColor' tools:targetApi='21'&gt;@android:color/transparent&lt;/item&gt;&#13;
+&lt;item name='android:enforceNavigationBarContrast' tools:targetApi='29'&gt;false&lt;/item&gt;&#13;
+&lt;item name='android:statusBarColor'  tools:targetApi='21'&gt;@android:color/transparent&lt;/item&gt;&#13;
+&lt;item name='android:enforceStatusBarContrast' tools:targetApi='29'&gt;false&lt;/item&gt;&#13;
+&#13;
+&lt;item name='android:windowTranslucentStatus'&gt;true&lt;/item&gt;&#13;
+&lt;item name='android:windowTranslucentNavigation'&gt;true&lt;/item&gt;&#13;
+```&#13;
+&#13;
+# 显示壁纸&#13;
+&#13;
+```xml&#13;
+&lt;!-- 显示壁纸 --&gt;&#13;
+&lt;item name='android:windowShowWallpaper'&gt;true&lt;/item&gt;&#13;
+&lt;item name='android:windowBackground'&gt;@android:color/transparent&lt;/item&gt;&#13;
+```&#13;
+&#13;
+&lt;!-- ##{'timestamp':1619595112}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-xiao-%20Tips%202%EF%BC%88-zhuang-tai-lan-pei-zhi-ji-xian-shi-bi-zhi-deng-%EF%BC%89.html</guid><pubDate>Wed, 28 Apr 2021 07:31:52 +0000</pubDate></item><item><title>Android 小 Tips</title><link>https://blog.ian2018.club/post/Android%20-xiao-%20Tips.html</link><description># Android 对非 SDK 调用限制&#13;
+&#13;
+从 Android 9 ( API 28 ) 开始，对非 SDK 接口限制&#13;
+&#13;
+https://juejin.cn/post/6844903903037751309&#13;
+&#13;
+https://developer.android.com/distribute/best-practices/develop/restrictions-non-sdk-interfaces?hl=zh-cn&#13;
+&#13;
+* greylist 无限制，可以正常使用。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-xiao-%20Tips.html</guid><pubDate>Thu, 25 Mar 2021 06:20:52 +0000</pubDate></item><item><title>图片审核云平台 API 方案对比</title><link>https://blog.ian2018.club/post/tu-pian-shen-he-yun-ping-tai-%20API%20-fang-an-dui-bi.html</link><description># 1 Google Cloud - Cloud Vision API - SafeSearch&#13;
+&#13;
+https://cloud.google.com/vision/docs/detecting-safe-search?hl=en&#13;
+&#13;
+## 1.1 检测方式&#13;
+&#13;
+REST 或者客户端 SDK。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tu-pian-shen-he-yun-ping-tai-%20API%20-fang-an-dui-bi.html</guid><pubDate>Tue, 23 Mar 2021 09:12:23 +0000</pubDate></item><item><title>2020 Google IO - Day03</title><link>https://blog.ian2018.club/post/2020%20Google%20IO%20-%20Day03.html</link><description>2020 Google 开发者大会 - 线上&#13;
+&#13;
+# Day03 - Flutter | Web | Material Design&#13;
+&#13;
+&#13;
+## 1. Flutter性能进展及着色器编译预热&#13;
+&#13;
+flutter在过去一年中的性能优化进展：&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/5e89bdafd2fc9159e3153133a9f3235e085e4454.png' style='zoom:50%;' /&gt;`&#13;
+&#13;
+### 1.1 性能测试&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/f5f4f65a17ff5b88cd6973c4d3ebcaa28a7f6541.png' style='zoom:50%;' /&gt;`&#13;
+&#13;
+#### 1.1.1 能耗测试&#13;
+&#13;
+* 能耗 ≈ 速度，但是能耗 ≠ 速度&#13;
+* 速度快可以导致能耗高&#13;
+* 速度慢也有可能不耗能，如cpu上的任务被别的IO或GPU任务阻塞，进行长时间的等待，但这个时候并没有多大的能耗&#13;
+&#13;
+目前只加入了iOS的能耗测试工具，Android的会在以后增加。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2020%20Google%20IO%20-%20Day03.html</guid><pubDate>Sun, 22 Nov 2020 14:31:17 +0000</pubDate></item><item><title>算法学习随笔09</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-09.html</link><description># Week10 毕业总结&#13;
+&#13;
+转眼已经过去70天了，在这70天里，收获最大的就是养成了每天刷题的习惯。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-09.html</guid><pubDate>Sun, 26 Jul 2020 14:53:00 +0000</pubDate></item><item><title>算法学习随笔08</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-08.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/bfb08bcb716a91120ade5e5d9b2bceef7c82eb70.png'&gt;`&#13;
+&#13;
+# Week09 学习笔记&#13;
+&#13;
+## 1. 动态规划、状态转移方程&#13;
+&#13;
+### 1.1 要点&#13;
+&#13;
+* 将一个复杂的问题，分解成各个简单的子问题。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-08.html</guid><pubDate>Sat, 18 Jul 2020 09:09:00 +0000</pubDate></item><item><title>算法学习随笔07</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-07.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/ef0e64c956cd0063b1c9f020b36a760e666a8e3d.png'&gt;`&#13;
+&#13;
+# Week08 学习笔记&#13;
+&#13;
+## 1. 位运算&#13;
+&#13;
+机器里的数字表示方式和存储格式是二进制，所以计算机里的计算通过位运算速度更快。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-07.html</guid><pubDate>Sun, 12 Jul 2020 12:00:00 +0000</pubDate></item><item><title>算法学习随笔06</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-06.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/975ec0f0e79f4323745882275bd0e48d24c415b6.png'&gt;`&#13;
+&#13;
+# Week07 学习笔记&#13;
+&#13;
+## 1. 字典树和并查集&#13;
+&#13;
+### 1.1 字典树 Trie&#13;
+&#13;
+#### 1.1.1 基本结构&#13;
+&#13;
+字典树又称为单词查找树或键树，是一种树形结构。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-06.html</guid><pubDate>Sun, 05 Jul 2020 11:28:00 +0000</pubDate></item><item><title>显示器参数小记</title><link>https://blog.ian2018.club/post/xian-shi-qi-can-shu-xiao-ji.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/108b49a8f4f525659bdbbca583f3a3febdb718a9.png'&gt;`&#13;
+&#13;
+## 前言&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/ea2a1a3035379764c142741e6238e370d027b530.png'&gt;`&#13;
+&#13;
+在选购显示器时，介绍的一堆参数，对于一个电子小白，都不知道他说啥。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xian-shi-qi-can-shu-xiao-ji.html</guid><pubDate>Thu, 02 Jul 2020 01:21:00 +0000</pubDate></item><item><title>算法学习随笔05</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-05.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/fd688f3969faa60a5550a3ee0f2f2fd72d42964a.png'&gt;`&#13;
+&#13;
+# Week06 学习笔记&#13;
+&#13;
+## 动态规划&#13;
+&#13;
+将一个复杂的问题，用一种递归的方式分解成简单的子问题。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-05.html</guid><pubDate>Sun, 28 Jun 2020 12:49:00 +0000</pubDate></item><item><title>算法学习随笔04</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-04.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/01e228108b214b8a922e7bc36945d4c410425c4d.png'&gt;`&#13;
+&#13;
+# Week04 学习笔记&#13;
+&#13;
+## 1 深度优先搜索、广度优先搜索&#13;
+&#13;
+树或图的遍历&#13;
+&#13;
+* 每个节点都要访问一次&#13;
+* 每个节点仅访问一次&#13;
+* 对于节点的访问顺序不限&#13;
+  * 深度优先&#13;
+  * 广度优先&#13;
+  * 其他 如优先级搜索&#13;
+&#13;
+### 1.1 深度优先搜索&#13;
+&#13;
+模版代码：&#13;
+&#13;
+* 递归写法&#13;
+&#13;
+  ```java&#13;
+  void dfs(Node node, List&lt;Node&gt; visited) {&#13;
+    if (visited.contains(node)) {&#13;
+      // 已经访问过&#13;
+      return;&#13;
+    }&#13;
+    &#13;
+    visited.add(node);&#13;
+    &#13;
+    // 处理当前节点&#13;
+    process(node);&#13;
+    &#13;
+    for (Node nextNode : node.children()) {&#13;
+      // 如果没有访问过 递归到下一层&#13;
+      if (!visited.contains(nextNode)) {&#13;
+        dfs(nextNode, visited);&#13;
+      }&#13;
+    }&#13;
+  }&#13;
+  ```&#13;
+&#13;
+* 非递归写法&#13;
+&#13;
+  ```java&#13;
+  void dfs(Node tree) {&#13;
+    if (tree.root == null) {&#13;
+      return;&#13;
+    }&#13;
+    &#13;
+    // 手动维护一个栈&#13;
+    Stack&lt;Node&gt; stack = new Stack&lt;&gt;();&#13;
+    stack.push(tree.root);&#13;
+    &#13;
+    while (!stack.empty()) {&#13;
+      // 出栈 访问节点&#13;
+      Node node = stack.pop();&#13;
+      visited.add(node);&#13;
+      &#13;
+      // 处理节点&#13;
+      process(node);&#13;
+      &#13;
+      // 获取相邻节点 分别压入栈中&#13;
+      List&lt;Node&gt; nodes = generateRelatedNodes(node);&#13;
+      for (Node node : nodes) {&#13;
+        stack.push(node);&#13;
+      }&#13;
+    }&#13;
+  }&#13;
+  ```&#13;
+&#13;
+### 1.2 广度优先&#13;
+&#13;
+由于使用的是队列方式实现，所以没有递归的方法。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-04.html</guid><pubDate>Sun, 14 Jun 2020 05:32:00 +0000</pubDate></item><item><title>算法学习随笔03</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-03.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/1c067681c9b691a73c72001665ca222590d6008e.png'&gt;`&#13;
+&#13;
+# Week03 学习笔记&#13;
+&#13;
+## 1 递归的实现、特性以及思维要点&#13;
+&#13;
+递归的本质就是循环。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-03.html</guid><pubDate>Thu, 04 Jun 2020 15:00:00 +0000</pubDate></item><item><title>算法学习随笔02</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-02.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/551fee04516aebc8be1314d3f1e8b1754e2cc0c0.png'&gt;`&#13;
+&#13;
+# Week02 学习笔记&#13;
+&#13;
+## 1  哈希表、映射、集合的实现与特性&#13;
+&#13;
+* 哈希表（Hash table）也叫散列表。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-02.html</guid><pubDate>Sun, 31 May 2020 10:34:00 +0000</pubDate></item><item><title>算法学习随笔01</title><link>https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-01.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/80da86e91597b0ed66841d3875a6b7db3cd051cd.png'&gt;`&#13;
+&#13;
+# Week01 学习笔记&#13;
+&#13;
+## 1 学习算法方法&#13;
+&#13;
+### 1.1 课程学习流程&#13;
+&#13;
+* 课前预习，把ppt先过一遍&#13;
+* 倍速看视频，不懂的地方暂停反复看&#13;
+* 做课后练习题，刻意练习&#13;
+* 构建自己的知识图谱，逐渐完善&#13;
+&#13;
+### 1.2 做题流程 五毒神掌&#13;
+&#13;
+* 5分钟看题，不要着急做，先理解题目&#13;
+* 10分钟内想不出来，看题解，理解别人的代码&#13;
+* 自己写一遍，尽量不再看题解&#13;
+* 自己AC之后，看国际站上的高分解题方法&#13;
+* 回来自己再做一遍&#13;
+* 一天后，一周后再来做一遍，忘记了就再重复一遍上面的流程，直到不看题解就能做出来&#13;
+* 面试前集中过一遍&#13;
+&#13;
+### 1.3 数据结构与算法脑图&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/991b44ffa909e7dd89d1dd5041c0640fe3b5e988.png'&gt;`&#13;
+&#13;
+&#13;
+## 2 编程习惯&#13;
+&#13;
+* 设置好最适合自己的编程环境&#13;
+* 摒弃之前的坏习惯&#13;
+* 自顶向下的编程方式，结构清晰&#13;
+&#13;
+## 3 复杂度分析&#13;
+&#13;
+### 3.1 时间复杂度&#13;
+&#13;
+只看最高的复杂度&#13;
+&#13;
+常见的时间复杂度&#13;
+&#13;
+* O(1) 常数级别，如散列表操作&#13;
+* O(log n) 对数级别，如二分查找&#13;
+* O(n) 线性级别，如计数排序&#13;
+* O(n^2) 平方级别，如冒泡排序&#13;
+* O(2^n) 指数级别，如斐波拉契递归&#13;
+* O(n!) 阶乘&#13;
+&#13;
+### 3.2 空间复杂度&#13;
+&#13;
+有没有额外申请空间，原地操作为O(1)&#13;
+&#13;
+* 数组的长度&#13;
+* 递归的深度&#13;
+&#13;
+## 4 数组、链表、跳表&#13;
+&#13;
+### 4.1 数组&#13;
+&#13;
+* 随机访问，O(1)时间复杂度&#13;
+* 插入删除，O(n)时间复杂度 (涉及到元素的搬移)&#13;
+&#13;
+Java中的ArrayList就是对数组的封装，默认数组大小是10，&#13;
+每次插入都会进行元素的copy，&#13;
+如果大小不够，就会进行扩容，申请一个当前大小二倍的空间，再把当前元素copy过去。</description><guid isPermaLink="true">https://blog.ian2018.club/post/suan-fa-xue-xi-sui-bi-01.html</guid><pubDate>Thu, 21 May 2020 14:29:00 +0000</pubDate></item><item><title>设计模式读书笔记</title><link>https://blog.ian2018.club/post/she-ji-mo-shi-du-shu-bi-ji.html</link><description># 一、 简单工厂模式（创建型）&#13;
+&#13;
+1. 活字印刷，面向对象：可维护、可复用、可扩展、灵活性好。</description><guid isPermaLink="true">https://blog.ian2018.club/post/she-ji-mo-shi-du-shu-bi-ji.html</guid><pubDate>Tue, 15 Oct 2019 01:11:00 +0000</pubDate></item><item><title>Arrays中的ArrayList</title><link>https://blog.ian2018.club/post/Arrays-zhong-de-ArrayList.html</link><description># 1. Arrays 类介绍&#13;
+&#13;
+&gt; This class contains various methods for manipulating arrays (such as sorting and searching). This class also contains a static factory that allows arrays to be viewed as lists.&#13;
+&gt; &#13;
+&gt; 该类包含用于操作数组的各种方法（例如排序和搜索）。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Arrays-zhong-de-ArrayList.html</guid><pubDate>Wed, 13 Mar 2019 10:52:00 +0000</pubDate></item><item><title>Java io流</title><link>https://blog.ian2018.club/post/Java%20io-liu.html</link><description>
 类关系图：
 `Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/6b82af80bd927dd911fa4e17dcf189258562236b.png'&gt;`
 
@@ -964,15 +882,89 @@ gradlew :app:dependencies --configuration compile
 jar cvf 新的文件.jar -C 原解压出来的文件夹/ .
 ```
 
-&lt;!-- ##{'timestamp':1544668980}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20Gradle-yi-lai-chong-tu-wen-ti.html</guid><pubDate>Thu, 13 Dec 2018 02:43:00 +0000</pubDate></item><item><title>初识背后的老朋友--JVM</title><link>https://blog.ian2018.club/post/chu-shi-bei-hou-de-lao-peng-you---JVM.html</link><description>一直在学Java基础，光知道怎么用了也不行，也得了解一下它的内部长什么样子。</description><guid isPermaLink="true">https://blog.ian2018.club/post/chu-shi-bei-hou-de-lao-peng-you---JVM.html</guid><pubDate>Sat, 14 Jul 2018 12:42:01 +0000</pubDate></item><item><title>第一次电话面试</title><link>https://blog.ian2018.club/post/di-yi-ci-dian-hua-mian-shi.html</link><description>京东Android实习电话一面 人生第一次，2018年4月13日晚上8点，时长28分钟：
+&lt;!-- ##{'timestamp':1544668980}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20Gradle-yi-lai-chong-tu-wen-ti.html</guid><pubDate>Thu, 13 Dec 2018 02:43:00 +0000</pubDate></item><item><title>Markdown语法笔记</title><link>https://blog.ian2018.club/post/Markdown-yu-fa-bi-ji.html</link><description># 简单记一下markdown的语法&#13;
+&#13;
+## 1.标题&#13;
+```&#13;
+# 一级标题&#13;
+## 二级标题&#13;
+### 三级标题&#13;
+#### 四级标题&#13;
+##### 五级标题&#13;
+###### 六级标题&#13;
+```&#13;
+最多有六级标题，只需要前面加上 # 即可&#13;
+&#13;
+&#13;
+## 2.字体&#13;
+```&#13;
+**加粗字体**&#13;
+*斜体*&#13;
+***斜体加粗***&#13;
+~~删除线字体~~&#13;
+```&#13;
+效果如下&#13;
+&#13;
+&gt;**加粗字体**&#13;
+&gt;&#13;
+&gt;*斜体*&#13;
+&gt;&#13;
+&gt;***斜体加粗***&#13;
+&gt;&#13;
+&gt;~~删除线字体~~&#13;
+&#13;
+&#13;
+&#13;
+## 3.引用&#13;
+可以套好多层引用下去&#13;
+```&#13;
+&gt;一级引用&#13;
+&gt;&gt;二级引用&#13;
+&gt;&gt;&gt;三级引用&#13;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;n级引用&#13;
+```&#13;
+效果如下&#13;
+&gt;一级引用&#13;
+&gt;&gt;二级引用&#13;
+&gt;&gt;&gt;三级引用&#13;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;n级引用&#13;
+&#13;
+## 4.分割线&#13;
+三个或三个以上的 - 或 *&#13;
+```&#13;
+---&#13;
+----&#13;
+***&#13;
+****&#13;
+```&#13;
+效果如下，好像看不出啥区别&#13;
+&#13;
+&gt;---&#13;
+&gt;----&#13;
+&gt;***&#13;
+&gt;****&#13;
+&#13;
+## 5.图片&#13;
+```&#13;
+![图片下的文字](图片地址 '图片标题')&#13;
+```&#13;
+图片标题是指当鼠标移动到图片上时显示的内容，标题可以不加。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Markdown-yu-fa-bi-ji.html</guid><pubDate>Sun, 02 Dec 2018 05:19:00 +0000</pubDate></item><item><title>屏幕适配小记</title><link>https://blog.ian2018.club/post/ping-mu-shi-pei-xiao-ji.html</link><description>最近在工作中遇到了屏幕适配的问题，这里做个记录，方便以后查看。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ping-mu-shi-pei-xiao-ji.html</guid><pubDate>Mon, 05 Nov 2018 03:15:05 +0000</pubDate></item><item><title>初识背后的老朋友--JVM</title><link>https://blog.ian2018.club/post/chu-shi-bei-hou-de-lao-peng-you---JVM.html</link><description>一直在学Java基础，光知道怎么用了也不行，也得了解一下它的内部长什么样子。</description><guid isPermaLink="true">https://blog.ian2018.club/post/chu-shi-bei-hou-de-lao-peng-you---JVM.html</guid><pubDate>Sat, 14 Jul 2018 12:42:01 +0000</pubDate></item><item><title>第一次电话面试</title><link>https://blog.ian2018.club/post/di-yi-ci-dian-hua-mian-shi.html</link><description>京东Android实习电话一面 人生第一次，2018年4月13日晚上8点，时长28分钟：
 
-周三的时候京东给打电话确认一下能不能去面试，问我能去现场吗，我开始说能去，但发现那天还有事，下午就又给京东打电话，换成了电话面试。</description><guid isPermaLink="true">https://blog.ian2018.club/post/di-yi-ci-dian-hua-mian-shi.html</guid><pubDate>Sat, 14 Apr 2018 00:59:24 +0000</pubDate></item><item><title>修身之道</title><link>https://blog.ian2018.club/post/xiu-shen-zhi-dao.html</link><description>修身之道，这个存在中国历史几千年的一种行为，以我个人的观点来看，这或许参杂着一些帝王统治阶级的私心，因为修身之道可以使天下百姓更加稳定，容易管理，方便统治，存天理，去人欲，教导人们去克制自己的人性，遵循封建阶级制造出来的所谓的理。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xiu-shen-zhi-dao.html</guid><pubDate>Thu, 27 Jul 2017 07:09:35 +0000</pubDate></item><item><title>第一次笔试</title><link>https://blog.ian2018.club/post/di-yi-ci-bi-shi.html</link><description>今天晚上，参加了美团点评Android工程师（实习）的春招笔试。</description><guid isPermaLink="true">https://blog.ian2018.club/post/di-yi-ci-bi-shi.html</guid><pubDate>Tue, 21 Mar 2017 15:28:11 +0000</pubDate></item><item><title>“转发”：王久良的纪录片：从《垃圾围城》到《塑料王国》</title><link>https://blog.ian2018.club/post/%E2%80%9C-zhuan-fa-%E2%80%9D%EF%BC%9A-wang-jiu-liang-de-ji-lu-pian-%EF%BC%9A-cong-%E3%80%8A-la-ji-wei-cheng-%E3%80%8B-dao-%E3%80%8A-su-liao-wang-guo-%E3%80%8B.html</link><description>2015-10-29 10:36:00
+周三的时候京东给打电话确认一下能不能去面试，问我能去现场吗，我开始说能去，但发现那天还有事，下午就又给京东打电话，换成了电话面试。</description><guid isPermaLink="true">https://blog.ian2018.club/post/di-yi-ci-dian-hua-mian-shi.html</guid><pubDate>Sat, 14 Apr 2018 00:59:24 +0000</pubDate></item><item><title>探索：搭建GitLab服务器(CentOS7.2)</title><link>https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-da-jian-GitLab-fu-wu-qi-%28CentOS7.2%29.html</link><description># 前言 #&#13;
+&#13;
+GitLab 是一个用于仓库管理系统的开源项目，使用Git作为代码管理工具，并在此基础上搭建起来的web服务。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-da-jian-GitLab-fu-wu-qi-%28CentOS7.2%29.html</guid><pubDate>Thu, 14 Dec 2017 11:29:20 +0000</pubDate></item><item><title>修身之道</title><link>https://blog.ian2018.club/post/xiu-shen-zhi-dao.html</link><description>修身之道，这个存在中国历史几千年的一种行为，以我个人的观点来看，这或许参杂着一些帝王统治阶级的私心，因为修身之道可以使天下百姓更加稳定，容易管理，方便统治，存天理，去人欲，教导人们去克制自己的人性，遵循封建阶级制造出来的所谓的理。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xiu-shen-zhi-dao.html</guid><pubDate>Thu, 27 Jul 2017 07:09:35 +0000</pubDate></item><item><title>音乐播放器思路</title><link>https://blog.ian2018.club/post/yin-le-bo-fang-qi-si-lu.html</link><description>## 开发背景&#13;
+&#13;
+为了放松心情，让听歌更加方便快捷，没有广告等其他干扰使用，于是便有了自己写一个音乐播放器的想法。</description><guid isPermaLink="true">https://blog.ian2018.club/post/yin-le-bo-fang-qi-si-lu.html</guid><pubDate>Fri, 24 Mar 2017 15:37:05 +0000</pubDate></item><item><title>第一次笔试</title><link>https://blog.ian2018.club/post/di-yi-ci-bi-shi.html</link><description>今天晚上，参加了美团点评Android工程师（实习）的春招笔试。</description><guid isPermaLink="true">https://blog.ian2018.club/post/di-yi-ci-bi-shi.html</guid><pubDate>Tue, 21 Mar 2017 15:28:11 +0000</pubDate></item><item><title>自学之路：初识HTTP——《图解HTTP》note1</title><link>https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</link><description># 前言&#13;
+&#13;
+最近打算学习一些网络相关的知识，经别人推荐，说《图解HTTP》这本书不错，于是便买来打算学习一波。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</guid><pubDate>Wed, 01 Mar 2017 12:36:47 +0000</pubDate></item><item><title>“转发”：王久良的纪录片：从《垃圾围城》到《塑料王国》</title><link>https://blog.ian2018.club/post/%E2%80%9C-zhuan-fa-%E2%80%9D%EF%BC%9A-wang-jiu-liang-de-ji-lu-pian-%EF%BC%9A-cong-%E3%80%8A-la-ji-wei-cheng-%E3%80%8B-dao-%E3%80%8A-su-liao-wang-guo-%E3%80%8B.html</link><description>2015-10-29 10:36:00
 
 **环境教育杂志**
 
 **作者：崔维敏**
 
-**王久良**，自由摄影师，纪录片《**垃圾围城**》和《**塑料王国**》的作者。</description><guid isPermaLink="true">https://blog.ian2018.club/post/%E2%80%9C-zhuan-fa-%E2%80%9D%EF%BC%9A-wang-jiu-liang-de-ji-lu-pian-%EF%BC%9A-cong-%E3%80%8A-la-ji-wei-cheng-%E3%80%8B-dao-%E3%80%8A-su-liao-wang-guo-%E3%80%8B.html</guid><pubDate>Sun, 08 Jan 2017 08:08:36 +0000</pubDate></item><item><title>2017半年计划</title><link>https://blog.ian2018.club/post/2017-ban-nian-ji-hua.html</link><description>~~1·把第一行代码后面的实战项目做出来。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2017-ban-nian-ji-hua.html</guid><pubDate>Fri, 06 Jan 2017 06:31:11 +0000</pubDate></item><item><title>2016→2017</title><link>https://blog.ian2018.club/post/2016%E2%86%922017.html</link><description>第一次写些类似年终总结的东西，不过我感觉这更像是回忆，一个大日记。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2016%E2%86%922017.html</guid><pubDate>Sat, 31 Dec 2016 15:57:59 +0000</pubDate></item><item><title>深夜感悟</title><link>https://blog.ian2018.club/post/shen-ye-gan-wu.html</link><description>你们当初为什么会选这个专业？
+**王久良**，自由摄影师，纪录片《**垃圾围城**》和《**塑料王国**》的作者。</description><guid isPermaLink="true">https://blog.ian2018.club/post/%E2%80%9C-zhuan-fa-%E2%80%9D%EF%BC%9A-wang-jiu-liang-de-ji-lu-pian-%EF%BC%9A-cong-%E3%80%8A-la-ji-wei-cheng-%E3%80%8B-dao-%E3%80%8A-su-liao-wang-guo-%E3%80%8B.html</guid><pubDate>Sun, 08 Jan 2017 08:08:36 +0000</pubDate></item><item><title>2017半年计划</title><link>https://blog.ian2018.club/post/2017-ban-nian-ji-hua.html</link><description>~~1·把第一行代码后面的实战项目做出来。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2017-ban-nian-ji-hua.html</guid><pubDate>Fri, 06 Jan 2017 06:31:11 +0000</pubDate></item><item><title>2016→2017</title><link>https://blog.ian2018.club/post/2016%E2%86%922017.html</link><description>第一次写些类似年终总结的东西，不过我感觉这更像是回忆，一个大日记。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2016%E2%86%922017.html</guid><pubDate>Sat, 31 Dec 2016 15:57:59 +0000</pubDate></item><item><title>新生使用IntelliJ IDEA计划</title><link>https://blog.ian2018.club/post/xin-sheng-shi-yong-IntelliJ%20IDEA-ji-hua.html</link><description># 1.为什么要使用 IntelliJ IDEA&#13;
+&#13;
+Google 早在2015年中期，就宣布结束对 Eclipse ADT（安卓开发工具）的支持，并推荐开发者使用 Google 专门为开发者定制的 Android Studio ，而且提供了将项目从 Eclipse 转移到 Android Studio 的方法。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xin-sheng-shi-yong-IntelliJ%20IDEA-ji-hua.html</guid><pubDate>Sun, 06 Nov 2016 06:18:57 +0000</pubDate></item><item><title>深夜感悟</title><link>https://blog.ian2018.club/post/shen-ye-gan-wu.html</link><description>你们当初为什么会选这个专业？
 
 是自己选的，还是家里选的？
 
@@ -980,7 +972,15 @@ jar cvf 新的文件.jar -C 原解压出来的文件夹/ .
 
 无论是哪个，你既然来这了，当初一定有自己的想法，那就不要荒废了自己，想想自己来大学到底是来干什么的！
 
-或许开始，你还有一股子冲劲，带着对大学的新鲜感，去去尝试各种事情，上课也比较积极。</description><guid isPermaLink="true">https://blog.ian2018.club/post/shen-ye-gan-wu.html</guid><pubDate>Mon, 31 Oct 2016 05:23:54 +0000</pubDate></item><item><title>探索：使用Hexo搭建博客(Windows用户)</title><link>https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-shi-yong-Hexo-da-jian-bo-ke-%28Windows-yong-hu-%29.html</link><description># 前言&#13;
+或许开始，你还有一股子冲劲，带着对大学的新鲜感，去去尝试各种事情，上课也比较积极。</description><guid isPermaLink="true">https://blog.ian2018.club/post/shen-ye-gan-wu.html</guid><pubDate>Mon, 31 Oct 2016 05:23:54 +0000</pubDate></item><item><title>自学之路：手机卫士</title><link>https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</link><description>## 在自学时遇到的一些困难&#13;
+&#13;
+在自学中遇到的一些小问题，解决方法仅供参考，由于作者目前还处于小白阶段，有错误的地方还请指出(⊙o⊙)&#13;
+&#13;
+---&#13;
+&#13;
+### 状态栏颜色&#13;
+&#13;
+由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Sat, 03 Sep 2016 14:09:47 +0000</pubDate></item><item><title>探索：使用Hexo搭建博客(Windows用户)</title><link>https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-shi-yong-Hexo-da-jian-bo-ke-%28Windows-yong-hu-%29.html</link><description># 前言&#13;
 我是在一个安卓开发群里了解到这种搭建博客的方法，群友发了两个链接，链接上的教程说是五分钟搭建自己的博客，可我经过了一个多小时的探索才完成了这个博客。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tan-suo-%EF%BC%9A-shi-yong-Hexo-da-jian-bo-ke-%28Windows-yong-hu-%29.html</guid><pubDate>Thu, 01 Sep 2016 10:56:12 +0000</pubDate></item><item><title>Hello World</title><link>https://blog.ian2018.club/post/Hello%20World.html</link><description>&#13;
 第一次搭建自己的博客&#13;
 &#13;

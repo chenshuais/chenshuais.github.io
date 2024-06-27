@@ -1,4 +1,3 @@
-
 # 设置状态栏
 
 ```java
@@ -39,4 +38,5 @@ window.setNavigationBarColor(Color.TRANSPARENT);
 <item name="android:windowShowWallpaper">true</item>
 <item name="android:windowBackground">@android:color/transparent</item>
 ```
+
 <!-- ##{"timestamp":1619595112}## -->
