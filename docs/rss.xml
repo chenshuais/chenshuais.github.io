@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Thu, 27 Jun 2024 01:49:47 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Android 手机运行 Ollama</title><link>https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</link><description>在你的安卓设备上通过 Termux 和 Ollama 释放大型语言模型的力量在这篇博客文章中，我们将探讨如何使用强大的终端模拟器 Termux 在安卓设备上安装和运行 Ollama 语言模型。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</guid><pubDate>Fri, 14 Jun 2024 07:53:31 +0000</pubDate></item><item><title>WWDC 24 Apple Intelligence 新功能预览</title><link>https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</link><description># Apple Intelligence&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Thu, 27 Jun 2024 01:50:13 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Android 手机运行 Ollama</title><link>https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</link><description>在你的安卓设备上通过 Termux 和 Ollama 释放大型语言模型的力量在这篇博客文章中，我们将探讨如何使用强大的终端模拟器 Termux 在安卓设备上安装和运行 Ollama 语言模型。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</guid><pubDate>Fri, 14 Jun 2024 07:53:31 +0000</pubDate></item><item><title>WWDC 24 Apple Intelligence 新功能预览</title><link>https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</link><description># Apple Intelligence&#13;
 &#13;
 &gt; [!NOTE]&#13;
 &gt; AI 相关的能力仅支持 iPhone 15 Pro 及以上的机型&#13;
@@ -817,32 +817,33 @@ Java中的ArrayList就是对数组的封装，默认数组大小是10，&#13;
     android:layerType='software' /&gt;
 ```
 
-&gt; 注： 如果直接旋转的话，在设置给view的背景后，发现虚线只有一小段。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xu-xian-de-shi-xian-fang-fa.html</guid><pubDate>Mon, 25 Feb 2019 01:30:52 +0000</pubDate></item><item><title>绘制圆角矩形</title><link>https://blog.ian2018.club/post/hui-zhi-yuan-jiao-ju-xing.html</link><description>canvas.drawRoundRect(RectF, x半径,y半径, Paint)
-
-```java
-// 创建降雨概率矩形-
-private Bitmap createRainRect(int width, int height, float rainHeight) {
-    final Paint paint = new Paint();
-    paint.setAntiAlias(true);
-    Bitmap target = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-    Canvas canvas = new Canvas(target);
-
-    // 绘制降雨概率背景圆角矩形
-    paint.setColor(getResources().getColor(R.color.rain_rect_bg_color));
-    mRainBgRect.set(0,0, mRainRectWidth,mRainRectHeight);
-    canvas.drawRoundRect(mRainBgRect,ToolUtils.dp2px(context, 20),ToolUtils.dp2px(context, 20),paint);
-
-    // 绘制降雨概率圆角矩形
-    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-    paint.setColor(getResources().getColor(R.color.rain_rect_color));
-    mRainRect.set(0,mRainRectHeight - rainHeight,
-            mRainRectWidth,(mRainRectHeight - rainHeight) + mRainRectHeight);
-    canvas.drawRoundRect(mRainRect,ToolUtils.dp2px(context, 20),ToolUtils.dp2px(context, 20),paint);
-
-    return target;
-} 
-```
-
+&gt; 注： 如果直接旋转的话，在设置给view的背景后，发现虚线只有一小段。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xu-xian-de-shi-xian-fang-fa.html</guid><pubDate>Mon, 25 Feb 2019 01:30:52 +0000</pubDate></item><item><title>绘制圆角矩形</title><link>https://blog.ian2018.club/post/hui-zhi-yuan-jiao-ju-xing.html</link><description>canvas.drawRoundRect(RectF, x半径,y半径, Paint)&#13;
+&#13;
+```java&#13;
+// 创建降雨概率矩形-&#13;
+private Bitmap createRainRect(int width, int height, float rainHeight) {&#13;
+    final Paint paint = new Paint();&#13;
+    paint.setAntiAlias(true);&#13;
+    Bitmap target = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);&#13;
+    Canvas canvas = new Canvas(target);&#13;
+&#13;
+    // 绘制降雨概率背景圆角矩形&#13;
+    paint.setColor(getResources().getColor(R.color.rain_rect_bg_color));&#13;
+    mRainBgRect.set(0,0, mRainRectWidth,mRainRectHeight);&#13;
+    canvas.drawRoundRect(mRainBgRect,ToolUtils.dp2px(context, 20),ToolUtils.dp2px(context, 20),paint);&#13;
+&#13;
+    // 绘制降雨概率圆角矩形&#13;
+    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));&#13;
+    paint.setColor(getResources().getColor(R.color.rain_rect_color));&#13;
+    mRainRect.set(0,mRainRectHeight - rainHeight,&#13;
+            mRainRectWidth,(mRainRectHeight - rainHeight) + mRainRectHeight);&#13;
+    canvas.drawRoundRect(mRainRect,ToolUtils.dp2px(context, 20),ToolUtils.dp2px(context, 20),paint);&#13;
+&#13;
+    return target;&#13;
+} &#13;
+```&#13;
+&#13;
+&#13;
 &lt;!-- ##{'timestamp':1548240772}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/hui-zhi-yuan-jiao-ju-xing.html</guid><pubDate>Wed, 23 Jan 2019 10:52:52 +0000</pubDate></item><item><title>Android Fragment中添加Fragment</title><link>https://blog.ian2018.club/post/Android%20Fragment-zhong-tian-jia-Fragment.html</link><description>最好使用 getChildFragmentManager 来获取manager
 
 子fragment调用父fragment的方法：
