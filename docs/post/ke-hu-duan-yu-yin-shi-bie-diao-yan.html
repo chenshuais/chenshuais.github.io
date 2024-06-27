@@ -9,12 +9,10 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="> 总结
->
+<meta name="description" content="> [!NOTE]
 > 语音转文字可以先使用原生方案，客户端编写代码使用策略模式，后面如果要替换其他的比较方便。">
 <meta property="og:title" content="客户端语音识别调研">
-<meta property="og:description" content="> 总结
->
+<meta property="og:description" content="> [!NOTE]
 > 语音转文字可以先使用原生方案，客户端编写代码使用策略模式，后面如果要替换其他的比较方便。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://blog.ian2018.club/post/ke-hu-duan-yu-yin-shi-bie-diao-yan.html">
@@ -44,7 +42,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     .postTitle{font-size:24px;}
 }
 </style>
-
+<style>.markdown-alert{padding:0.5rem 1rem;margin-bottom:1rem;border-left:.25em solid var(--borderColor-default,var(--color-border-default));}.markdown-alert .markdown-alert-title {display:flex;font-weight:var(--base-text-weight-medium,500);align-items:center;line-height:1;}.markdown-alert>:first-child {margin-top:0;}.markdown-alert>:last-child {margin-bottom:0;}</style><style>.markdown-alert.markdown-alert-note {border-left-color:var(--borderColor-accent-emphasis, var(--color-accent-emphasis));background-color:var(--color-accent-subtle);}.markdown-alert.markdown-alert-note .markdown-alert-title {color: var(--fgColor-accent,var(--color-accent-fg));}</style>
 
 
 
@@ -74,11 +72,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><blockquote>
-<p>总结</p>
-<p>语音转文字可以先使用原生方案，客户端编写代码使用策略模式，后面如果要替换其他的比较方便。</p>
-<p>文字转语音同样也适用原生方案，关于边输入文字边播放语音，需要客户端对文字进行断句处理，分批转语音。</p>
-</blockquote>
+<div class="markdown-body" id="postBody"><div class="markdown-alert markdown-alert-note"><p class="markdown-alert-title"><svg class="octicon octicon-info mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>Note</p><p>语音转文字可以先使用原生方案，客户端编写代码使用策略模式，后面如果要替换其他的比较方便。<br>
+文字转语音同样也适用原生方案，关于边输入文字边播放语音，需要客户端对文字进行断句处理，分批转语音。</p>
+</div>
 <h2>语音转文字</h2>
 <h3>一、原生方案：</h3>
 <p>使用系统原生提供的 api</p>

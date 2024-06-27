@@ -1,4 +1,3 @@
-
 ## 模版新方案
 
 不再使用图生图的方式，而是采用 **模版 ****tag**** 反推** + **文生图** + **ControlNet Pose 控制姿势** + **换脸**
@@ -339,5 +338,6 @@ Negative prompt: **nsfw,cartoon, painting, illustration, (worst quality),  (low 
 ### 针对偶尔出的图脸部是不完整的问题
 
 这个单通过改提示词不太好弄，可以用 ControlNet 控制一下姿势，就能避免出一些奇怪的图，但这样姿势就不能随机了，就是固定提供的那几个。
+
 
 <!-- ##{"timestamp":1698811291}## -->

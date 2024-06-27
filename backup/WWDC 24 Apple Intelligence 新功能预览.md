@@ -1,16 +1,14 @@
 # Apple Intelligence
 
+> [!NOTE]
 > AI 相关的能力仅支持 iPhone 15 Pro 及以上的机型
->
 > https://developer.apple.com/apple-intelligence/
 
 `Gmeek-html<img src="https://blog-image.ian2018.cn/images/03cac3f41a5d033b8a3bed66c5404607b0faa37c.png">`
 
 ## Writing Tools
 > 参考文档：
->
 > https://developer.apple.com/videos/play/wwdc2024/10168/
->
 > https://www.youtube.com/watch?v=79PkqsA_zk8
 
 `Gmeek-html<img src="https://blog-image.ian2018.cn/images/d4717848a1428549fc383812053238cdca0b2a54.png">`
@@ -49,9 +47,7 @@
 ## Genmoji
 
 > 参考文档：
->
 > https://developer.apple.com/videos/play/wwdc2024/10220/
->
 > https://www.youtube.com/watch?v=D58kVm2h4-w
 
 `Gmeek-html<img src="https://blog-image.ian2018.cn/images/6d001238492d302c9fffc31f069cbbd3b84e4b2c.png">`
@@ -64,11 +60,8 @@ Genmoji 开辟了全新的交流方式，让用户可以创建与任何时刻相
 ## Siri with App Intents
 
 > 参考文档：
->
 > https://developer.apple.com/videos/play/wwdc2024/10133/
->
 > https://www.youtube.com/watch?v=Lb89T7ybCBE
->
 > https://developer.apple.com/documentation/AppIntents/making-your-app-s-functionality-available-to-siri
 
 `Gmeek-html<img src="https://blog-image.ian2018.cn/images/b611b9651fd8b33dc6a1c6ebc3039351ebe5d605.png">`
@@ -83,4 +76,5 @@ Genmoji 开辟了全新的交流方式，让用户可以创建与任何时刻相
 ### 开发者能做的：
 - 根据新的框架，让应用支持 Siri 的调用，以实现上面 12 个意图功能。
 - 例如：Photos 的创建相册、打开图片、搜索图片等。
+
 <!-- ##{"timestamp":1718175491}## -->

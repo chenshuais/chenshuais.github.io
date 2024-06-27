@@ -1,443 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Thu, 27 Jun 2024 00:10:29 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>WWDC 24 Apple Intelligence 新功能预览</title><link>https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</link><description># Apple Intelligence
-
-&gt; AI 相关的能力仅支持 iPhone 15 Pro 及以上的机型
-&gt;
-&gt; https://developer.apple.com/apple-intelligence/
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/03cac3f41a5d033b8a3bed66c5404607b0faa37c.png'&gt;`
-
-## Writing Tools
-&gt; 参考文档：
-&gt;
-&gt; https://developer.apple.com/videos/play/wwdc2024/10168/
-&gt;
-&gt; https://www.youtube.com/watch?v=79PkqsA_zk8
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/d4717848a1428549fc383812053238cdca0b2a54.png'&gt;`
-
-### 表现形式：
-- 系统键盘上的工具栏
-- 长按文本弹出的上下文菜单中
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/6a8d39e5b10a2e0c4aa7585fd183f5c17c7fec5a.png'&gt;`
-
-### 适用于文本类型：
-- 可编辑的文本：会直接在原文本上修改
-- 不可编辑的文本：会弹出系统弹窗面板展示结果
-
-### 支持的能力：
-- 文本校对
-- 文本重写
-- 摘要总结
-- 将文本转换为列表或者表格
-
-### 开发者能做的：
-- 默认应用内使用 `UITextView` 或者 `NSTextView` 的文本 UI 都支持 Writing Tools 功能。</description><guid isPermaLink="true">https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</guid><pubDate>Wed, 26 Jun 2024 16:26:42 +0000</pubDate></item><item><title>申请新加坡 OCBC 银行卡</title><link>https://blog.ian2018.club/post/shen-qing-xin-jia-po-%20OCBC%20-yin-xing-qia.html</link><description># 申请新加坡 OCBC 银行卡
-
-OCBC（Oversea-Chinese Banking Corporation，即新加坡华侨银行）是新加坡的第二大银行。</description><guid isPermaLink="true">https://blog.ian2018.club/post/shen-qing-xin-jia-po-%20OCBC%20-yin-xing-qia.html</guid><pubDate>Wed, 26 Jun 2024 16:25:08 +0000</pubDate></item><item><title>iOS 照片相似度检查调研</title><link>https://blog.ian2018.club/post/iOS%20-zhao-pian-xiang-si-du-jian-cha-diao-yan.html</link><description>## 照片相似度检查
-
-参考文章：
-&gt; [OpenCV 相似度算法](https://juejin.cn/post/6969457808378953735)
-&gt;
-&gt; [苹果机器学习判断图片相似度](https://cloud.tencent.com/developer/article/2277725)
-&gt;
-&gt; [OpenCV 相似度算法2](https://www.cnblogs.com/yangyuxiaozi/p/7419349.html)
-&gt;
-&gt; [OpenCV](https://medium.com/@hdpoorna/integrating-opencv-to-your-swift-ios-project-in-xcode-and-working-with-uiimages-4c614e62ac88)
-
-参考项目：
-&gt; https://github.com/coderFrankenstain/WJSimilarPhotos
-&gt;
-&gt; https://github.com/ZYHshao/MachineLearnDemo
-&gt;
-&gt; https://github.com/ameingast/cocoaimagehashing
-&gt;
-&gt; https://github.com/ameingast/cocoaimagehashing/issues/18
-&gt;
-&gt; https://github.com/yeatse/opencv-spm
-
-### 图片匹配算法
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/d42335aa1006b6f1f2f0443fccd625ce6761f61a.png'&gt;`
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/fa7395e7c8313e9eb9f8605eb889d7fc8f5dc525.png'&gt;`
-
-### 图片相似度检测方案
-
-#### 方案一、通过 OpenCV 实现
-
-识别算法
-1. 利用 PHASH 算法（感知哈希算法，通常用于图片相似度识别）对比图片轮廓相似度。</description><guid isPermaLink="true">https://blog.ian2018.club/post/iOS%20-zhao-pian-xiang-si-du-jian-cha-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:23:32 +0000</pubDate></item><item><title>iOS 文档扫描技术调研</title><link>https://blog.ian2018.club/post/iOS%20-wen-dang-sao-miao-ji-shu-diao-yan.html</link><description>&gt; 文本扫描和文本 OCR，系统 API 已经有了很好的支持，效果好，开发成本低，缺点就是文档扫描的 UI 无法定制，只能使用系统的。</description><guid isPermaLink="true">https://blog.ian2018.club/post/iOS%20-wen-dang-sao-miao-ji-shu-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:21:58 +0000</pubDate></item><item><title>Fooocus 局部重绘换装</title><link>https://blog.ian2018.club/post/Fooocus%20-ju-bu-zhong-hui-huan-zhuang.html</link><description>## 一、导入图片
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/5021f64db62f0363ed806ff3b27f1d701410c91d.png'&gt;`
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/4d0c62fc4fdb014da7f592a905a02f78009e9165.png'&gt;`
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/555e5cc7207ea74462445a84f9f84eeed3298c82.png'&gt;`
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/aa4c671bf80b1c7af271f5ffb21bab99674a72ad.png'&gt;`
-
-## 二、设置重绘区域
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/0baac8434f6003e82877334b6c4bbe998bffc768.png'&gt;`
-
-## 三、设置提示词
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/0ef7990112bab033968186ee28463867b576b143.png'&gt;`
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/f000ad08e2479c3fd7952f890e3c8fa9be9eb1dc.png'&gt;`
-
-&lt;!-- ##{'timestamp':1709549831}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Fooocus%20-ju-bu-zhong-hui-huan-zhuang.html</guid><pubDate>Wed, 26 Jun 2024 16:20:23 +0000</pubDate></item><item><title>Stable Diffusion InstantID ControlNet 参数</title><link>https://blog.ian2018.club/post/Stable%20Diffusion%20InstantID%20ControlNet%20-can-shu.html</link><description>&gt; sd-webui 版本： v1.7.0-408-g94d4b3c8
-&gt;
-&gt; controlnet 版本：v1.1.439
-
-## 用到的模型下载
-
-### 底模：
-https://civitai.com/api/download/models/302806
-### ControlNet：
-将其放到 `stable-diffusion-webui/models/ControlNet` 下
-- instant_id_face_embedding 预处理器所需模型：
-  - https://huggingface.co/InstantX/InstantID/resolve/main/ip-adapter.bin?download=true
-  - 下载后需要重命名成 ：`ip-adapter_instant_id_sdx.bin`
-- instant_id_face_keypoints 预处理器所需模型：
-  - https://huggingface.co/InstantX/InstantID/resolve/main/ControlNetModel/diffusion_pytorch_model.safetensors?download=true
-  - 下载后需要重命名成 ：`control_instant_id_sdxl.safetensors`
-
-## 任意风格：
-
-### SD-WebUI 参数
-类型：文生图/图生图
-
-底模：dreamshaperXL_sfwTurboDpmppSDE.safetensors [3a22504d8a]
-
-提示词 &amp; 负向提示词：可以直接使用 Styles
-
-采样器：DPM++ SDE Karras
-
-步数：6
-
-CFG Scale：2
-
-### ControlNet 参数
-
-这一步是提取人脸信息
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/01798863202fc45eac5330d73ec6b1b3c7447c32.png'&gt;`
-
-这一步是提取目标图片中人脸的位置（一般是放模板图）
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/b08051af9cf1042dbf20fe09699d63251a9bd1ea.png'&gt;`
-
-### API 参数
-
-```python
-url = 'http://127.0.0.1:7860/sdapi/v1/txt2img'
-img_path = './test_img/t4.png'
-data = {
-    'prompt': '1man',
-    'styles': [
-        'SAI Anime'
-    ],
-    'seed': -1,
-    'batch_size': 1,
-    'n_iter': 1,
-    'steps': 6,
-    'cfg_scale': 2,
-    'width': 1024,
-    'height': 1024,
-    'override_settings': {
-        'sd_model_checkpoint': 'dreamshaperXL_sfwTurboDpmppSDE.safetensors [3a22504d8a]'
-    },
-    'save_images': False,
-    'sampler_name': 'DPM++ SDE Karras',
-    'alwayson_scripts': {
-        'controlnet': {
-            'args': [
-                {
-                    'input_image': get_base64_image(img_path),
-                    'module': 'instant_id_face_embedding',
-                    'model': 'ip-adapter_instant_id_sdx [eb2d3ec0]',
-                    'processor_res': 512,
-                    'weight': 1,
-                    'guidance_start': 0.0,
-                    'guidance_end': 1.0,
-                    'control_mode': 0
-                },
-                {
-                    'input_image': get_base64_image(img_path),
-                    'module': 'instant_id_face_keypoints',
-                    'model': 'control_instant_id_sdxl [c5c25a50]',
-                    'processor_res': 512,
-                    'weight': 1,
-                    'guidance_start': 0,
-                    'guidance_end': 1,
-                    'control_mode': 0
-                }
-            ]
-        }
-    }
-}
-```
-&lt;!-- ##{'timestamp':1706576591}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Stable%20Diffusion%20InstantID%20ControlNet%20-can-shu.html</guid><pubDate>Wed, 26 Jun 2024 16:18:49 +0000</pubDate></item><item><title>通过 Stable Diffusion 给图片换背景</title><link>https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-gei-tu-pian-huan-bei-jing.html</link><description># 方案一：rembg + img2img Inpaint
-
-&gt; 参考 https://stable-diffusion-art.com/change-background/
-
-## 1. 下载安装 rembg 插件
-https://github.com/AUTOMATIC1111/stable-diffusion-webui-rembg
-
-## 2. 生成蒙版图
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/0765daa81db8d036a0060ba8ad908d01359b7a4f.png'&gt;`
-
-## 3. 使用图生图重绘背景
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/6b03c44dd15fa6574b9453a225f134ea28de0270.png'&gt;`
-还可以增加 ControlNet 的深度控制，可以避免出现奇怪的东西（多只胳膊之类的），但会导致出图结构受限：
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/3bbf161c6bef99b787524780ff7d16990dafab0d.png'&gt;`
-
-# 方案二：Segment Anything 
-## 1. 下载安装 Segment Anything  插件
-https://github.com/continue-revolution/sd-webui-segment-anything
-
-## 2. 提取相关蒙版图
-切换到 img2img Tab，找到 Segment Anything 插件，参数如下：
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/dce3cdbc03593af9f0a829b610a811fc79e7ba0c.png'&gt;`
-这里可以直接将第 7 不勾选上，这样就不用再保存蒙版图了。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-gei-tu-pian-huan-bei-jing.html</guid><pubDate>Wed, 26 Jun 2024 16:17:15 +0000</pubDate></item><item><title>通过 Stable Diffusion 进行照片风格转换</title><link>https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-jin-xing-zhao-pian-feng-ge-zhuan-huan.html</link><description>&gt; 经过几次测试，其中图生图的效果会比较好
-&gt;
-&gt; ControlNet 使用 3 层控制：Canny + Depth + IP-Adapter
-
-## 用到的模型下载
-### 底模：
-https://civitai.com/api/download/models/302806
-
-### ControlNet：
-将其放到 `stable-diffusion-webui/extensions/sd-webui-controlnet/models` 或者 `stable-diffusion-webui/models/ControlNet` 下
-- Canny：
-  - https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/sai_xl_canny_256lora.safetensors?download=true
-- Depth：
-  - https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/sai_xl_depth_128lora.safetensors?download=true
-- IP-Adapter Face：
-  - https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter-plus-face_sdxl_vit-h.safetensors?download=true
-
-
-## 参数详情：
-
-### 图生图参数：
-Stable Diffusion checkpoint：dreamshaperXL_turboDpmppSDE.safetensors [676f0d60c8]
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/fbebebdd321dcdc173131becdbd50065e0f4a825.png'&gt;`
-
-### ControlNet 参数：
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/126b0ed20d343c23dd28b248a95e362d61958b6e.png'&gt;`
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/e4bda592201f46be6ad68585a302221d2c9067f2.png'&gt;`
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/9bdf5fa060ac6c3ebc6184dd7757c82cd0eefddb.png'&gt;`
-
-## 结果展示：
-
-### 动画风格，Style：SAI Anime
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/72a2f6b2f2f4220c959eacd09304661b38c5484b.png'&gt;`
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/5619a8bd240c0b28aa16029e7da1e86f606a112e.png'&gt;`
-
-### 3D 风格，Style：SAI 3D Model，SAI Disney Model
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/96d873e4c573ef84d44d19ef3bd6ba694b3a20ae.png'&gt;`
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/0e4e761661bd4ff8575b00e8cb70ae020ef80421.png'&gt;`
-
-### 复古游戏风，Style：Game Retro Game
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/935c2ca2d8bf33f56bd16279bcb981f0e942a792.png'&gt;`
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/3b7bf90b822424333ae703ce82147571dbfe0317.png'&gt;`
-
-## API 参数
-
-```python
-url = 'http://127.0.0.1:7860/sdapi/v1/img2img'
-img_path = './test_img/t4.png'
-data = {
-    'init_images': [get_base64_image(img_path)],
-    'resize_mode': 0,
-    'denoising_strength': 0.7,
-    'prompt': '(anime artwork), (anime style), key visual, vibrant, studio anime, highly detailed',
-    'negative_prompt': 'photo, deformed, black and white, realism, disfigured, low contrast',
-    'seed': -1,
-    'batch_size': 1,
-    'n_iter': 1,
-    'steps': 6,
-    'cfg_scale': 2,
-    'width': 1024,
-    'height': 1280,
-    'override_settings': {
-        'sd_model_checkpoint': 'dreamshaperXL_turboDpmppSDE.safetensors [676f0d60c8]'
-    },
-    'save_images': False,
-    'sampler_name': 'DPM++ SDE Karras',
-    'alwayson_scripts': {
-        'controlnet': {
-            'args': [
-                {
-                    'module': 'canny',
-                    'model': 'sai_xl_canny_256lora [566f20af]',
-                    'processor_res': 512,
-                    'weight': 0.8,
-                    'guidance_start': 0.0,
-                    'guidance_end': 1.0,
-                    'threshold_a': 100,
-                    'threshold_b': 200,
-                    'control_mode': 0
-                },
-                {
-                    'module': 'depth_midas',
-                    'model': 'sai_xl_depth_128lora [f5ddde75]',
-                    'processor_res': 512,
-                    'weight': 0.3,
-                    'guidance_start': 0.2,
-                    'guidance_end': 0.6,
-                    'control_mode': 0
-                },
-                {
-                    'module': 'ip-adapter_clip_sdxl_plus_vith',
-                    'model': 'ip-adapter-plus-face_sdxl_vit-h [c60d7d48]',
-                    'processor_res': 512,
-                    'weight': 0.3,
-                    'guidance_start': 0.3,
-                    'guidance_end': 0.8,
-                    'control_mode': 0
-                }
-            ]
-        }
-    }
-}
-```
-&lt;!-- ##{'timestamp':1703228951}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-jin-xing-zhao-pian-feng-ge-zhuan-huan.html</guid><pubDate>Wed, 26 Jun 2024 16:15:41 +0000</pubDate></item><item><title>AI 写真效果优化调研</title><link>https://blog.ian2018.club/post/AI%20-xie-zhen-xiao-guo-you-hua-diao-yan.html</link><description>
-## 模版新方案
-
-不再使用图生图的方式，而是采用 **模版 ****tag**** 反推** + **文生图** + **ControlNet Pose 控制姿势** + **换脸**
-
-该方案是为了解决图生图方案导致的画面不真实的问题，采用合适的大模型，也能顺带缓解换脸丑的问题（因为模型生成的脸型都比较好看，相当于先做了一次美颜，然后换脸）
-
-### SD 具体实施步骤
-
-#### 一、使用 [wd14-tagger](https://github.com/picobyte/stable-diffusion-webui-wd14-tagger) 插件对模版图片进行 tag 反推
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/374886d1e7c58b556feb8bd7ad8fa410b88d1c9b.png'&gt;`
-
-#### 二、生成 ControlNet 骨架图
-
-这一步也可以直接放文生图里，这里提前生成可以不用进行预处理，减少一点生成时间。</description><guid isPermaLink="true">https://blog.ian2018.club/post/AI%20-xie-zhen-xiao-guo-you-hua-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:12:32 +0000</pubDate></item><item><title>AI 写真方案调研</title><link>https://blog.ian2018.club/post/AI%20-xie-zhen-fang-an-diao-yan.html</link><description>
-## 一、换脸方案
-
-&gt; 核心技术都是使用 [roop](https://github.com/s0md3v/roop) 进行换脸，StableDiffusion 上也有对应的插件：[https://github.com/s0md3v/sd-webui-roop](https://github.com/s0md3v/sd-webui-roop)
-
-整体大概流程：
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/c30b25dc6c72bf1769b8be626f5b67729750943d.png'&gt;`
-
-
-### 1.1 文生图 + 换脸
-
-由 StableDiffusion 生成一张写真图，然后使用 roop 插件进行换脸。</description><guid isPermaLink="true">https://blog.ian2018.club/post/AI%20-xie-zhen-fang-an-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:10:57 +0000</pubDate></item><item><title>FCM 推送技术调研</title><link>https://blog.ian2018.club/post/FCM%20-tui-song-ji-shu-diao-yan.html</link><description>
-FCM 有[两种消息类型](https://firebase.google.com/docs/cloud-messaging/concept-options#notifications_and_data_messages)：
-
-- **通知消息****：**又叫显示消息，由 FCM sdk 处理。</description><guid isPermaLink="true">https://blog.ian2018.club/post/FCM%20-tui-song-ji-shu-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:09:22 +0000</pubDate></item><item><title>Kotlin 协程中的 Job</title><link>https://blog.ian2018.club/post/Kotlin%20-xie-cheng-zhong-de-%20Job.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/86ff272f7ad726ad95ce92b6d9bb8137b55e2ea1.png'&gt;`
-
-通过之前的分享，我们已经知道了 Kotlin 的协程是什么，也知道了挂起函数。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Kotlin%20-xie-cheng-zhong-de-%20Job.html</guid><pubDate>Wed, 26 Jun 2024 16:07:47 +0000</pubDate></item><item><title>客户端消息 Markdown 格式调研</title><link>https://blog.ian2018.club/post/ke-hu-duan-xiao-xi-%20Markdown%20-ge-shi-diao-yan.html</link><description>测试 markdown：
-```
-# 回答内容如下：
-
-Python中可以使用replace()函数来替换字符串。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ke-hu-duan-xiao-xi-%20Markdown%20-ge-shi-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:06:12 +0000</pubDate></item><item><title>客户端语音识别调研</title><link>https://blog.ian2018.club/post/ke-hu-duan-yu-yin-shi-bie-diao-yan.html</link><description>&gt; 总结
-&gt;
-&gt; 语音转文字可以先使用原生方案，客户端编写代码使用策略模式，后面如果要替换其他的比较方便。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ke-hu-duan-yu-yin-shi-bie-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:04:38 +0000</pubDate></item><item><title>Open AI 能力调研</title><link>https://blog.ian2018.club/post/Open%20AI%20-neng-li-diao-yan.html</link><description>&gt; 由于技术发展太快，该文档具有实效性，调研时间为 2023.3.21。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Open%20AI%20-neng-li-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 16:03:03 +0000</pubDate></item><item><title>如何注册 ChatGPT</title><link>https://blog.ian2018.club/post/ru-he-zhu-ce-%20ChatGPT.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/80ea7ac86751ec142b6b1875318fc0a3006ef74a.png'&gt;`
-
-最近人工智能开始流行了，能画画，能写作，现在还能陪聊，甚至是帮忙写代码，它就是 **ChatGPT**。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ru-he-zhu-ce-%20ChatGPT.html</guid><pubDate>Wed, 26 Jun 2024 16:01:28 +0000</pubDate></item><item><title>iOS 16 锁屏 Widget</title><link>https://blog.ian2018.club/post/iOS%2016%20-suo-ping-%20Widget.html</link><description>&gt; https://developer.apple.com/documentation/widgetkit/creating-accessory-widgets-and-watch-complications
-
-# 支持的锁屏 Widget 类型
-
-## accessoryCircular
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/38f7fc5f210401dedf424fd3bee80a845f698adb.png'&gt;`
-- 为一个 1*1 大小的矩形
-- 目前只支持文本和进度条
-- 这里显示的颜色都是纯色，由用户设置统一的颜色
-- 一些图标可以使用 emoji 或者 iconfont
-- 进度条可以自定义一些样式
-
-## accessoryRectangular
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/e851d1c6f1334651caa49d929d970051c318004c.png'&gt;`
-- 为一个 1*2 大小的矩形
-- 其他同上
-
-## accessoryInline
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/4d5542b49132f01a0e08a4b8daf47e0dab456ab1.png'&gt;`
-- 只有顶部的一行
-- 只能使用文本
-&lt;!-- ##{'timestamp':1662693849}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/iOS%2016%20-suo-ping-%20Widget.html</guid><pubDate>Wed, 26 Jun 2024 15:59:53 +0000</pubDate></item><item><title>Firebase 统计中的 screen_view 事件</title><link>https://blog.ian2018.club/post/Firebase%20-tong-ji-zhong-de-%20screen_view%20-shi-jian.html</link><description>&gt; Firebase 自动收集事件说明：https://support.google.com/firebase/answer/9234069?hl=zh-Hans
-&gt;
-&gt; user-engagement 说明：https://support.google.com/analytics/answer/11109416#user-engagement
-
-## 手机调试
-
-### 1. 打开安卓的 debugView，这样就能实时的看打点的上传情况了。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Firebase%20-tong-ji-zhong-de-%20screen_view%20-shi-jian.html</guid><pubDate>Wed, 26 Jun 2024 15:56:46 +0000</pubDate></item><item><title>2022 Google I/O 之 Jetpack</title><link>https://blog.ian2018.club/post/2022%20Google%20I-O%20-zhi-%20Jetpack.html</link><description>今年的 I/O 大会和往常一样，不过最有特色的就是 [Adventure](https://adventure.withgoogle.com/io) 这个线上会场，和摩尔庄园差不多，开发者可以在这里逛各个会场，还能全球的开发者聊天，钓鱼等等。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2022%20Google%20I-O%20-zhi-%20Jetpack.html</guid><pubDate>Wed, 26 Jun 2024 15:55:12 +0000</pubDate></item><item><title>如何理解 Kotlin 的协程</title><link>https://blog.ian2018.club/post/ru-he-li-jie-%20Kotlin%20-de-xie-cheng.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/3efa3eb9d8217fb232eebea4d0745a1c8fee7fb9.png'&gt;`
-
-说起 Kotlin，它和 Java 对比最大的优势应该就是协程了。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ru-he-li-jie-%20Kotlin%20-de-xie-cheng.html</guid><pubDate>Wed, 26 Jun 2024 15:53:29 +0000</pubDate></item><item><title>Android Widget 能力调研</title><link>https://blog.ian2018.club/post/Android%20Widget%20-neng-li-diao-yan.html</link><description>## 特殊图形所需设计素材
-- 一张特殊图形的透明度遮罩（如下图中第二张图的样式，被剪裁的部分是透明的，图片需要是正方形的）
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/73aed981c0f66138f30b00f901c542a4317c0c8d.png'&gt;`
-
-## 限制
-
-### 支持的布局：
-- `FrameLayout`
-- `LinearLayout`
-- `RelativeLayout`
-- `GridLayout`
-
-### 支持的控件：
-- [`AnalogClock`](https://developer.android.com/reference/android/widget/AnalogClock)（模拟时钟）
-- `Button`
-- [`Chronometer`](https://developer.android.com/reference/android/widget/Chronometer)（计时器）
-- `ImageButton`
-- `ImageView`
-- `ProgressBar`
-- `TextView`
-- [`ViewFlipper`](https://developer.android.com/reference/android/widget/ViewFlipper)（多页管理控件，可以用作图片轮播）
-- `ListView`
-- `GridView`
-- [`StackView`](https://developer.android.com/reference/android/widget/StackView)（堆叠视图，可以做多图切换）
-- [`AdapterViewFlipper`](https://developer.android.com/reference/android/widget/AdapterViewFlipper)（多个 View 切换，切换时可以有渐隐的动画效果）
-
-在 Android 12 上，增加了对 CheckBox 等控件的支持：
-- `CheckBox`
-- `Switch`
-- `RadioButton`
-
-
-## Android 12 更新
-
-&gt; 从 Android 推出至今，AppWidget 的 API 基本就没有什么大的变化，从 2012 年到 2021 年更是只有一个 Android 版本包含了对 AppWidget API 的更新 --- [Google Android 开发者](https://juejin.cn/post/7051439506817286181#heading-2)
-
-[Android 12上焕然一新的小组件：美观、便捷和实用](https://juejin.cn/post/6968851189190377480#heading-7)
-
-- 增加 Widget 圆角设置
-- 增加主题颜色变化
-- 增加 Widget 动态预览，在添加 Widget 时，可以看到真实的效果
-- 支持响应式布局，可以根据 Widget 的大小选择不同的布局
-- 增加 targetCellWidth/targetCellHeight 配置，来直接指定 Widget 在桌面占用的 cell 大小（2 * 2 等）
-- 简化数据绑定，新增 setRemoteAdapter API
-- 支持 Compose 编写 Widget：[Jetpack Glance](https://juejin.cn/post/7042468014251311112)，不过也不能随心所欲，支持的控件都差不多，也是那几种
-
-
-## 结论
-- 支持的布局和控件有限，不能播放视频 （[官方文档](https://developer.android.com/guide/topics/appwidgets)）
-- 动画可以支持帧动画、和一些旋转、位移、缩放、透明度等简单动画，不过需要采用特殊手段，会比较耗电（[Android-自定义桌面小部件【搞定小米MIUI小部件】 - 掘金](https://juejin.cn/post/7048623673892143140)， [AppWidget 添加动画效果](https://www.jianshu.com/p/228a8ad91829)）
-- 可以通过剪裁图片，来显示一些特殊形状的图
-
-&lt;!-- ##{'timestamp':1644549811}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20Widget%20-neng-li-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 15:51:55 +0000</pubDate></item><item><title>Android 均衡器实现方式调研</title><link>https://blog.ian2018.club/post/Android%20-jun-heng-qi-shi-xian-fang-shi-diao-yan.html</link><description># 方案：
-
-## 1 使用系统 Media API 实现
-开源项目代表：https://github.com/harjot-oberai/MusicDNA，2.7 K star，最近更新 2019.5.31
-
-### 1.1 原理
-使用系统 API 去设置各种参数。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-jun-heng-qi-shi-xian-fang-shi-diao-yan.html</guid><pubDate>Wed, 26 Jun 2024 15:50:21 +0000</pubDate></item><item><title>Kotlin 写自定义 ViewGroup</title><link>https://blog.ian2018.club/post/Kotlin%20-xie-zi-ding-yi-%20ViewGroup.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/2bba4a3bdad5d534b40c4ffa5281b2761d91b28a.png'&gt;`
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Thu, 27 Jun 2024 00:35:43 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Kotlin 写自定义 ViewGroup</title><link>https://blog.ian2018.club/post/Kotlin%20-xie-zi-ding-yi-%20ViewGroup.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/2bba4a3bdad5d534b40c4ffa5281b2761d91b28a.png'&gt;`
 
 Android 最近推行的 Compose ，有着 Kotlin 的加持，使写 UI 更加方便快速，不用担心布局嵌套，还是声明式 UI，那么 Compose 有这么多好处，原生写法还有 “出路” 吗？
 
@@ -744,38 +306,483 @@ Google 早在2015年中期，就宣布结束对 Eclipse ADT（安卓开发工具
 
 ### 状态栏颜色
 
-由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 15:12:36 +0000</pubDate></item><item><title>Android 手机运行 Ollama</title><link>https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</link><description>在你的安卓设备上通过 Termux 和 Ollama 释放大型语言模型的力量在这篇博客文章中，我们将探讨如何使用强大的终端模拟器 Termux 在安卓设备上安装和运行 Ollama 语言模型。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</guid><pubDate>Fri, 14 Jun 2024 07:53:31 +0000</pubDate></item><item><title>ControlNet IP-Adapter 优化写真效果</title><link>https://blog.ian2018.club/post/ControlNet%20IP-Adapter%20-you-hua-xie-zhen-xiao-guo.html</link><description>还是使用图生图，需要用到 ControlNet 插件，使用 [IP-Adapter](https://ip-adapter.github.io/) 对人脸进行控制，具体参数设置如下：
-
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/e01db614b6ce1f6d27ecb99f6b7cdb62aaa2ef51.png'&gt;`
-
-参数：
-
-dreamshaperXL_turboDpmppSDE
-
-Sampling method：DPM++ SDE Karras
-
-Sampling steps：6
-
-Width * Height：1024x1400
-
-CFG Scale：2
-
-Seed：2104314926
-
-Denoising strength：0.4
-
-ControlNet IP-Adapter Preprocessor：ip-adapter_clip_sdxl_plus_vith
-
-ControlNet IP-Adapter Model：[ip-adapter-plus-face_sdxl_vit-h [c60d7d48]](https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter-plus-face_sdxl_vit-h.bin?download=true)
-
-ControlNet Control Weight：0.75
-
-ControlNet Ending Control Step：0.9
-
-效果：
-`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/72f0fee15808bbbd63b53d298d5199ffdbd3860d.png'&gt;`
-
-&lt;!-- ##{'timestamp':1702951291}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ControlNet%20IP-Adapter%20-you-hua-xie-zhen-xiao-guo.html</guid><pubDate>Tue, 19 Dec 2023 02:01:31 +0000</pubDate></item><item><title>Android 小 Tips 2（状态栏配置及显示壁纸等）</title><link>https://blog.ian2018.club/post/Android%20-xiao-%20Tips%202%EF%BC%88-zhuang-tai-lan-pei-zhi-ji-xian-shi-bi-zhi-deng-%EF%BC%89.html</link><description>
+由于手机卫士这个项目是用eclipse写的，编译版本也选择的是4.4的，所以在界面上不是很好看，没有用 Material Design 的风格。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html</guid><pubDate>Wed, 26 Jun 2024 15:12:36 +0000</pubDate></item><item><title>Android 手机运行 Ollama</title><link>https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</link><description>在你的安卓设备上通过 Termux 和 Ollama 释放大型语言模型的力量在这篇博客文章中，我们将探讨如何使用强大的终端模拟器 Termux 在安卓设备上安装和运行 Ollama 语言模型。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</guid><pubDate>Fri, 14 Jun 2024 07:53:31 +0000</pubDate></item><item><title>WWDC 24 Apple Intelligence 新功能预览</title><link>https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</link><description># Apple Intelligence&#13;
+&#13;
+&gt; [!NOTE]&#13;
+&gt; AI 相关的能力仅支持 iPhone 15 Pro 及以上的机型&#13;
+&gt; https://developer.apple.com/apple-intelligence/&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/03cac3f41a5d033b8a3bed66c5404607b0faa37c.png'&gt;`&#13;
+&#13;
+## Writing Tools&#13;
+&gt; 参考文档：&#13;
+&gt; https://developer.apple.com/videos/play/wwdc2024/10168/&#13;
+&gt; https://www.youtube.com/watch?v=79PkqsA_zk8&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/d4717848a1428549fc383812053238cdca0b2a54.png'&gt;`&#13;
+&#13;
+### 表现形式：&#13;
+- 系统键盘上的工具栏&#13;
+- 长按文本弹出的上下文菜单中&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/6a8d39e5b10a2e0c4aa7585fd183f5c17c7fec5a.png'&gt;`&#13;
+&#13;
+### 适用于文本类型：&#13;
+- 可编辑的文本：会直接在原文本上修改&#13;
+- 不可编辑的文本：会弹出系统弹窗面板展示结果&#13;
+&#13;
+### 支持的能力：&#13;
+- 文本校对&#13;
+- 文本重写&#13;
+- 摘要总结&#13;
+- 将文本转换为列表或者表格&#13;
+&#13;
+### 开发者能做的：&#13;
+- 默认应用内使用 `UITextView` 或者 `NSTextView` 的文本 UI 都支持 Writing Tools 功能。</description><guid isPermaLink="true">https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</guid><pubDate>Wed, 12 Jun 2024 06:58:11 +0000</pubDate></item><item><title>申请新加坡 OCBC 银行卡</title><link>https://blog.ian2018.club/post/shen-qing-xin-jia-po-%20OCBC%20-yin-xing-qia.html</link><description># 申请新加坡 OCBC 银行卡&#13;
+&#13;
+OCBC（Oversea-Chinese Banking Corporation，即新加坡华侨银行）是新加坡的第二大银行。</description><guid isPermaLink="true">https://blog.ian2018.club/post/shen-qing-xin-jia-po-%20OCBC%20-yin-xing-qia.html</guid><pubDate>Mon, 10 Jun 2024 08:40:00 +0000</pubDate></item><item><title>iOS 照片相似度检查调研</title><link>https://blog.ian2018.club/post/iOS%20-zhao-pian-xiang-si-du-jian-cha-diao-yan.html</link><description>## 照片相似度检查&#13;
+&#13;
+参考文章：&#13;
+&gt; [OpenCV 相似度算法](https://juejin.cn/post/6969457808378953735)&#13;
+&gt;&#13;
+&gt; [苹果机器学习判断图片相似度](https://cloud.tencent.com/developer/article/2277725)&#13;
+&gt;&#13;
+&gt; [OpenCV 相似度算法2](https://www.cnblogs.com/yangyuxiaozi/p/7419349.html)&#13;
+&gt;&#13;
+&gt; [OpenCV](https://medium.com/@hdpoorna/integrating-opencv-to-your-swift-ios-project-in-xcode-and-working-with-uiimages-4c614e62ac88)&#13;
+&#13;
+参考项目：&#13;
+&gt; https://github.com/coderFrankenstain/WJSimilarPhotos&#13;
+&gt;&#13;
+&gt; https://github.com/ZYHshao/MachineLearnDemo&#13;
+&gt;&#13;
+&gt; https://github.com/ameingast/cocoaimagehashing&#13;
+&gt;&#13;
+&gt; https://github.com/ameingast/cocoaimagehashing/issues/18&#13;
+&gt;&#13;
+&gt; https://github.com/yeatse/opencv-spm&#13;
+&#13;
+### 图片匹配算法&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/d42335aa1006b6f1f2f0443fccd625ce6761f61a.png'&gt;`&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/fa7395e7c8313e9eb9f8605eb889d7fc8f5dc525.png'&gt;`&#13;
+&#13;
+### 图片相似度检测方案&#13;
+&#13;
+#### 方案一、通过 OpenCV 实现&#13;
+&#13;
+识别算法&#13;
+1. 利用 PHASH 算法（感知哈希算法，通常用于图片相似度识别）对比图片轮廓相似度。</description><guid isPermaLink="true">https://blog.ian2018.club/post/iOS%20-zhao-pian-xiang-si-du-jian-cha-diao-yan.html</guid><pubDate>Tue, 30 Apr 2024 07:19:00 +0000</pubDate></item><item><title>iOS 文档扫描技术调研</title><link>https://blog.ian2018.club/post/iOS%20-wen-dang-sao-miao-ji-shu-diao-yan.html</link><description>&gt; [!TIP]&#13;
+&gt; 文本扫描和文本 OCR，系统 API 已经有了很好的支持，效果好，开发成本低，缺点就是文档扫描的 UI 无法定制，只能使用系统的。</description><guid isPermaLink="true">https://blog.ian2018.club/post/iOS%20-wen-dang-sao-miao-ji-shu-diao-yan.html</guid><pubDate>Mon, 01 Apr 2024 09:18:00 +0000</pubDate></item><item><title>Fooocus 局部重绘换装</title><link>https://blog.ian2018.club/post/Fooocus%20-ju-bu-zhong-hui-huan-zhuang.html</link><description>## 一、导入图片&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/5021f64db62f0363ed806ff3b27f1d701410c91d.png'&gt;`&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/4d0c62fc4fdb014da7f592a905a02f78009e9165.png'&gt;`&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/555e5cc7207ea74462445a84f9f84eeed3298c82.png'&gt;`&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/aa4c671bf80b1c7af271f5ffb21bab99674a72ad.png'&gt;`&#13;
+&#13;
+## 二、设置重绘区域&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/0baac8434f6003e82877334b6c4bbe998bffc768.png'&gt;`&#13;
+&#13;
+## 三、设置提示词&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/0ef7990112bab033968186ee28463867b576b143.png'&gt;`&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/f000ad08e2479c3fd7952f890e3c8fa9be9eb1dc.png'&gt;`&#13;
+&#13;
+&#13;
+&lt;!-- ##{'timestamp':1709549831}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Fooocus%20-ju-bu-zhong-hui-huan-zhuang.html</guid><pubDate>Mon, 04 Mar 2024 10:57:11 +0000</pubDate></item><item><title>Stable Diffusion InstantID ControlNet 参数</title><link>https://blog.ian2018.club/post/Stable%20Diffusion%20InstantID%20ControlNet%20-can-shu.html</link><description>&gt; [!TIP]&#13;
+&gt; sd-webui 版本： v1.7.0-408-g94d4b3c8&#13;
+&gt; controlnet 版本：v1.1.439&#13;
+&#13;
+## 用到的模型下载&#13;
+&#13;
+### 底模：&#13;
+https://civitai.com/api/download/models/302806&#13;
+### ControlNet：&#13;
+将其放到 `stable-diffusion-webui/models/ControlNet` 下&#13;
+- instant_id_face_embedding 预处理器所需模型：&#13;
+  - https://huggingface.co/InstantX/InstantID/resolve/main/ip-adapter.bin?download=true&#13;
+  - 下载后需要重命名成 ：`ip-adapter_instant_id_sdx.bin`&#13;
+- instant_id_face_keypoints 预处理器所需模型：&#13;
+  - https://huggingface.co/InstantX/InstantID/resolve/main/ControlNetModel/diffusion_pytorch_model.safetensors?download=true&#13;
+  - 下载后需要重命名成 ：`control_instant_id_sdxl.safetensors`&#13;
+&#13;
+## 任意风格：&#13;
+&#13;
+### SD-WebUI 参数&#13;
+类型：文生图/图生图&#13;
+&#13;
+底模：dreamshaperXL_sfwTurboDpmppSDE.safetensors [3a22504d8a]&#13;
+&#13;
+提示词 &amp; 负向提示词：可以直接使用 Styles&#13;
+&#13;
+采样器：DPM++ SDE Karras&#13;
+&#13;
+步数：6&#13;
+&#13;
+CFG Scale：2&#13;
+&#13;
+### ControlNet 参数&#13;
+&#13;
+这一步是提取人脸信息&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/01798863202fc45eac5330d73ec6b1b3c7447c32.png'&gt;`&#13;
+&#13;
+这一步是提取目标图片中人脸的位置（一般是放模板图）&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/b08051af9cf1042dbf20fe09699d63251a9bd1ea.png'&gt;`&#13;
+&#13;
+### API 参数&#13;
+&#13;
+```python&#13;
+url = 'http://127.0.0.1:7860/sdapi/v1/txt2img'&#13;
+img_path = './test_img/t4.png'&#13;
+data = {&#13;
+    'prompt': '1man',&#13;
+    'styles': [&#13;
+        'SAI Anime'&#13;
+    ],&#13;
+    'seed': -1,&#13;
+    'batch_size': 1,&#13;
+    'n_iter': 1,&#13;
+    'steps': 6,&#13;
+    'cfg_scale': 2,&#13;
+    'width': 1024,&#13;
+    'height': 1024,&#13;
+    'override_settings': {&#13;
+        'sd_model_checkpoint': 'dreamshaperXL_sfwTurboDpmppSDE.safetensors [3a22504d8a]'&#13;
+    },&#13;
+    'save_images': False,&#13;
+    'sampler_name': 'DPM++ SDE Karras',&#13;
+    'alwayson_scripts': {&#13;
+        'controlnet': {&#13;
+            'args': [&#13;
+                {&#13;
+                    'input_image': get_base64_image(img_path),&#13;
+                    'module': 'instant_id_face_embedding',&#13;
+                    'model': 'ip-adapter_instant_id_sdx [eb2d3ec0]',&#13;
+                    'processor_res': 512,&#13;
+                    'weight': 1,&#13;
+                    'guidance_start': 0.0,&#13;
+                    'guidance_end': 1.0,&#13;
+                    'control_mode': 0&#13;
+                },&#13;
+                {&#13;
+                    'input_image': get_base64_image(img_path),&#13;
+                    'module': 'instant_id_face_keypoints',&#13;
+                    'model': 'control_instant_id_sdxl [c5c25a50]',&#13;
+                    'processor_res': 512,&#13;
+                    'weight': 1,&#13;
+                    'guidance_start': 0,&#13;
+                    'guidance_end': 1,&#13;
+                    'control_mode': 0&#13;
+                }&#13;
+            ]&#13;
+        }&#13;
+    }&#13;
+}&#13;
+```&#13;
+&#13;
+&lt;!-- ##{'timestamp':1706576591}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Stable%20Diffusion%20InstantID%20ControlNet%20-can-shu.html</guid><pubDate>Tue, 30 Jan 2024 01:03:11 +0000</pubDate></item><item><title>通过 Stable Diffusion 给图片换背景</title><link>https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-gei-tu-pian-huan-bei-jing.html</link><description># 方案一：rembg + img2img Inpaint&#13;
+&#13;
+&gt; 参考 https://stable-diffusion-art.com/change-background/&#13;
+&#13;
+## 1. 下载安装 rembg 插件&#13;
+https://github.com/AUTOMATIC1111/stable-diffusion-webui-rembg&#13;
+&#13;
+## 2. 生成蒙版图&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/0765daa81db8d036a0060ba8ad908d01359b7a4f.png'&gt;`&#13;
+&#13;
+## 3. 使用图生图重绘背景&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/6b03c44dd15fa6574b9453a225f134ea28de0270.png'&gt;`&#13;
+还可以增加 ControlNet 的深度控制，可以避免出现奇怪的东西（多只胳膊之类的），但会导致出图结构受限：&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/3bbf161c6bef99b787524780ff7d16990dafab0d.png'&gt;`&#13;
+&#13;
+# 方案二：Segment Anything &#13;
+## 1. 下载安装 Segment Anything  插件&#13;
+https://github.com/continue-revolution/sd-webui-segment-anything&#13;
+&#13;
+## 2. 提取相关蒙版图&#13;
+切换到 img2img Tab，找到 Segment Anything 插件，参数如下：&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/dce3cdbc03593af9f0a829b610a811fc79e7ba0c.png'&gt;`&#13;
+这里可以直接将第 7 不勾选上，这样就不用再保存蒙版图了。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-gei-tu-pian-huan-bei-jing.html</guid><pubDate>Mon, 15 Jan 2024 11:09:11 +0000</pubDate></item><item><title>通过 Stable Diffusion 进行照片风格转换</title><link>https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-jin-xing-zhao-pian-feng-ge-zhuan-huan.html</link><description>&gt; [!TIP]&#13;
+&gt; 经过几次测试，其中图生图的效果会比较好&#13;
+&gt;&#13;
+&gt; ControlNet 使用 3 层控制：Canny + Depth + IP-Adapter&#13;
+&#13;
+## 用到的模型下载&#13;
+### 底模：&#13;
+https://civitai.com/api/download/models/302806&#13;
+&#13;
+### ControlNet：&#13;
+将其放到 `stable-diffusion-webui/extensions/sd-webui-controlnet/models` 或者 `stable-diffusion-webui/models/ControlNet` 下&#13;
+- Canny：&#13;
+  - https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/sai_xl_canny_256lora.safetensors?download=true&#13;
+- Depth：&#13;
+  - https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/sai_xl_depth_128lora.safetensors?download=true&#13;
+- IP-Adapter Face：&#13;
+  - https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter-plus-face_sdxl_vit-h.safetensors?download=true&#13;
+&#13;
+&#13;
+## 参数详情：&#13;
+&#13;
+### 图生图参数：&#13;
+Stable Diffusion checkpoint：dreamshaperXL_turboDpmppSDE.safetensors [676f0d60c8]&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/fbebebdd321dcdc173131becdbd50065e0f4a825.png'&gt;`&#13;
+&#13;
+### ControlNet 参数：&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/126b0ed20d343c23dd28b248a95e362d61958b6e.png'&gt;`&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/e4bda592201f46be6ad68585a302221d2c9067f2.png'&gt;`&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/9bdf5fa060ac6c3ebc6184dd7757c82cd0eefddb.png'&gt;`&#13;
+&#13;
+## 结果展示：&#13;
+&#13;
+### 动画风格，Style：SAI Anime&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/72a2f6b2f2f4220c959eacd09304661b38c5484b.png'&gt;`&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/5619a8bd240c0b28aa16029e7da1e86f606a112e.png'&gt;`&#13;
+&#13;
+### 3D 风格，Style：SAI 3D Model，SAI Disney Model&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/96d873e4c573ef84d44d19ef3bd6ba694b3a20ae.png'&gt;`&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/0e4e761661bd4ff8575b00e8cb70ae020ef80421.png'&gt;`&#13;
+&#13;
+### 复古游戏风，Style：Game Retro Game&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/935c2ca2d8bf33f56bd16279bcb981f0e942a792.png'&gt;`&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/3b7bf90b822424333ae703ce82147571dbfe0317.png'&gt;`&#13;
+&#13;
+## API 参数&#13;
+&#13;
+```python&#13;
+url = 'http://127.0.0.1:7860/sdapi/v1/img2img'&#13;
+img_path = './test_img/t4.png'&#13;
+data = {&#13;
+    'init_images': [get_base64_image(img_path)],&#13;
+    'resize_mode': 0,&#13;
+    'denoising_strength': 0.7,&#13;
+    'prompt': '(anime artwork), (anime style), key visual, vibrant, studio anime, highly detailed',&#13;
+    'negative_prompt': 'photo, deformed, black and white, realism, disfigured, low contrast',&#13;
+    'seed': -1,&#13;
+    'batch_size': 1,&#13;
+    'n_iter': 1,&#13;
+    'steps': 6,&#13;
+    'cfg_scale': 2,&#13;
+    'width': 1024,&#13;
+    'height': 1280,&#13;
+    'override_settings': {&#13;
+        'sd_model_checkpoint': 'dreamshaperXL_turboDpmppSDE.safetensors [676f0d60c8]'&#13;
+    },&#13;
+    'save_images': False,&#13;
+    'sampler_name': 'DPM++ SDE Karras',&#13;
+    'alwayson_scripts': {&#13;
+        'controlnet': {&#13;
+            'args': [&#13;
+                {&#13;
+                    'module': 'canny',&#13;
+                    'model': 'sai_xl_canny_256lora [566f20af]',&#13;
+                    'processor_res': 512,&#13;
+                    'weight': 0.8,&#13;
+                    'guidance_start': 0.0,&#13;
+                    'guidance_end': 1.0,&#13;
+                    'threshold_a': 100,&#13;
+                    'threshold_b': 200,&#13;
+                    'control_mode': 0&#13;
+                },&#13;
+                {&#13;
+                    'module': 'depth_midas',&#13;
+                    'model': 'sai_xl_depth_128lora [f5ddde75]',&#13;
+                    'processor_res': 512,&#13;
+                    'weight': 0.3,&#13;
+                    'guidance_start': 0.2,&#13;
+                    'guidance_end': 0.6,&#13;
+                    'control_mode': 0&#13;
+                },&#13;
+                {&#13;
+                    'module': 'ip-adapter_clip_sdxl_plus_vith',&#13;
+                    'model': 'ip-adapter-plus-face_sdxl_vit-h [c60d7d48]',&#13;
+                    'processor_res': 512,&#13;
+                    'weight': 0.3,&#13;
+                    'guidance_start': 0.3,&#13;
+                    'guidance_end': 0.8,&#13;
+                    'control_mode': 0&#13;
+                }&#13;
+            ]&#13;
+        }&#13;
+    }&#13;
+}&#13;
+```&#13;
+&#13;
+&lt;!-- ##{'timestamp':1703228951}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/tong-guo-%20Stable%20Diffusion%20-jin-xing-zhao-pian-feng-ge-zhuan-huan.html</guid><pubDate>Fri, 22 Dec 2023 07:09:11 +0000</pubDate></item><item><title>ControlNet IP-Adapter 优化写真效果</title><link>https://blog.ian2018.club/post/ControlNet%20IP-Adapter%20-you-hua-xie-zhen-xiao-guo.html</link><description>还是使用图生图，需要用到 ControlNet 插件，使用 [IP-Adapter](https://ip-adapter.github.io/) 对人脸进行控制，具体参数设置如下：&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/e01db614b6ce1f6d27ecb99f6b7cdb62aaa2ef51.png'&gt;`&#13;
+&#13;
+参数：&#13;
+&#13;
+dreamshaperXL_turboDpmppSDE&#13;
+&#13;
+Sampling method：DPM++ SDE Karras&#13;
+&#13;
+Sampling steps：6&#13;
+&#13;
+Width * Height：1024x1400&#13;
+&#13;
+CFG Scale：2&#13;
+&#13;
+Seed：2104314926&#13;
+&#13;
+Denoising strength：0.4&#13;
+&#13;
+ControlNet IP-Adapter Preprocessor：ip-adapter_clip_sdxl_plus_vith&#13;
+&#13;
+ControlNet IP-Adapter Model：[ip-adapter-plus-face_sdxl_vit-h [c60d7d48]](https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter-plus-face_sdxl_vit-h.bin?download=true)&#13;
+&#13;
+ControlNet Control Weight：0.75&#13;
+&#13;
+ControlNet Ending Control Step：0.9&#13;
+&#13;
+效果：&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/72f0fee15808bbbd63b53d298d5199ffdbd3860d.png'&gt;`&#13;
+&#13;
+&#13;
+&lt;!-- ##{'timestamp':1702951291}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ControlNet%20IP-Adapter%20-you-hua-xie-zhen-xiao-guo.html</guid><pubDate>Tue, 19 Dec 2023 02:01:31 +0000</pubDate></item><item><title>AI 写真效果优化调研</title><link>https://blog.ian2018.club/post/AI%20-xie-zhen-xiao-guo-you-hua-diao-yan.html</link><description>## 模版新方案&#13;
+&#13;
+不再使用图生图的方式，而是采用 **模版 ****tag**** 反推** + **文生图** + **ControlNet Pose 控制姿势** + **换脸**&#13;
+&#13;
+该方案是为了解决图生图方案导致的画面不真实的问题，采用合适的大模型，也能顺带缓解换脸丑的问题（因为模型生成的脸型都比较好看，相当于先做了一次美颜，然后换脸）&#13;
+&#13;
+### SD 具体实施步骤&#13;
+&#13;
+#### 一、使用 [wd14-tagger](https://github.com/picobyte/stable-diffusion-webui-wd14-tagger) 插件对模版图片进行 tag 反推&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/374886d1e7c58b556feb8bd7ad8fa410b88d1c9b.png'&gt;`&#13;
+&#13;
+#### 二、生成 ControlNet 骨架图&#13;
+&#13;
+这一步也可以直接放文生图里，这里提前生成可以不用进行预处理，减少一点生成时间。</description><guid isPermaLink="true">https://blog.ian2018.club/post/AI%20-xie-zhen-xiao-guo-you-hua-diao-yan.html</guid><pubDate>Wed, 01 Nov 2023 04:01:31 +0000</pubDate></item><item><title>AI 写真方案调研</title><link>https://blog.ian2018.club/post/AI%20-xie-zhen-fang-an-diao-yan.html</link><description>## 一、换脸方案&#13;
+&#13;
+&gt; [!TIP]&#13;
+&gt; 核心技术都是使用 [roop](https://github.com/s0md3v/roop) 进行换脸，StableDiffusion 上也有对应的插件：[https://github.com/s0md3v/sd-webui-roop](https://github.com/s0md3v/sd-webui-roop)&#13;
+&#13;
+整体大概流程：&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/c30b25dc6c72bf1769b8be626f5b67729750943d.png'&gt;`&#13;
+&#13;
+&#13;
+### 1.1 文生图 + 换脸&#13;
+&#13;
+由 StableDiffusion 生成一张写真图，然后使用 roop 插件进行换脸。</description><guid isPermaLink="true">https://blog.ian2018.club/post/AI%20-xie-zhen-fang-an-diao-yan.html</guid><pubDate>Fri, 25 Aug 2023 02:22:31 +0000</pubDate></item><item><title>FCM 推送技术调研</title><link>https://blog.ian2018.club/post/FCM%20-tui-song-ji-shu-diao-yan.html</link><description>FCM 有[两种消息类型](https://firebase.google.com/docs/cloud-messaging/concept-options#notifications_and_data_messages)：&#13;
+&#13;
+- **通知消息****：**又叫显示消息，由 FCM sdk 处理。</description><guid isPermaLink="true">https://blog.ian2018.club/post/FCM%20-tui-song-ji-shu-diao-yan.html</guid><pubDate>Fri, 21 Jul 2023 03:21:24 +0000</pubDate></item><item><title>Kotlin 协程中的 Job</title><link>https://blog.ian2018.club/post/Kotlin%20-xie-cheng-zhong-de-%20Job.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/86ff272f7ad726ad95ce92b6d9bb8137b55e2ea1.png'&gt;`&#13;
+&#13;
+通过之前的分享，我们已经知道了 Kotlin 的协程是什么，也知道了挂起函数。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Kotlin%20-xie-cheng-zhong-de-%20Job.html</guid><pubDate>Wed, 19 Jul 2023 01:57:00 +0000</pubDate></item><item><title>客户端消息 Markdown 格式调研</title><link>https://blog.ian2018.club/post/ke-hu-duan-xiao-xi-%20Markdown%20-ge-shi-diao-yan.html</link><description>测试 markdown：&#13;
+```&#13;
+# 回答内容如下：&#13;
+&#13;
+Python中可以使用replace()函数来替换字符串。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ke-hu-duan-xiao-xi-%20Markdown%20-ge-shi-diao-yan.html</guid><pubDate>Thu, 29 Jun 2023 02:40:31 +0000</pubDate></item><item><title>客户端语音识别调研</title><link>https://blog.ian2018.club/post/ke-hu-duan-yu-yin-shi-bie-diao-yan.html</link><description>&gt; [!NOTE]&#13;
+&gt; 语音转文字可以先使用原生方案，客户端编写代码使用策略模式，后面如果要替换其他的比较方便。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ke-hu-duan-yu-yin-shi-bie-diao-yan.html</guid><pubDate>Mon, 15 May 2023 02:42:24 +0000</pubDate></item><item><title>Open AI 能力调研</title><link>https://blog.ian2018.club/post/Open%20AI%20-neng-li-diao-yan.html</link><description>&gt; [!WARNING]&#13;
+&gt; 由于技术发展太快，该文档具有实效性，调研时间为 2023.3.21。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Open%20AI%20-neng-li-diao-yan.html</guid><pubDate>Tue, 21 Mar 2023 06:42:09 +0000</pubDate></item><item><title>如何注册 ChatGPT</title><link>https://blog.ian2018.club/post/ru-he-zhu-ce-%20ChatGPT.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/80ea7ac86751ec142b6b1875318fc0a3006ef74a.png'&gt;`&#13;
+&#13;
+最近人工智能开始流行了，能画画，能写作，现在还能陪聊，甚至是帮忙写代码，它就是 **ChatGPT**。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ru-he-zhu-ce-%20ChatGPT.html</guid><pubDate>Wed, 07 Dec 2022 12:10:17 +0000</pubDate></item><item><title>iOS 16 锁屏 Widget</title><link>https://blog.ian2018.club/post/iOS%2016%20-suo-ping-%20Widget.html</link><description>&gt; [!TIP]&#13;
+&gt; https://developer.apple.com/documentation/widgetkit/creating-accessory-widgets-and-watch-complications&#13;
+&#13;
+# 支持的锁屏 Widget 类型&#13;
+&#13;
+## accessoryCircular&#13;
+&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/38f7fc5f210401dedf424fd3bee80a845f698adb.png'&gt;`&#13;
+- 为一个 1*1 大小的矩形&#13;
+- 目前只支持文本和进度条&#13;
+- 这里显示的颜色都是纯色，由用户设置统一的颜色&#13;
+- 一些图标可以使用 emoji 或者 iconfont&#13;
+- 进度条可以自定义一些样式&#13;
+&#13;
+## accessoryRectangular&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/e851d1c6f1334651caa49d929d970051c318004c.png'&gt;`&#13;
+- 为一个 1*2 大小的矩形&#13;
+- 其他同上&#13;
+&#13;
+## accessoryInline&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/4d5542b49132f01a0e08a4b8daf47e0dab456ab1.png'&gt;`&#13;
+- 只有顶部的一行&#13;
+- 只能使用文本&#13;
+&#13;
+&lt;!-- ##{'timestamp':1662693849}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/iOS%2016%20-suo-ping-%20Widget.html</guid><pubDate>Fri, 09 Sep 2022 03:24:09 +0000</pubDate></item><item><title>开发代码分支工作流</title><link>https://blog.ian2018.club/post/kai-fa-dai-ma-fen-zhi-gong-zuo-liu.html</link><description># 代码分支&#13;
+&#13;
+参考了 [Gitflow 工作流](https://nvie.com/posts/a-successful-git-branching-model/)，根据实际情况做了简化。</description><guid isPermaLink="true">https://blog.ian2018.club/post/kai-fa-dai-ma-fen-zhi-gong-zuo-liu.html</guid><pubDate>Thu, 25 Aug 2022 03:24:09 +0000</pubDate></item><item><title>Firebase 统计中的 screen_view 事件</title><link>https://blog.ian2018.club/post/Firebase%20-tong-ji-zhong-de-%20screen_view%20-shi-jian.html</link><description>&gt; [!TIP]&#13;
+&gt; Firebase 自动收集事件说明：https://support.google.com/firebase/answer/9234069?hl=zh-Hans&#13;
+&gt;&#13;
+&gt; user-engagement 说明：https://support.google.com/analytics/answer/11109416#user-engagement&#13;
+&#13;
+## 手机调试&#13;
+&#13;
+### 1. 打开安卓的 debugView，这样就能实时的看打点的上传情况了。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Firebase%20-tong-ji-zhong-de-%20screen_view%20-shi-jian.html</guid><pubDate>Fri, 22 Jul 2022 02:24:12 +0000</pubDate></item><item><title>2022 Google I/O 之 Jetpack</title><link>https://blog.ian2018.club/post/2022%20Google%20I-O%20-zhi-%20Jetpack.html</link><description>今年的 I/O 大会和往常一样，不过最有特色的就是 [Adventure](https://adventure.withgoogle.com/io) 这个线上会场，和摩尔庄园差不多，开发者可以在这里逛各个会场，还能全球的开发者聊天，钓鱼等等。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2022%20Google%20I-O%20-zhi-%20Jetpack.html</guid><pubDate>Sun, 29 May 2022 13:13:17 +0000</pubDate></item><item><title>如何理解 Kotlin 的协程</title><link>https://blog.ian2018.club/post/ru-he-li-jie-%20Kotlin%20-de-xie-cheng.html</link><description>`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/3efa3eb9d8217fb232eebea4d0745a1c8fee7fb9.png'&gt;`&#13;
+&#13;
+说起 Kotlin，它和 Java 对比最大的优势应该就是协程了。</description><guid isPermaLink="true">https://blog.ian2018.club/post/ru-he-li-jie-%20Kotlin%20-de-xie-cheng.html</guid><pubDate>Tue, 29 Mar 2022 01:35:00 +0000</pubDate></item><item><title>Android Widget 能力调研</title><link>https://blog.ian2018.club/post/Android%20Widget%20-neng-li-diao-yan.html</link><description>## 特殊图形所需设计素材&#13;
+- 一张特殊图形的透明度遮罩（如下图中第二张图的样式，被剪裁的部分是透明的，图片需要是正方形的）&#13;
+`Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/73aed981c0f66138f30b00f901c542a4317c0c8d.png'&gt;`&#13;
+&#13;
+## 限制&#13;
+&#13;
+### 支持的布局：&#13;
+- `FrameLayout`&#13;
+- `LinearLayout`&#13;
+- `RelativeLayout`&#13;
+- `GridLayout`&#13;
+&#13;
+### 支持的控件：&#13;
+- [`AnalogClock`](https://developer.android.com/reference/android/widget/AnalogClock)（模拟时钟）&#13;
+- `Button`&#13;
+- [`Chronometer`](https://developer.android.com/reference/android/widget/Chronometer)（计时器）&#13;
+- `ImageButton`&#13;
+- `ImageView`&#13;
+- `ProgressBar`&#13;
+- `TextView`&#13;
+- [`ViewFlipper`](https://developer.android.com/reference/android/widget/ViewFlipper)（多页管理控件，可以用作图片轮播）&#13;
+- `ListView`&#13;
+- `GridView`&#13;
+- [`StackView`](https://developer.android.com/reference/android/widget/StackView)（堆叠视图，可以做多图切换）&#13;
+- [`AdapterViewFlipper`](https://developer.android.com/reference/android/widget/AdapterViewFlipper)（多个 View 切换，切换时可以有渐隐的动画效果）&#13;
+&#13;
+在 Android 12 上，增加了对 CheckBox 等控件的支持：&#13;
+- `CheckBox`&#13;
+- `Switch`&#13;
+- `RadioButton`&#13;
+&#13;
+&#13;
+## Android 12 更新&#13;
+&#13;
+&gt; 从 Android 推出至今，AppWidget 的 API 基本就没有什么大的变化，从 2012 年到 2021 年更是只有一个 Android 版本包含了对 AppWidget API 的更新 --- [Google Android 开发者](https://juejin.cn/post/7051439506817286181#heading-2)&#13;
+&#13;
+[Android 12上焕然一新的小组件：美观、便捷和实用](https://juejin.cn/post/6968851189190377480#heading-7)&#13;
+&#13;
+- 增加 Widget 圆角设置&#13;
+- 增加主题颜色变化&#13;
+- 增加 Widget 动态预览，在添加 Widget 时，可以看到真实的效果&#13;
+- 支持响应式布局，可以根据 Widget 的大小选择不同的布局&#13;
+- 增加 targetCellWidth/targetCellHeight 配置，来直接指定 Widget 在桌面占用的 cell 大小（2 * 2 等）&#13;
+- 简化数据绑定，新增 setRemoteAdapter API&#13;
+- 支持 Compose 编写 Widget：[Jetpack Glance](https://juejin.cn/post/7042468014251311112)，不过也不能随心所欲，支持的控件都差不多，也是那几种&#13;
+&#13;
+&#13;
+## 结论&#13;
+- 支持的布局和控件有限，不能播放视频 （[官方文档](https://developer.android.com/guide/topics/appwidgets)）&#13;
+- 动画可以支持帧动画、和一些旋转、位移、缩放、透明度等简单动画，不过需要采用特殊手段，会比较耗电（[Android-自定义桌面小部件【搞定小米MIUI小部件】 - 掘金](https://juejin.cn/post/7048623673892143140)， [AppWidget 添加动画效果](https://www.jianshu.com/p/228a8ad91829)）&#13;
+- 可以通过剪裁图片，来显示一些特殊形状的图&#13;
+&#13;
+&lt;!-- ##{'timestamp':1644549811}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20Widget%20-neng-li-diao-yan.html</guid><pubDate>Fri, 11 Feb 2022 03:23:31 +0000</pubDate></item><item><title>Android 均衡器实现方式调研</title><link>https://blog.ian2018.club/post/Android%20-jun-heng-qi-shi-xian-fang-shi-diao-yan.html</link><description># 方案：&#13;
+&#13;
+## 1 使用系统 Media API 实现&#13;
+开源项目代表：https://github.com/harjot-oberai/MusicDNA，2.7 K star，最近更新 2019.5.31&#13;
+&#13;
+### 1.1 原理&#13;
+使用系统 API 去设置各种参数。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-jun-heng-qi-shi-xian-fang-shi-diao-yan.html</guid><pubDate>Tue, 09 Nov 2021 06:29:17 +0000</pubDate></item><item><title>Android 小 Tips 2（状态栏配置及显示壁纸等）</title><link>https://blog.ian2018.club/post/Android%20-xiao-%20Tips%202%EF%BC%88-zhuang-tai-lan-pei-zhi-ji-xian-shi-bi-zhi-deng-%EF%BC%89.html</link><description>
 # 设置状态栏
 
 ```java

@@ -9,9 +9,9 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="
-## 一、换脸方案
+<meta name="description" content="## 一、换脸方案
 
+> [!TIP]
 > 核心技术都是使用 [roop](https://github.com/s0md3v/roop) 进行换脸，StableDiffusion 上也有对应的插件：[https://github.com/s0md3v/sd-webui-roop](https://github.com/s0md3v/sd-webui-roop)
 
 整体大概流程：
@@ -22,9 +22,9 @@
 
 由 StableDiffusion 生成一张写真图，然后使用 roop 插件进行换脸。">
 <meta property="og:title" content="AI 写真方案调研">
-<meta property="og:description" content="
-## 一、换脸方案
+<meta property="og:description" content="## 一、换脸方案
 
+> [!TIP]
 > 核心技术都是使用 [roop](https://github.com/s0md3v/roop) 进行换脸，StableDiffusion 上也有对应的插件：[https://github.com/s0md3v/sd-webui-roop](https://github.com/s0md3v/sd-webui-roop)
 
 整体大概流程：
@@ -62,7 +62,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     .postTitle{font-size:24px;}
 }
 </style>
-
+<style>.markdown-alert{padding:0.5rem 1rem;margin-bottom:1rem;border-left:.25em solid var(--borderColor-default,var(--color-border-default));}.markdown-alert .markdown-alert-title {display:flex;font-weight:var(--base-text-weight-medium,500);align-items:center;line-height:1;}.markdown-alert>:first-child {margin-top:0;}.markdown-alert>:last-child {margin-bottom:0;}</style><style>.markdown-alert.markdown-alert-tip {border-left-color:var(--borderColor-success-emphasis, var(--color-success-emphasis));background-color:var(--color-success-subtle);}.markdown-alert.markdown-alert-tip .markdown-alert-title {color: var(--fgColor-success,var(--color-success-fg));}</style>
 
 
 
@@ -93,42 +93,41 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><h2>一、换脸方案</h2>
-<blockquote>
-<p>核心技术都是使用 <a href="https://github.com/s0md3v/roop">roop</a> 进行换脸，StableDiffusion 上也有对应的插件：<a href="https://github.com/s0md3v/sd-webui-roop">https://github.com/s0md3v/sd-webui-roop</a></p>
-</blockquote>
+<div class="markdown-alert markdown-alert-tip"><p class="markdown-alert-title"><svg class="octicon octicon-light-bulb mr-2" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>Tip</p><p>核心技术都是使用 <a href="https://github.com/s0md3v/roop">roop</a> 进行换脸，StableDiffusion 上也有对应的插件：<a href="https://github.com/s0md3v/sd-webui-roop">https://github.com/s0md3v/sd-webui-roop</a></p>
+</div>
 <p>整体大概流程：<br>
 <img src="https://blog-image.ian2018.cn/images/c30b25dc6c72bf1769b8be626f5b67729750943d.png"></p>
 <h3>1.1 文生图 + 换脸</h3>
 <p>由 StableDiffusion 生成一张写真图，然后使用 roop 插件进行换脸。</p>
 <h4>StableDiffusion 关键参数预览：</h4>
 <p><img src="https://blog-image.ian2018.cn/images/9405f6c5fea44303de3f27d416f24e7946f8be3f.png"></p>
-<div class="highlight highlight-source-json"><pre class="notranslate">{
-    <span class="pl-ent">"prompt"</span>:<span class="pl-s"><span class="pl-pds">"</span>提示词<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"negative_prompt"</span>:<span class="pl-s"><span class="pl-pds">"</span>反向提示词<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"sampler_index"</span>:<span class="pl-s"><span class="pl-pds">"</span>采样算法<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"steps"</span>:<span class="pl-c1">50</span>,
-    <span class="pl-ent">"batch_size"</span>:<span class="pl-c1">1</span>,
-    <span class="pl-ent">"cfg_scale"</span>:<span class="pl-c1">7</span>,
-    <span class="pl-ent">"width"</span>:<span class="pl-c1">512</span>,
-    <span class="pl-ent">"height"</span>:<span class="pl-c1">683</span>,
-    <span class="pl-ent">"override_settings"</span>:{
-        <span class="pl-ent">"sd_model_checkpoint"</span>:<span class="pl-s"><span class="pl-pds">"</span>大模型名字<span class="pl-pds">"</span></span>
+<div class="highlight highlight-source-python"><pre class="notranslate">{
+    <span class="pl-s">"prompt"</span>:<span class="pl-s">"提示词"</span>,
+    <span class="pl-s">"negative_prompt"</span>:<span class="pl-s">"反向提示词"</span>,
+    <span class="pl-s">"sampler_index"</span>:<span class="pl-s">"采样算法"</span>,
+    <span class="pl-s">"steps"</span>:<span class="pl-c1">50</span>,
+    <span class="pl-s">"batch_size"</span>:<span class="pl-c1">1</span>,
+    <span class="pl-s">"cfg_scale"</span>:<span class="pl-c1">7</span>,
+    <span class="pl-s">"width"</span>:<span class="pl-c1">512</span>,
+    <span class="pl-s">"height"</span>:<span class="pl-c1">683</span>,
+    <span class="pl-s">"override_settings"</span>:{
+        <span class="pl-s">"sd_model_checkpoint"</span>:<span class="pl-s">"大模型名字"</span>
     },
-    <span class="pl-ent">"alwayson_scripts"</span>:{
-        <span class="pl-ii">// 使用 roop 插件</span>
-        <span class="pl-ent">"roop"</span>:{
-            <span class="pl-ent">"args"</span>:[
-                <span class="pl-s"><span class="pl-pds">"</span>base64 人脸图片<span class="pl-pds">"</span></span>,
-                <span class="pl-c1">true</span>, <span class="pl-ii">// 是否启用 roop</span>
-                <span class="pl-s"><span class="pl-pds">"</span>0<span class="pl-pds">"</span></span>, <span class="pl-ii">// 人脸下标（替换第几个人脸，多个用逗号分隔）</span>
-                <span class="pl-s"><span class="pl-pds">"</span>inswapper_128.onnx（换脸模型路径）<span class="pl-pds">"</span></span>,
-                <span class="pl-s"><span class="pl-pds">"</span>CodeFormer<span class="pl-pds">"</span></span>, <span class="pl-ii">// 面部修复</span>
-                <span class="pl-c1">1</span>, <span class="pl-ii">// 面部修复强度</span>
-                <span class="pl-s"><span class="pl-pds">"</span>放大算法<span class="pl-pds">"</span></span>,
-                <span class="pl-c1">1</span>, <span class="pl-ii">// 放大倍率</span>
-                <span class="pl-c1">1</span>, <span class="pl-ii">// 放大强度</span>
-                <span class="pl-c1">false</span>, <span class="pl-ii">// 替换原图片</span>
-                <span class="pl-c1">true</span> <span class="pl-ii">// 替换生成后的图片</span>
+    <span class="pl-s">"alwayson_scripts"</span>:{
+        <span class="pl-c"># 使用 roop 插件</span>
+        <span class="pl-s">"roop"</span>:{
+            <span class="pl-s">"args"</span>:[
+                <span class="pl-s">"base64 人脸图片"</span>,
+                <span class="pl-s1">true</span>, <span class="pl-c"># 是否启用 roop</span>
+                <span class="pl-s">"0"</span>, <span class="pl-c"># 人脸下标（替换第几个人脸，多个用逗号分隔）</span>
+                <span class="pl-s">"inswapper_128.onnx（换脸模型路径）"</span>,
+                <span class="pl-s">"CodeFormer"</span>, <span class="pl-c"># 面部修复</span>
+                <span class="pl-c1">1</span>, <span class="pl-c"># 面部修复强度</span>
+                <span class="pl-s">"放大算法"</span>,
+                <span class="pl-c1">1</span>, <span class="pl-c"># 放大倍率</span>
+                <span class="pl-c1">1</span>, <span class="pl-c"># 放大强度</span>
+                <span class="pl-c1">False</span>, <span class="pl-c"># 替换原图片</span>
+                <span class="pl-c1">True</span> <span class="pl-c"># 替换生成后的图片</span>
             ]
         }
     }
@@ -180,15 +179,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h4>roop sd webui api 参数预览：</h4>
 <p><a class="issue-link js-issue-link" data-error-text="Failed to load title" data-id="1858148488" data-permission-text="Title is private" data-url="https://github.com/s0md3v/sd-webui-roop/issues/214" data-hovercard-type="pull_request" data-hovercard-url="/s0md3v/sd-webui-roop/pull/214/hovercard" href="https://github.com/s0md3v/sd-webui-roop/pull/214">s0md3v/sd-webui-roop#214</a> roop 插件最近的更新中也已经提供了换脸的接口。</p>
 <p><img src="https://blog-image.ian2018.cn/images/cb281d09a5b3c823a17b8706d434ebf0adb6c8af.png"></p>
-<div class="highlight highlight-source-json"><pre class="notranslate">{
-    <span class="pl-ent">"source_image"</span>:<span class="pl-s"><span class="pl-pds">"</span>base64 人脸图片<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"target_image"</span>:<span class="pl-s"><span class="pl-pds">"</span>base64 底图<span class="pl-pds">"</span></span>,
-    <span class="pl-ent">"face_index"</span>:[<span class="pl-c1">0</span>], <span class="pl-ii">// 人脸下标（替换第几个人脸）</span>
-    <span class="pl-ent">"scale"</span>:<span class="pl-c1">1</span>, <span class="pl-ii">// 放大倍率</span>
-    <span class="pl-ent">"upscale_visibility"</span>:<span class="pl-c1">1</span>, <span class="pl-ii">// 放大强度</span>
-    <span class="pl-ent">"face_restorer"</span>:<span class="pl-s"><span class="pl-pds">"</span>CodeFormer<span class="pl-pds">"</span></span>, <span class="pl-ii">// 面部修复</span>
-    <span class="pl-ent">"restorer_visibility"</span>:<span class="pl-c1">1</span>, <span class="pl-ii">// 面部修复强度</span>
-    <span class="pl-ent">"model"</span>:<span class="pl-s"><span class="pl-pds">"</span>inswapper_128.onnx<span class="pl-pds">"</span></span> <span class="pl-ii">// 换脸模型名字</span>
+<div class="highlight highlight-source-python"><pre class="notranslate">{
+    <span class="pl-s">"source_image"</span>:<span class="pl-s">"base64 人脸图片"</span>,
+    <span class="pl-s">"target_image"</span>:<span class="pl-s">"base64 底图"</span>,
+    <span class="pl-s">"face_index"</span>:[<span class="pl-c1">0</span>], <span class="pl-c"># 人脸下标（替换第几个人脸）</span>
+    <span class="pl-s">"scale"</span>:<span class="pl-c1">1</span>, <span class="pl-c"># 放大倍率</span>
+    <span class="pl-s">"upscale_visibility"</span>:<span class="pl-c1">1</span>, <span class="pl-c"># 放大强度</span>
+    <span class="pl-s">"face_restorer"</span>:<span class="pl-s">"CodeFormer"</span>, <span class="pl-c"># 面部修复</span>
+    <span class="pl-s">"restorer_visibility"</span>:<span class="pl-c1">1</span>, <span class="pl-c"># 面部修复强度</span>
+    <span class="pl-s">"model"</span>:<span class="pl-s">"inswapper_128.onnx"</span> <span class="pl-c"># 换脸模型名字</span>
 }</pre></div>
 <p>返回的结果是一个 json：</p>
 <div class="highlight highlight-source-json"><pre class="notranslate">{

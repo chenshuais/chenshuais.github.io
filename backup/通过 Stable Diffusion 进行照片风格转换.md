@@ -1,3 +1,4 @@
+> [!TIP]
 > 经过几次测试，其中图生图的效果会比较好
 >
 > ControlNet 使用 3 层控制：Canny + Depth + IP-Adapter
@@ -109,4 +110,5 @@ data = {
     }
 }
 ```
+
 <!-- ##{"timestamp":1703228951}## -->

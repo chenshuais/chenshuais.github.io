@@ -1,3 +1,4 @@
+> [!TIP]
 > Firebase 自动收集事件说明：https://support.google.com/firebase/answer/9234069?hl=zh-Hans
 >
 > user-engagement 说明：https://support.google.com/analytics/answer/11109416#user-engagement
@@ -49,4 +50,5 @@ engagement_time_msec = 上一个页面 paused 的时间 - 上一个页面 resume
 - screen_view 携带 engagement_time_msec 时机为当该页面没有发送 user_engagement 事件时，会有这个参数，一般情况是连续跳转多个页面的时候。
 - 连续发送多个 user_engagement 事件，是因为当前页面没有发生变化，但离开了页面，操作行为：打开应用 -> (home 出去 -> 从最近任务中进入应用 -> home 出去 -> 从最近任务中进入应用) 以此循环。
 - 本地是会记录每个 screen_view 和 user_engagement 的，并且是成对出现的，但上传到 bigquery 会特殊处理一下。
+
 <!-- ##{"timestamp":1658456652}## -->

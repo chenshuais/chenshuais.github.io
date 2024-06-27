@@ -1,6 +1,6 @@
-
 ## 一、换脸方案
 
+> [!TIP]
 > 核心技术都是使用 [roop](https://github.com/s0md3v/roop) 进行换脸，StableDiffusion 上也有对应的插件：[https://github.com/s0md3v/sd-webui-roop](https://github.com/s0md3v/sd-webui-roop)
 
 整体大概流程：
@@ -16,7 +16,7 @@
 `Gmeek-html<img src="https://blog-image.ian2018.cn/images/9405f6c5fea44303de3f27d416f24e7946f8be3f.png">`
 
 
-```json
+```python
 {
     "prompt":"提示词",
     "negative_prompt":"反向提示词",
@@ -30,20 +30,20 @@
         "sd_model_checkpoint":"大模型名字"
     },
     "alwayson_scripts":{
-        // 使用 roop 插件
+        # 使用 roop 插件
         "roop":{
             "args":[
                 "base64 人脸图片",
-                true, // 是否启用 roop
-                "0", // 人脸下标（替换第几个人脸，多个用逗号分隔）
+                true, # 是否启用 roop
+                "0", # 人脸下标（替换第几个人脸，多个用逗号分隔）
                 "inswapper_128.onnx（换脸模型路径）",
-                "CodeFormer", // 面部修复
-                1, // 面部修复强度
+                "CodeFormer", # 面部修复
+                1, # 面部修复强度
                 "放大算法",
-                1, // 放大倍率
-                1, // 放大强度
-                false, // 替换原图片
-                true // 替换生成后的图片
+                1, # 放大倍率
+                1, # 放大强度
+                False, # 替换原图片
+                True # 替换生成后的图片
             ]
         }
     }
@@ -98,16 +98,16 @@
 
 `Gmeek-html<img src="https://blog-image.ian2018.cn/images/cb281d09a5b3c823a17b8706d434ebf0adb6c8af.png">`
 
-```json
+```python
 {
     "source_image":"base64 人脸图片",
     "target_image":"base64 底图",
-    "face_index":[0], // 人脸下标（替换第几个人脸）
-    "scale":1, // 放大倍率
-    "upscale_visibility":1, // 放大强度
-    "face_restorer":"CodeFormer", // 面部修复
-    "restorer_visibility":1, // 面部修复强度
-    "model":"inswapper_128.onnx" // 换脸模型名字
+    "face_index":[0], # 人脸下标（替换第几个人脸）
+    "scale":1, # 放大倍率
+    "upscale_visibility":1, # 放大强度
+    "face_restorer":"CodeFormer", # 面部修复
+    "restorer_visibility":1, # 面部修复强度
+    "model":"inswapper_128.onnx" # 换脸模型名字
 }
 ```
 

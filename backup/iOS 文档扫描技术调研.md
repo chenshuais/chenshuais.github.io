@@ -1,3 +1,4 @@
+> [!TIP]
 > 文本扫描和文本 OCR，系统 API 已经有了很好的支持，效果好，开发成本低，缺点就是文档扫描的 UI 无法定制，只能使用系统的。
 
 # 一、文档扫描
@@ -78,6 +79,5 @@ iOS 上暂未跑通，代码比较古老。
 - https://github.com/techprimate/TPPDF
 
 `Gmeek-html<img src="https://blog-image.ian2018.cn/images/f2a88477bb6d91c2e2671514f869efca63680fba.png">`
-
 
 <!-- ##{"timestamp":1711963080}## -->

@@ -1,4 +1,3 @@
-
 FCM 有[两种消息类型](https://firebase.google.com/docs/cloud-messaging/concept-options#notifications_and_data_messages)：
 
 - **通知消息****：**又叫显示消息，由 FCM sdk 处理。
@@ -71,4 +70,5 @@ https://firebase.google.com/docs/cloud-messaging/send-message
 ## iOS 上接收消息
 
 可以通过 APNs 渠道发送，消息接收更可靠。
+
 <!-- ##{"timestamp":1689909684}## -->
