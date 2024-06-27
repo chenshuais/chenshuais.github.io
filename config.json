@@ -12,5 +12,5 @@
     "i18n":"CN",
     "UTC":8,
     "showPostSource":0,
-    "script":"<script async src='//blog-image.ian2018.cn/webviso.min.js'></script>"
+    "script":"<script async src='//blog-image.ian2018.cn/webviso.min.js' data-page-pv-id='user-content-page_pv' data-page-uv-id='user-content-page_uv'></script>"
 }
