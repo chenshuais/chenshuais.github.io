@@ -114,9 +114,9 @@ Header 2
 ```
 `Gmeek-html<img src="https://blog-image.ian2018.cn/images/0f378ae3cfd93c1dc5a3cfd9ddda07879db3b30c.png">`
 
-<video width="320" height="680"   controls poster="https://blog-image.ian2018.cn/images/ae89321dd645e6809634ba8fe961731da0601014.png">
+`Gmeek-html<video width="320" height="680"   controls poster="https://blog-image.ian2018.cn/images/ae89321dd645e6809634ba8fe961731da0601014.png">
     <source src="https://blog-image.ian2018.cn/images/23179ed0b683c78e88569d347664426981319712.mov" type="video/mp4">
-</video>
+</video>`
 
 ### 方案二、解析 markdown 的库，自己去实现怎么展示
 
