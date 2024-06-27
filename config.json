@@ -11,5 +11,6 @@
     "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
     "i18n":"CN",
     "UTC":8,
-    "showPostSource":0
+    "showPostSource":0,
+    "script":"<script async src='//blog-image.ian2018.cn/webviso.min.js'></script>"
 }
