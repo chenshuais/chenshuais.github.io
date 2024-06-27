@@ -8,9 +8,10 @@
     "singlePage":["about"],
     "GMEEK_VERSION":"v2.19",
     "startSite":"08/31/2016",
-    "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️",
+    "bottomText":"❤️ 转载文章请注明出处，谢谢！❤️\n\n<span>:heart:感谢 <span id=\"page_uv\"></span> 位小伙伴的 <span id=\"page_pv\"></span> 次访问。</span>",
     "i18n":"CN",
     "UTC":8,
     "showPostSource":0,
-    "script":"<script async src='//blog-image.ian2018.cn/webviso.min.js' data-page-pv-id='user-content-page_pv' data-page-uv-id='user-content-page_uv'></script>"
+    "script":"<script async src='//blog-image.ian2018.cn/webviso.min.js' data-page-pv-id='user-content-page_pv' data-page-uv-id='user-content-page_uv'></script>",
+    "style":"<style>#user-content-page_pv{color:red}#user-content-page_uv{color:red}</style>"
 }
