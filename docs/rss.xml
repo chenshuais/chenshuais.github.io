@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Thu, 27 Jun 2024 01:52:14 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Android 手机运行 Ollama</title><link>https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</link><description>在你的安卓设备上通过 Termux 和 Ollama 释放大型语言模型的力量在这篇博客文章中，我们将探讨如何使用强大的终端模拟器 Termux 在安卓设备上安装和运行 Ollama 语言模型。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</guid><pubDate>Fri, 14 Jun 2024 07:53:31 +0000</pubDate></item><item><title>WWDC 24 Apple Intelligence 新功能预览</title><link>https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</link><description># Apple Intelligence&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Thu, 27 Jun 2024 01:54:00 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Android 手机运行 Ollama</title><link>https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</link><description>在你的安卓设备上通过 Termux 和 Ollama 释放大型语言模型的力量在这篇博客文章中，我们将探讨如何使用强大的终端模拟器 Termux 在安卓设备上安装和运行 Ollama 语言模型。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</guid><pubDate>Fri, 14 Jun 2024 07:53:31 +0000</pubDate></item><item><title>WWDC 24 Apple Intelligence 新功能预览</title><link>https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</link><description># Apple Intelligence&#13;
 &#13;
 &gt; [!NOTE]&#13;
 &gt; AI 相关的能力仅支持 iPhone 15 Pro 及以上的机型&#13;
@@ -756,67 +756,67 @@ Java中的ArrayList就是对数组的封装，默认数组大小是10，&#13;
 &gt; 该类包含用于操作数组的各种方法（例如排序和搜索）。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Arrays-zhong-de-ArrayList.html</guid><pubDate>Wed, 13 Mar 2019 10:52:00 +0000</pubDate></item><item><title>Java io流</title><link>https://blog.ian2018.club/post/Java%20io-liu.html</link><description>类关系图：&#13;
 `Gmeek-html&lt;img src='https://blog-image.ian2018.cn/images/6b82af80bd927dd911fa4e17dcf189258562236b.png'&gt;`&#13;
 &#13;
-由于InputStream、OutputStream是抽象类，所以要创建他们的子类对象。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Java%20io-liu.html</guid><pubDate>Mon, 25 Feb 2019 01:42:00 +0000</pubDate></item><item><title>虚线的实现方法</title><link>https://blog.ian2018.club/post/xu-xian-de-shi-xian-fang-fa.html</link><description># 水平虚线的实现
-
-在drawable下新建drawable资源 shape_dotted_line.xml
-
-```xml
-&lt;?xml version='1.0' encoding='utf-8'?&gt;
-&lt;shape xmlns:android='http://schemas.android.com/apk/res/android'
-    android:shape='line'&gt;
-    &lt;stroke
-        android:width='1dp'
-        android:color='#32ffffff'
-        android:dashWidth='4dp'
-        android:dashGap='4dp' /&gt;
-    &lt;size android:height='1dp' /&gt;
-&lt;/shape&gt;
-```
-
-然后再在xml布局中使用该drawable做背景即可
-
-```xml
-&lt;View
-    android:layout_width='match_parent'
-    android:layout_height='1.5dp'
-    android:background='@drawable/shape_dotted_line'
-    android:layerType='software' /&gt;
-```
-
-&gt; 注: android:layerType='software' 如果不加这个会显示实线
-&gt;
-&gt; view的高度也要大一点，不然虚线显示不出来
-
-# 垂直虚线的实现
-
-垂直虚线只需要把水平的旋转一下即可，不过还需要做一下特殊处理
-
-在drawable下新建drawable资源 shape_dotted_line_vertical.xml
-
-```xml
-&lt;?xml version='1.0' encoding='utf-8'?&gt;
-&lt;layer-list xmlns:android='http://schemas.android.com/apk/res/android'&gt;
-    &lt;item
-        android:left='-300dp'
-        android:right='-300dp'&gt;
-        &lt;rotate
-            android:drawable='@drawable/shape_dotted_line'
-            android:fromDegrees='90' /&gt;
-    &lt;/item&gt;
-&lt;/layer-list&gt;
-```
-
-然后再xml布局中使用
-
-```xml
-&lt;View
-    android:id='@+id/dotted_view'
-    android:layout_width='2dp'
-    android:layout_height='match_parent'
-    android:background='@drawable/shape_dotted_line_vertical'
-    android:layerType='software' /&gt;
-```
-
+由于InputStream、OutputStream是抽象类，所以要创建他们的子类对象。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Java%20io-liu.html</guid><pubDate>Mon, 25 Feb 2019 01:42:00 +0000</pubDate></item><item><title>虚线的实现方法</title><link>https://blog.ian2018.club/post/xu-xian-de-shi-xian-fang-fa.html</link><description># 水平虚线的实现&#13;
+&#13;
+在drawable下新建drawable资源 shape_dotted_line.xml&#13;
+&#13;
+```xml&#13;
+&lt;?xml version='1.0' encoding='utf-8'?&gt;&#13;
+&lt;shape xmlns:android='http://schemas.android.com/apk/res/android'&#13;
+    android:shape='line'&gt;&#13;
+    &lt;stroke&#13;
+        android:width='1dp'&#13;
+        android:color='#32ffffff'&#13;
+        android:dashWidth='4dp'&#13;
+        android:dashGap='4dp' /&gt;&#13;
+    &lt;size android:height='1dp' /&gt;&#13;
+&lt;/shape&gt;&#13;
+```&#13;
+&#13;
+然后再在xml布局中使用该drawable做背景即可&#13;
+&#13;
+```xml&#13;
+&lt;View&#13;
+    android:layout_width='match_parent'&#13;
+    android:layout_height='1.5dp'&#13;
+    android:background='@drawable/shape_dotted_line'&#13;
+    android:layerType='software' /&gt;&#13;
+```&#13;
+&#13;
+&gt; 注: android:layerType='software' 如果不加这个会显示实线&#13;
+&gt;&#13;
+&gt; view的高度也要大一点，不然虚线显示不出来&#13;
+&#13;
+# 垂直虚线的实现&#13;
+&#13;
+垂直虚线只需要把水平的旋转一下即可，不过还需要做一下特殊处理&#13;
+&#13;
+在drawable下新建drawable资源 shape_dotted_line_vertical.xml&#13;
+&#13;
+```xml&#13;
+&lt;?xml version='1.0' encoding='utf-8'?&gt;&#13;
+&lt;layer-list xmlns:android='http://schemas.android.com/apk/res/android'&gt;&#13;
+    &lt;item&#13;
+        android:left='-300dp'&#13;
+        android:right='-300dp'&gt;&#13;
+        &lt;rotate&#13;
+            android:drawable='@drawable/shape_dotted_line'&#13;
+            android:fromDegrees='90' /&gt;&#13;
+    &lt;/item&gt;&#13;
+&lt;/layer-list&gt;&#13;
+```&#13;
+&#13;
+然后再xml布局中使用&#13;
+&#13;
+```xml&#13;
+&lt;View&#13;
+    android:id='@+id/dotted_view'&#13;
+    android:layout_width='2dp'&#13;
+    android:layout_height='match_parent'&#13;
+    android:background='@drawable/shape_dotted_line_vertical'&#13;
+    android:layerType='software' /&gt;&#13;
+```&#13;
+&#13;
 &gt; 注： 如果直接旋转的话，在设置给view的背景后，发现虚线只有一小段。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xu-xian-de-shi-xian-fang-fa.html</guid><pubDate>Mon, 25 Feb 2019 01:30:52 +0000</pubDate></item><item><title>绘制圆角矩形</title><link>https://blog.ian2018.club/post/hui-zhi-yuan-jiao-ju-xing.html</link><description>canvas.drawRoundRect(RectF, x半径,y半径, Paint)&#13;
 &#13;
 ```java&#13;
@@ -844,29 +844,30 @@ private Bitmap createRainRect(int width, int height, float rainHeight) {&#13;
 ```&#13;
 &#13;
 &#13;
-&lt;!-- ##{'timestamp':1548240772}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/hui-zhi-yuan-jiao-ju-xing.html</guid><pubDate>Wed, 23 Jan 2019 10:52:52 +0000</pubDate></item><item><title>Android Fragment中添加Fragment</title><link>https://blog.ian2018.club/post/Android%20Fragment-zhong-tian-jia-Fragment.html</link><description>最好使用 getChildFragmentManager 来获取manager
-
-子fragment调用父fragment的方法：
-```java
-List&lt;Fragment&gt;list=(List&lt;Fragment&gt;)SonFragment.this.getFragmentManager().getFragments();
-for(Fragment f:list){
-    if(f!=null&amp;&amp;f instanceof FatherMainFragment){
-        ((FatherMainFragment) f).changView();
-        break;
-    }
-}
-```
-
-如果是fragment 里的viewpager 中的 fragment  想调用父fragment里的方法  需要通过获取activity来获取FragmentManager
-```java
-List&lt;Fragment&gt; fragments = getActivity().getSupportFragmentManager().getFragments();
-for (Fragment fragment : fragments) {
-    if (fragment != null &amp;&amp; fragment instanceof WeatherFragment) {
-        mHomeFragment = (WeatherFragment) fragment;
-    }
-}
-```
-
+&lt;!-- ##{'timestamp':1548240772}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/hui-zhi-yuan-jiao-ju-xing.html</guid><pubDate>Wed, 23 Jan 2019 10:52:52 +0000</pubDate></item><item><title>Android Fragment中添加Fragment</title><link>https://blog.ian2018.club/post/Android%20Fragment-zhong-tian-jia-Fragment.html</link><description>最好使用 getChildFragmentManager 来获取manager&#13;
+&#13;
+子fragment调用父fragment的方法：&#13;
+```java&#13;
+List&lt;Fragment&gt;list=(List&lt;Fragment&gt;)SonFragment.this.getFragmentManager().getFragments();&#13;
+for(Fragment f:list){&#13;
+    if(f!=null&amp;&amp;f instanceof FatherMainFragment){&#13;
+        ((FatherMainFragment) f).changView();&#13;
+        break;&#13;
+    }&#13;
+}&#13;
+```&#13;
+&#13;
+如果是fragment 里的viewpager 中的 fragment  想调用父fragment里的方法  需要通过获取activity来获取FragmentManager&#13;
+```java&#13;
+List&lt;Fragment&gt; fragments = getActivity().getSupportFragmentManager().getFragments();&#13;
+for (Fragment fragment : fragments) {&#13;
+    if (fragment != null &amp;&amp; fragment instanceof WeatherFragment) {&#13;
+        mHomeFragment = (WeatherFragment) fragment;&#13;
+    }&#13;
+}&#13;
+```&#13;
+&#13;
+&#13;
 &lt;!-- ##{'timestamp':1546663800}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20Fragment-zhong-tian-jia-Fragment.html</guid><pubDate>Sat, 05 Jan 2019 04:50:00 +0000</pubDate></item><item><title>Android Gradle依赖冲突问题</title><link>https://blog.ian2018.club/post/Android%20Gradle-yi-lai-chong-tu-wen-ti.html</link><description>查看依赖的库中都引用了哪些&#13;
 ```gradle&#13;
 gradlew -q app:dependencies&#13;
@@ -957,12 +958,12 @@ GitLab 是一个用于仓库管理系统的开源项目，使用Git作为代码�
 &#13;
 为了放松心情，让听歌更加方便快捷，没有广告等其他干扰使用，于是便有了自己写一个音乐播放器的想法。</description><guid isPermaLink="true">https://blog.ian2018.club/post/yin-le-bo-fang-qi-si-lu.html</guid><pubDate>Fri, 24 Mar 2017 15:37:05 +0000</pubDate></item><item><title>第一次笔试</title><link>https://blog.ian2018.club/post/di-yi-ci-bi-shi.html</link><description>今天晚上，参加了美团点评Android工程师（实习）的春招笔试。</description><guid isPermaLink="true">https://blog.ian2018.club/post/di-yi-ci-bi-shi.html</guid><pubDate>Tue, 21 Mar 2017 15:28:11 +0000</pubDate></item><item><title>自学之路：初识HTTP——《图解HTTP》note1</title><link>https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</link><description># 前言&#13;
 &#13;
-最近打算学习一些网络相关的知识，经别人推荐，说《图解HTTP》这本书不错，于是便买来打算学习一波。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</guid><pubDate>Wed, 01 Mar 2017 12:36:47 +0000</pubDate></item><item><title>“转发”：王久良的纪录片：从《垃圾围城》到《塑料王国》</title><link>https://blog.ian2018.club/post/%E2%80%9C-zhuan-fa-%E2%80%9D%EF%BC%9A-wang-jiu-liang-de-ji-lu-pian-%EF%BC%9A-cong-%E3%80%8A-la-ji-wei-cheng-%E3%80%8B-dao-%E3%80%8A-su-liao-wang-guo-%E3%80%8B.html</link><description>2015-10-29 10:36:00
-
-**环境教育杂志**
-
-**作者：崔维敏**
-
+最近打算学习一些网络相关的知识，经别人推荐，说《图解HTTP》这本书不错，于是便买来打算学习一波。</description><guid isPermaLink="true">https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-chu-shi-HTTP%E2%80%94%E2%80%94%E3%80%8A-tu-jie-HTTP%E3%80%8Bnote1.html</guid><pubDate>Wed, 01 Mar 2017 12:36:47 +0000</pubDate></item><item><title>“转发”：王久良的纪录片：从《垃圾围城》到《塑料王国》</title><link>https://blog.ian2018.club/post/%E2%80%9C-zhuan-fa-%E2%80%9D%EF%BC%9A-wang-jiu-liang-de-ji-lu-pian-%EF%BC%9A-cong-%E3%80%8A-la-ji-wei-cheng-%E3%80%8B-dao-%E3%80%8A-su-liao-wang-guo-%E3%80%8B.html</link><description>2015-10-29 10:36:00&#13;
+&#13;
+**环境教育杂志**&#13;
+&#13;
+**作者：崔维敏**&#13;
+&#13;
 **王久良**，自由摄影师，纪录片《**垃圾围城**》和《**塑料王国**》的作者。</description><guid isPermaLink="true">https://blog.ian2018.club/post/%E2%80%9C-zhuan-fa-%E2%80%9D%EF%BC%9A-wang-jiu-liang-de-ji-lu-pian-%EF%BC%9A-cong-%E3%80%8A-la-ji-wei-cheng-%E3%80%8B-dao-%E3%80%8A-su-liao-wang-guo-%E3%80%8B.html</guid><pubDate>Sun, 08 Jan 2017 08:08:36 +0000</pubDate></item><item><title>2017半年计划</title><link>https://blog.ian2018.club/post/2017-ban-nian-ji-hua.html</link><description>~~1·把第一行代码后面的实战项目做出来。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2017-ban-nian-ji-hua.html</guid><pubDate>Fri, 06 Jan 2017 06:31:11 +0000</pubDate></item><item><title>2016→2017</title><link>https://blog.ian2018.club/post/2016%E2%86%922017.html</link><description>第一次写些类似年终总结的东西，不过我感觉这更像是回忆，一个大日记。</description><guid isPermaLink="true">https://blog.ian2018.club/post/2016%E2%86%922017.html</guid><pubDate>Sat, 31 Dec 2016 15:57:59 +0000</pubDate></item><item><title>新生使用IntelliJ IDEA计划</title><link>https://blog.ian2018.club/post/xin-sheng-shi-yong-IntelliJ%20IDEA-ji-hua.html</link><description># 1.为什么要使用 IntelliJ IDEA&#13;
 &#13;
 Google 早在2015年中期，就宣布结束对 Eclipse ADT（安卓开发工具）的支持，并推荐开发者使用 Google 专门为开发者定制的 Android Studio ，而且提供了将项目从 Eclipse 转移到 Android Studio 的方法。</description><guid isPermaLink="true">https://blog.ian2018.club/post/xin-sheng-shi-yong-IntelliJ%20IDEA-ji-hua.html</guid><pubDate>Sun, 06 Nov 2016 06:18:57 +0000</pubDate></item><item><title>深夜感悟</title><link>https://blog.ian2018.club/post/shen-ye-gan-wu.html</link><description>你们当初为什么会选这个专业？&#13;
