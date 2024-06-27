@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Thu, 27 Jun 2024 01:50:13 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Android 手机运行 Ollama</title><link>https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</link><description>在你的安卓设备上通过 Termux 和 Ollama 释放大型语言模型的力量在这篇博客文章中，我们将探讨如何使用强大的终端模拟器 Termux 在安卓设备上安装和运行 Ollama 语言模型。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</guid><pubDate>Fri, 14 Jun 2024 07:53:31 +0000</pubDate></item><item><title>WWDC 24 Apple Intelligence 新功能预览</title><link>https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</link><description># Apple Intelligence&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>IAn2018cs</title><link>https://blog.ian2018.club</link><description>A developer, wishing for world peace</description><copyright>IAn2018cs</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://blog-image.ian2018.cn/avatar.webp</url><title>avatar</title><link>https://blog.ian2018.club</link></image><lastBuildDate>Thu, 27 Jun 2024 01:50:37 +0000</lastBuildDate><managingEditor>IAn2018cs</managingEditor><ttl>60</ttl><webMaster>IAn2018cs</webMaster><item><title>Android 手机运行 Ollama</title><link>https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</link><description>在你的安卓设备上通过 Termux 和 Ollama 释放大型语言模型的力量在这篇博客文章中，我们将探讨如何使用强大的终端模拟器 Termux 在安卓设备上安装和运行 Ollama 语言模型。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20-shou-ji-yun-xing-%20Ollama.html</guid><pubDate>Fri, 14 Jun 2024 07:53:31 +0000</pubDate></item><item><title>WWDC 24 Apple Intelligence 新功能预览</title><link>https://blog.ian2018.club/post/WWDC%2024%20Apple%20Intelligence%20-xin-gong-neng-yu-lan.html</link><description># Apple Intelligence&#13;
 &#13;
 &gt; [!NOTE]&#13;
 &gt; AI 相关的能力仅支持 iPhone 15 Pro 及以上的机型&#13;
@@ -867,21 +867,22 @@ for (Fragment fragment : fragments) {
 }
 ```
 
-&lt;!-- ##{'timestamp':1546663800}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20Fragment-zhong-tian-jia-Fragment.html</guid><pubDate>Sat, 05 Jan 2019 04:50:00 +0000</pubDate></item><item><title>Android Gradle依赖冲突问题</title><link>https://blog.ian2018.club/post/Android%20Gradle-yi-lai-chong-tu-wen-ti.html</link><description>查看依赖的库中都引用了哪些
-```gradle
-gradlew -q app:dependencies
-```
-
-查看各model的依赖树
-```gradle
-gradlew :app:dependencies --configuration compile
-```
-
-把jar文件解压后  删除冲突的文件  然后通过以下命令 重新打包jar
-```bash
-jar cvf 新的文件.jar -C 原解压出来的文件夹/ .
-```
-
+&lt;!-- ##{'timestamp':1546663800}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20Fragment-zhong-tian-jia-Fragment.html</guid><pubDate>Sat, 05 Jan 2019 04:50:00 +0000</pubDate></item><item><title>Android Gradle依赖冲突问题</title><link>https://blog.ian2018.club/post/Android%20Gradle-yi-lai-chong-tu-wen-ti.html</link><description>查看依赖的库中都引用了哪些&#13;
+```gradle&#13;
+gradlew -q app:dependencies&#13;
+```&#13;
+&#13;
+查看各model的依赖树&#13;
+```gradle&#13;
+gradlew :app:dependencies --configuration compile&#13;
+```&#13;
+&#13;
+把jar文件解压后  删除冲突的文件  然后通过以下命令 重新打包jar&#13;
+```bash&#13;
+jar cvf 新的文件.jar -C 原解压出来的文件夹/ .&#13;
+```&#13;
+&#13;
+&#13;
 &lt;!-- ##{'timestamp':1544668980}## --&gt;。</description><guid isPermaLink="true">https://blog.ian2018.club/post/Android%20Gradle-yi-lai-chong-tu-wen-ti.html</guid><pubDate>Thu, 13 Dec 2018 02:43:00 +0000</pubDate></item><item><title>Markdown语法笔记</title><link>https://blog.ian2018.club/post/Markdown-yu-fa-bi-ji.html</link><description># 简单记一下markdown的语法&#13;
 &#13;
 ## 1.标题&#13;
