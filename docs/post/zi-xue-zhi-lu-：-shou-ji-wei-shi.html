@@ -32,7 +32,7 @@
 <meta property="og:url" content="https://blog.ian2018.club/post/zi-xue-zhi-lu-%EF%BC%9A-shou-ji-wei-shi.html">
 <meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
 <title>自学之路：手机卫士</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 </head>
 <style>
@@ -92,46 +92,49 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>首先到 <a href="https://github.com/hexiaochun/SystemBarTint">这里</a> 下载所需要的Java文件，在 SystemBarTint/library/src/com/readystatesoftware/systembartint/ 目录下，找到名字叫 <code class="notranslate">SystemBarTintManager.java</code> 的文件，拷贝到自己的工程中。</li>
 <li>在要使用沉浸式状态栏的布局文件的根布局中添加一个属性 <code class="notranslate">android:fitsSystemWindows="true"</code></li>
 <li>在 Activity 中使用，在 onCreate 方法里添加如下代码：
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-en">requestWindowFeature</span>(<span class="pl-smi">Window</span>.<span class="pl-c1">FEATURE_NO_TITLE</span>);
-<span class="pl-k">if</span> (<span class="pl-smi">Build</span>.<span class="pl-c1">VERSION</span>.<span class="pl-c1">SDK_INT</span> &gt;= <span class="pl-smi">Build</span>.<span class="pl-c1">VERSION_CODES</span>.<span class="pl-c1">KITKAT</span>) {
-    <span class="pl-en">setTranslucentStatus</span>(<span class="pl-c1">true</span>);
-    <span class="pl-smi">SystemBarTintManager</span> <span class="pl-s1">tintManager</span> = <span class="pl-k">new</span> <span class="pl-smi">SystemBarTintManager</span>(<span class="pl-smi">this</span>);
-    <span class="pl-s1">tintManager</span>.<span class="pl-en">setStatusBarTintEnabled</span>(<span class="pl-c1">true</span>);
-    <span class="pl-s1">tintManager</span>.<span class="pl-en">setStatusBarTintResource</span>(<span class="pl-smi">R</span>.<span class="pl-s1">color</span>.<span class="pl-s1">top_bg_color</span>);<span class="pl-c">// 通知栏所需颜色</span>
+<pre lang="java" class="notranslate"><code class="notranslate">requestWindowFeature(Window.FEATURE_NO_TITLE);
+if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.KITKAT) {
+    setTranslucentStatus(true);
+    SystemBarTintManager tintManager = new SystemBarTintManager(this);
+    tintManager.setStatusBarTintEnabled(true);
+    tintManager.setStatusBarTintResource(R.color.top_bg_color);// 通知栏所需颜色
 }
-<span class="pl-en">setContentView</span>(<span class="pl-smi">R</span>.<span class="pl-s1">layout</span>.<span class="pl-s1">activity_main</span>);</pre></div>
+setContentView(R.layout.activity_main);
+</code></pre>
 再在Activity中添加一个方法：
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-c1">@</span><span class="pl-c1">TargetApi</span>(<span class="pl-c1">19</span>)
-<span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-s1">setTranslucentStatus</span>(<span class="pl-smi">boolean</span> <span class="pl-s1">on</span>) {
-    <span class="pl-smi">Window</span> <span class="pl-s1">win</span> = <span class="pl-en">getWindow</span>();
-    <span class="pl-smi">WindowManager</span>.<span class="pl-smi">LayoutParams</span> <span class="pl-s1">winParams</span> = <span class="pl-s1">win</span>.<span class="pl-en">getAttributes</span>();
-    <span class="pl-k">final</span> <span class="pl-smi">int</span> <span class="pl-s1">bits</span> = <span class="pl-smi">WindowManager</span>.<span class="pl-s1">LayoutParams</span>.<span class="pl-c1">FLAG_TRANSLUCENT_STATUS</span>;
-    <span class="pl-k">if</span> (<span class="pl-s1">on</span>) {
-        <span class="pl-s1">winParams</span>.<span class="pl-s1">flags</span> |= <span class="pl-s1">bits</span>;
-    } <span class="pl-k">else</span> {
-        <span class="pl-s1">winParams</span>.<span class="pl-s1">flags</span> &amp;= ~<span class="pl-s1">bits</span>;
+<pre lang="java" class="notranslate"><code class="notranslate">@TargetApi(19)
+public void setTranslucentStatus(boolean on) {
+    Window win = getWindow();
+    WindowManager.LayoutParams winParams = win.getAttributes();
+    final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+    if (on) {
+        winParams.flags |= bits;
+    } else {
+        winParams.flags &amp;= ~bits;
     }
-    <span class="pl-s1">win</span>.<span class="pl-en">setAttributes</span>(<span class="pl-s1">winParams</span>);
-}</pre></div>
+    win.setAttributes(winParams);
+}
+</code></pre>
 不过这个方法还有一个缺点，由于自定义了状态栏，在设置来电归属地位置的时候，读取的屏幕位置会和实际位置有偏差，导致每次进入设置，提示框的位置都会向下移动。</li>
 </ol>
 <h3>短信备份中兼容特殊字符</h3>
 <p>短信备份是通过xml文件存储的，所以短信中可能存在一些xml文件中的非法字符，这样就会出现异常，使备份失败。</p>
 <p>解决方法就是过滤短信中的非法字符，可以通过以下方法过滤：</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">String</span> <span class="pl-s1">xmlChar</span>(<span class="pl-smi">String</span> <span class="pl-s1">str</span>){
-    <span class="pl-smi">StringBuffer</span> <span class="pl-s1">sb</span> = <span class="pl-k">new</span> <span class="pl-smi">StringBuffer</span>();
-    <span class="pl-smi">char</span> <span class="pl-s1">c</span>;
-    <span class="pl-k">if</span>(<span class="pl-s1">str</span>==<span class="pl-c1">null</span> || <span class="pl-s1">str</span>.<span class="pl-en">equals</span>(<span class="pl-s">""</span>)){
-        <span class="pl-k">return</span> <span class="pl-s">""</span>;
+<pre lang="java" class="notranslate"><code class="notranslate">public static String xmlChar(String str){
+    StringBuffer sb = new StringBuffer();
+    char c;
+    if(str==null || str.equals("")){
+        return "";
     }
-    <span class="pl-k">for</span>(<span class="pl-smi">int</span> <span class="pl-s1">i</span>=<span class="pl-c1">0</span>; <span class="pl-s1">i</span>&lt;<span class="pl-s1">str</span>.<span class="pl-en">length</span>(); <span class="pl-s1">i</span>++){
-        <span class="pl-s1">c</span> = <span class="pl-s1">str</span>.<span class="pl-en">charAt</span>(<span class="pl-s1">i</span>);
-        <span class="pl-k">if</span>((<span class="pl-s1">c</span>==<span class="pl-c1">0x9</span>) || (<span class="pl-s1">c</span>==<span class="pl-c1">0xA</span>) || (<span class="pl-s1">c</span>==<span class="pl-c1">0xD</span>) || ((<span class="pl-s1">c</span>&gt;=<span class="pl-c1">0x20</span>)&amp;&amp;(<span class="pl-s1">c</span>&lt;=<span class="pl-c1">0xD7FF</span>)) || ((<span class="pl-s1">c</span>&gt;=<span class="pl-c1">0xE000</span>)&amp;&amp;(<span class="pl-s1">c</span>&lt;=<span class="pl-c1">0xFFFD</span>)) || (<span class="pl-s1">c</span>&gt;=<span class="pl-c1">0x10000</span>)&amp;&amp;(<span class="pl-s1">c</span>&lt;=<span class="pl-c1">0x10FFFF</span>)){
-            <span class="pl-s1">sb</span>.<span class="pl-en">append</span>(<span class="pl-s1">c</span>);
+    for(int i=0; i&lt;str.length(); i++){
+        c = str.charAt(i);
+        if((c==0x9) || (c==0xA) || (c==0xD) || ((c&gt;=0x20)&amp;&amp;(c&lt;=0xD7FF)) || ((c&gt;=0xE000)&amp;&amp;(c&lt;=0xFFFD)) || (c&gt;=0x10000)&amp;&amp;(c&lt;=0x10FFFF)){
+            sb.append(c);
         }
     }
-    <span class="pl-k">return</span> <span class="pl-s1">sb</span>.<span class="pl-en">toString</span>();
-}</pre></div>
+    return sb.toString();
+}
+</code></pre>
 <h3>程序锁</h3>
 <p>程序锁其实就是一直监听手机应用的启动情况，当有加锁应用启动时，就会启动自己设置的加锁界面。</p>
 <p>视频中是通过 ActivityManager 的 getRunningTasks 方法获得当前运行的任务栈集合，得到集合中第一个任务栈信息后，获得当前任务栈顶的activity对应应用的包名 <code class="notranslate">runningTaskInfo.topActivity.getPackageName()</code>; 再去和加锁应用的包名集合比较，如果存在就启动加锁界面(启动方式为FLAG_ACTIVITY_NEW_TASK，清单文件模式为singleInstance)。</p>
