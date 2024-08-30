@@ -51,6 +51,11 @@ ollama serve
 回到手机桌面，长按 Termux 图标，选择 `New session`
 
 ## 10. 在新的会话终端里下载并运行 phi3 模型
+先登录进 Debian 
+```bash
+pd login debian
+```
+然后再运行 ollama 命令
 ```bash
 ollama run phi3
 ```

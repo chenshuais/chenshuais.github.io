@@ -88,6 +88,9 @@ apt upgrade</pre></div>
 <h2>9. 开启一个新的 Termux 会话</h2>
 <p>回到手机桌面，长按 Termux 图标，选择 <code class="notranslate">New session</code></p>
 <h2>10. 在新的会话终端里下载并运行 phi3 模型</h2>
+<p>先登录进 Debian</p>
+<div class="highlight highlight-source-shell"><pre class="notranslate">pd login debian</pre></div>
+<p>然后再运行 ollama 命令</p>
 <div class="highlight highlight-source-shell"><pre class="notranslate">ollama run phi3</pre></div>
 <h2>11. 体验模型效果</h2>
 <p>模型有 2.4 G，等模型下载完毕后，就可以测试模型的效果了。</p>
@@ -158,7 +161,7 @@ document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 cmButton=document.getElementById("cmButton");
     span=document.createElement("span");
     span.setAttribute("class","Counter");
-    span.innerHTML="3";
+    span.innerHTML="4";
     cmButton.appendChild(span);
 function openComments(){
     cm=document.getElementById("comments");
