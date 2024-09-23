@@ -48,7 +48,7 @@ jar cvf 新的文件.jar -C 原解压出来的文件夹/ .
 <meta property="og:url" content="https://blog.ian2018.club/post/Android%20Gradle-yi-lai-chong-tu-wen-ti.html">
 <meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
 <title>Android Gradle依赖冲突问题</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 </head>
 <style>
@@ -97,11 +97,14 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><p>查看依赖的库中都引用了哪些</p>
-<div class="highlight highlight-source-groovy-gradle"><pre class="notranslate">gradlew <span class="pl-k">-</span>q <span class="pl-c1">app</span>:dependencies</pre></div>
+<pre lang="gradle" class="notranslate"><code class="notranslate">gradlew -q app:dependencies
+</code></pre>
 <p>查看各model的依赖树</p>
-<div class="highlight highlight-source-groovy-gradle"><pre class="notranslate"><span class="pl-c1">gradlew</span> :<span class="pl-c1">app</span>:dependencies <span class="pl-k">--</span>configuration compile</pre></div>
+<pre lang="gradle" class="notranslate"><code class="notranslate">gradlew :app:dependencies --configuration compile
+</code></pre>
 <p>把jar文件解压后  删除冲突的文件  然后通过以下命令 重新打包jar</p>
-<div class="highlight highlight-source-shell"><pre class="notranslate">jar cvf 新的文件.jar -C 原解压出来的文件夹/ <span class="pl-c1">.</span></pre></div>
+<pre lang="bash" class="notranslate"><code class="notranslate">jar cvf 新的文件.jar -C 原解压出来的文件夹/ .
+</code></pre>
 </div>
 <div style="font-size:small;margin-top:8px;float:right;">❤️ 转载文章请注明出处，谢谢！❤️</br></br><span>❤️ 感谢 <span id="user-content-page_uv"></span> 位小伙伴的 <span id="user-content-page_pv"></span> 次访问该文章。</span></br></br></div>
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
