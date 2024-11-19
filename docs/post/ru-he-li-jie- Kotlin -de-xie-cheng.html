@@ -20,7 +20,7 @@
 <meta property="og:url" content="https://blog.ian2018.club/post/ru-he-li-jie-%20Kotlin%20-de-xie-cheng.html">
 <meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
 <title>如何理解 Kotlin 的协程</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 </head>
 <style>
@@ -87,44 +87,46 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>对于我们刚刚学习 Kotlin 协程来说，「封装线程的框架」作为第一印象即可，把它理解成「协程是更加轻量的线程」对我们学习协程来说更有帮助，学习都是一个循序渐进的过程，我们得先知道它的用法、运作模型，然后再去探索它的实现原理，这样才能更好的理解 Kotlin 的协程，如果我们一上来就去啃那些底层的实现，硬拿线程去类比解释，是很困难的。</p>
 <p>接下来用一段代码来说明一下「协程是更加轻量的线程」这一概念。</p>
 <p>Kotlin 的协程没有集成到标准库中，需要单独依赖：</p>
-<div class="highlight highlight-source-groovy-gradle"><pre class="notranslate"><span class="pl-en">dependencies</span> {
-    implementation(<span class="pl-s"><span class="pl-pds">"</span>org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0<span class="pl-pds">"</span></span>)
-    <span class="pl-c"><span class="pl-c">//</span> Android</span>
-    implementation(<span class="pl-s"><span class="pl-pds">"</span>org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0<span class="pl-pds">"</span></span>)
-}</pre></div>
+<pre lang="gradle" class="notranslate"><code class="notranslate">dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    // Android
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+}
+</code></pre>
 <p>普通线程写法：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">getResult1</span>(): <span class="pl-c1">String</span> {
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Start getResult1, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
-    <span class="pl-en">Thread</span>.sleep(<span class="pl-c1">1000</span>)
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>End getResult1, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
-    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Result1<span class="pl-pds">"</span></span>
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun getResult1(): String {
+    println("Start getResult1, Thread:${Thread.currentThread().name}")
+    Thread.sleep(1000)
+    println("End getResult1, Thread:${Thread.currentThread().name}")
+    return "Result1"
 }
 
-<span class="pl-k">fun</span> <span class="pl-en">getResult2</span>(): <span class="pl-c1">String</span> {
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Start getResult2, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
-    <span class="pl-en">Thread</span>.sleep(<span class="pl-c1">1000</span>)
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>End getResult2, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
-    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Result2<span class="pl-pds">"</span></span>
+fun getResult2(): String {
+    println("Start getResult2, Thread:${Thread.currentThread().name}")
+    Thread.sleep(1000)
+    println("End getResult2, Thread:${Thread.currentThread().name}")
+    return "Result2"
 }
 
-<span class="pl-k">fun</span> <span class="pl-en">getResult3</span>(): <span class="pl-c1">String</span> {
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Start getResult3, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
-    <span class="pl-en">Thread</span>.sleep(<span class="pl-c1">1000</span>)
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>End getResult3, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
-    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Result3<span class="pl-pds">"</span></span>
+fun getResult3(): String {
+    println("Start getResult3, Thread:${Thread.currentThread().name}")
+    Thread.sleep(1000)
+    println("End getResult3, Thread:${Thread.currentThread().name}")
+    return "Result3"
 }
 
-<span class="pl-k">fun</span> <span class="pl-en">main</span>() {
-    <span class="pl-k">val</span> startTime <span class="pl-k">=</span> <span class="pl-en">System</span>.currentTimeMillis()
-    <span class="pl-k">val</span> result1 <span class="pl-k">=</span> getResult1()
-    <span class="pl-k">val</span> result2 <span class="pl-k">=</span> getResult2()
-    <span class="pl-k">val</span> result3 <span class="pl-k">=</span> getResult3()
-    <span class="pl-k">val</span> results <span class="pl-k">=</span> <span class="pl-c1">listOf</span>(result1, result2, result3)
-    <span class="pl-k">val</span> time <span class="pl-k">=</span> <span class="pl-en">System</span>.currentTimeMillis() <span class="pl-k">-</span> startTime
+fun main() {
+    val startTime = System.currentTimeMillis()
+    val result1 = getResult1()
+    val result2 = getResult2()
+    val result3 = getResult3()
+    val results = listOf(result1, result2, result3)
+    val time = System.currentTimeMillis() - startTime
 
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Time: <span class="pl-e">$time</span><span class="pl-pds">"</span></span>)
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>results: <span class="pl-e">$results</span><span class="pl-pds">"</span></span>)
-}</pre></div>
+    println("Time: $time")
+    println("results: $results")
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">Start getResult1, Thread:main
 End getResult1, Thread:main
@@ -136,40 +138,41 @@ Time: 3033
 results: [Result1, Result2, Result3]
 </code></pre>
 <p>协程写法：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">getResult1</span>(): <span class="pl-c1">String</span> {
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Start getResult1, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
-    delay(<span class="pl-c1">1000</span>)
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>End getResult1, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
-    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Result1<span class="pl-pds">"</span></span>
+<pre lang="kotlin" class="notranslate"><code class="notranslate">suspend fun getResult1(): String {
+    println("Start getResult1, Thread:${Thread.currentThread().name}")
+    delay(1000)
+    println("End getResult1, Thread:${Thread.currentThread().name}")
+    return "Result1"
 }
 
-<span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">getResult2</span>(): <span class="pl-c1">String</span> {
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Start getResult2, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
-    delay(<span class="pl-c1">1000</span>)
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>End getResult2, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
-    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Result2<span class="pl-pds">"</span></span>
+suspend fun getResult2(): String {
+    println("Start getResult2, Thread:${Thread.currentThread().name}")
+    delay(1000)
+    println("End getResult2, Thread:${Thread.currentThread().name}")
+    return "Result2"
 }
 
-<span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">getResult3</span>(): <span class="pl-c1">String</span> {
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Start getResult3, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
-    delay(<span class="pl-c1">1000</span>)
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>End getResult3, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
-    <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Result3<span class="pl-pds">"</span></span>
+suspend fun getResult3(): String {
+    println("Start getResult3, Thread:${Thread.currentThread().name}")
+    delay(1000)
+    println("End getResult3, Thread:${Thread.currentThread().name}")
+    return "Result3"
 }
 
-<span class="pl-k">fun</span> <span class="pl-en">main</span>() {
+fun main() {
     runBlocking {
-        <span class="pl-k">val</span> startTime <span class="pl-k">=</span> <span class="pl-en">System</span>.currentTimeMillis()
-        <span class="pl-k">val</span> result1 <span class="pl-k">=</span> async { getResult1() }
-        <span class="pl-k">val</span> result2 <span class="pl-k">=</span> async { getResult2() }
-        <span class="pl-k">val</span> result3 <span class="pl-k">=</span> async { getResult3() }
-        <span class="pl-k">val</span> results <span class="pl-k">=</span> <span class="pl-c1">listOf</span>(result1.await(), result2.await(), result3.await())
-        <span class="pl-k">val</span> time <span class="pl-k">=</span> <span class="pl-en">System</span>.currentTimeMillis() <span class="pl-k">-</span> startTime
+        val startTime = System.currentTimeMillis()
+        val result1 = async { getResult1() }
+        val result2 = async { getResult2() }
+        val result3 = async { getResult3() }
+        val results = listOf(result1.await(), result2.await(), result3.await())
+        val time = System.currentTimeMillis() - startTime
 
-        <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Time: <span class="pl-e">$time</span><span class="pl-pds">"</span></span>)
-        <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>results: <span class="pl-e">$results</span><span class="pl-pds">"</span></span>)
+        println("Time: $time")
+        println("results: $results")
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">Start getResult1, Thread:main
 Start getResult2, Thread:main
@@ -199,17 +202,18 @@ results: [Result1, Result2, Result3]
 <h2>什么是协程的非阻塞</h2>
 <p>协程对比线程的另一个特点就是非阻塞，举个栗子</p>
 <p><img src="https://img.soogif.com/fCnkbyO30VyAxkMkMQMGzwWadCVCafE7.gif?scope=mdnice"></p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">main</span>() {
-    repeat(<span class="pl-c1">2</span>) {
-        <span class="pl-en">Thread</span>.sleep(<span class="pl-c1">1000</span>)
-        <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Print-1, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun main() {
+    repeat(2) {
+        Thread.sleep(1000)
+        println("Print-1, Thread:${Thread.currentThread().name}")
     }
 
-    repeat(<span class="pl-c1">2</span>) {
-        <span class="pl-en">Thread</span>.sleep(<span class="pl-c1">900</span>)
-        <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Print-2, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
+    repeat(2) {
+        Thread.sleep(900)
+        println("Print-2, Thread:${Thread.currentThread().name}")
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">Print-1, Thread:main
 Print-1, Thread:main
@@ -217,23 +221,24 @@ Print-2, Thread:main
 Print-2, Thread:main
 </code></pre>
 <p>可以看到在同一个线程中，普通线程会阻塞后面的运行，代码是一行一行执行的。再来看看协程的表现是什么样的：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">main</span>() {
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun main() {
     runBlocking {
         launch {
-            repeat(<span class="pl-c1">2</span>) {
-                delay(<span class="pl-c1">1000</span>)
-                <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Print-1, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
+            repeat(2) {
+                delay(1000)
+                println("Print-1, Thread:${Thread.currentThread().name}")
             }
         }
 
         launch {
-            repeat(<span class="pl-c1">2</span>) {
-                delay(<span class="pl-c1">900</span>)
-                <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Print-2, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
+            repeat(2) {
+                delay(900)
+                println("Print-2, Thread:${Thread.currentThread().name}")
             }
         }
     }
-}</pre></div>
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">Print-2, Thread:main @coroutine#3
 Print-1, Thread:main @coroutine#2
@@ -241,27 +246,28 @@ Print-2, Thread:main @coroutine#3
 Print-1, Thread:main @coroutine#2
 </code></pre>
 <p>同样是一个线程，协程就不会阻塞 Print-2 的执行。如果我们再把上面的代码修改一下：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">main</span>() {
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun main() {
     runBlocking {
         launch {
-            repeat(<span class="pl-c1">2</span>) {
-                <span class="pl-c"><span class="pl-c">//</span> delay(1000)</span>
-                <span class="pl-c"><span class="pl-c">//</span> 改成用 Thread sleep</span>
-                <span class="pl-en">Thread</span>.sleep(<span class="pl-c1">1000</span>)
-                <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Print-1, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
+            repeat(2) {
+                // delay(1000)
+                // 改成用 Thread sleep
+                Thread.sleep(1000)
+                println("Print-1, Thread:${Thread.currentThread().name}")
             }
         }
 
         launch {
-            repeat(<span class="pl-c1">2</span>) {
-                <span class="pl-c"><span class="pl-c">//</span> delay(1000)</span>
-                <span class="pl-c"><span class="pl-c">//</span> 改成用 Thread sleep</span>
-                <span class="pl-en">Thread</span>.sleep(<span class="pl-c1">1000</span>)
-                <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Print-2, Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span><span class="pl-pds">"</span></span>)
+            repeat(2) {
+                // delay(1000)
+                // 改成用 Thread sleep
+                Thread.sleep(1000)
+                println("Print-2, Thread:${Thread.currentThread().name}")
             }
         }
     }
-}</pre></div>
+}
+</code></pre>
 <p>再看一下打印结果：</p>
 <pre class="notranslate"><code class="notranslate">Print-1, Thread:main @coroutine#2
 Print-1, Thread:main @coroutine#2
@@ -269,7 +275,8 @@ Print-2, Thread:main @coroutine#3
 Print-2, Thread:main @coroutine#3
 </code></pre>
 <p>这次表现就和线程一样了，这是因为协程中的非阻塞其实只是语言层面的，要实现协程的非阻塞，靠的是 <code class="notranslate">suspend</code> 关键字，我们来看一下 delay 函数的函数签名：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">delay</span>(<span class="pl-smi">timeMillis</span><span class="pl-k">:</span> <span class="pl-c1">Long</span>)</pre></div>
+<pre lang="kotlin" class="notranslate"><code class="notranslate">public suspend fun delay(timeMillis: Long)
+</code></pre>
 <p>只有标记了 <code class="notranslate">suspend</code> 的函数才能实现非阻塞的效果。那么如何理解 <code class="notranslate">suspend</code> 呢？</p>
 <p>suspend 的意思就是挂起，非阻塞就是当一个任务需要等待的时候，先把它挂起来，不影响后面的任务执行，等它等待完成时，再恢复这个任务。看下面这动图会更清楚些：</p>
 <p><img src="https://blog-image.ian2018.cn/images/f89c9ec3bf6b868e899df7bafe444409c721986f.gif"></p>
