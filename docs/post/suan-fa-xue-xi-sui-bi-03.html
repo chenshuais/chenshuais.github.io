@@ -87,7 +87,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>每一层都是拷贝，环境不受其他层影响，但参数会发生改变</li>
 </ul>
 <p>递归代码模版：</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-s1">recur</span>(<span class="pl-smi">int</span> <span class="pl-s1">level</span>, <span class="pl-smi">int</span> <span class="pl-s1">param</span>) {
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">recur</span>(<span class="pl-smi">int</span> <span class="pl-s1">level</span>, <span class="pl-smi">int</span> <span class="pl-s1">param</span>) {
 	<span class="pl-c">// 递归终止条件 </span>
 	<span class="pl-k">if</span> (<span class="pl-s1">level</span> &gt; <span class="pl-c1">MAX_LEVEL</span>) { 
 		<span class="pl-c">// process result </span>
@@ -114,7 +114,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>本质上是递归，找到重复性。</p>
 <p>分治思想，把一个问题划分为多个子问题，最后组合子问题的结果。如阶乘、斐波那契、爬楼梯等</p>
 <p>分治代码模版：</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-s1">divideConquer</span>(<span class="pl-s1">problem</span>, <span class="pl-s1">param1</span>, <span class="pl-s1">param2</span>, ...) {
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-s1">divideConquer</span>(<span class="pl-smi">problem</span>, <span class="pl-s1">param1</span>, <span class="pl-s1">param2</span>, ...) {
   <span class="pl-c">// 终止条件</span>
   <span class="pl-k">if</span> <span class="pl-s1">problem</span> == <span class="pl-c1">null</span>: 
 		<span class="pl-s1">printResult</span>();

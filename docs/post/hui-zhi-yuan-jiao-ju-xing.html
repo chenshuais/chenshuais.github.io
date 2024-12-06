@@ -120,7 +120,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div class="markdown-body" id="postBody"><p>canvas.drawRoundRect(RectF, x半径,y半径, Paint)</p>
 <div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-c">// 创建降雨概率矩形-</span>
-<span class="pl-k">private</span> <span class="pl-smi">Bitmap</span> <span class="pl-s1">createRainRect</span>(<span class="pl-smi">int</span> <span class="pl-s1">width</span>, <span class="pl-smi">int</span> <span class="pl-s1">height</span>, <span class="pl-smi">float</span> <span class="pl-s1">rainHeight</span>) {
+<span class="pl-k">private</span> <span class="pl-smi">Bitmap</span> <span class="pl-en">createRainRect</span>(<span class="pl-smi">int</span> <span class="pl-s1">width</span>, <span class="pl-smi">int</span> <span class="pl-s1">height</span>, <span class="pl-smi">float</span> <span class="pl-s1">rainHeight</span>) {
     <span class="pl-k">final</span> <span class="pl-smi">Paint</span> <span class="pl-s1">paint</span> = <span class="pl-k">new</span> <span class="pl-smi">Paint</span>();
     <span class="pl-s1">paint</span>.<span class="pl-en">setAntiAlias</span>(<span class="pl-c1">true</span>);
     <span class="pl-smi">Bitmap</span> <span class="pl-s1">target</span> = <span class="pl-smi">Bitmap</span>.<span class="pl-en">createBitmap</span>(<span class="pl-s1">width</span>, <span class="pl-s1">height</span>, <span class="pl-smi">Bitmap</span>.<span class="pl-s1">Config</span>.<span class="pl-c1">ARGB_8888</span>);

@@ -102,7 +102,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-en">setContentView</span>(<span class="pl-smi">R</span>.<span class="pl-s1">layout</span>.<span class="pl-s1">activity_main</span>);</pre></div>
 再在Activity中添加一个方法：
 <div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-c1">@</span><span class="pl-c1">TargetApi</span>(<span class="pl-c1">19</span>)
-<span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-s1">setTranslucentStatus</span>(<span class="pl-smi">boolean</span> <span class="pl-s1">on</span>) {
+<span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">setTranslucentStatus</span>(<span class="pl-smi">boolean</span> <span class="pl-s1">on</span>) {
     <span class="pl-smi">Window</span> <span class="pl-s1">win</span> = <span class="pl-en">getWindow</span>();
     <span class="pl-smi">WindowManager</span>.<span class="pl-smi">LayoutParams</span> <span class="pl-s1">winParams</span> = <span class="pl-s1">win</span>.<span class="pl-en">getAttributes</span>();
     <span class="pl-k">final</span> <span class="pl-smi">int</span> <span class="pl-s1">bits</span> = <span class="pl-smi">WindowManager</span>.<span class="pl-s1">LayoutParams</span>.<span class="pl-c1">FLAG_TRANSLUCENT_STATUS</span>;
@@ -118,7 +118,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>短信备份中兼容特殊字符</h3>
 <p>短信备份是通过xml文件存储的，所以短信中可能存在一些xml文件中的非法字符，这样就会出现异常，使备份失败。</p>
 <p>解决方法就是过滤短信中的非法字符，可以通过以下方法过滤：</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">String</span> <span class="pl-s1">xmlChar</span>(<span class="pl-smi">String</span> <span class="pl-s1">str</span>){
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">static</span> <span class="pl-smi">String</span> <span class="pl-en">xmlChar</span>(<span class="pl-smi">String</span> <span class="pl-s1">str</span>){
     <span class="pl-smi">StringBuffer</span> <span class="pl-s1">sb</span> = <span class="pl-k">new</span> <span class="pl-smi">StringBuffer</span>();
     <span class="pl-smi">char</span> <span class="pl-s1">c</span>;
     <span class="pl-k">if</span>(<span class="pl-s1">str</span>==<span class="pl-c1">null</span> || <span class="pl-s1">str</span>.<span class="pl-en">equals</span>(<span class="pl-s">""</span>)){

@@ -213,25 +213,25 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <span class="pl-k">class</span> <span class="pl-v">BloomFilter</span>: 
 	<span class="pl-k">def</span> <span class="pl-en">__init__</span>(<span class="pl-s1">self</span>, <span class="pl-s1">size</span>, <span class="pl-s1">hash_num</span>): 
-		<span class="pl-s1">self</span>.<span class="pl-s1">size</span> <span class="pl-c1">=</span> <span class="pl-s1">size</span> 
-		<span class="pl-s1">self</span>.<span class="pl-s1">hash_num</span> <span class="pl-c1">=</span> <span class="pl-s1">hash_num</span> 
-		<span class="pl-s1">self</span>.<span class="pl-s1">bit_array</span> <span class="pl-c1">=</span> <span class="pl-en">bitarray</span>(<span class="pl-s1">size</span>) 
-		<span class="pl-s1">self</span>.<span class="pl-s1">bit_array</span>.<span class="pl-en">setall</span>(<span class="pl-c1">0</span>) 
+		<span class="pl-s1">self</span>.<span class="pl-c1">size</span> <span class="pl-c1">=</span> <span class="pl-s1">size</span> 
+		<span class="pl-s1">self</span>.<span class="pl-c1">hash_num</span> <span class="pl-c1">=</span> <span class="pl-s1">hash_num</span> 
+		<span class="pl-s1">self</span>.<span class="pl-c1">bit_array</span> <span class="pl-c1">=</span> <span class="pl-en">bitarray</span>(<span class="pl-s1">size</span>) 
+		<span class="pl-s1">self</span>.<span class="pl-c1">bit_array</span>.<span class="pl-c1">setall</span>(<span class="pl-c1">0</span>) 
 	<span class="pl-k">def</span> <span class="pl-en">add</span>(<span class="pl-s1">self</span>, <span class="pl-s1">s</span>): 
-		<span class="pl-k">for</span> <span class="pl-s1">seed</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">self</span>.<span class="pl-s1">hash_num</span>): 
-			<span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">mmh3</span>.<span class="pl-en">hash</span>(<span class="pl-s1">s</span>, <span class="pl-s1">seed</span>) <span class="pl-c1">%</span> <span class="pl-s1">self</span>.<span class="pl-s1">size</span> 
-			<span class="pl-s1">self</span>.<span class="pl-s1">bit_array</span>[<span class="pl-s1">result</span>] <span class="pl-c1">=</span> <span class="pl-c1">1</span> 
+		<span class="pl-k">for</span> <span class="pl-s1">seed</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">self</span>.<span class="pl-c1">hash_num</span>): 
+			<span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">mmh3</span>.<span class="pl-c1">hash</span>(<span class="pl-s1">s</span>, <span class="pl-s1">seed</span>) <span class="pl-c1">%</span> <span class="pl-s1">self</span>.<span class="pl-c1">size</span> 
+			<span class="pl-s1">self</span>.<span class="pl-c1">bit_array</span>[<span class="pl-s1">result</span>] <span class="pl-c1">=</span> <span class="pl-c1">1</span> 
 	<span class="pl-k">def</span> <span class="pl-en">lookup</span>(<span class="pl-s1">self</span>, <span class="pl-s1">s</span>): 
-		<span class="pl-k">for</span> <span class="pl-s1">seed</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">self</span>.<span class="pl-s1">hash_num</span>): 
-			<span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">mmh3</span>.<span class="pl-en">hash</span>(<span class="pl-s1">s</span>, <span class="pl-s1">seed</span>) <span class="pl-c1">%</span> <span class="pl-s1">self</span>.<span class="pl-s1">size</span> 
-			<span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-s1">bit_array</span>[<span class="pl-s1">result</span>] <span class="pl-c1">==</span> <span class="pl-c1">0</span>: 
+		<span class="pl-k">for</span> <span class="pl-s1">seed</span> <span class="pl-c1">in</span> <span class="pl-en">range</span>(<span class="pl-s1">self</span>.<span class="pl-c1">hash_num</span>): 
+			<span class="pl-s1">result</span> <span class="pl-c1">=</span> <span class="pl-s1">mmh3</span>.<span class="pl-c1">hash</span>(<span class="pl-s1">s</span>, <span class="pl-s1">seed</span>) <span class="pl-c1">%</span> <span class="pl-s1">self</span>.<span class="pl-c1">size</span> 
+			<span class="pl-k">if</span> <span class="pl-s1">self</span>.<span class="pl-c1">bit_array</span>[<span class="pl-s1">result</span>] <span class="pl-c1">==</span> <span class="pl-c1">0</span>: 
 				<span class="pl-k">return</span> <span class="pl-s">"Nope"</span> 
 		<span class="pl-k">return</span> <span class="pl-s">"Probably"</span>
 
-<span class="pl-s1">bf</span> <span class="pl-c1">=</span> <span class="pl-v">BloomFilter</span>(<span class="pl-c1">500000</span>, <span class="pl-c1">7</span>) 
-<span class="pl-s1">bf</span>.<span class="pl-en">add</span>(<span class="pl-s">"dantezhao"</span>) 
-<span class="pl-en">print</span> (<span class="pl-s1">bf</span>.<span class="pl-en">lookup</span>(<span class="pl-s">"dantezhao"</span>)) 
-<span class="pl-en">print</span> (<span class="pl-s1">bf</span>.<span class="pl-en">lookup</span>(<span class="pl-s">"yyj"</span>)) </pre></div>
+<span class="pl-s1">bf</span> <span class="pl-c1">=</span> <span class="pl-en">BloomFilter</span>(<span class="pl-c1">500000</span>, <span class="pl-c1">7</span>) 
+<span class="pl-s1">bf</span>.<span class="pl-c1">add</span>(<span class="pl-s">"dantezhao"</span>) 
+<span class="pl-en">print</span> (<span class="pl-s1">bf</span>.<span class="pl-c1">lookup</span>(<span class="pl-s">"dantezhao"</span>)) 
+<span class="pl-en">print</span> (<span class="pl-s1">bf</span>.<span class="pl-c1">lookup</span>(<span class="pl-s">"yyj"</span>)) </pre></div>
 <p>更详细的 Java 实现：</p>
 <p><a href="https://github.com/lovasoa/bloomfilter/blob/master/src/main/java/BloomFilter.java">https://github.com/lovasoa/bloomfilter/blob/master/src/main/java/BloomFilter.java</a></p>
 <h3>2.2 LRU缓存</h3>
@@ -397,14 +397,14 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h4>3.3.1 快速排序</h4>
 <p>从待排序数组中取一中间值pivot，小于pivot的放左边，大于pivot的放右边，然后再依次对左右两边子数组进行快排。</p>
 <p>代码实现：</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">void</span> <span class="pl-s1">quickSort</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">array</span>, <span class="pl-smi">int</span> <span class="pl-s1">begin</span>, <span class="pl-smi">int</span> <span class="pl-s1">end</span>) {
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">void</span> <span class="pl-en">quickSort</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">array</span>, <span class="pl-smi">int</span> <span class="pl-s1">begin</span>, <span class="pl-smi">int</span> <span class="pl-s1">end</span>) {
     <span class="pl-k">if</span> (<span class="pl-s1">end</span> &lt;= <span class="pl-s1">begin</span>) <span class="pl-k">return</span>;
     <span class="pl-smi">int</span> <span class="pl-s1">pivot</span> = <span class="pl-en">partition</span>(<span class="pl-s1">array</span>, <span class="pl-s1">begin</span>, <span class="pl-s1">end</span>);
     <span class="pl-en">quickSort</span>(<span class="pl-s1">array</span>, <span class="pl-s1">begin</span>, <span class="pl-s1">pivot</span> - <span class="pl-c1">1</span>);
     <span class="pl-en">quickSort</span>(<span class="pl-s1">array</span>, <span class="pl-s1">pivot</span> + <span class="pl-c1">1</span>, <span class="pl-s1">end</span>);
 }
 
-<span class="pl-smi">int</span> <span class="pl-s1">partition</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">a</span>, <span class="pl-smi">int</span> <span class="pl-s1">begin</span>, <span class="pl-smi">int</span> <span class="pl-s1">end</span>) {
+<span class="pl-smi">int</span> <span class="pl-en">partition</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">a</span>, <span class="pl-smi">int</span> <span class="pl-s1">begin</span>, <span class="pl-smi">int</span> <span class="pl-s1">end</span>) {
     <span class="pl-c">// pivot: 标杆位置，counter: 小于pivot的元素的个数</span>
     <span class="pl-smi">int</span> <span class="pl-s1">pivot</span> = <span class="pl-s1">end</span>, <span class="pl-s1">counter</span> = <span class="pl-s1">begin</span>;
     <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-s1">begin</span>; <span class="pl-s1">i</span> &lt; <span class="pl-s1">end</span>; <span class="pl-s1">i</span>++) {
@@ -423,7 +423,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>将两个排好序的子数组合并成最终的排序序列。</li>
 </ol>
 <p>代码实现：</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">void</span> <span class="pl-s1">mergeSort</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">array</span>, <span class="pl-smi">int</span> <span class="pl-s1">left</span>, <span class="pl-smi">int</span> <span class="pl-s1">right</span>) {
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">void</span> <span class="pl-en">mergeSort</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">array</span>, <span class="pl-smi">int</span> <span class="pl-s1">left</span>, <span class="pl-smi">int</span> <span class="pl-s1">right</span>) {
     <span class="pl-k">if</span> (<span class="pl-s1">right</span> &lt;= <span class="pl-s1">left</span>) <span class="pl-k">return</span>;
     <span class="pl-smi">int</span> <span class="pl-s1">mid</span> = (<span class="pl-s1">left</span> + <span class="pl-s1">right</span>) &gt;&gt; <span class="pl-c1">1</span>; <span class="pl-c">// (left + right) / 2</span>
 
@@ -432,7 +432,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-en">merge</span>(<span class="pl-s1">array</span>, <span class="pl-s1">left</span>, <span class="pl-s1">mid</span>, <span class="pl-s1">right</span>);
 }
 
-<span class="pl-smi">void</span> <span class="pl-s1">merge</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">arr</span>, <span class="pl-smi">int</span> <span class="pl-s1">left</span>, <span class="pl-smi">int</span> <span class="pl-s1">mid</span>, <span class="pl-smi">int</span> <span class="pl-s1">right</span>) {
+<span class="pl-smi">void</span> <span class="pl-en">merge</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">arr</span>, <span class="pl-smi">int</span> <span class="pl-s1">left</span>, <span class="pl-smi">int</span> <span class="pl-s1">mid</span>, <span class="pl-smi">int</span> <span class="pl-s1">right</span>) {
     <span class="pl-smi">int</span>[] <span class="pl-s1">temp</span> = <span class="pl-k">new</span> <span class="pl-smi">int</span>[<span class="pl-s1">right</span> - <span class="pl-s1">left</span> + <span class="pl-c1">1</span>]; <span class="pl-c">// 中间数组</span>
     <span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-s1">left</span>, <span class="pl-s1">j</span> = <span class="pl-s1">mid</span> + <span class="pl-c1">1</span>, <span class="pl-s1">k</span> = <span class="pl-c1">0</span>;
 
@@ -454,7 +454,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>插入时间复杂度：O(logn)，取最大/小值时间复杂度：O(1)</li>
 </ol>
 <p>代码实现：</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">void</span> <span class="pl-s1">heapify</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">array</span>, <span class="pl-smi">int</span> <span class="pl-s1">length</span>, <span class="pl-smi">int</span> <span class="pl-s1">i</span>) {
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">void</span> <span class="pl-en">heapify</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">array</span>, <span class="pl-smi">int</span> <span class="pl-s1">length</span>, <span class="pl-smi">int</span> <span class="pl-s1">i</span>) {
     <span class="pl-smi">int</span> <span class="pl-s1">left</span> = <span class="pl-c1">2</span> * <span class="pl-s1">i</span> + <span class="pl-c1">1</span>, <span class="pl-s1">right</span> = <span class="pl-c1">2</span> * <span class="pl-s1">i</span> + <span class="pl-c1">2</span>;
     <span class="pl-smi">int</span> <span class="pl-s1">largest</span> = <span class="pl-s1">i</span>;
     <span class="pl-k">if</span> (<span class="pl-s1">left</span> &lt; <span class="pl-s1">length</span> &amp;&amp; <span class="pl-s1">array</span>[<span class="pl-s1">left</span>] &gt; <span class="pl-s1">array</span>[<span class="pl-s1">largest</span>]) {
@@ -471,7 +471,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     }
 }
 
-<span class="pl-smi">void</span> <span class="pl-s1">heapSort</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">array</span>) {
+<span class="pl-smi">void</span> <span class="pl-en">heapSort</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">array</span>) {
     <span class="pl-k">if</span> (<span class="pl-s1">array</span>.<span class="pl-s1">length</span> == <span class="pl-c1">0</span>) <span class="pl-k">return</span>;
     <span class="pl-smi">int</span> <span class="pl-s1">length</span> = <span class="pl-s1">array</span>.<span class="pl-s1">length</span>;
     <span class="pl-k">for</span> (<span class="pl-smi">int</span> <span class="pl-s1">i</span> = <span class="pl-s1">length</span> / <span class="pl-c1">2</span> - <span class="pl-c1">1</span>; <span class="pl-s1">i</span> &gt;= <span class="pl-c1">0</span>; <span class="pl-s1">i</span>--)

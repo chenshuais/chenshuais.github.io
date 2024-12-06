@@ -127,18 +127,18 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ul>
 <li><code class="notranslate">put(K key, V value)</code> 存数据</li>
 </ul>
-<div class="highlight highlight-source-java"><pre class="notranslate">    <span class="pl-k">public</span> <span class="pl-smi">V</span> <span class="pl-s1">put</span>(<span class="pl-smi">K</span> <span class="pl-s1">key</span>, <span class="pl-smi">V</span> <span class="pl-s1">value</span>) {
+<div class="highlight highlight-source-java"><pre class="notranslate">    <span class="pl-k">public</span> <span class="pl-smi">V</span> <span class="pl-en">put</span>(<span class="pl-smi">K</span> <span class="pl-s1">key</span>, <span class="pl-smi">V</span> <span class="pl-s1">value</span>) {
         <span class="pl-c">// 先通过hash函数算出key对应的hash值</span>
         <span class="pl-k">return</span> <span class="pl-en">putVal</span>(<span class="pl-en">hash</span>(<span class="pl-s1">key</span>), <span class="pl-s1">key</span>, <span class="pl-s1">value</span>, <span class="pl-c1">false</span>, <span class="pl-c1">true</span>);
     }
 
     <span class="pl-c">// 优化后的hash函数，扰动函数，防止不同的hashCode的高位不同但低位相同导致的hash冲突</span>
-    <span class="pl-k">static</span> <span class="pl-k">final</span> <span class="pl-smi">int</span> <span class="pl-s1">hash</span>(<span class="pl-smi">Object</span> <span class="pl-s1">key</span>) {
+    <span class="pl-k">static</span> <span class="pl-k">final</span> <span class="pl-smi">int</span> <span class="pl-en">hash</span>(<span class="pl-smi">Object</span> <span class="pl-s1">key</span>) {
         <span class="pl-smi">int</span> <span class="pl-s1">h</span>;
         <span class="pl-k">return</span> (<span class="pl-s1">key</span> == <span class="pl-c1">null</span>) ? <span class="pl-c1">0</span> : (<span class="pl-s1">h</span> = <span class="pl-s1">key</span>.<span class="pl-en">hashCode</span>()) ^ (<span class="pl-s1">h</span> &gt;&gt;&gt; <span class="pl-c1">16</span>);
     }
 
-    <span class="pl-k">final</span> <span class="pl-smi">V</span> <span class="pl-s1">putVal</span>(<span class="pl-smi">int</span> <span class="pl-s1">hash</span>, <span class="pl-smi">K</span> <span class="pl-s1">key</span>, <span class="pl-smi">V</span> <span class="pl-s1">value</span>, <span class="pl-smi">boolean</span> <span class="pl-s1">onlyIfAbsent</span>, <span class="pl-smi">boolean</span> <span class="pl-s1">evict</span>) {
+    <span class="pl-k">final</span> <span class="pl-smi">V</span> <span class="pl-en">putVal</span>(<span class="pl-smi">int</span> <span class="pl-s1">hash</span>, <span class="pl-smi">K</span> <span class="pl-s1">key</span>, <span class="pl-smi">V</span> <span class="pl-s1">value</span>, <span class="pl-smi">boolean</span> <span class="pl-s1">onlyIfAbsent</span>, <span class="pl-smi">boolean</span> <span class="pl-s1">evict</span>) {
         <span class="pl-smi">Node</span>&lt;<span class="pl-smi">K</span>, <span class="pl-smi">V</span>&gt;[] <span class="pl-s1">tab</span>;
         <span class="pl-smi">Node</span>&lt;<span class="pl-smi">K</span>, <span class="pl-smi">V</span>&gt; <span class="pl-s1">p</span>;
         <span class="pl-smi">int</span> <span class="pl-s1">n</span>, <span class="pl-s1">i</span>;
@@ -193,14 +193,14 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ul>
 <li><code class="notranslate">get(Object key)</code> 取数据</li>
 </ul>
-<div class="highlight highlight-source-java"><pre class="notranslate">    <span class="pl-k">public</span> <span class="pl-smi">V</span> <span class="pl-s1">get</span>(<span class="pl-smi">Object</span> <span class="pl-s1">key</span>) {
+<div class="highlight highlight-source-java"><pre class="notranslate">    <span class="pl-k">public</span> <span class="pl-smi">V</span> <span class="pl-en">get</span>(<span class="pl-smi">Object</span> <span class="pl-s1">key</span>) {
         <span class="pl-smi">Node</span>&lt;<span class="pl-smi">K</span>, <span class="pl-smi">V</span>&gt; <span class="pl-s1">e</span>;
         <span class="pl-c">// 根据key及其hash值查询node节点，如果存在，则返回该节点的value值</span>
         <span class="pl-k">return</span> (<span class="pl-s1">e</span> = <span class="pl-en">getNode</span>(<span class="pl-en">hash</span>(<span class="pl-s1">key</span>), <span class="pl-s1">key</span>)) == <span class="pl-c1">null</span> ? <span class="pl-c1">null</span> : <span class="pl-s1">e</span>.<span class="pl-s1">value</span>;
     }
 
     <span class="pl-c">// 根据key搜索节点的方法。判断key相等的条件：hash值相同并且equals()相等</span>
-    <span class="pl-k">final</span> <span class="pl-smi">Node</span>&lt;<span class="pl-smi">K</span>, <span class="pl-smi">V</span>&gt; <span class="pl-s1">getNode</span>(<span class="pl-smi">int</span> <span class="pl-s1">hash</span>, <span class="pl-smi">Object</span> <span class="pl-s1">key</span>) {
+    <span class="pl-k">final</span> <span class="pl-smi">Node</span>&lt;<span class="pl-smi">K</span>, <span class="pl-smi">V</span>&gt; <span class="pl-en">getNode</span>(<span class="pl-smi">int</span> <span class="pl-s1">hash</span>, <span class="pl-smi">Object</span> <span class="pl-s1">key</span>) {
         <span class="pl-smi">Node</span>&lt;<span class="pl-smi">K</span>, <span class="pl-smi">V</span>&gt;[] <span class="pl-s1">tab</span>;
         <span class="pl-smi">Node</span>&lt;<span class="pl-smi">K</span>, <span class="pl-smi">V</span>&gt; <span class="pl-s1">first</span>, <span class="pl-s1">e</span>;
         <span class="pl-smi">int</span> <span class="pl-s1">n</span>;
@@ -241,7 +241,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </ul>
 <p>一般树的遍历都使用递归来实现，示例代码：</p>
 <div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-c">// 前序</span>
-<span class="pl-smi">void</span> <span class="pl-s1">preorder</span>(<span class="pl-smi">Node</span> <span class="pl-s1">root</span>) {
+<span class="pl-smi">void</span> <span class="pl-en">preorder</span>(<span class="pl-smi">Node</span> <span class="pl-s1">root</span>) {
   <span class="pl-k">if</span> (<span class="pl-s1">root</span> != <span class="pl-c1">null</span>) {
     <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">root</span>.<span class="pl-s1">val</span>);
     <span class="pl-en">preorder</span>(<span class="pl-s1">root</span>.<span class="pl-s1">left</span>);
@@ -250,7 +250,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-c">// 中序</span>
-<span class="pl-smi">void</span> <span class="pl-s1">inorder</span>(<span class="pl-smi">Node</span> <span class="pl-s1">root</span>) {
+<span class="pl-smi">void</span> <span class="pl-en">inorder</span>(<span class="pl-smi">Node</span> <span class="pl-s1">root</span>) {
   <span class="pl-k">if</span> (<span class="pl-s1">root</span> != <span class="pl-c1">null</span>) {
     <span class="pl-en">inorder</span>(<span class="pl-s1">root</span>.<span class="pl-s1">left</span>);
     <span class="pl-smi">System</span>.<span class="pl-s1">out</span>.<span class="pl-en">println</span>(<span class="pl-s1">root</span>.<span class="pl-s1">val</span>);
@@ -259,7 +259,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 }
 
 <span class="pl-c">// 后序</span>
-<span class="pl-smi">void</span> <span class="pl-s1">postorder</span>(<span class="pl-smi">Node</span> <span class="pl-s1">root</span>) {
+<span class="pl-smi">void</span> <span class="pl-en">postorder</span>(<span class="pl-smi">Node</span> <span class="pl-s1">root</span>) {
   <span class="pl-k">if</span> (<span class="pl-s1">root</span> != <span class="pl-c1">null</span>) {
     <span class="pl-en">postorder</span>(<span class="pl-s1">root</span>.<span class="pl-s1">left</span>);
     <span class="pl-en">postorder</span>(<span class="pl-s1">root</span>.<span class="pl-s1">right</span>);

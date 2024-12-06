@@ -230,7 +230,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <ul>
 <li>
 <p>递归写法</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">void</span> <span class="pl-s1">dfs</span>(<span class="pl-smi">Node</span> <span class="pl-s1">node</span>, <span class="pl-smi">List</span>&lt;<span class="pl-smi">Node</span>&gt; <span class="pl-s1">visited</span>) {
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">void</span> <span class="pl-en">dfs</span>(<span class="pl-smi">Node</span> <span class="pl-s1">node</span>, <span class="pl-smi">List</span>&lt;<span class="pl-smi">Node</span>&gt; <span class="pl-s1">visited</span>) {
   <span class="pl-k">if</span> (<span class="pl-s1">visited</span>.<span class="pl-en">contains</span>(<span class="pl-s1">node</span>)) {
     <span class="pl-c">// 已经访问过</span>
     <span class="pl-k">return</span>;
@@ -251,7 +251,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </li>
 <li>
 <p>非递归写法</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">void</span> <span class="pl-s1">dfs</span>(<span class="pl-smi">Node</span> <span class="pl-s1">tree</span>) {
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">void</span> <span class="pl-en">dfs</span>(<span class="pl-smi">Node</span> <span class="pl-s1">tree</span>) {
   <span class="pl-k">if</span> (<span class="pl-s1">tree</span>.<span class="pl-s1">root</span> == <span class="pl-c1">null</span>) {
     <span class="pl-k">return</span>;
   }
@@ -280,7 +280,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h3>1.2 广度优先</h3>
 <p>由于使用的是队列方式实现，所以没有递归的方法。</p>
 <p>模版代码：</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">void</span> <span class="pl-s1">bfs</span>(<span class="pl-smi">Node</span> <span class="pl-s1">graph</span>) {
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">void</span> <span class="pl-en">bfs</span>(<span class="pl-smi">Node</span> <span class="pl-s1">graph</span>) {
   <span class="pl-k">if</span> (<span class="pl-s1">graph</span>.<span class="pl-s1">start</span> == <span class="pl-c1">null</span>) {
     <span class="pl-k">return</span>;
   }
@@ -317,7 +317,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li>能够通过索引访问</li>
 </ul>
 <p>模版代码：</p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">int</span> <span class="pl-s1">binarySearch</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">nums</span>, <span class="pl-smi">int</span> <span class="pl-s1">target</span>) {
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">int</span> <span class="pl-en">binarySearch</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">nums</span>, <span class="pl-smi">int</span> <span class="pl-s1">target</span>) {
   <span class="pl-smi">int</span> <span class="pl-s1">left</span> = <span class="pl-c1">0</span>;
   <span class="pl-smi">int</span> <span class="pl-s1">right</span> = <span class="pl-s1">nums</span>.<span class="pl-s1">length</span> - <span class="pl-c1">1</span>;
   <span class="pl-k">while</span> (<span class="pl-s1">left</span> &lt;= <span class="pl-s1">right</span>) {
@@ -335,7 +335,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2>4 作业</h2>
 <p>使用二分查找，寻找一个半有序数组中间无序的地方，如输入[4, 5, 6, 7, 0, 1, 2]，输出4</p>
 <p>相似题目：<a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/" rel="nofollow">https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/</a></p>
-<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-smi">int</span> <span class="pl-s1">search</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">nums</span>) {
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-smi">int</span> <span class="pl-en">search</span>(<span class="pl-smi">int</span>[] <span class="pl-s1">nums</span>) {
     <span class="pl-smi">int</span> <span class="pl-s1">left</span> = <span class="pl-c1">0</span>;
     <span class="pl-smi">int</span> <span class="pl-s1">right</span> = <span class="pl-s1">nums</span>.<span class="pl-s1">length</span> - <span class="pl-c1">1</span>;
     <span class="pl-k">while</span> (<span class="pl-s1">left</span> &lt; <span class="pl-s1">right</span>) {
