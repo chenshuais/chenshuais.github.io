@@ -18,7 +18,7 @@
 <meta property="og:url" content="https://blog.ian2018.club/post/ke-hu-duan-yu-yin-shi-bie-diao-yan.html">
 <meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
 <title>客户端语音识别调研</title>
-
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 </head>
 <style>
@@ -76,53 +76,51 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h5>1.1 通过 Intent 调起 Google 的语音识别</h5>
 <p><img src="https://blog-image.ian2018.cn/images/15e301c444fe6bfb112f8a73b41135672b5bbf43.jpg"></p>
 <p>示例代码：</p>
-<pre lang="java" class="notranslate"><code class="notranslate">Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, MainActivity.this.getPackageName());
-intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1000);
-intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-startActivityForResult(intent, 1001);
-</code></pre>
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">Intent</span> <span class="pl-s1">intent</span> = <span class="pl-k">new</span> <span class="pl-smi">Intent</span>(<span class="pl-smi">RecognizerIntent</span>.<span class="pl-c1">ACTION_RECOGNIZE_SPEECH</span>);
+<span class="pl-s1">intent</span>.<span class="pl-en">putExtra</span>(<span class="pl-smi">RecognizerIntent</span>.<span class="pl-c1">EXTRA_CALLING_PACKAGE</span>, <span class="pl-smi">MainActivity</span>.<span class="pl-smi">this</span>.<span class="pl-en">getPackageName</span>());
+<span class="pl-s1">intent</span>.<span class="pl-en">putExtra</span>(<span class="pl-smi">RecognizerIntent</span>.<span class="pl-c1">EXTRA_LANGUAGE_MODEL</span>, <span class="pl-smi">RecognizerIntent</span>.<span class="pl-c1">LANGUAGE_MODEL_FREE_FORM</span>);
+<span class="pl-s1">intent</span>.<span class="pl-en">putExtra</span>(<span class="pl-smi">RecognizerIntent</span>.<span class="pl-c1">EXTRA_MAX_RESULTS</span>, <span class="pl-c1">1000</span>);
+<span class="pl-s1">intent</span>.<span class="pl-en">putExtra</span>(<span class="pl-smi">RecognizerIntent</span>.<span class="pl-c1">EXTRA_LANGUAGE</span>, <span class="pl-smi">Locale</span>.<span class="pl-en">getDefault</span>());
+<span class="pl-en">startActivityForResult</span>(<span class="pl-s1">intent</span>, <span class="pl-c1">1001</span>);</pre></div>
 <p>优点：免费，依托 Google 的语音识别</p>
 <p>缺点：不能定制化 UI</p>
 <h5>1.2 使用 SpeechRecognizer</h5>
 <p>示例代码：</p>
-<pre lang="java" class="notranslate"><code class="notranslate">SpeechRecognizer speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+<div class="highlight highlight-source-java"><pre class="notranslate"><span class="pl-smi">SpeechRecognizer</span> <span class="pl-s1">speechRecognizer</span> = <span class="pl-smi">SpeechRecognizer</span>.<span class="pl-en">createSpeechRecognizer</span>(<span class="pl-smi">this</span>);
 
-final Intent speechRecognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-speechRecognizerIntent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
+<span class="pl-k">final</span> <span class="pl-smi">Intent</span> <span class="pl-s1">speechRecognizerIntent</span> = <span class="pl-k">new</span> <span class="pl-smi">Intent</span>(<span class="pl-smi">RecognizerIntent</span>.<span class="pl-c1">ACTION_RECOGNIZE_SPEECH</span>);
+<span class="pl-s1">speechRecognizerIntent</span>.<span class="pl-en">putExtra</span>(<span class="pl-smi">RecognizerIntent</span>.<span class="pl-c1">EXTRA_LANGUAGE_MODEL</span>,<span class="pl-smi">RecognizerIntent</span>.<span class="pl-c1">LANGUAGE_MODEL_FREE_FORM</span>);
+<span class="pl-s1">speechRecognizerIntent</span>.<span class="pl-en">putExtra</span>(<span class="pl-smi">RecognizerIntent</span>.<span class="pl-c1">EXTRA_LANGUAGE</span>, <span class="pl-smi">Locale</span>.<span class="pl-en">getDefault</span>());
+<span class="pl-s1">speechRecognizerIntent</span>.<span class="pl-en">putExtra</span>(<span class="pl-smi">RecognizerIntent</span>.<span class="pl-c1">EXTRA_PARTIAL_RESULTS</span>, <span class="pl-c1">true</span>);
 
-speechRecognizer.setRecognitionListener(new RecognitionListener() {
+<span class="pl-s1">speechRecognizer</span>.<span class="pl-en">setRecognitionListener</span>(<span class="pl-k">new</span> <span class="pl-smi">RecognitionListener</span>() {
  
-    @Override
-    public void onBeginningOfSpeech() {
-        // 开始说话
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">onBeginningOfSpeech</span>() {
+        <span class="pl-c">// 开始说话</span>
     }
-    @Override
-    public void onEndOfSpeech() {
-        // 结束说话
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">onEndOfSpeech</span>() {
+        <span class="pl-c">// 结束说话</span>
     }
-    @Override
-    public void onResults(Bundle bundle) {
-        // 最终结果
-        ArrayList&lt;String&gt; data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        String result = data.get(0);
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">onResults</span>(<span class="pl-smi">Bundle</span> <span class="pl-s1">bundle</span>) {
+        <span class="pl-c">// 最终结果</span>
+        <span class="pl-smi">ArrayList</span>&lt;<span class="pl-smi">String</span>&gt; <span class="pl-s1">data</span> = <span class="pl-s1">bundle</span>.<span class="pl-en">getStringArrayList</span>(<span class="pl-smi">SpeechRecognizer</span>.<span class="pl-c1">RESULTS_RECOGNITION</span>);
+        <span class="pl-smi">String</span> <span class="pl-s1">result</span> = <span class="pl-s1">data</span>.<span class="pl-en">get</span>(<span class="pl-c1">0</span>);
     }
 
-    @Override
-    public void onPartialResults(Bundle bundle) {
-        // 实时结果
-        ArrayList&lt;String&gt; data = bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        String result = data.get(0);
+    <span class="pl-c1">@</span><span class="pl-c1">Override</span>
+    <span class="pl-k">public</span> <span class="pl-smi">void</span> <span class="pl-en">onPartialResults</span>(<span class="pl-smi">Bundle</span> <span class="pl-s1">bundle</span>) {
+        <span class="pl-c">// 实时结果</span>
+        <span class="pl-smi">ArrayList</span>&lt;<span class="pl-smi">String</span>&gt; <span class="pl-s1">data</span> = <span class="pl-s1">bundle</span>.<span class="pl-en">getStringArrayList</span>(<span class="pl-smi">SpeechRecognizer</span>.<span class="pl-c1">RESULTS_RECOGNITION</span>);
+        <span class="pl-smi">String</span> <span class="pl-s1">result</span> = <span class="pl-s1">data</span>.<span class="pl-en">get</span>(<span class="pl-c1">0</span>);
     }
 });
-// 开始录音
-speechRecognizer.startListening(speechRecognizerIntent);
-// 结束录音
-speechRecognizer.stopListening();
-</code></pre>
+<span class="pl-c">// 开始录音</span>
+<span class="pl-s1">speechRecognizer</span>.<span class="pl-en">startListening</span>(<span class="pl-s1">speechRecognizerIntent</span>);
+<span class="pl-c">// 结束录音</span>
+<span class="pl-s1">speechRecognizer</span>.<span class="pl-en">stopListening</span>();</pre></div>
 <p>优点：免费，可以自己控制</p>
 <p><strong>需要测试准确率怎么样</strong></p>
 <blockquote>
