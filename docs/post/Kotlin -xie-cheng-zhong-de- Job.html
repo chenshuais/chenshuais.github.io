@@ -20,7 +20,7 @@
 <meta property="og:url" content="https://blog.ian2018.club/post/Kotlin%20-xie-cheng-zhong-de-%20Job.html">
 <meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
 <title>Kotlin 协程中的 Job</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 </head>
 <style>
@@ -72,10 +72,11 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>通过之前的分享，我们已经知道了 Kotlin 的协程是什么，也知道了挂起函数。今天就一块来学习一下什么是 <strong>Job</strong>。</p>
 <h2>Job 从哪来</h2>
 <p>平时我们使用协程，大部分都是直接 <code class="notranslate">launch</code> 一下就完了，很少的时候会用一下 <code class="notranslate">async</code>。</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate">launch {
+<pre lang="kotlin" class="notranslate"><code class="notranslate">launch {
 }
 async { 
-}</pre></div>
+}
+</code></pre>
 <p>如果用过 <code class="notranslate">async</code> 的话，会发现 IDE 会有黄色的提醒，告诉你返回值 <strong>Deferred</strong> 没有使用。<br>
 <img src="https://blog-image.ian2018.cn/images/cce0c7273f0b100ff9f5957cd51b7f5ae9386dc8.png"></p>
 <p>这个 <strong>Deferred</strong> 其实就是 <strong>Job</strong>，它是一个继承 <strong>Job</strong> 的接口。<br>
@@ -83,35 +84,36 @@ async {
 <p>其实不止 <code class="notranslate">async</code> 有返回值，<code class="notranslate">launch</code> 也是有返回值的，而 <code class="notranslate">launch</code> 的返回值直接就是一个 <strong>Job</strong>。<br>
 <img src="https://blog-image.ian2018.cn/images/4cff61b074c930a018498356a653c3262c27f8f1.png"></p>
 <p>我们再来看一下 <strong>Job</strong> 的源码的定义（这里我删除了一些注释和内部 API）：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">public</span> <span class="pl-k">interface</span> <span class="pl-en">Job</span> : <span class="pl-en">CoroutineContext</span>.<span class="pl-en">Element</span> {
+<pre lang="kotlin" class="notranslate"><code class="notranslate">public interface Job : CoroutineContext.Element {
     
-    <span class="pl-c"><span class="pl-c">//</span> ------------ state query ------------</span>
+    // ------------ state query ------------
 
-    <span class="pl-k">public</span> <span class="pl-k">val</span> isActive<span class="pl-k">:</span> <span class="pl-c1">Boolean</span>
+    public val isActive: Boolean
 
-    <span class="pl-k">public</span> <span class="pl-k">val</span> isCompleted<span class="pl-k">:</span> <span class="pl-c1">Boolean</span>
+    public val isCompleted: Boolean
 
-    <span class="pl-k">public</span> <span class="pl-k">val</span> isCancelled<span class="pl-k">:</span> <span class="pl-c1">Boolean</span>
+    public val isCancelled: Boolean
 
-    <span class="pl-c"><span class="pl-c">//</span> ------------ state update ------------</span>
+    // ------------ state update ------------
 
-    <span class="pl-k">public</span> <span class="pl-k">fun</span> <span class="pl-en">start</span>(): <span class="pl-c1">Boolean</span>
+    public fun start(): Boolean
 
-    <span class="pl-k">public</span> <span class="pl-k">fun</span> <span class="pl-en">cancel</span>(<span class="pl-smi">cause</span><span class="pl-k">:</span> <span class="pl-en">CancellationException</span><span class="pl-k">?</span> = null)
+    public fun cancel(cause: CancellationException? = null)
 
-    <span class="pl-c"><span class="pl-c">//</span> ------------ parent-child ------------</span>
+    // ------------ parent-child ------------
 
-    <span class="pl-k">public</span> <span class="pl-k">val</span> children<span class="pl-k">:</span> <span class="pl-en">Sequence</span>&lt;<span class="pl-en">Job</span>&gt;
+    public val children: Sequence&lt;Job&gt;
 
-    <span class="pl-c"><span class="pl-c">//</span> ------------ state waiting ------------</span>
+    // ------------ state waiting ------------
 
-    <span class="pl-k">public</span> <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">join</span>()
+    public suspend fun join()
 
-    <span class="pl-c"><span class="pl-c">//</span> ------------ low-level state-notification ------------</span>
+    // ------------ low-level state-notification ------------
 
-    <span class="pl-k">public</span> <span class="pl-k">fun</span> <span class="pl-en">invokeOnCompletion</span>(<span class="pl-smi">handler</span><span class="pl-k">:</span> <span class="pl-en">CompletionHandler</span>): <span class="pl-en">DisposableHandle</span>
+    public fun invokeOnCompletion(handler: CompletionHandler): DisposableHandle
     
-}</pre></div>
+}
+</code></pre>
 <p><strong>Job</strong> 的源码注释还是写的很清楚的，还贴心的做了划分。</p>
 <p>从源码的注释我们可以大概知道，<strong>Job</strong> 大致分了五个部分：</p>
 <ul>
@@ -133,40 +135,42 @@ async {
 <ol start="2">
 <li>log 打印方法：</li>
 </ol>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-c"><span class="pl-c">/*</span>*</span>
-<span class="pl-c"> * 打印 Job 的状态信息，就是源码中看到的 state query 那部分内容</span>
-<span class="pl-c"> <span class="pl-c">*/</span></span>
-<span class="pl-k">fun</span> Job.<span class="pl-en">log</span>() {
+<pre lang="kotlin" class="notranslate"><code class="notranslate">/**
+ * 打印 Job 的状态信息，就是源码中看到的 state query 那部分内容
+ */
+fun Job.log() {
     logX(
-        <span class="pl-s"><span class="pl-pds">"""</span></span>
-<span class="pl-s">        isActive = <span class="pl-e">$isActive</span></span>
-<span class="pl-s">        isCancelled = <span class="pl-e">$isCancelled</span></span>
-<span class="pl-s">        isCompleted = <span class="pl-e">$isCompleted</span></span>
-<span class="pl-s">    <span class="pl-pds">"""</span></span>.trimIndent()
+        """
+        isActive = $isActive
+        isCancelled = $isCancelled
+        isCompleted = $isCompleted
+    """.trimIndent()
     )
 }
 
-<span class="pl-c"><span class="pl-c">/*</span>*</span>
-<span class="pl-c"> * 控制台输出带协程信息的 log</span>
-<span class="pl-c"> <span class="pl-c">*/</span></span>
-<span class="pl-k">fun</span> <span class="pl-en">logX</span>(<span class="pl-smi">any</span><span class="pl-k">:</span> <span class="pl-c1">Any?</span>) {
-    <span class="pl-c1">println</span>(
-        <span class="pl-s"><span class="pl-pds">"""</span></span>
-<span class="pl-s">================================</span>
-<span class="pl-s"><span class="pl-e">$any</span></span>
-<span class="pl-s">Thread:<span class="pl-e">${<span class="pl-en">Thread</span>.currentThread().name}</span></span>
-<span class="pl-s">================================<span class="pl-pds">"""</span></span>.trimIndent()
+/**
+ * 控制台输出带协程信息的 log
+ */
+fun logX(any: Any?) {
+    println(
+        """
+================================
+$any
+Thread:${Thread.currentThread().name}
+================================""".trimIndent()
     )
-}</pre></div>
+}
+</code></pre>
 <h3>一、测试通过 Job 查看协程状态</h3>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">test1</span>() <span class="pl-k">=</span> runBlocking {
-    <span class="pl-k">val</span> job <span class="pl-k">=</span> launch {
-        delay(<span class="pl-c1">1000L</span>)
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun test1() = runBlocking {
+    val job = launch {
+        delay(1000L)
     }
-    job.log()             <span class="pl-c"><span class="pl-c">//</span> ①</span>
-    delay(<span class="pl-c1">1500L</span>)          <span class="pl-c"><span class="pl-c">//</span> ②</span>
-    job.log()             <span class="pl-c"><span class="pl-c">//</span> ③</span>
-}</pre></div>
+    job.log()             // ①
+    delay(1500L)          // ②
+    job.log()             // ③
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">================================
 isActive = true
@@ -187,20 +191,21 @@ Thread:main @coroutine#2
 <h3>二、测试通过 Job 更新协程状态</h3>
 <h4>1. <strong>Job</strong> 的 <code class="notranslate">start</code> 方法</h4>
 <p>要想使用 <code class="notranslate">start</code>，我们首先得改一下 <code class="notranslate">launch</code> 的启动方式：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">test2</span>() <span class="pl-k">=</span> runBlocking {
-    <span class="pl-c"><span class="pl-c">//</span>                           变化在这里</span>
-    <span class="pl-c"><span class="pl-c">//</span>                               ↓</span>
-    <span class="pl-k">val</span> job <span class="pl-k">=</span> launch(start <span class="pl-k">=</span> <span class="pl-en">CoroutineStart</span>.<span class="pl-en">LAZY</span>) {
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Coroutine start!<span class="pl-pds">"</span></span>)
-        delay(<span class="pl-c1">1000L</span>)
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun test2() = runBlocking {
+    //                           变化在这里
+    //                               ↓
+    val job = launch(start = CoroutineStart.LAZY) {
+        logX("Coroutine start!")
+        delay(1000L)
     }
-    delay(<span class="pl-c1">1000L</span>)          <span class="pl-c"><span class="pl-c">//</span> ①</span>
+    delay(1000L)          // ①
     job.log()
-    job.start()           <span class="pl-c"><span class="pl-c">//</span> ②</span>
+    job.start()           // ②
     job.log()
-    delay(<span class="pl-c1">1500L</span>)          <span class="pl-c"><span class="pl-c">//</span> ③</span>
+    delay(1500L)          // ③
     job.log()
-}</pre></div>
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">================================
 isActive = false
@@ -230,22 +235,23 @@ Thread:main @coroutine#2
 <p>当我们调用了 Job 的 <code class="notranslate">start</code> 方法后，再次查看状态，<strong>isActive</strong> 变成了 true，并且协程中的任务也打印了 “Coroutine start!”，说明调了 <code class="notranslate">start</code> 方法之后会把协程激活。</p>
 <p>又等了 1.5 秒后，协程也正常结束了。</p>
 <h4>2. <strong>Job</strong> 的 <code class="notranslate">cancel</code> 方法：</h4>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">test4</span>() <span class="pl-k">=</span> runBlocking {
-    <span class="pl-k">val</span> job <span class="pl-k">=</span> launch(start <span class="pl-k">=</span> <span class="pl-en">CoroutineStart</span>.<span class="pl-en">LAZY</span>) {
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Coroutine start!<span class="pl-pds">"</span></span>)
-        delay(<span class="pl-c1">1000L</span>)
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Coroutine end!<span class="pl-pds">"</span></span>)
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun test4() = runBlocking {
+    val job = launch(start = CoroutineStart.LAZY) {
+        logX("Coroutine start!")
+        delay(1000L)
+        logX("Coroutine end!")
     }
-    delay(<span class="pl-c1">500L</span>)
+    delay(500L)
     job.log()
     job.start()
     job.log()
-    delay(<span class="pl-c1">500L</span>)           <span class="pl-c"><span class="pl-c">//</span> ①</span>
-    job.cancel()          <span class="pl-c"><span class="pl-c">//</span> ②</span>
-    job.log()             <span class="pl-c"><span class="pl-c">//</span> ③</span>
-    delay(<span class="pl-c1">2000L</span>)          <span class="pl-c"><span class="pl-c">//</span> ④</span>
-    job.log()             <span class="pl-c"><span class="pl-c">//</span> ⑤</span>
-}</pre></div>
+    delay(500L)           // ①
+    job.cancel()          // ②
+    job.log()             // ③
+    delay(2000L)          // ④
+    job.log()             // ⑤
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">================================
 isActive = false
@@ -288,23 +294,24 @@ Thread:main @coroutine#2
 <h3>三、测试通过 Job 等待协程运行</h3>
 <h4>1. Job 的 join</h4>
 <p>前面几个例子我们是都知道协程中的任务执行了多久，然后去查看协程的状态。但实际开发中我们一般都是不能提前知道的，就比如进行网络请求，这时候我们就可以用 <strong>Job</strong> 的 <code class="notranslate">join</code> 方法了。</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">test5</span>() <span class="pl-k">=</span> runBlocking {
-    <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">download</span>() {
-        <span class="pl-c"><span class="pl-c">//</span> 模拟下载任务</span>
-        <span class="pl-k">val</span> time <span class="pl-k">=</span> (<span class="pl-en">Random</span>.nextDouble() <span class="pl-k">*</span> <span class="pl-c1">1000</span>).toLong()
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Delay time: = <span class="pl-e">$time</span><span class="pl-pds">"</span></span>)
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun test5() = runBlocking {
+    suspend fun download() {
+        // 模拟下载任务
+        val time = (Random.nextDouble() * 1000).toLong()
+        logX("Delay time: = $time")
         delay(time)
     }
 
-    <span class="pl-k">val</span> job <span class="pl-k">=</span> launch {
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Coroutine start!<span class="pl-pds">"</span></span>)
+    val job = launch {
+        logX("Coroutine start!")
         download()
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Coroutine end!<span class="pl-pds">"</span></span>)
+        logX("Coroutine end!")
     }
     job.log()
-    job.join()      <span class="pl-c"><span class="pl-c">//</span> 等待协程执行完毕</span>
+    job.join()      // 等待协程执行完毕
     job.log()
-}</pre></div>
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">================================
 isActive = true
@@ -333,25 +340,26 @@ Thread:main @coroutine#2
 </code></pre>
 <p><code class="notranslate">join</code> 是个挂起函数，所以执行到 join 那里会把代码挂起，等协程运行完成后，后面的代码才会继续执行。</p>
 <p>另外我们还可以通过给 <strong>Job</strong> 添加一个通知回调的方式，来知道协程运行完成，这可以使用 <strong>Job</strong> 的 <code class="notranslate">invokeOnCompletion</code>：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">test6</span>() <span class="pl-k">=</span> runBlocking {
-    <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">download</span>() {
-        <span class="pl-c"><span class="pl-c">//</span> 模拟下载任务</span>
-        <span class="pl-k">val</span> time <span class="pl-k">=</span> (<span class="pl-en">Random</span>.nextDouble() <span class="pl-k">*</span> <span class="pl-c1">1000</span>).toLong()
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Delay time: = <span class="pl-e">$time</span><span class="pl-pds">"</span></span>)
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun test6() = runBlocking {
+    suspend fun download() {
+        // 模拟下载任务
+        val time = (Random.nextDouble() * 1000).toLong()
+        logX("Delay time: = $time")
         delay(time)
     }
 
-    <span class="pl-k">val</span> job <span class="pl-k">=</span> launch {
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Coroutine start!<span class="pl-pds">"</span></span>)
+    val job = launch {
+        logX("Coroutine start!")
         download()
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Coroutine end!<span class="pl-pds">"</span></span>)
+        logX("Coroutine end!")
     }
     job.log()
     job.invokeOnCompletion {
-        job.log()   <span class="pl-c"><span class="pl-c">//</span> 协程结束以后就会调用这里的代码</span>
+        job.log()   // 协程结束以后就会调用这里的代码
     }
-    job.join()      <span class="pl-c"><span class="pl-c">//</span> 等待协程执行完毕</span>
-}</pre></div>
+    job.join()      // 等待协程执行完毕
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">================================
 isActive = true
@@ -380,25 +388,26 @@ Thread:main @coroutine#3
 </code></pre>
 <p>可以看到效果是一样的，这样我们就能在代码其他地方来监听协程的运行了。</p>
 <p>但是需要注意的是，协程被 <code class="notranslate">cancel</code> 了也同样会回调：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">test6</span>() <span class="pl-k">=</span> runBlocking {
-    <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">download</span>() {
-        <span class="pl-c"><span class="pl-c">//</span> 模拟下载任务</span>
-        <span class="pl-k">val</span> time <span class="pl-k">=</span> (<span class="pl-en">Random</span>.nextDouble() <span class="pl-k">*</span> <span class="pl-c1">1000</span>).toLong()
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Delay time: = <span class="pl-e">$time</span><span class="pl-pds">"</span></span>)
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun test6() = runBlocking {
+    suspend fun download() {
+        // 模拟下载任务
+        val time = (Random.nextDouble() * 1000).toLong()
+        logX("Delay time: = $time")
         delay(time)
     }
 
-    <span class="pl-k">val</span> job <span class="pl-k">=</span> launch {
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Coroutine start!<span class="pl-pds">"</span></span>)
+    val job = launch {
+        logX("Coroutine start!")
         download()
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Coroutine end!<span class="pl-pds">"</span></span>)
+        logX("Coroutine end!")
     }
     job.log()
     job.invokeOnCompletion {
-        job.log()   <span class="pl-c"><span class="pl-c">//</span> 协程结束以后就会调用这里的代码</span>
+        job.log()   // 协程结束以后就会调用这里的代码
     }
-    job.cancel()    <span class="pl-c"><span class="pl-c">//</span> 取消协程</span>
-}</pre></div>
+    job.cancel()    // 取消协程
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">================================
 isActive = true
@@ -417,25 +426,26 @@ Thread:main @coroutine#3
 <p><strong>Deferred</strong> 继承了 <strong>Job</strong> 但只比 <strong>Job</strong> 多了一个 <code class="notranslate">await</code> 方法：<br>
 <img src="https://blog-image.ian2018.cn/images/21f6a4af8d7d547f837157d606f3a0a33d2d4c15.png"></p>
 <p>和 <code class="notranslate">join</code> 类似，<code class="notranslate">await</code> 也是可以等待协程运行完成，只不过 <code class="notranslate">await</code> 是有返回值的，可以拿到协程的运行结果：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">test7</span>() <span class="pl-k">=</span> runBlocking {
-    <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">download</span>(): <span class="pl-c1">String</span> {
-        <span class="pl-c"><span class="pl-c">//</span> 模拟下载任务</span>
-        <span class="pl-k">val</span> time <span class="pl-k">=</span> (<span class="pl-en">Random</span>.nextDouble() <span class="pl-k">*</span> <span class="pl-c1">1000</span>).toLong()
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Delay time: = <span class="pl-e">$time</span><span class="pl-pds">"</span></span>)
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun test7() = runBlocking {
+    suspend fun download(): String {
+        // 模拟下载任务
+        val time = (Random.nextDouble() * 1000).toLong()
+        logX("Delay time: = $time")
         delay(time)
-        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>download result!<span class="pl-pds">"</span></span>
+        return "download result!"
     }
     
-    <span class="pl-k">val</span> deferred <span class="pl-k">=</span> async {
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Coroutine start!<span class="pl-pds">"</span></span>)
-        <span class="pl-k">val</span> result <span class="pl-k">=</span> download()
-        logX(<span class="pl-s"><span class="pl-pds">"</span>Coroutine end!<span class="pl-pds">"</span></span>)
-        <span class="pl-k">return</span>@async result
+    val deferred = async {
+        logX("Coroutine start!")
+        val result = download()
+        logX("Coroutine end!")
+        return@async result
     }
-    <span class="pl-k">val</span> result <span class="pl-k">=</span> deferred.await()
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Result = <span class="pl-e">$result</span><span class="pl-pds">"</span></span>)
-    logX(<span class="pl-s"><span class="pl-pds">"</span>Process end!<span class="pl-pds">"</span></span>)
-}</pre></div>
+    val result = deferred.await()
+    println("Result = $result")
+    logX("Process end!")
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">================================
 Coroutine start!
@@ -465,33 +475,34 @@ Thread:main @coroutine#2
 <p>那么现在 <strong>Job</strong> 还剩最后一块「parent-child」，下面我们来看看这个父子关系到底是什么？</p>
 <h2>结构化并发</h2>
 <p><strong>Job</strong> 中的 <code class="notranslate">children</code> 其实是和结构化并发有关的，这也是协程的另一大特色。那么什么是结构化并发呢？从字面上看就是有结构的并发（废话文学了🙄），还是看几个例子吧：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">test8</span>() <span class="pl-k">=</span> runBlocking {
-    <span class="pl-k">val</span> parentJob<span class="pl-k">:</span> <span class="pl-en">Job</span>
-    <span class="pl-k">var</span> job1<span class="pl-k">:</span> <span class="pl-en">Job</span><span class="pl-k">?</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>
-    <span class="pl-k">var</span> job2<span class="pl-k">:</span> <span class="pl-en">Job</span><span class="pl-k">?</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>
-    <span class="pl-k">var</span> job3<span class="pl-k">:</span> <span class="pl-en">Job</span><span class="pl-k">?</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>
-    parentJob <span class="pl-k">=</span> launch {
-        job1 <span class="pl-k">=</span> launch {
-            delay(<span class="pl-c1">1000L</span>)
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun test8() = runBlocking {
+    val parentJob: Job
+    var job1: Job? = null
+    var job2: Job? = null
+    var job3: Job? = null
+    parentJob = launch {
+        job1 = launch {
+            delay(1000L)
         }
-        job2 <span class="pl-k">=</span> launch {
-            delay(<span class="pl-c1">3000L</span>)
+        job2 = launch {
+            delay(3000L)
         }
-        job3 <span class="pl-k">=</span> launch {
-            delay(<span class="pl-c1">5000L</span>)
-        }
-    }
-    delay(<span class="pl-c1">500L</span>)
-    parentJob.children.forEachIndexed { index, job <span class="pl-k">-&gt;</span>
-        <span class="pl-k">when</span> (index) {
-            <span class="pl-c1">0</span> <span class="pl-k">-&gt;</span> <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>job1 === job is <span class="pl-e">${job1 <span class="pl-k">==</span><span class="pl-k">=</span> job}</span><span class="pl-pds">"</span></span>)
-            <span class="pl-c1">1</span> <span class="pl-k">-&gt;</span> <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>job2 === job is <span class="pl-e">${job2 <span class="pl-k">==</span><span class="pl-k">=</span> job}</span><span class="pl-pds">"</span></span>)
-            <span class="pl-c1">2</span> <span class="pl-k">-&gt;</span> <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>job3 === job is <span class="pl-e">${job3 <span class="pl-k">==</span><span class="pl-k">=</span> job}</span><span class="pl-pds">"</span></span>)
+        job3 = launch {
+            delay(5000L)
         }
     }
-    parentJob.join() <span class="pl-c"><span class="pl-c">//</span> 这里会挂起大约5秒钟</span>
-    logX(<span class="pl-s"><span class="pl-pds">"</span>Process end!<span class="pl-pds">"</span></span>)
-}</pre></div>
+    delay(500L)
+    parentJob.children.forEachIndexed { index, job -&gt;
+        when (index) {
+            0 -&gt; println("job1 === job is ${job1 === job}")
+            1 -&gt; println("job2 === job is ${job2 === job}")
+            2 -&gt; println("job3 === job is ${job3 === job}")
+        }
+    }
+    parentJob.join() // 这里会挂起大约5秒钟
+    logX("Process end!")
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">job1 === job is true
 job2 === job is true
@@ -506,39 +517,40 @@ Thread:main @coroutine#2
 <p>还有 parentJob 执行 join 的时候大概挂起了 5 秒，而子协程中最长的任务就是 5 秒，这说明父协程会等所有子协程全部完成后，才会结束：<br>
 <img src="https://blog-image.ian2018.cn/images/08a9b255f24248d65e4e90828fc1ffaebc492437.gif"></p>
 <p>然后我们再试试 cancel 的情况：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">test9</span>() <span class="pl-k">=</span> runBlocking {
-    <span class="pl-k">val</span> parentJob<span class="pl-k">:</span> <span class="pl-en">Job</span>
-    <span class="pl-k">var</span> job1<span class="pl-k">:</span> <span class="pl-en">Job</span><span class="pl-k">?</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>
-    <span class="pl-k">var</span> job2<span class="pl-k">:</span> <span class="pl-en">Job</span><span class="pl-k">?</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>
-    <span class="pl-k">var</span> job3<span class="pl-k">:</span> <span class="pl-en">Job</span><span class="pl-k">?</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>
-    parentJob <span class="pl-k">=</span> launch {
-        job1 <span class="pl-k">=</span> launch {
-            logX(<span class="pl-s"><span class="pl-pds">"</span>Job1 start!<span class="pl-pds">"</span></span>)
-            delay(<span class="pl-c1">1000L</span>)
-            logX(<span class="pl-s"><span class="pl-pds">"</span>Job1 done!<span class="pl-pds">"</span></span>) <span class="pl-c"><span class="pl-c">//</span> ①，不会执行</span>
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun test9() = runBlocking {
+    val parentJob: Job
+    var job1: Job? = null
+    var job2: Job? = null
+    var job3: Job? = null
+    parentJob = launch {
+        job1 = launch {
+            logX("Job1 start!")
+            delay(1000L)
+            logX("Job1 done!") // ①，不会执行
         }
-        job2 <span class="pl-k">=</span> launch {
-            logX(<span class="pl-s"><span class="pl-pds">"</span>Job2 start!<span class="pl-pds">"</span></span>)
-            delay(<span class="pl-c1">3000L</span>)
-            logX(<span class="pl-s"><span class="pl-pds">"</span>Job2 done!<span class="pl-pds">"</span></span>) <span class="pl-c"><span class="pl-c">//</span> ②，不会执行</span>
+        job2 = launch {
+            logX("Job2 start!")
+            delay(3000L)
+            logX("Job2 done!") // ②，不会执行
         }
-        job3 <span class="pl-k">=</span> launch {
-            logX(<span class="pl-s"><span class="pl-pds">"</span>Job3 start!<span class="pl-pds">"</span></span>)
-            delay(<span class="pl-c1">5000L</span>)
-            logX(<span class="pl-s"><span class="pl-pds">"</span>Job3 done!<span class="pl-pds">"</span></span>)<span class="pl-c"><span class="pl-c">//</span> ③，不会执行</span>
-        }
-    }
-    delay(<span class="pl-c1">500L</span>)
-    parentJob.children.forEachIndexed { index, job <span class="pl-k">-&gt;</span>
-        <span class="pl-k">when</span> (index) {
-            <span class="pl-c1">0</span> <span class="pl-k">-&gt;</span> <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>job1 === job is <span class="pl-e">${job1 <span class="pl-k">==</span><span class="pl-k">=</span> job}</span><span class="pl-pds">"</span></span>)
-            <span class="pl-c1">1</span> <span class="pl-k">-&gt;</span> <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>job2 === job is <span class="pl-e">${job2 <span class="pl-k">==</span><span class="pl-k">=</span> job}</span><span class="pl-pds">"</span></span>)
-            <span class="pl-c1">2</span> <span class="pl-k">-&gt;</span> <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>job3 === job is <span class="pl-e">${job3 <span class="pl-k">==</span><span class="pl-k">=</span> job}</span><span class="pl-pds">"</span></span>)
+        job3 = launch {
+            logX("Job3 start!")
+            delay(5000L)
+            logX("Job3 done!")// ③，不会执行
         }
     }
-    parentJob.cancel() <span class="pl-c"><span class="pl-c">//</span> 变化在这里</span>
-    logX(<span class="pl-s"><span class="pl-pds">"</span>Process end!<span class="pl-pds">"</span></span>)
-}</pre></div>
+    delay(500L)
+    parentJob.children.forEachIndexed { index, job -&gt;
+        when (index) {
+            0 -&gt; println("job1 === job is ${job1 === job}")
+            1 -&gt; println("job2 === job is ${job2 === job}")
+            2 -&gt; println("job3 === job is ${job3 === job}")
+        }
+    }
+    parentJob.cancel() // 变化在这里
+    logX("Process end!")
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">================================
 Job1 start!
@@ -566,70 +578,72 @@ Thread:main @coroutine#2
 <h2>实际应用</h2>
 <p>需求大概是这样的：一个照片详情页，有三个接口，分别是获取照片详情信息、获取照片点赞列表、获取照片评论列表，这三个接口之前没有耦合，只有三个接口全都获取到信息才能进行 UI 展示。</p>
 <p>我们先看一下一般写法：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">test10</span>() <span class="pl-k">=</span> runBlocking {
-    <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">getPhotoInfo</span>(): <span class="pl-c1">String</span> {
-        delay(<span class="pl-c1">1000L</span>) <span class="pl-c"><span class="pl-c">//</span> 模拟耗时操作</span>
-        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>photo info<span class="pl-pds">"</span></span>
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun test10() = runBlocking {
+    suspend fun getPhotoInfo(): String {
+        delay(1000L) // 模拟耗时操作
+        return "photo info"
     }
-    <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">getPhotoLikeList</span>(): <span class="pl-c1">String</span> {
-        delay(<span class="pl-c1">1000L</span>) <span class="pl-c"><span class="pl-c">//</span> 模拟耗时操作</span>
-        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>photo like list<span class="pl-pds">"</span></span>
+    suspend fun getPhotoLikeList(): String {
+        delay(1000L) // 模拟耗时操作
+        return "photo like list"
     }
-    <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">getPhotoCommentList</span>(): <span class="pl-c1">String</span> {
-        delay(<span class="pl-c1">1000L</span>) <span class="pl-c"><span class="pl-c">//</span> 模拟耗时操作</span>
-        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>photo comment list<span class="pl-pds">"</span></span>
+    suspend fun getPhotoCommentList(): String {
+        delay(1000L) // 模拟耗时操作
+        return "photo comment list"
     }
 
-    <span class="pl-k">val</span> deferred <span class="pl-k">=</span> async {
-        <span class="pl-k">val</span> results <span class="pl-k">=</span> mutableListOf&lt;<span class="pl-en">String</span>&gt;()
-        <span class="pl-c"><span class="pl-c">//</span> measureTimeMillis 是 kotlin 里一个统计执行时间的方法</span>
-        <span class="pl-k">val</span> time <span class="pl-k">=</span> measureTimeMillis {
+    val deferred = async {
+        val results = mutableListOf&lt;String&gt;()
+        // measureTimeMillis 是 kotlin 里一个统计执行时间的方法
+        val time = measureTimeMillis {
             results.add(getPhotoInfo())
             results.add(getPhotoLikeList())
             results.add(getPhotoCommentList())
         }
-        <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Cost Time: <span class="pl-e">$time</span><span class="pl-pds">"</span></span>)
+        println("Cost Time: $time")
         results
     }
     
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>开始展示 UI: <span class="pl-e">${deferred.await()}</span><span class="pl-pds">"</span></span>)
-}</pre></div>
+    println("开始展示 UI: ${deferred.await()}")
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">Cost Time: 3015
 开始展示 UI: [photo info, photo like list, photo comment list]
 </code></pre>
 <p>我们写了 3 个挂起函数模拟 3 个接口的请求，然后直接在协程里就去分别请求了，大概消耗 3 秒才结束。</p>
 <p>然后我们看一下优化后的：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">test11</span>() <span class="pl-k">=</span> runBlocking {
-    <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">getPhotoInfo</span>(): <span class="pl-c1">String</span> {
-        delay(<span class="pl-c1">1000L</span>) <span class="pl-c"><span class="pl-c">//</span> 模拟耗时操作</span>
-        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>photo info<span class="pl-pds">"</span></span>
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun test11() = runBlocking {
+    suspend fun getPhotoInfo(): String {
+        delay(1000L) // 模拟耗时操作
+        return "photo info"
     }
-    <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">getPhotoLikeList</span>(): <span class="pl-c1">String</span> {
-        delay(<span class="pl-c1">1000L</span>) <span class="pl-c"><span class="pl-c">//</span> 模拟耗时操作</span>
-        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>photo like list<span class="pl-pds">"</span></span>
+    suspend fun getPhotoLikeList(): String {
+        delay(1000L) // 模拟耗时操作
+        return "photo like list"
     }
-    <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">getPhotoCommentList</span>(): <span class="pl-c1">String</span> {
-        delay(<span class="pl-c1">1000L</span>) <span class="pl-c"><span class="pl-c">//</span> 模拟耗时操作</span>
-        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>photo comment list<span class="pl-pds">"</span></span>
+    suspend fun getPhotoCommentList(): String {
+        delay(1000L) // 模拟耗时操作
+        return "photo comment list"
     }
 
-    <span class="pl-k">val</span> deferred <span class="pl-k">=</span> async {
-        <span class="pl-k">val</span> results<span class="pl-k">:</span> <span class="pl-c1">List</span>&lt;<span class="pl-en">String</span>&gt;
-        <span class="pl-c"><span class="pl-c">//</span> measureTimeMillis 是 kotlin 里一个统计执行时间的方法</span>
-        <span class="pl-k">val</span> time <span class="pl-k">=</span> measureTimeMillis {
-            <span class="pl-c"><span class="pl-c">//</span> 里面也用 async 并行请求</span>
-            <span class="pl-k">val</span> result1 <span class="pl-k">=</span> async { getPhotoInfo() } 
-            <span class="pl-k">val</span> result2 <span class="pl-k">=</span> async { getPhotoLikeList() }
-            <span class="pl-k">val</span> result3 <span class="pl-k">=</span> async { getPhotoCommentList() }
-            results <span class="pl-k">=</span> <span class="pl-c1">listOf</span>(result1.await(), result2.await(), result3.await())
+    val deferred = async {
+        val results: List&lt;String&gt;
+        // measureTimeMillis 是 kotlin 里一个统计执行时间的方法
+        val time = measureTimeMillis {
+            // 里面也用 async 并行请求
+            val result1 = async { getPhotoInfo() } 
+            val result2 = async { getPhotoLikeList() }
+            val result3 = async { getPhotoCommentList() }
+            results = listOf(result1.await(), result2.await(), result3.await())
         }
-        <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>Cost Time: <span class="pl-e">$time</span><span class="pl-pds">"</span></span>)
+        println("Cost Time: $time")
         results
     }
     
-    <span class="pl-c1">println</span>(<span class="pl-s"><span class="pl-pds">"</span>开始展示 UI: <span class="pl-e">${deferred.await()}</span><span class="pl-pds">"</span></span>)
-}</pre></div>
+    println("开始展示 UI: ${deferred.await()}")
+}
+</code></pre>
 <p>打印结果：</p>
 <pre class="notranslate"><code class="notranslate">Cost Time: 1022
 开始展示 UI: [photo info, photo like list, photo comment list]
@@ -667,30 +681,31 @@ Thread:main @coroutine#2
 <p>这段代码其实是不会结束的，因为 fetchAll 里没有处理协程 cancel 的情况，所有会一直运行。因为 cancel 只是改变了状态，取消的话还需要协程内部去配合。</p>
 <p>之前那些例子能取消，是因为那里面用了 <code class="notranslate">delay</code> 这个方法，是 <code class="notranslate">delay</code> 方法里处理了 cancel，并抛出了一个取消的异常，所以协程才能结束。</p>
 <p>解决办法就是在协程里加上当前状态的判断：</p>
-<div class="highlight highlight-source-kotlin"><pre class="notranslate"><span class="pl-k">fun</span> <span class="pl-en">test12</span>() <span class="pl-k">=</span> runBlocking {
+<pre lang="kotlin" class="notranslate"><code class="notranslate">fun test12() = runBlocking {
 
-    <span class="pl-k">suspend</span> <span class="pl-k">fun</span> <span class="pl-en">fetchAll</span>() {
-        withContext(<span class="pl-en">Dispatchers</span>.<span class="pl-en">IO</span>) {
-            <span class="pl-k">var</span> i <span class="pl-k">=</span> <span class="pl-c1">0</span>
-            <span class="pl-k">while</span> (isActive) { <span class="pl-c"><span class="pl-c">//</span> 变化在这里</span>
-                i<span class="pl-k">++</span>
-                logX(<span class="pl-s"><span class="pl-pds">"</span>fetch i: <span class="pl-e">$i</span><span class="pl-pds">"</span></span>)
+    suspend fun fetchAll() {
+        withContext(Dispatchers.IO) {
+            var i = 0
+            while (isActive) { // 变化在这里
+                i++
+                logX("fetch i: $i")
             }
         }
     }
 
-    <span class="pl-k">val</span> job <span class="pl-k">=</span> launch {
-        logX(<span class="pl-s"><span class="pl-pds">"</span>coroutine start!<span class="pl-pds">"</span></span>)
+    val job = launch {
+        logX("coroutine start!")
         fetchAll()
-        logX(<span class="pl-s"><span class="pl-pds">"</span>coroutine end!<span class="pl-pds">"</span></span>)
+        logX("coroutine end!")
     }
 
-    delay(<span class="pl-c1">500L</span>)
+    delay(500L)
 
     job.cancel()
 
-    logX(<span class="pl-s"><span class="pl-pds">"</span>Process end!<span class="pl-pds">"</span></span>)
-}</pre></div>
+    logX("Process end!")
+}
+</code></pre>
 <p>这样我们自己定义的挂起函数也能响应 cancel 了。</p>
 <hr>
 <p>最最后再推荐一下极客时间的《Kotlin 编程第一课》，上面的内容都是参考的这门课程。</p>
