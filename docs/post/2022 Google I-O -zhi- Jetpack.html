@@ -16,7 +16,7 @@
 <meta property="og:url" content="https://blog.ian2018.club/post/2022%20Google%20I-O%20-zhi-%20Jetpack.html">
 <meta property="og:image" content="https://blog-image.ian2018.cn/avatar.webp">
 <title>2022 Google I/O 之 Jetpack</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 </head>
 <style>
@@ -77,17 +77,19 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <li><strong>用 Kotlin 重写</strong>：从 Room 2.5 开始使用 Kotlin 完成重写，同时仍然与 Java 编写的版本二进制兼容。</li>
 <li><strong>对 Paging 3.0 的内置支持</strong>：允许 Room 查询返回 <code class="notranslate">PagingSource</code> 对象。</li>
 <li><strong>支持多映射关系查询</strong>：可以直接执行 JOIN 查询，无需额外定义数据结构：
-<div class="highlight highlight-source-kotlin"><pre class="notranslate">@Query(<span class="pl-s"><span class="pl-pds">"</span>SELECT * FROM Artist JOIN Song ON Artist.artistName = Song.songArtistName<span class="pl-pds">"</span></span>)
-<span class="pl-k">fun</span> <span class="pl-en">getArtistToSongs</span>(): <span class="pl-c1">Map</span>&lt;<span class="pl-en">Artist</span>, <span class="pl-en">List</span>&lt;<span class="pl-en">Song</span>&gt;&gt;</pre></div>
+<pre lang="kotlin" class="notranslate"><code class="notranslate">@Query("SELECT * FROM Artist JOIN Song ON Artist.artistName = Song.songArtistName")
+fun getArtistToSongs(): Map&lt;Artist, List&lt;Song&gt;&gt;
+</code></pre>
 </li>
 <li><strong>支持数据库自动升级</strong>：Database 注解增加 <code class="notranslate">autoMigrations</code> 参数，可以用于声明要从哪个版本升级到哪个版本，当 Room 需要执行有关表和列修改的信息时，还可以使用 <code class="notranslate">@AutoMigration</code> 注解的 spec 参数传入。
-<div class="highlight highlight-source-kotlin"><pre class="notranslate">@Database(
-    version <span class="pl-k">=</span> <span class="pl-c1">2</span>,
-    autoMigrations <span class="pl-k">=</span> {
-        @AutoMigration(from <span class="pl-k">=</span> <span class="pl-c1">1</span>, to <span class="pl-k">=</span> , spec <span class="pl-k">=</span> <span class="pl-en">MyMigration</span>::<span class="pl-c1">class</span>)
+<pre lang="kotlin" class="notranslate"><code class="notranslate">@Database(
+    version = 2,
+    autoMigrations = {
+        @AutoMigration(from = 1, to = , spec = MyMigration::class)
     }
 )
-<span class="pl-k">abstract</span> <span class="pl-k">class</span> <span class="pl-en">MyDatabase</span> : <span class="pl-en">RoomDatabase</span>()</pre></div>
+abstract class MyDatabase : RoomDatabase()
+</code></pre>
 </li>
 </ul>
 <h1>二、Paging</h1>
